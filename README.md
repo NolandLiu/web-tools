@@ -31,7 +31,7 @@ npm run build
 
 ## Cloudflare Pages
 
-在Cloudflare Pages连接GitHub仓库，使用：
+此项目案例部署可在Cloudflare，在Cloudflare Pages连接GitHub仓库，使用：
 
 ```text
 Build command: npm run build
