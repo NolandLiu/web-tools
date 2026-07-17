@@ -1,0 +1,54 @@
+name: Feature
+description: Plan and implement a scoped feature
+title: "[Feature] "
+labels:
+  - enhancement
+
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What outcome should this feature produce?
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: In scope
+      description: What must be implemented?
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: What must remain unchanged?
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable completion conditions.
+      placeholder: |
+        - [ ] Requirement one
+        - [ ] Requirement two
+        - [ ] npm run lint passes
+        - [ ] npm run test passes
+        - [ ] npm run build passes
+    validations:
+      required: true
+
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy and security
+      description: Describe analytics, storage, network, or user-data impact.
+
+  - type: textarea
+    id: design
+    attributes:
+      label: Design reference
+      description: Link plans, screenshots, or architecture documents.
