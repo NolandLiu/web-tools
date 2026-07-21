@@ -1,0 +1,16 @@
+{
+  "name": "Lite Tools",
+  "short_name": "Lite Tools",
+  "description": "Privacy-first multilingual online tools.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfcfa",
+  "theme_color": "#187b69",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
