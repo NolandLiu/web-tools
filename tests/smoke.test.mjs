@@ -11,3 +11,12 @@ test("project contains the product shell", async () => {
   assert.match(app, /QR Code 生成器/);
   assert.match(app, /AdSense 默认关闭/);
 });
+
+test("source contains sidebar and mobile drawer accessibility contracts", async () => {
+  const shell = await readFile(new URL("../src/components/AppShell.tsx", import.meta.url), "utf8");
+  const sidebar = await readFile(new URL("../src/components/ToolSidebar.tsx", import.meta.url), "utf8");
+  assert.match(shell, /aria-expanded/);
+  assert.match(shell, /aria-controls="tool-navigation"/);
+  assert.match(sidebar, /aria-current/);
+  assert.match(sidebar, /<nav/);
+});
