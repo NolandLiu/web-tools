@@ -93,6 +93,43 @@ Every PR must include:
 - Privacy impact
 - Deployment impact
 
+## Public PR description
+
+Public PR descriptions must be concise technical summaries. Do not paste or closely paraphrase the complete private task brief, full acceptance document, private discussion, or internal planning notes.
+
+Use this structure by default:
+
+```markdown
+## Summary
+
+- Add multilingual tool pages
+- Add unit and format converters
+- Add QR Code generation
+- Add local usage-based tool ordering
+- Improve SEO and policy pages
+
+## Verification
+
+- `npm run lint`
+- `npm run test`
+- `npm run build`
+- `npm run verify`
+
+## Deployment
+
+Compatible with the existing Cloudflare Pages Vite configuration.
+```
+
+Do not include:
+
+- long-term business planning;
+- traffic or growth strategy;
+- unreleased feature roadmap;
+- AdSense account details;
+- internal priority labels or private priority rankings;
+- complete acceptance documents;
+- personal information or private discussion details.
+
 ## Prohibited actions
 
 - Do not commit .env files or secrets.
