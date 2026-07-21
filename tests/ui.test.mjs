@@ -99,3 +99,10 @@ test("responsive CSS defines desktop sidebar and mobile drawer", async () => {
   assert.match(css, /\.tool-drawer/);
   assert.match(css, /prefers-reduced-motion/);
 });
+
+test("navigation and QR effects do not synchronously reset local state", async () => {
+  const shell = await readFile(new URL("../src/components/AppShell.tsx", import.meta.url), "utf8");
+  const qr = await readFile(new URL("../src/tools/QrTool.tsx", import.meta.url), "utf8");
+  assert.doesNotMatch(shell, /useEffect\(\(\) => \{\s*setDrawerOpen/);
+  assert.doesNotMatch(qr, /if \(!validation\.ok\) \{\s*setDataUrl/);
+});

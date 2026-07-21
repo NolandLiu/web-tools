@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { messages, navLabels } from "../i18n";
 import type { Lang, Page, Tool } from "../types";
 import { Icon } from "./Icons";
@@ -18,9 +18,10 @@ export function AppShell({ lang, page, activeTool, onLanguageChange, onNavigate,
   const [drawerOpen, setDrawerOpen] = useState(false);
   const t = messages[lang];
 
-  useEffect(() => {
+  const navigate = (nextPage: Page) => {
+    onNavigate(nextPage);
     setDrawerOpen(false);
-  }, [activeTool?.id, page]);
+  };
 
   const openTool = (tool: Tool) => {
     onOpenTool(tool);
@@ -33,12 +34,12 @@ export function AppShell({ lang, page, activeTool, onLanguageChange, onNavigate,
         <button className="mobile-menu-button icon-button" type="button" aria-label={t.menu} aria-expanded={drawerOpen} aria-controls="tool-navigation" onClick={() => setDrawerOpen(true)}>
           <Icon name="menu" size={20} />
         </button>
-        <button className="brand" type="button" onClick={() => onNavigate("home")}>
+        <button className="brand" type="button" onClick={() => navigate("home")}>
           <span className="brand-mark">LT</span><span>{t.siteName}</span>
         </button>
         <nav className="topbar-links" aria-label="Primary">
           {(["home", "about", "privacy", "terms", "contact"] as Page[]).map(item => (
-            <button className={page === item ? "active" : ""} type="button" key={item} onClick={() => onNavigate(item)}>{navLabels[item][lang]}</button>
+            <button className={page === item ? "active" : ""} type="button" key={item} onClick={() => navigate(item)}>{navLabels[item][lang]}</button>
           ))}
         </nav>
         <label className="language">

@@ -33,7 +33,6 @@ function App() {
   const [category, setCategory] = useState<string>("all");
   const [activeTool, setActiveTool] = useState<Tool | null>(null);
   const [stats, setStats] = useState(() => readToolStats(localStorage));
-  const t = messages[lang];
 
   useEffect(() => { document.documentElement.lang = lang; localStorage.setItem("lite-tools:lang", lang); }, [lang]);
   useEffect(() => { const onPop = () => { setPage(pageFromPath()); setActiveTool(null); }; window.addEventListener("popstate", onPop); return () => window.removeEventListener("popstate", onPop); }, []);
