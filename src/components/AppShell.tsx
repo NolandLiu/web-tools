@@ -6,7 +6,6 @@ import { ToolSidebar } from "./ToolSidebar";
 
 type Props = {
   lang: Lang;
-  page: Page;
   activeTool: Tool | null;
   onLanguageChange: (lang: Lang) => void;
   onNavigate: (page: Page) => void;
@@ -14,7 +13,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export function AppShell({ lang, page, activeTool, onLanguageChange, onNavigate, onOpenTool, children }: Props) {
+export function AppShell({ lang, activeTool, onLanguageChange, onNavigate, onOpenTool, children }: Props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const t = messages[lang];
 
@@ -37,11 +36,6 @@ export function AppShell({ lang, page, activeTool, onLanguageChange, onNavigate,
         <button className="brand" type="button" onClick={() => navigate("home")}>
           <span className="brand-mark">GH</span><span>{t.siteName}</span>
         </button>
-        <nav className="topbar-links" aria-label="Primary">
-          {(["home", "about", "privacy", "terms", "contact"] as Page[]).map(item => (
-            <button className={page === item ? "active" : ""} type="button" key={item} onClick={() => navigate(item)}>{navLabels[item][lang]}</button>
-          ))}
-        </nav>
         <label className="language">
           <span className="sr-only">Language</span>
           <select value={lang} onChange={event => onLanguageChange(event.target.value as Lang)}>
@@ -65,7 +59,6 @@ export function AppShell({ lang, page, activeTool, onLanguageChange, onNavigate,
             <button type="button" key={item} onClick={() => navigate(item)}>{navLabels[item].en}</button>
           ))}
         </nav>
-        <span>{t.adsOff}</span>
       </footer>
     </main>
   );

@@ -65,7 +65,7 @@ function App() {
   };
 
   return (
-    <AppShell lang={lang} page={page} activeTool={activeTool} onLanguageChange={setLang} onNavigate={navigate} onOpenTool={openTool}>
+    <AppShell lang={lang} activeTool={activeTool} onLanguageChange={setLang} onNavigate={navigate} onOpenTool={openTool}>
       {page === "home" ? activeTool ? <ToolWorkspace key={activeTool.id} tool={activeTool} lang={lang} onOpenTool={openTool} /> : (
         <HomeDirectory lang={lang} query={query} setQuery={setQuery} category={category} setCategory={setCategory} tools={filtered} onOpenTool={openTool} />
       ) : <InfoPage page={page} lang={lang} navigate={navigate} />}
