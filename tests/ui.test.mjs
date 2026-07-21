@@ -55,3 +55,13 @@ test("every supported language has global and field copy", async () => {
     assert.match(source, new RegExp(`${key}:`));
   }
 });
+
+test("field and result primitives expose help and copy status", async () => {
+  const field = await readFile(new URL("../src/components/Field.tsx", import.meta.url), "utf8");
+  const result = await readFile(new URL("../src/components/ResultCard.tsx", import.meta.url), "utf8");
+  assert.match(field, /aria-describedby/);
+  assert.match(field, /role="tooltip"/);
+  assert.match(result, /aria-live="polite"/);
+  assert.match(result, /navigator\.clipboard/);
+  assert.match(result, /disabled=/);
+});
