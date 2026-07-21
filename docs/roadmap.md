@@ -2,6 +2,7 @@
 
 ## Current MVP
 
+- Public brand and compliance pages use GoDeskHub, `https://godeskhub.com`, and `support@godeskhub.com`.
 - Browser-local tools across converters, developer utilities, calculators, and QR Code generation.
 - Three-language UI with persisted language choice.
 - Local-only popular-tool ranking.

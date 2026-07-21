@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://web-tools.pages.dev/sitemap.xml
+Sitemap: https://godeskhub.com/sitemap.xml

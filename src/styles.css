@@ -143,8 +143,14 @@ textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.55
 .related-grid button span { flex: 1; text-align: left; }
 .info-page { max-width: 800px; margin: 0 auto; padding: 78px 28px; }
 .info-page h1 { margin: 0 0 20px; font-size: 40px; }
-.info-page p { color: var(--muted); }
-footer { margin-left: var(--sidebar-width); padding: 24px 28px; display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); background: var(--surface); color: var(--muted); font-size: 12px; }
+.info-page h2 { margin: 28px 0 10px; font-size: 22px; }
+.info-page p, .info-page li { color: var(--muted); line-height: 1.72; }
+.info-page ul { margin: 10px 0 0; padding-left: 22px; }
+.info-page a { color: var(--accent-strong); font-weight: 700; }
+.policy-section { margin-top: 24px; }
+footer { margin-left: var(--sidebar-width); padding: 24px 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px 20px; border-top: 1px solid var(--line); background: var(--surface); color: var(--muted); font-size: 12px; }
+.footer-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.footer-links button { min-height: 32px; padding: 4px 6px; background: transparent; border: 0; color: var(--accent-strong); font-weight: 700; }
 .drawer-backdrop { display: none; }
 
 @media (max-width: 1099px) {

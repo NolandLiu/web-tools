@@ -1,6 +1,6 @@
-# Lite Tools Product Requirements
+# GoDeskHub Product Requirements
 
-Lite Tools is a privacy-first multilingual collection of browser-side utilities for Cloudflare Pages. The MVP must work without login, keep calculator/converter/text/QR input local, and avoid AdSense or third-party tracking unless explicitly approved.
+GoDeskHub is a privacy-first multilingual collection of browser-side utilities for Cloudflare Pages. The MVP must work without login, keep calculator/converter/text/QR input local, and avoid AdSense or third-party tracking unless explicitly approved.
 
 ## MVP Scope
 
@@ -9,6 +9,7 @@ Lite Tools is a privacy-first multilingual collection of browser-side utilities 
 - Calculators: percentage, discount, BMI, compound interest, date interval.
 - QR Code generator with local PNG download.
 - Pages: home, about, privacy, terms, contact, and SPA 404 fallback.
+- Compliance pages: public pages use `GoDeskHub`, `https://godeskhub.com`, and `support@godeskhub.com`.
 - Languages: English, Simplified Chinese, Traditional Chinese.
 - Navigation: a persistent category/tool tree on desktop and an accessible drawer on smaller screens.
 - Tool workspace: breadcrumb, clear title and description, named input/output regions, contextual help, and related tools.
@@ -21,6 +22,7 @@ Lite Tools is a privacy-first multilingual collection of browser-side utilities 
 - `npm ci`, `npm run lint`, `npm run test`, `npm run build`, `npm run verify`, and `npm audit` pass.
 - Build output is `dist` and production HTML references built `/assets/*`, not `/src/main.tsx`.
 - Private task briefs are ignored and never committed.
+- Compliance pages include contact, privacy, terms, cookie, future advertising, and browser-local processing statements.
 - All visible inputs and outputs have names; contextual help is discoverable without permanently adding visual noise.
 - Copy actions are disabled for empty or invalid output and announce completion to assistive technology.
 - Navigation and core tool workflows remain usable by keyboard at mobile and desktop breakpoints.

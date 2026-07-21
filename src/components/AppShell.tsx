@@ -35,7 +35,7 @@ export function AppShell({ lang, page, activeTool, onLanguageChange, onNavigate,
           <Icon name="menu" size={20} />
         </button>
         <button className="brand" type="button" onClick={() => navigate("home")}>
-          <span className="brand-mark">LT</span><span>{t.siteName}</span>
+          <span className="brand-mark">GH</span><span>{t.siteName}</span>
         </button>
         <nav className="topbar-links" aria-label="Primary">
           {(["home", "about", "privacy", "terms", "contact"] as Page[]).map(item => (
@@ -58,7 +58,15 @@ export function AppShell({ lang, page, activeTool, onLanguageChange, onNavigate,
         {drawerOpen && <button type="button" className="drawer-backdrop" aria-label={t.closeMenu} onClick={() => setDrawerOpen(false)} />}
         <div className="main-column">{children}</div>
       </div>
-      <footer><span>{t.siteName}</span><span>{t.adsOff}</span></footer>
+      <footer>
+        <span>© 2026 GoDeskHub. All rights reserved.</span>
+        <nav className="footer-links" aria-label="Footer">
+          {(["about", "privacy", "terms", "contact"] as Page[]).map(item => (
+            <button type="button" key={item} onClick={() => navigate(item)}>{navLabels[item].en}</button>
+          ))}
+        </nav>
+        <span>{t.adsOff}</span>
+      </footer>
     </main>
   );
 }

@@ -4,11 +4,11 @@ export const LANGS: Lang[] = ["en", "zh-CN", "zh-TW"];
 
 export const messages = {
   en: {
-    siteName: "Lite Tools", tagline: "Fast, private browser tools for everyday work.", search: "Search tools",
+    siteName: "GoDeskHub", tagline: "Free, fast, privacy-first online tools for everyday work.", search: "Search tools",
     popular: "Popular tools", allTools: "All tools", noResults: "No matching tools.", privacyBadge: "Inputs stay in your browser",
     open: "Open", copy: "Copy", copied: "Copied", copyFailed: "Copy failed", clear: "Clear", reset: "Reset", swap: "Swap",
     input: "Input", output: "Output", from: "From", to: "To", value: "Value", result: "Result", invalid: "Enter a finite valid value.",
-    about: "About", privacy: "Privacy", terms: "Terms", contact: "Contact", home: "Home", categories: "Categories", tools: "Tools",
+    about: "About Us", privacy: "Privacy Policy", terms: "Terms of Service", contact: "Contact Us", home: "Home", categories: "Categories", tools: "Tools",
     navigation: "Tool navigation", menu: "Open tool navigation", closeMenu: "Close tool navigation", showHelp: "Show field help",
     related: "Related tools", usage: "How to use", generate: "Generate", download: "Download PNG", sourceText: "Source text",
     adsOff: "AdSense is disabled. No ad script or empty ad container is rendered.",
@@ -16,7 +16,7 @@ export const messages = {
     qrEmpty: "Enter text or a URL to generate a QR Code.", qrTooLong: "Input is too long for a reliable QR Code.",
   },
   "zh-CN": {
-    siteName: "轻工具", tagline: "快速、干净、隐私优先的浏览器本地工具。", search: "搜索工具",
+    siteName: "GoDeskHub", tagline: "免费、快速、隐私优先的在线日常工具。", search: "搜索工具",
     popular: "常用工具", allTools: "全部工具", noResults: "没有找到匹配工具。", privacyBadge: "输入内容只留在浏览器",
     open: "打开", copy: "复制", copied: "已复制", copyFailed: "复制失败", clear: "清空", reset: "重置", swap: "互换",
     input: "输入", output: "输出", from: "来源", to: "目标", value: "数值", result: "结果", invalid: "请输入有限且有效的数值。",
@@ -28,7 +28,7 @@ export const messages = {
     qrEmpty: "输入文本或 URL 后生成 QR Code。", qrTooLong: "输入过长，无法可靠生成 QR Code。",
   },
   "zh-TW": {
-    siteName: "輕工具", tagline: "快速、乾淨、重視隱私的瀏覽器本機工具。", search: "搜尋工具",
+    siteName: "GoDeskHub", tagline: "免費、快速、重視隱私的線上日常工具。", search: "搜尋工具",
     popular: "常用工具", allTools: "全部工具", noResults: "沒有找到相符工具。", privacyBadge: "輸入內容只留在瀏覽器",
     open: "開啟", copy: "複製", copied: "已複製", copyFailed: "複製失敗", clear: "清除", reset: "重設", swap: "互換",
     input: "輸入", output: "輸出", from: "來源", to: "目標", value: "數值", result: "結果", invalid: "請輸入有限且有效的數值。",
@@ -68,10 +68,10 @@ export const fieldText = {
 
 export const navLabels: Record<string, LocalizedText> = {
   home: { en: "Home", "zh-CN": "首页", "zh-TW": "首頁" },
-  about: { en: "About", "zh-CN": "关于", "zh-TW": "關於" },
-  privacy: { en: "Privacy", "zh-CN": "隐私政策", "zh-TW": "隱私權政策" },
-  terms: { en: "Terms", "zh-CN": "使用条款", "zh-TW": "使用條款" },
-  contact: { en: "Contact", "zh-CN": "联系反馈", "zh-TW": "聯絡與回饋" },
+  about: { en: "About Us", "zh-CN": "关于我们", "zh-TW": "關於我們" },
+  privacy: { en: "Privacy Policy", "zh-CN": "隐私政策", "zh-TW": "隱私權政策" },
+  terms: { en: "Terms of Service", "zh-CN": "服务条款", "zh-TW": "服務條款" },
+  contact: { en: "Contact Us", "zh-CN": "联系我们", "zh-TW": "聯絡我們" },
   "not-found": { en: "404", "zh-CN": "404", "zh-TW": "404" },
 };
 
