@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import {
   buildToolTree,
@@ -43,4 +44,14 @@ test("text statistics serialize into a portable copy value", () => {
     serializeStatsResult({ characters: 12, words: 3, lines: 2 }),
     "Characters: 12\nWords: 3\nLines: 2",
   );
+});
+
+test("every supported language has global and field copy", async () => {
+  const source = await readFile(new URL("../src/i18n.ts", import.meta.url), "utf8");
+  for (const language of ["en", "zh-CN", "zh-TW"]) {
+    assert.match(source, new RegExp(`["']${language}["']`));
+  }
+  for (const key of ["input", "output", "swap", "copy", "copied", "copyFailed", "showHelp", "navigation"]) {
+    assert.match(source, new RegExp(`${key}:`));
+  }
 });
