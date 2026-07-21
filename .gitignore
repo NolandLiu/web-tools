@@ -6,3 +6,6 @@ dist/
 .DS_Store
 .wrangler/
 *.log
+TASK.local.md
+TASK.*.local.md
+.codex/tasks/private/
