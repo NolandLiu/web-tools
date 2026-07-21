@@ -65,3 +65,37 @@ test("field and result primitives expose help and copy status", async () => {
   assert.match(result, /navigator\.clipboard/);
   assert.match(result, /disabled=/);
 });
+
+test("all textual tool families use the shared result component", async () => {
+  const source = await readFile(new URL("../src/tools/TextTools.tsx", import.meta.url), "utf8");
+  for (const tool of ["JsonTool", "Base64Tool", "UrlTool", "UuidTool", "TimestampTool", "CaseTool", "TextTool", "ColorTool"]) {
+    assert.match(source, new RegExp(`function ${tool}`));
+  }
+  assert.match(source, /function TextLayout[\s\S]*<ResultCard/);
+  assert.ok((source.match(/<ResultCard/g) ?? []).length >= 5);
+  assert.match(source, /SwapButton/);
+});
+
+test("every calculator renders a shared copyable result", async () => {
+  const source = await readFile(new URL("../src/tools/CalculatorTools.tsx", import.meta.url), "utf8");
+  for (const id of ["percentage", "discount", "bmi", "compound", "date"]) {
+    assert.match(source, new RegExp(`case ["']${id}["']`));
+  }
+  assert.match(source, /<ResultCard/);
+  assert.match(source, /financeNote/);
+  assert.match(source, /healthNote/);
+});
+
+test("QR exposes source copy and PNG download", async () => {
+  const source = await readFile(new URL("../src/tools/QrTool.tsx", import.meta.url), "utf8");
+  assert.match(source, /<ResultCard/);
+  assert.match(source, /download="lite-tools-qr\.png"/);
+});
+
+test("responsive CSS defines desktop sidebar and mobile drawer", async () => {
+  const css = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+  assert.match(css, /--sidebar-width:\s*260px/);
+  assert.match(css, /@media \(max-width:\s*767px\)/);
+  assert.match(css, /\.tool-drawer/);
+  assert.match(css, /prefers-reduced-motion/);
+});
