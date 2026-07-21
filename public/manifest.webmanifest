@@ -1,7 +1,7 @@
 {
-  "name": "Lite Tools",
-  "short_name": "Lite Tools",
-  "description": "Privacy-first multilingual online tools.",
+  "name": "GoDeskHub",
+  "short_name": "GoDeskHub",
+  "description": "Free, fast, privacy-first online tools.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fbfcfa",

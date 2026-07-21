@@ -5,12 +5,37 @@ import test from "node:test";
 test("project contains the product shell", async () => {
   const i18n = await readFile(new URL("../src/i18n.ts", import.meta.url), "utf8");
   const catalog = await readFile(new URL("../src/catalog.ts", import.meta.url), "utf8");
-  assert.match(i18n, /轻工具/);
-  assert.match(i18n, /Lite Tools/);
-  assert.match(i18n, /輕工具/);
+  assert.match(i18n, /GoDeskHub/);
   assert.match(catalog, /长度转换/);
   assert.match(catalog, /QR Code 生成器/);
   assert.match(i18n, /AdSense 默认关闭/);
+});
+
+test("compliance pages use public GoDeskHub policy content", async () => {
+  const app = await readFile(new URL("../src/App.tsx", import.meta.url), "utf8");
+  const shell = await readFile(new URL("../src/components/AppShell.tsx", import.meta.url), "utf8");
+  const index = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const sitemap = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8");
+  const manifest = await readFile(new URL("../public/manifest.webmanifest", import.meta.url), "utf8");
+
+  for (const text of [
+    "About GoDeskHub",
+    "Privacy Policy",
+    "Terms of Service",
+    "Contact Us",
+    "support@godeskhub.com",
+    "Cookies and Web Beacons",
+    "Third-Party Advertising",
+    "Most of our tools execute directly in your web browser",
+    "© 2026 GoDeskHub. All rights reserved.",
+  ]) {
+    assert.match(`${app}\n${shell}`, new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+
+  assert.match(index, /https:\/\/godeskhub\.com\//);
+  assert.match(sitemap, /https:\/\/godeskhub\.com\/privacy/);
+  assert.match(manifest, /"name": "GoDeskHub"/);
+  assert.doesNotMatch(`${app}\n${index}`, /googlesyndication|adsbygoogle|ca-pub-/);
 });
 
 test("source contains sidebar and mobile drawer accessibility contracts", async () => {

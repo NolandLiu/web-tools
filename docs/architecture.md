@@ -1,6 +1,6 @@
 # Architecture
 
-The project is a static React + TypeScript SPA built with Vite for Cloudflare Pages.
+GoDeskHub is a static React + TypeScript SPA built with Vite for Cloudflare Pages.
 
 ## Key Modules
 
@@ -21,6 +21,8 @@ The project is a static React + TypeScript SPA built with Vite for Cloudflare Pa
 - `public/robots.txt`, `public/sitemap.xml`, `public/manifest.webmanifest`: SEO and install metadata.
 
 Tool logic is kept outside JSX where practical so tests can import it directly. Local popularity stats are versioned in `localStorage` and treated as replaceable adapter logic for future analytics.
+
+Public compliance pages are rendered by `InfoPage` in `src/App.tsx`. They use the GoDeskHub public domain and support email, while preserving the no-AdSense-script and no-tool-input-analytics constraints.
 
 ## Responsive layout
 
