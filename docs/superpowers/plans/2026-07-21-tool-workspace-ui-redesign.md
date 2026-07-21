@@ -515,4 +515,3 @@ git commit -m "docs: document redesigned tool workspace"
 Run: `git push -u origin feat/ui-workspace-redesign`
 
 Report branch, commits, changed files, check results, browser QA, screenshots, deployment risk, and a concise Draft PR title/body. Stop and ask: `是否批准创建以上 GitHub Pull Request？`
-
