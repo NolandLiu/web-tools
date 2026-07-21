@@ -8,7 +8,7 @@ test("project contains the product shell", async () => {
   assert.match(i18n, /GoDeskHub/);
   assert.match(catalog, /长度转换/);
   assert.match(catalog, /QR Code 生成器/);
-  assert.match(i18n, /AdSense 默认关闭/);
+  assert.doesNotMatch(i18n, /AdSense 默认关闭|AdSense is disabled|AdSense 預設關閉/);
 });
 
 test("compliance pages use public GoDeskHub policy content", async () => {
@@ -45,6 +45,14 @@ test("source contains sidebar and mobile drawer accessibility contracts", async 
   assert.match(shell, /aria-controls="tool-navigation"/);
   assert.match(sidebar, /aria-current/);
   assert.match(sidebar, /<nav/);
+});
+
+test("topbar stays focused on brand, language, and tool navigation controls", async () => {
+  const shell = await readFile(new URL("../src/components/AppShell.tsx", import.meta.url), "utf8");
+  assert.doesNotMatch(shell, /className="topbar-links"/);
+  assert.doesNotMatch(shell, /\{t\.adsOff\}/);
+  assert.match(shell, /className="footer-links"/);
+  assert.match(shell, /© 2026 GoDeskHub\. All rights reserved\./);
 });
 
 test("application composes the redesigned shell and tool workspace", async () => {
