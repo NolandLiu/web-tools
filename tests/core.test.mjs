@@ -25,7 +25,8 @@ import {
 test("unit converters handle core formulas and finite validation", () => {
   assert.equal(convertUnit("1000", "length", "m", "km"), 1);
   assert.equal(convertUnit("1", "weight", "kg", "g"), 1000);
-  assert.equal(convertUnit("1", "storage", "GB", "MB"), 1024);
+  assert.equal(convertUnit("1", "storage", "GB", "MB"), 1000);
+  assert.equal(convertUnit("1", "storage", "GiB", "MiB"), 1024);
   assert.equal(convertUnit("Infinity", "length", "m", "km"), null);
 });
 
@@ -81,7 +82,7 @@ test("local popular tool stats tolerate damaged storage and sort with recency", 
 });
 
 test("qr validation rejects empty and very long input", () => {
-  assert.deepEqual(validateQrInput(""), { ok: false, error: "empty" });
-  assert.deepEqual(validateQrInput("x".repeat(1201)), { ok: false, error: "tooLong" });
-  assert.deepEqual(validateQrInput("https://example.com"), { ok: true });
+  assert.deepEqual(validateQrInput(""), { ok: false, error: "empty", bytes: 0 });
+  assert.deepEqual(validateQrInput("x".repeat(1201)), { ok: false, error: "tooLarge", bytes: 1201 });
+  assert.deepEqual(validateQrInput("https://example.com"), { ok: true, bytes: 19 });
 });

@@ -91,12 +91,14 @@ test("special tool guidance matches the implemented behavior and boundaries", ()
   assert.match(TOOL_CONTENT.base64.en.limitations.join(" "), /encoding.*not encryption/i);
   assert.match(TOOL_CONTENT.url.en.principles.join(" "), /encodeURIComponent/);
   assert.match(TOOL_CONTENT.uuid.en.principles.join(" "), /version 4|v4/i);
-  assert.match(TOOL_CONTENT.timestamp.en.limitations.join(" "), /seconds.*milliseconds/i);
-  assert.match(TOOL_CONTENT.timestamp.en.limitations.join(" "), /100,000,000,000/);
+  assert.match(TOOL_CONTENT.timestamp.en.introduction, /seconds.*milliseconds/i);
+  assert.match(TOOL_CONTENT.timestamp.en.limitations.join(" "), /selected unit|never inferred/i);
+  assert.doesNotMatch(TOOL_CONTENT.timestamp.en.limitations.join(" "), /100,000,000,000/);
   assert.match(TOOL_CONTENT.storage.en.principles.join(" "), /1,024|1024/);
   assert.match(TOOL_CONTENT.temperature.en.limitations.join(" "), /absolute zero|-273\.15/);
   assert.match(TOOL_CONTENT.bmi.en.limitations.join(" "), /not.*medical diagnosis/i);
-  assert.match(TOOL_CONTENT.compound.en.principles.join(" "), /12.*monthly|monthly.*12/i);
+  assert.match(TOOL_CONTENT.compound.en.principles.join(" "), /r\/n.*nt|periods per year/i);
+  assert.match(TOOL_CONTENT.compound.en.limitations.join(" "), /1 to 365/);
   assert.match(TOOL_CONTENT.datecalc.en.limitations.join(" "), /not inclusive|excludes/i);
   assert.match(TOOL_CONTENT.text.en.principles.join(" "), /whitespace/i);
   assert.match(TOOL_CONTENT.qr.en.limitations.join(" "), /1,200|1200/);
