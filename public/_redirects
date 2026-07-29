@@ -1,1 +1,11 @@
-/* /index.html 200
+/ /en/ 301
+/index.html /en/ 301
+/en /en/ 301
+/zh-cn /zh-cn/ 301
+/zh-tw /zh-tw/ 301
+/about /en/about 301
+/privacy /en/privacy 301
+/terms /en/terms 301
+/contact /en/contact 301
+/tools/:slug /en/tools/:slug 301
+/categories/:slug /en/categories/:slug 301

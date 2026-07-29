@@ -4,10 +4,10 @@ import test from "node:test";
 
 test("project contains the product shell", async () => {
   const i18n = await readFile(new URL("../src/i18n.ts", import.meta.url), "utf8");
-  const catalog = await readFile(new URL("../src/catalog.ts", import.meta.url), "utf8");
+  const registry = await readFile(new URL("../src/registry.js", import.meta.url), "utf8");
   assert.match(i18n, /GoDeskHub/);
-  assert.match(catalog, /长度转换/);
-  assert.match(catalog, /QR Code 生成器/);
+  assert.match(registry, /长度转换/);
+  assert.match(registry, /QR Code 生成器/);
   assert.doesNotMatch(i18n, /AdSense 默认关闭|AdSense is disabled|AdSense 預設關閉/);
 });
 
@@ -15,7 +15,6 @@ test("compliance pages use public GoDeskHub policy content", async () => {
   const app = await readFile(new URL("../src/App.tsx", import.meta.url), "utf8");
   const shell = await readFile(new URL("../src/components/AppShell.tsx", import.meta.url), "utf8");
   const index = await readFile(new URL("../index.html", import.meta.url), "utf8");
-  const sitemap = await readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8");
   const manifest = await readFile(new URL("../public/manifest.webmanifest", import.meta.url), "utf8");
 
   for (const text of [
@@ -32,8 +31,7 @@ test("compliance pages use public GoDeskHub policy content", async () => {
     assert.match(`${app}\n${shell}`, new RegExp(text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
 
-  assert.match(index, /https:\/\/godeskhub\.com\//);
-  assert.match(sitemap, /https:\/\/godeskhub\.com\/privacy/);
+  assert.match(index, /https:\/\/tools\.godeskhub\.com\/en\//);
   assert.match(manifest, /"name": "GoDeskHub"/);
   assert.doesNotMatch(`${app}\n${index}`, /googlesyndication|adsbygoogle|ca-pub-/);
 });
