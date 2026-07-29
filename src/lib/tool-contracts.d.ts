@@ -1,6 +1,6 @@
 export type ToolContractInput = {
   id: string;
-  type: "number" | "text" | "selection" | "date" | "color";
+  type: "number" | "number-list" | "text" | "selection" | "date" | "color";
   format: string;
   range: string;
   emptyBehavior: "empty";

@@ -18,11 +18,22 @@ test("every registered tool has one enforceable behavior contract", () => {
 
   assert.deepEqual(contractIds, registeredIds);
   assert.deepEqual(validateToolContracts(), {
-    toolCount: 22,
-    normalCases: 22,
-    boundaryCases: 22,
-    invalidCases: 22,
+    toolCount: 25,
+    normalCases: 25,
+    boundaryCases: 25,
+    invalidCases: 25,
   });
+});
+
+test("phase four contracts cover the approved financial and generator tools", () => {
+  assert.ok(contractsModule, "tool contract module must exist");
+  for (const id of ["irr", "cheque", "password", "qr"]) {
+    assert.ok(contractsModule.TOOL_CONTRACTS[id], `missing Phase 4 contract for ${id}`);
+  }
+  assert.equal(contractsModule.TOOL_CONTRACTS.irr.operation, "solveFixedPeriodIrr");
+  assert.equal(contractsModule.TOOL_CONTRACTS.cheque.operation, "formatChequeAmount");
+  assert.equal(contractsModule.TOOL_CONTRACTS.password.operation, "generatePasswords");
+  assert.deepEqual(contractsModule.TOOL_CONTRACTS.password.privacy.persistentFields, []);
 });
 
 test("contracts define executable behavior, privacy, and accessibility boundaries", () => {
