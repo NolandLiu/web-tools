@@ -1,4 +1,4 @@
-import { TOOLS, categories, toolText } from "../catalog";
+import { categories, toolText } from "../catalog";
 import { messages } from "../i18n";
 import type { Lang, Tool } from "../types";
 import { CalculatorTool } from "../tools/CalculatorTools";
@@ -6,11 +6,12 @@ import { QrTool } from "../tools/QrTool";
 import { Base64Tool, CaseTool, ColorTool, JsonTool, TextTool, TimestampTool, UrlTool, UuidTool } from "../tools/TextTools";
 import { UnitTool } from "../tools/UnitTool";
 import { Icon } from "./Icons";
+import { ToolContentSections } from "./ToolContentSections";
+import { ToolFeedback } from "./ToolFeedback";
 
 export function ToolWorkspace({ tool, lang, onOpenTool }: { tool: Tool; lang: Lang; onOpenTool: (tool: Tool) => void }) {
   const t = messages[lang];
   const text = toolText[tool.id][lang];
-  const related = TOOLS.filter(item => item.category === tool.category && item.id !== tool.id).slice(0, 3);
 
   return (
     <article className="workspace" id="tool-workspace" aria-labelledby="tool-title">
@@ -32,8 +33,8 @@ export function ToolWorkspace({ tool, lang, onOpenTool }: { tool: Tool; lang: La
         {tool.kind === "calculator" && <CalculatorTool tool={tool} lang={lang} />}
         {tool.kind === "qr" && <QrTool lang={lang} />}
       </div>
-      <section className="usage-section"><h2>{t.usage}</h2><p>{lang === "en" ? "Enter the requested values, review the result, then use the copy button to reuse it instantly." : lang === "zh-CN" ? "填写所需内容并检查结果，然后使用复制按钮快速复用输出。" : "填寫所需內容並檢查結果，接著使用複製按鈕快速重用輸出。"}</p></section>
-      {related.length > 0 && <section className="related-section"><h2>{t.related}</h2><div className="related-grid">{related.map(item => <button type="button" key={item.id} onClick={() => onOpenTool(item)}><Icon name={item.icon} size={18} /><span>{toolText[item.id][lang].name}</span><Icon name="chevron" size={14} /></button>)}</div></section>}
+      <ToolContentSections tool={tool} lang={lang} onOpenTool={onOpenTool} />
+      <ToolFeedback tool={tool} lang={lang} />
     </article>
   );
 }

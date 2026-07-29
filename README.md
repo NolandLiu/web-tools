@@ -21,6 +21,9 @@ GoDeskHub 是一个隐私优先的多语言在线工具网站，目标部署到 
 - 表单字段包含可见名称、示例占位符及按需显示的帮助说明，并通过 `aria-describedby` 向辅助技术提供上下文。
 - 可逆转换工具提供互换按钮；互换时将有效结果带回输入，减少重复录入。
 - 所有文本或数值输出均提供快速复制、复制结果反馈和不可复制状态。
+- 工具操作区下方提供三语使用场景、步骤、示例、规则、限制、FAQ、权威参考及相关工具。
+- 顶部搜索支持工具名称、别名、关键词、摘要、使用场景和分类，并提供 `Cmd/Ctrl+K`、方向键、`Enter` 与 `Esc` 操作。
+- 工具反馈通过用户主动打开的预填充邮件完成，只包含工具 ID、slug、语言、规范 URL 和反馈类型，不包含输入或结果。
 
 ## 技术栈
 
@@ -49,7 +52,8 @@ npm audit
 ```
 
 `npm run verify` 会依次执行 lint、test、类型检查、build 和静态路由／SEO
-产物审计。构建输出目录为 `dist`，不要提交 `dist` 或 `node_modules`。
+产物审计。审计还会逐页解析 JSON-LD、核对可见 FAQ、检查三语内容覆盖及反馈入口。
+构建输出目录为 `dist`，不要提交 `dist` 或 `node_modules`。
 
 ## Cloudflare Pages
 
@@ -62,7 +66,8 @@ Production branch: main
 ```
 
 构建会从统一注册表生成三语首页、22 个工具、4 个分类和 4 个基础页面，
-共 93 个静态 HTML，同时生成 Sitemap、自定义 404 和旧路径 redirects。
+共 93 个静态 HTML。工具与分类的主要可见内容会在构建时写入原始 HTML，
+同时生成 Sitemap、自定义 404 和旧路径 redirects。
 Cloudflare Pages 因此可以直接返回规范深链，不需要 catch-all SPA fallback。
 
 ## 多语言与本地统计

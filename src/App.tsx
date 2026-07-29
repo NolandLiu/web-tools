@@ -6,6 +6,7 @@ import { Icon } from "./components/Icons";
 import { messages, navLabels } from "./i18n";
 import { readToolStats, sortToolsByPopularity, trackToolOpen } from "./lib/core.js";
 import { buildPath, parsePath, switchRouteLanguage } from "./lib/routes.js";
+import { searchTools } from "./lib/search.js";
 import type { AppRoute } from "./lib/routes.js";
 import { applyRouteMetadata, getRouteMetadata } from "./lib/seo.js";
 import type { CategoryId, Lang, Page, Tool } from "./types";
@@ -40,11 +41,11 @@ function App() {
   }, []);
 
   const ranked = useMemo(() => sortToolsByPopularity(TOOLS, stats), [stats]);
-  const filtered = ranked.filter(tool => {
-    const text = toolText[tool.id][lang];
-    const haystack = `${text.name} ${text.description} ${categories[tool.category][lang]}`.toLocaleLowerCase();
-    return haystack.includes(query.toLocaleLowerCase());
-  });
+  const filtered = query.trim()
+    ? searchTools(query, lang, TOOLS.length)
+        .map(result => TOOLS.find(tool => tool.id === result.toolId))
+        .filter((tool): tool is Tool => Boolean(tool))
+    : ranked;
 
   const goTo = (nextRoute: AppRoute) => {
     window.history.pushState(null, "", buildPath(nextRoute));

@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 import { SITE_ORIGIN } from "../src/registry.js";
 import { buildPath, listCanonicalRoutes } from "../src/lib/routes.js";
 import { getRouteMetadata, renderMetadataTags } from "../src/lib/seo.js";
+import { renderStaticRouteContent } from "../src/lib/static-content.js";
+import { validateContentRegistry } from "../src/lib/content.js";
 
 const METADATA_PATTERN = /<!-- route-metadata:start -->[\s\S]*?<!-- route-metadata:end -->/;
 
@@ -14,7 +16,8 @@ function renderPage(template, route) {
   }
   return template
     .replace(/<html\s+lang="[^"]*">/, `<html lang="${metadata.lang}">`)
-    .replace(METADATA_PATTERN, renderMetadataTags(metadata));
+    .replace(METADATA_PATTERN, renderMetadataTags(metadata))
+    .replace('<div id="root"></div>', `<div id="root">${renderStaticRouteContent(route)}</div>`);
 }
 
 function routeOutputPath(distDir, route) {
@@ -65,6 +68,7 @@ function renderRedirects() {
 }
 
 export async function generateSite({ distDir = resolve("dist") } = {}) {
+  validateContentRegistry();
   const templatePath = join(distDir, "index.html");
   const template = await readFile(templatePath, "utf8");
   const routes = listCanonicalRoutes();
