@@ -18,34 +18,34 @@ export const CATEGORY_CONTENT = {
   },
   developer: {
     en: {
-      introduction: "Format and developer tools transform or inspect text-based representations directly in the browser. They cover JSON, Base64, URL components, UUIDs, timestamps, text casing and counts, and common color notations.",
-      useCases: ["Inspect or prepare a value while debugging an application.", "Perform a small text or format conversion without pasting content into an external service."],
+      introduction: "Format and developer tools transform or inspect representations directly in the browser. They cover JSON, Base64, URL components, UUIDs, timestamps, text, color notations, and cryptographically generated constrained passwords.",
+      useCases: ["Inspect or prepare a value while debugging an application.", "Perform a local text, format, identifier, or password-generation task without sending the input to an external service."],
       distinction: "These tools operate on representations and identifiers. Unit converters change measurement units, and calculators evaluate numeric scenarios.",
     },
     "zh-CN": {
-      introduction: "格式与开发工具直接在浏览器中转换或检查文本表示，覆盖 JSON、Base64、URL 组件、UUID、时间戳、文本大小写与统计及常见颜色格式。",
-      useCases: ["调试应用时检查或准备一个数值或文本。", "无需把内容粘贴到外部服务即可完成小型格式转换。"],
+      introduction: "格式与开发工具直接在浏览器中转换或检查表示形式，覆盖 JSON、Base64、URL 组件、UUID、时间戳、文本、颜色和密码学安全的约束密码生成。",
+      useCases: ["调试应用时检查或准备数据。", "无需把输入发送给外部服务即可完成文本、格式、标识符或密码生成任务。"],
       distinction: "本分类处理表示形式和标识符；单位转换改变测量单位，计算工具评估数值场景。",
     },
     "zh-TW": {
-      introduction: "格式與開發工具直接在瀏覽器中轉換或檢查文字表示，涵蓋 JSON、Base64、URL 元件、UUID、時間戳、文字大小寫與統計，以及常見顏色格式。",
-      useCases: ["除錯應用程式時檢查或準備一段資料。", "不必把內容貼到外部服務即可完成小型格式轉換。"],
+      introduction: "格式與開發工具直接在瀏覽器中轉換或檢查表示形式，涵蓋 JSON、Base64、URL 元件、UUID、時間戳、文字、顏色及密碼學安全的限制密碼產生。",
+      useCases: ["除錯應用程式時檢查或準備資料。", "不必把輸入傳送給外部服務即可完成文字、格式、識別碼或密碼產生工作。"],
       distinction: "本分類處理表示形式和識別碼；單位轉換改變量測單位，計算工具評估數值情境。",
     },
   },
   calculators: {
     en: {
-      introduction: "Calculators combine clearly labelled inputs with a focused formula. This collection covers percentages, discounts, BMI reference values, monthly compound growth, and elapsed date differences.",
+      introduction: "Calculators combine clearly labelled inputs with focused rules or formulas. This collection covers everyday arithmetic, BMI and compound growth references, elapsed dates, fixed-period IRR, and currency-neutral cheque amount wording.",
       useCases: ["Check everyday arithmetic before making a decision.", "Explore a simplified scenario and copy the numeric result for further work."],
       distinction: "Calculators evaluate a formula rather than translate equivalent units. Their outputs are reference values and do not replace professional financial, medical, or legal advice.",
     },
     "zh-CN": {
-      introduction: "计算工具通过清晰标注的输入执行一个明确公式，覆盖百分比、折扣、BMI 参考值、每月复利增长和日期经过差值。",
+      introduction: "计算工具通过清晰标注的输入执行明确规则或公式，覆盖日常算术、BMI 与复利参考、日期差、固定周期 IRR 和不绑定币种的支票金额文字。",
       useCases: ["在做决定前核对日常算术。", "探索简化情景，并复制结果用于后续工作。"],
       distinction: "计算工具执行公式，而不是转换等价单位；结果仅供参考，不能代替专业金融、医疗或法律意见。",
     },
     "zh-TW": {
-      introduction: "計算工具以清楚標示的輸入執行一個明確公式，涵蓋百分比、折扣、BMI 參考值、每月複利成長和日期經過差值。",
+      introduction: "計算工具以清楚標示的輸入執行明確規則或公式，涵蓋日常算術、BMI 與複利參考、日期差、固定週期 IRR 及不綁定幣別的支票金額文字。",
       useCases: ["作決定前核對日常算術。", "探索簡化情境，並複製結果供後續使用。"],
       distinction: "計算工具執行公式，而不是轉換等值單位；結果僅供參考，不能取代專業金融、醫療或法律意見。",
     },

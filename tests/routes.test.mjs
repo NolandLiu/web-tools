@@ -15,7 +15,7 @@ import {
   switchRouteLanguage,
 } from "../src/lib/routes.js";
 
-test("registry contains the approved origin, languages, categories, and all 22 tools", () => {
+test("registry contains the approved origin, languages, categories, and all 25 tools", () => {
   assert.equal(SITE_ORIGIN, "https://tools.godeskhub.com");
   assert.equal(DEFAULT_LANG, "en");
   assert.deepEqual(
@@ -32,12 +32,12 @@ test("registry contains the approved origin, languages, categories, and all 22 t
     "calculators",
     "qr-code",
   ]);
-  assert.equal(TOOLS.length, 22);
+  assert.equal(TOOLS.length, 25);
   assert.equal(INFO_PAGES.length, 4);
 });
 
 test("tool and category slugs are unique and every reference is valid", () => {
-  assert.equal(new Set(TOOLS.map(tool => tool.slug)).size, 22);
+  assert.equal(new Set(TOOLS.map(tool => tool.slug)).size, TOOLS.length);
   assert.equal(new Set(CATEGORIES.map(category => category.slug)).size, 4);
   const categoryIds = new Set(CATEGORIES.map(category => category.id));
   for (const tool of TOOLS) {
@@ -80,12 +80,16 @@ test("path building and language switching preserve page semantics", () => {
   assert.equal(buildPath({ kind: "category", lang: "zh-CN", categoryId: "developer" }), "/zh-cn/categories/developer-tools");
 });
 
-test("canonical route enumeration has 93 unique final pages", () => {
+test("canonical route enumeration covers every registered localized page exactly once", () => {
   const routes = listCanonicalRoutes();
   const paths = routes.map(buildPath);
-  assert.equal(routes.length, 93);
-  assert.equal(new Set(paths).size, 93);
+  const expected = LANGUAGES.length * (1 + TOOLS.length + CATEGORIES.length + INFO_PAGES.length);
+  assert.equal(routes.length, expected);
+  assert.equal(new Set(paths).size, expected);
   assert.ok(paths.includes("/en/tools/qr-code-generator"));
+  assert.ok(paths.includes("/en/tools/irr-calculator"));
+  assert.ok(paths.includes("/zh-cn/tools/cheque-amount-converter"));
+  assert.ok(paths.includes("/zh-tw/tools/password-generator"));
   assert.ok(paths.includes("/zh-cn/categories/calculators"));
   assert.ok(paths.includes("/zh-tw/contact"));
   assert.ok(paths.every(path => /^\/(en|zh-cn|zh-tw)\//.test(path)));

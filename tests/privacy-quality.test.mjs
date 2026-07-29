@@ -72,6 +72,16 @@ test("tool runtime source contains no external request or dynamic execution prim
   assert.doesNotMatch(source, /\beval\s*\(|new\s+Function\s*\(|dangerouslySetInnerHTML/);
 });
 
+test("password and QR production sources exclude weak random and remote logo paths", async () => {
+  const password = await readFile(new URL("../src/lib/password.js", import.meta.url), "utf8");
+  const qr = await readFile(new URL("../src/tools/QrTool.tsx", import.meta.url), "utf8");
+  assert.match(password, /crypto\?\.getRandomValues|crypto\.getRandomValues/);
+  assert.doesNotMatch(password, /Math\.random/);
+  assert.doesNotMatch(qr, /\bfetch\s*\(|https?:\/\/[^"]*logo/i);
+  assert.match(qr, /accept="image\/png,image\/jpeg,image\/webp"/);
+  assert.match(qr, /download="lite-tools-qr\.png"/);
+});
+
 test("persistent tool contracts contain no user input or result fields", () => {
   for (const contract of Object.values(TOOL_CONTRACTS)) {
     assert.deepEqual(contract.privacy.persistentFields, []);

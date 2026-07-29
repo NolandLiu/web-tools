@@ -107,7 +107,7 @@ test("special tool guidance matches the implemented behavior and boundaries", ()
 test("content validator accepts the complete registry and reports exact counts", () => {
   assert.ok(validationModule, "Expected src/lib/content.js to validate content at test and build time.");
   assert.deepEqual(validationModule.validateContentRegistry(), {
-    toolCount: 22,
+    toolCount: 25,
     categoryCount: 4,
     languageCount: 3,
   });

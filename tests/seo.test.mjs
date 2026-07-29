@@ -78,9 +78,10 @@ test("home, category, and information pages receive distinct localized metadata"
 });
 
 test("all canonical routes produce complete and unique canonical metadata", () => {
-  const metadata = listCanonicalRoutes().map(getRouteMetadata);
-  assert.equal(metadata.length, 93);
-  assert.equal(new Set(metadata.map(item => item.canonical)).size, 93);
+  const routes = listCanonicalRoutes();
+  const metadata = routes.map(getRouteMetadata);
+  assert.equal(metadata.length, routes.length);
+  assert.equal(new Set(metadata.map(item => item.canonical)).size, routes.length);
   for (const item of metadata) {
     assert.ok(item.title);
     assert.ok(item.description);
@@ -119,8 +120,8 @@ test("static generation writes localized metadata into deep-link HTML without Ja
 
   const sitemap = await readFile(join(tempRoot, "sitemap.xml"), "utf8");
   const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
-  assert.equal(locations.length, 93);
-  assert.equal(new Set(locations).size, 93);
+  assert.equal(locations.length, listCanonicalRoutes().length);
+  assert.equal(new Set(locations).size, listCanonicalRoutes().length);
   assert.ok(locations.every(url => url.startsWith("https://tools.godeskhub.com/")));
   assert.ok(locations.every(url => /^https:\/\/tools\.godeskhub\.com\/(en|zh-cn|zh-tw)\//.test(url)));
   assert.ok(locations.includes("https://tools.godeskhub.com/en/tools/length-converter"));
