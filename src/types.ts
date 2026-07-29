@@ -21,6 +21,7 @@ export type CalculatorKind = "percentage" | "discount" | "bmi" | "compound" | "d
 
 export type Tool = {
   id: string;
+  slug?: string;
   kind: ToolKind;
   category: CategoryId;
   icon: string;
