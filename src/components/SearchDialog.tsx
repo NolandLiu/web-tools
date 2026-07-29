@@ -79,7 +79,7 @@ export function SearchDialog({
 
   return (
     <>
-      <button className="global-search-button" type="button" onClick={openDialog}>
+      <button className="global-search-button" type="button" aria-label={searchCopy[lang].shortcut} onClick={openDialog}>
         <Icon name="search" size={17} />
         <span>{searchCopy[lang].shortcut}</span>
         <kbd>⌘ / Ctrl K</kbd>

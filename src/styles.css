@@ -216,8 +216,8 @@ footer { margin-left: var(--sidebar-width); padding: 24px 28px; display: flex; j
   .global-search-button span, .global-search-button kbd { display: none; }
   .language select { min-width: 112px; }
   .app-layout { display: block; }
-  .tool-drawer { position: fixed; inset: 0 auto 0 0; width: min(88vw, 320px); height: 100vh; padding: 14px; transform: translateX(-102%); transition: transform .2s ease; box-shadow: 18px 0 50px rgba(10, 35, 29, .2); z-index: 80; }
-  .tool-drawer.open { transform: translateX(0); }
+  .tool-drawer { position: fixed; inset: 0 auto 0 0; width: min(88vw, 320px); height: 100vh; padding: 14px; visibility: hidden; transform: translateX(-102%); transition: transform .2s ease, visibility 0s linear .2s; box-shadow: 18px 0 50px rgba(10, 35, 29, .2); z-index: 80; }
+  .tool-drawer.open { visibility: visible; transform: translateX(0); transition-delay: 0s; }
   .drawer-head { min-height: 48px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; padding-left: 10px; }
   .drawer-backdrop { position: fixed; inset: 0; display: block; width: 100%; height: 100%; border-radius: 0; padding: 0; background: rgba(12, 30, 25, .42); z-index: 70; }
   .hero { padding: 44px 18px 38px; }

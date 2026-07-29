@@ -14,6 +14,7 @@ import type { CategoryId, Lang, Page, Tool } from "./types";
 const ToolWorkspace = lazy(() => import("./components/ToolWorkspace").then(module => ({
   default: module.ToolWorkspace,
 })));
+const TOOL_IDS = new Set(TOOLS.map(tool => tool.id));
 
 type InfoSection = {
   heading?: string;
@@ -24,7 +25,7 @@ type InfoSection = {
 function App() {
   const [route, setRoute] = useState<AppRoute>(() => parsePath(window.location.pathname));
   const [query, setQuery] = useState("");
-  const [stats, setStats] = useState(() => readToolStats(localStorage));
+  const [stats, setStats] = useState(() => readToolStats(localStorage, TOOL_IDS));
   const lang = route.lang;
   const activeTool = route.kind === "tool"
     ? TOOLS.find(tool => tool.id === route.toolId) ?? null
@@ -64,7 +65,7 @@ function App() {
 
   const openTool = (tool: Tool) => {
     goTo({ kind: "tool", lang, toolId: tool.id });
-    setStats(trackToolOpen(localStorage, tool.id));
+    setStats(trackToolOpen(localStorage, tool.id, Date.now(), TOOL_IDS));
     requestAnimationFrame(() => document.getElementById("tool-workspace")?.scrollIntoView({ behavior: "smooth", block: "start" }));
   };
 

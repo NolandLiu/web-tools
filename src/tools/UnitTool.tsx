@@ -4,7 +4,7 @@ import { Field } from "../components/Field";
 import { ResultCard } from "../components/ResultCard";
 import { SwapButton } from "../components/SwapButton";
 import { fieldText, messages } from "../i18n";
-import { UNIT_GROUPS, convertTemperature, convertUnit, formatNumber } from "../lib/core.js";
+import { UNIT_GROUPS, convertTemperature, convertUnit, formatNumber, validateTemperatureInput } from "../lib/core.js";
 import { swapConversion } from "../lib/ui.js";
 import type { Lang, Tool } from "../types";
 
@@ -16,6 +16,10 @@ export function UnitTool({ tool, lang }: { tool: Tool; lang: Lang }) {
   const [to, setTo] = useState(group?.defaultTo ?? "f");
   const units = group ? Object.keys(group.units) : ["c", "f", "k"];
   const result = group ? convertUnit(value, tool.group, from, to) : convertTemperature(value, from, to);
+  const temperatureState = group ? null : validateTemperatureInput(value, from);
+  const error = value && result === null
+    ? temperatureState?.state === "out-of-range" ? t.belowAbsoluteZero : t.invalid
+    : undefined;
   const rawResult = result === null ? "" : String(result);
   const displayResult = result === null ? t.invalid : `${formatNumber(result, lang)} ${unitLabels[lang][to]}`;
   const valueCopy = fieldText.number[lang];
@@ -33,7 +37,7 @@ export function UnitTool({ tool, lang }: { tool: Tool; lang: Lang }) {
     <div className="converter-layout">
       <section className="input-panel" aria-labelledby={`${tool.id}-input-title`}>
         <h3 id={`${tool.id}-input-title`}>{t.input}</h3>
-        <Field id={`${tool.id}-value`} label={valueCopy.label} help={valueCopy.help} lang={lang} error={value && result === null ? t.invalid : undefined}>
+        <Field id={`${tool.id}-value`} label={valueCopy.label} help={valueCopy.help} lang={lang} error={error}>
           <input type="number" value={value} placeholder={valueCopy.placeholder} onChange={event => setValue(event.target.value)} />
         </Field>
         <div className="unit-pair">

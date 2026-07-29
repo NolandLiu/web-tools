@@ -1,0 +1,387 @@
+import { TOOLS } from "../registry.js";
+
+const editableInput = (id, type, format, range = "tool-specific") => ({
+  id,
+  type,
+  format,
+  range,
+  emptyBehavior: "empty",
+  editingBehavior: "editing",
+  invalidBehavior: "invalid",
+});
+
+const numberInput = (id = "value", range) => (
+  editableInput(id, "number", "strict decimal or scientific notation", range)
+);
+const textInput = (id = "text", range = "bounded UTF-8 text") => (
+  editableInput(id, "text", "Unicode text", range)
+);
+const selectInput = id => editableInput(id, "selection", "registered option ID");
+const dateInput = id => editableInput(id, "date", "YYYY-MM-DD", "valid Gregorian date");
+
+const privacy = ({ clipboard = "user-only", download = "none" } = {}) => ({
+  level: "local-private",
+  urlFields: [],
+  persistentFields: [],
+  clipboard,
+  download,
+  network: false,
+});
+
+const accessibility = {
+  keyboard: true,
+  labeledInputs: true,
+  resultStatus: true,
+};
+
+const qualityContract = ({
+  id,
+  operation,
+  inputs,
+  rule,
+  baseUnit = null,
+  output,
+  limitations,
+  normal,
+  boundary,
+  invalid,
+  invariants,
+  testFile,
+  privacyOptions,
+}) => {
+  const tool = TOOLS.find(candidate => candidate.id === id);
+  if (!tool) throw new Error(`unknown registered tool ${id}`);
+  return {
+    id,
+    slug: tool.slug,
+    category: tool.category,
+    operation,
+    inputs,
+    rule,
+    baseUnit,
+    precision: {
+      strategy: "retain full calculation precision and round only for display",
+      negativeZero: "normalize to zero",
+    },
+    output,
+    localization: "labels and number presentation only; calculation is locale-invariant",
+    limitations,
+    privacy: privacy(privacyOptions),
+    accessibility,
+    cases: {
+      normal: [normal],
+      boundary: [boundary],
+      invalid: [invalid],
+    },
+    invariants,
+    testFile,
+  };
+};
+
+const unitContract = (id, baseUnit, normal, boundary, invalid, limitations) => qualityContract({
+  id,
+  operation: "convertUnit",
+  inputs: [numberInput(), selectInput("from"), selectInput("to")],
+  rule: "convert directly through the registered base unit",
+  baseUnit,
+  output: { format: "finite localized number plus target unit label" },
+  limitations: [limitations],
+  normal,
+  boundary,
+  invalid,
+  invariants: [
+    "same-unit conversion preserves the input",
+    "round trip recovers the input within floating-point tolerance",
+  ],
+  testFile: "tests/unit-quality.test.mjs",
+});
+
+export const TOOL_CONTRACTS = {
+  length: unitContract(
+    "length",
+    "m",
+    { input: { value: "1", from: "m", to: "cm" }, expected: 100 },
+    { input: { value: "0", from: "mi", to: "km" }, expected: 0 },
+    { input: { value: "1x", from: "m", to: "ft" }, error: "invalid" },
+    "negative values are mathematically supported as signed displacement-like quantities",
+  ),
+  weight: unitContract(
+    "weight",
+    "kg",
+    { input: { value: "1", from: "kg", to: "lb" }, expected: 2.2046226218 },
+    { input: { value: "0", from: "kg", to: "oz" }, expected: 0 },
+    { input: { value: "Infinity", from: "kg", to: "lb" }, error: "invalid" },
+    "the converter handles mass units and does not model location-dependent force",
+  ),
+  temperature: qualityContract({
+    id: "temperature",
+    operation: "convertTemperature",
+    inputs: [numberInput("value", "at or above absolute zero"), selectInput("from"), selectInput("to")],
+    rule: "convert through Celsius with scale and offset formulas",
+    baseUnit: "c",
+    output: { format: "finite localized number plus target temperature unit" },
+    limitations: ["values below absolute zero are out of range"],
+    normal: { input: { value: "100", from: "c", to: "f" }, expected: 212 },
+    boundary: { input: { value: "0", from: "k", to: "c" }, expected: -273.15 },
+    invalid: { input: { value: "-0.01", from: "k", to: "c" }, error: "out-of-range" },
+    invariants: ["0 K equals -273.15 °C and -459.67 °F"],
+    testFile: "tests/unit-quality.test.mjs",
+  }),
+  area: unitContract(
+    "area",
+    "m2",
+    { input: { value: "1", from: "ha", to: "m2" }, expected: 10000 },
+    { input: { value: "0", from: "acre", to: "ft2" }, expected: 0 },
+    { input: { value: "NaN", from: "m2", to: "ft2" }, error: "invalid" },
+    "negative mathematical values are accepted even though physical area is normally non-negative",
+  ),
+  volume: unitContract(
+    "volume",
+    "l",
+    { input: { value: "1", from: "gal_us", to: "l" }, expected: 3.785411784 },
+    { input: { value: "0", from: "l", to: "ml" }, expected: 0 },
+    { input: { value: "", from: "l", to: "ml" }, error: "empty" },
+    "US customary liquid units are used; imperial gallons are not included",
+  ),
+  speed: unitContract(
+    "speed",
+    "mps",
+    { input: { value: "100", from: "kph", to: "mph" }, expected: 62.1371192237 },
+    { input: { value: "0", from: "knot", to: "mps" }, expected: 0 },
+    { input: { value: "--1", from: "kph", to: "mph" }, error: "invalid" },
+    "negative signed speeds are accepted for directional calculations",
+  ),
+  time: unitContract(
+    "time",
+    "s",
+    { input: { value: "1", from: "day", to: "h" }, expected: 24 },
+    { input: { value: "0", from: "week", to: "ms" }, expected: 0 },
+    { input: { value: "1 day", from: "day", to: "h" }, error: "invalid" },
+    "calendar months and years are excluded because their duration is not fixed",
+  ),
+  storage: unitContract(
+    "storage",
+    "B",
+    { input: { value: "1", from: "GB", to: "MB" }, expected: 1000 },
+    { input: { value: "1", from: "GiB", to: "MiB" }, expected: 1024 },
+    { input: { value: "1", from: "unknown", to: "B" }, error: "unsupported" },
+    "decimal SI and binary IEC unit IDs remain distinct",
+  ),
+  json: qualityContract({
+    id: "json",
+    operation: "formatJson",
+    inputs: [textInput("json", "bounded JSON source text"), selectInput("mode")],
+    rule: "parse with JSON.parse and serialize without executing input or sorting keys",
+    output: { format: "pretty or minified JSON text, or a recoverable validation error" },
+    limitations: ["JSON numbers beyond the safe integer range may lose numeric precision in JavaScript"],
+    normal: { input: '{"ok":true}', expected: '{\n  "ok": true\n}' },
+    boundary: { input: "null", expected: "null" },
+    invalid: { input: "", error: "empty" },
+    invariants: ["formatting valid JSON preserves its parsed data semantics"],
+    testFile: "tests/text-quality.test.mjs",
+  }),
+  base64: qualityContract({
+    id: "base64",
+    operation: "base64Transform",
+    inputs: [textInput(), selectInput("mode")],
+    rule: "encode and decode Unicode text as UTF-8 using standard Base64",
+    output: { format: "Base64 ASCII or decoded Unicode text" },
+    limitations: ["Base64 is encoding rather than encryption; Base64URL is not supported"],
+    normal: { input: "世界", expected: "5LiW55WM" },
+    boundary: { input: "", expected: "" },
+    invalid: { input: "%%%", error: "invalid" },
+    invariants: ["decoding an encoded Unicode string restores the same code points"],
+    testFile: "tests/text-quality.test.mjs",
+  }),
+  url: qualityContract({
+    id: "url",
+    operation: "urlTransform",
+    inputs: [textInput("component"), selectInput("mode")],
+    rule: "transform one URL component exactly once with encodeURIComponent or decodeURIComponent",
+    output: { format: "encoded or decoded Unicode text" },
+    limitations: ["the tool does not fetch, validate, or navigate to the entered URL"],
+    normal: { input: "a b+c", expected: "a%20b%2Bc" },
+    boundary: { input: "", expected: "" },
+    invalid: { input: "%E0%A4%A", error: "invalid" },
+    invariants: ["decode(encode(text)) restores valid Unicode text"],
+    testFile: "tests/text-quality.test.mjs",
+  }),
+  uuid: qualityContract({
+    id: "uuid",
+    operation: "generateUuidV4",
+    inputs: [selectInput("generate")],
+    rule: "use crypto.randomUUID to generate RFC 4122 variant UUID version 4",
+    output: { format: "lowercase canonical UUID string" },
+    limitations: ["generation requires a browser secure context with Web Crypto support"],
+    normal: { action: "generate", expectedPattern: "uuid-v4" },
+    boundary: { action: "generate-many", count: 100, expected: "unique" },
+    invalid: { environment: "missing-crypto", error: "unsupported" },
+    invariants: ["version nibble is 4 and variant bits begin with 8, 9, a, or b"],
+    testFile: "tests/text-quality.test.mjs",
+  }),
+  timestamp: qualityContract({
+    id: "timestamp",
+    operation: "timestampConversion",
+    inputs: [numberInput("timestamp", "integer within JavaScript Date range"), selectInput("unit")],
+    rule: "interpret the selected unit explicitly and emit an ISO UTC instant",
+    output: { format: "ISO 8601 UTC plus integer seconds or milliseconds" },
+    limitations: ["datetime-local input has no embedded timezone and must be labeled as local time"],
+    normal: { input: { value: "1704067200", unit: "seconds" }, expected: "2024-01-01T00:00:00.000Z" },
+    boundary: { input: { value: "0", unit: "seconds" }, expected: "1970-01-01T00:00:00.000Z" },
+    invalid: { input: { value: "1.5", unit: "seconds" }, error: "invalid" },
+    invariants: ["explicit seconds and milliseconds for one instant produce the same ISO value"],
+    testFile: "tests/date-quality.test.mjs",
+  }),
+  case: qualityContract({
+    id: "case",
+    operation: "changeCase",
+    inputs: [textInput(), selectInput("mode")],
+    rule: "apply the selected Unicode-aware case transformation locally",
+    output: { format: "Unicode text" },
+    limitations: ["title and camel case are general-purpose rules rather than language-specific typography"],
+    normal: { input: "hello world", mode: "title", expected: "Hello World" },
+    boundary: { input: "", mode: "upper", expected: "" },
+    invalid: { mode: "unknown", error: "unsupported" },
+    invariants: ["upper and lower transforms never send or persist text"],
+    testFile: "tests/text-quality.test.mjs",
+  }),
+  text: qualityContract({
+    id: "text",
+    operation: "textStats",
+    inputs: [textInput()],
+    rule: "count grapheme-like visible characters, whitespace-delimited words, and logical lines",
+    output: { format: "non-negative integer statistics" },
+    limitations: ["word count is whitespace-delimited and is not Chinese word segmentation"],
+    normal: { input: "hello 世界", expected: { characters: 8, words: 2, lines: 1 } },
+    boundary: { input: "", expected: { characters: 0, words: 0, lines: 0 } },
+    invalid: { input: null, error: "unsupported" },
+    invariants: ["CRLF counts as one line break and combining sequences count as one visible character"],
+    testFile: "tests/text-quality.test.mjs",
+  }),
+  color: qualityContract({
+    id: "color",
+    operation: "colorConversion",
+    inputs: [editableInput("color", "color", "HEX or RGB channels", "RGB channels from 0 through 255")],
+    rule: "convert sRGB HEX and RGB values and derive HSL",
+    output: { format: "canonical HEX, RGB, and rounded HSL strings" },
+    limitations: ["alpha channels and wide-gamut color spaces are not supported"],
+    normal: { input: "#187b69", expected: { r: 24, g: 123, b: 105 } },
+    boundary: { input: { r: 0, g: 255, b: 0 }, expected: "#00ff00" },
+    invalid: { input: { r: 256, g: 0, b: 0 }, error: "out-of-range" },
+    invariants: ["HEX to RGB to HEX preserves eight-bit channel values"],
+    testFile: "tests/text-quality.test.mjs",
+  }),
+  percentage: qualityContract({
+    id: "percentage",
+    operation: "percentOf",
+    inputs: [numberInput("percent"), numberInput("value")],
+    rule: "multiply the base value by percentage divided by 100",
+    output: { format: "finite localized number" },
+    limitations: ["the result is a mathematical percentage and carries no currency semantics"],
+    normal: { input: { percent: 10, value: 200 }, expected: 20 },
+    boundary: { input: { percent: 0, value: 200 }, expected: 0 },
+    invalid: { input: { percent: "", value: 200 }, error: "empty" },
+    invariants: ["for a non-negative base, result is monotonic in percentage"],
+    testFile: "tests/calculator-quality.test.mjs",
+  }),
+  discount: qualityContract({
+    id: "discount",
+    operation: "discountPrice",
+    inputs: [numberInput("price", "non-negative"), numberInput("discountPercent", "0 through 100")],
+    rule: "final price is price multiplied by one minus discount rate",
+    output: { format: "finite final price and saved amount" },
+    limitations: ["taxes, fees, and currency conversion are not included"],
+    normal: { input: { price: 100, discountPercent: 20 }, expected: { finalPrice: 80, saved: 20 } },
+    boundary: { input: { price: 100, discountPercent: 100 }, expected: { finalPrice: 0, saved: 100 } },
+    invalid: { input: { price: -1, discountPercent: 20 }, error: "out-of-range" },
+    invariants: ["final price plus saved amount equals original price within tolerance"],
+    testFile: "tests/calculator-quality.test.mjs",
+  }),
+  bmi: qualityContract({
+    id: "bmi",
+    operation: "bmi",
+    inputs: [numberInput("weightKg", "greater than zero through 1000 kg"), numberInput("heightCm", "greater than zero through 300 cm")],
+    rule: "divide kilograms by squared height in metres",
+    output: { format: "finite BMI reference value and category" },
+    limitations: ["BMI is general information and is not a medical diagnosis"],
+    normal: { input: { weightKg: 70, heightCm: 175 }, expected: 22.8571428571 },
+    boundary: { input: { weightKg: 18.5, heightCm: 100 }, expectedCategory: "healthy" },
+    invalid: { input: { weightKg: 70, heightCm: 0 }, error: "out-of-range" },
+    invariants: ["BMI decreases as positive height increases for fixed positive weight"],
+    testFile: "tests/calculator-quality.test.mjs",
+  }),
+  compound: qualityContract({
+    id: "compound",
+    operation: "compoundInterest",
+    inputs: [
+      numberInput("principal", "non-negative"),
+      numberInput("annualRatePercent", "greater than -100 times frequency"),
+      numberInput("years", "non-negative"),
+      numberInput("compoundsPerYear", "positive integer"),
+    ],
+    rule: "A = P × (1 + r / n)^(n × t)",
+    output: { format: "finite amount and interest rounded only for display" },
+    limitations: ["no periodic contributions, taxes, fees, or inflation adjustments are included"],
+    normal: { input: { principal: 1000, rate: 5, years: 2, frequency: 12 }, expected: 1104.9413355583 },
+    boundary: { input: { principal: 1000, rate: 0, years: 10, frequency: 12 }, expected: 1000 },
+    invalid: { input: { principal: 1000, rate: 5, years: 1, frequency: 0 }, error: "out-of-range" },
+    invariants: ["zero rate or zero term preserves principal"],
+    testFile: "tests/calculator-quality.test.mjs",
+  }),
+  datecalc: qualityContract({
+    id: "datecalc",
+    operation: "dateInterval",
+    inputs: [dateInput("start"), dateInput("end")],
+    rule: "count exclusive elapsed Gregorian calendar-day boundaries independent of timezone and DST",
+    output: { format: "non-negative whole number of days" },
+    limitations: ["start and end dates are excluded as counted full days; time-of-day is not accepted"],
+    normal: { input: { start: "2024-01-01", end: "2024-01-31" }, expected: 30 },
+    boundary: { input: { start: "2024-02-29", end: "2024-03-01" }, expected: 1 },
+    invalid: { input: { start: "2024-02-30", end: "2024-03-01" }, error: "invalid" },
+    invariants: ["reversing two valid dates preserves the absolute interval"],
+    testFile: "tests/date-quality.test.mjs",
+  }),
+  qr: qualityContract({
+    id: "qr",
+    operation: "generateQr",
+    inputs: [
+      textInput("content", "non-empty UTF-8 content within encoder capacity"),
+      selectInput("size"),
+      editableInput("foreground", "color", "six-digit HEX"),
+      editableInput("background", "color", "six-digit HEX"),
+    ],
+    rule: "generate a QR PNG data URL locally without truncating UTF-8 content",
+    output: { format: "image/png data URL with accessible text description" },
+    limitations: ["the interface applies a conservative 1,200 UTF-8 bytes limit; QR capacity also depends on the encoder-selected version and error correction"],
+    normal: { input: "https://example.com", expected: "image/png" },
+    boundary: { input: "界".repeat(400), expected: "image/png" },
+    invalid: { input: "", error: "empty" },
+    invariants: ["generation failure clears stale output and never causes a network request"],
+    testFile: "tests/qr-quality.test.mjs",
+    privacyOptions: { clipboard: "user-only", download: "user-only" },
+  }),
+};
+
+export function validateToolContracts(tools = TOOLS, contracts = TOOL_CONTRACTS) {
+  const registeredIds = new Set(tools.map(tool => tool.id));
+  for (const tool of tools) {
+    const contract = contracts[tool.id];
+    if (!contract) throw new Error(`missing contract for ${tool.id}`);
+    if (contract.slug !== tool.slug) throw new Error(`slug mismatch for ${tool.id}`);
+    if (contract.category !== tool.category) throw new Error(`category mismatch for ${tool.id}`);
+    for (const group of ["normal", "boundary", "invalid"]) {
+      if (!Array.isArray(contract.cases[group]) || contract.cases[group].length === 0) {
+        throw new Error(`missing ${group} case for ${tool.id}`);
+      }
+    }
+  }
+  for (const id of Object.keys(contracts)) {
+    if (!registeredIds.has(id)) throw new Error(`contract references unknown tool ${id}`);
+  }
+  return {
+    toolCount: tools.length,
+    normalCases: tools.reduce((count, tool) => count + contracts[tool.id].cases.normal.length, 0),
+    boundaryCases: tools.reduce((count, tool) => count + contracts[tool.id].cases.boundary.length, 0),
+    invalidCases: tools.reduce((count, tool) => count + contracts[tool.id].cases.invalid.length, 0),
+  };
+}

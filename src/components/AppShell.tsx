@@ -39,7 +39,7 @@ export function AppShell({ lang, activeTool, onLanguageChange, onNavigate, onOpe
         </button>
         <SearchDialog lang={lang} onOpenTool={openTool} />
         <label className="language">
-          <span className="sr-only">Language</span>
+          <span className="sr-only">{messages[lang].language}</span>
           <select value={lang} onChange={event => onLanguageChange(event.target.value as Lang)}>
             <option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option>
           </select>
@@ -56,9 +56,9 @@ export function AppShell({ lang, activeTool, onLanguageChange, onNavigate, onOpe
       </div>
       <footer>
         <span>© 2026 GoDeskHub. All rights reserved.</span>
-        <nav className="footer-links" aria-label="Footer">
+        <nav className="footer-links" aria-label={t.footerNavigation}>
           {(["about", "privacy", "terms", "contact"] as Page[]).map(item => (
-            <button type="button" key={item} onClick={() => navigate(item)}>{navLabels[item].en}</button>
+            <button type="button" key={item} onClick={() => navigate(item)}>{navLabels[item][lang]}</button>
           ))}
         </nav>
       </footer>

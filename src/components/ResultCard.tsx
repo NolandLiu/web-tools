@@ -17,14 +17,23 @@ type Props = {
 
 export function ResultCard({ label, displayValue, copyValue, lang, invalidValues = [], code, onClear, secondaryAction }: Props) {
   const [status, setStatus] = useState<"idle" | "copied" | "failed">("idle");
+  const [announcedValue, setAnnouncedValue] = useState("");
   const disabled = getCopyState(copyValue, invalidValues) === "disabled";
   const t = messages[lang];
+  const announcement = typeof displayValue === "string" || typeof displayValue === "number"
+    ? `${label}: ${displayValue}`
+    : copyValue ? `${label}: ${copyValue}` : "";
 
   useEffect(() => {
     if (status === "idle") return;
     const timer = window.setTimeout(() => setStatus("idle"), 2000);
     return () => window.clearTimeout(timer);
   }, [status]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setAnnouncedValue(announcement), 400);
+    return () => window.clearTimeout(timer);
+  }, [announcement]);
 
   const copy = async () => {
     if (disabled) return;
@@ -46,6 +55,7 @@ export function ResultCard({ label, displayValue, copyValue, lang, invalidValues
         </button>
       </div>
       <div className="result-value">{displayValue}</div>
+      <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">{announcedValue}</span>
       <span className={status === "failed" ? "copy-status error" : "copy-status"} aria-live="polite">
         {status === "failed" ? t.copyFailed : status === "copied" ? t.copied : ""}
       </span>
