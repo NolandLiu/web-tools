@@ -65,8 +65,8 @@ Build output directory: dist
 Production branch: main
 ```
 
-构建会从统一注册表生成三语首页、22 个工具、4 个分类和 4 个基础页面，
-共 93 个静态 HTML。工具与分类的主要可见内容会在构建时写入原始 HTML，
+构建会从统一注册表生成三语首页、25 个工具、4 个分类和 4 个基础页面，
+共 102 个静态 HTML。工具与分类的主要可见内容会在构建时写入原始 HTML，
 同时生成 Sitemap、自定义 404 和旧路径 redirects。
 Cloudflare Pages 因此可以直接返回规范深链，不需要 catch-all SPA fallback。
 

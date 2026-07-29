@@ -2,6 +2,9 @@ import { categories, toolText } from "../catalog";
 import { messages } from "../i18n";
 import type { Lang, Tool } from "../types";
 import { CalculatorTool } from "../tools/CalculatorTools";
+import { ChequeTool } from "../tools/ChequeTool";
+import { IrrTool } from "../tools/IrrTool";
+import { PasswordTool } from "../tools/PasswordTool";
 import { QrTool } from "../tools/QrTool";
 import { Base64Tool, CaseTool, ColorTool, JsonTool, TextTool, TimestampTool, UrlTool, UuidTool } from "../tools/TextTools";
 import { UnitTool } from "../tools/UnitTool";
@@ -31,6 +34,9 @@ export function ToolWorkspace({ tool, lang, onOpenTool }: { tool: Tool; lang: La
         {tool.kind === "text" && <TextTool lang={lang} />}
         {tool.kind === "color" && <ColorTool lang={lang} />}
         {tool.kind === "calculator" && <CalculatorTool tool={tool} lang={lang} />}
+        {tool.kind === "cheque" && <ChequeTool lang={lang} />}
+        {tool.kind === "irr" && <IrrTool lang={lang} />}
+        {tool.kind === "password" && <PasswordTool lang={lang} />}
         {tool.kind === "qr" && <QrTool lang={lang} />}
       </div>
       <ToolContentSections tool={tool} lang={lang} onOpenTool={onOpenTool} />

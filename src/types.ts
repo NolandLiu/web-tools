@@ -15,7 +15,10 @@ export type ToolKind =
   | "text"
   | "color"
   | "calculator"
-  | "qr";
+  | "qr"
+  | "irr"
+  | "cheque"
+  | "password";
 
 export type CalculatorKind = "percentage" | "discount" | "bmi" | "compound" | "date";
 

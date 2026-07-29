@@ -31,11 +31,11 @@ export const CATEGORIES = [
     slug: "developer-tools",
     text: localized(
       "Format & developer tools",
-      "Format JSON and work with Base64, URLs, UUIDs, timestamps, text, and colors.",
+      "Format data and generate identifiers, text transformations, colors, and secure local passwords.",
       "格式与开发工具",
-      "处理 JSON、Base64、URL、UUID、时间戳、文本和颜色。",
+      "处理数据、标识符、文本、颜色并在本地安全生成密码。",
       "格式與開發工具",
-      "處理 JSON、Base64、URL、UUID、時間戳、文字和顏色。",
+      "處理資料、識別碼、文字、顏色，並在本機安全產生密碼。",
     ),
   },
   {
@@ -43,11 +43,11 @@ export const CATEGORIES = [
     slug: "calculators",
     text: localized(
       "Calculators",
-      "Run percentage, discount, BMI, compound interest, and date interval calculations.",
+      "Run everyday calculations, fixed-period IRR analysis, and cheque amount word conversion.",
       "计算工具",
-      "进行百分比、折扣、BMI、复利和日期间隔计算。",
+      "进行日常计算、固定周期 IRR 分析和支票金额文字转换。",
       "計算工具",
-      "進行百分比、折扣、BMI、複利和日期間隔計算。",
+      "進行日常計算、固定週期 IRR 分析和支票金額文字轉換。",
     ),
   },
   {
@@ -89,6 +89,9 @@ export const TOOLS = [
   tool({ id: "compound", slug: "compound-interest-calculator", kind: "calculator", category: "calculators", icon: "trend", order: 20, defaultWeight: 6, calculator: "compound" }, localized("Compound interest calculator", "Calculate reference compound growth.", "复利计算", "复利增长参考计算。", "複利計算", "複利成長參考計算。")),
   tool({ id: "datecalc", slug: "date-interval-calculator", kind: "calculator", category: "calculators", icon: "calendar", order: 21, defaultWeight: 7, calculator: "date" }, localized("Date interval calculator", "Calculate the days between two dates.", "日期间隔计算", "计算两个日期相隔天数。", "日期間隔計算", "計算兩個日期相隔天數。")),
   tool({ id: "qr", slug: "qr-code-generator", kind: "qr", category: "qr", icon: "qr", order: 22, defaultWeight: 8 }, localized("QR Code generator", "Create and download customizable QR Codes locally.", "QR Code 生成器", "本地生成并下载可自定义的 QR Code。", "QR Code 產生器", "本機產生並下載可自訂的 QR Code。")),
+  tool({ id: "irr", slug: "irr-calculator", kind: "irr", category: "calculators", icon: "trend", order: 23, defaultWeight: 7 }, localized("IRR calculator", "Calculate fixed-period IRR and its annualized equivalent.", "IRR 计算器", "计算固定周期内部收益率及其年化结果。", "IRR 計算器", "計算固定週期內部收益率及其年化結果。")),
+  tool({ id: "cheque", slug: "cheque-amount-converter", kind: "cheque", category: "calculators", icon: "text", order: 24, defaultWeight: 6 }, localized("Cheque amount converter", "Write a decimal amount in English and Traditional Chinese financial words.", "支票金额转换", "把十进制金额转换为英文和繁体中文金融大写。", "支票金額轉換", "把十進位金額轉換為英文和繁體中文金融大寫。")),
+  tool({ id: "password", slug: "password-generator", kind: "password", category: "developer", icon: "hash", order: 25, defaultWeight: 8 }, localized("Password generator", "Generate constrained passwords with browser cryptography.", "密码生成器", "使用浏览器密码学安全随机源生成符合规则的密码。", "密碼產生器", "使用瀏覽器密碼學安全隨機來源產生符合規則的密碼。")),
 ];
 
 export const INFO_PAGES = [

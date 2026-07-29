@@ -154,6 +154,18 @@ textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.55
 .stats-grid strong { display: block; font-size: 24px; }
 .stats-grid span { color: var(--muted); font-size: 12px; }
 .helper-note { margin: 18px 0 0; color: var(--muted); font-size: 13px; }
+.cash-flow-list { margin-top: 18px; display: grid; gap: 12px; }
+.cash-flow-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: end; }
+.cash-flow-row .field + .field { margin-top: 0; }
+.cash-flow-row > button { margin-bottom: 0; }
+.password-categories { margin: 18px 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; }
+.password-categories legend { padding: 0 6px; font-weight: 750; }
+.password-category { display: grid; grid-template-columns: minmax(150px, 1fr) minmax(130px, auto); align-items: center; gap: 12px; padding: 8px 0; }
+.password-category label { display: flex; align-items: center; gap: 8px; }
+.password-category input[type="number"] { width: 76px; min-height: 40px; }
+.checkbox-row { display: flex; align-items: center; gap: 9px; min-height: 44px; font-weight: 650; }
+.irr-tool .stacked-tools { align-content: start; }
+.irr-tool .result-card { min-height: 160px; }
 .single-result-tool { max-width: 760px; margin: 0 auto; }
 .qr-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: 20px; }
 .qr-preview { min-height: 360px; display: grid; place-items: center; align-content: center; gap: 18px; border: 1px dashed var(--line-strong); border-radius: 12px; background: var(--soft); padding: 20px; text-align: center; }
@@ -214,7 +226,8 @@ footer { margin-left: var(--sidebar-width); padding: 24px 28px; display: flex; j
   .brand { margin-right: auto; }
   .global-search-button { margin-left: 0; padding: 8px 10px; }
   .global-search-button span, .global-search-button kbd { display: none; }
-  .language select { min-width: 112px; }
+  .language { min-width: 0; }
+  .language select { width: 108px; min-width: 108px; padding-left: 9px; padding-right: 26px; }
   .app-layout { display: block; }
   .tool-drawer { position: fixed; inset: 0 auto 0 0; width: min(88vw, 320px); height: 100vh; padding: 14px; visibility: hidden; transform: translateX(-102%); transition: transform .2s ease, visibility 0s linear .2s; box-shadow: 18px 0 50px rgba(10, 35, 29, .2); z-index: 80; }
   .tool-drawer.open { visibility: visible; transform: translateX(0); transition-delay: 0s; }
@@ -232,6 +245,9 @@ footer { margin-left: var(--sidebar-width); padding: 24px 28px; display: flex; j
   .workspace-head h1 { font-size: 30px; }
   .tool-surface { padding: 14px; }
   .input-panel, .result-card { padding: 16px; }
+  .cash-flow-row { grid-template-columns: 1fr; }
+  .cash-flow-row > button { justify-self: start; }
+  .password-category { grid-template-columns: 1fr; }
   .unit-pair { grid-template-columns: 1fr; }
   .swap-button { justify-self: stretch; }
   .swap-button svg { transform: rotate(90deg); }
