@@ -50,3 +50,19 @@ test("focus indicators and narrow-screen wrapping remain explicit", async () => 
   assert.match(css, /\.tool-drawer\.open\s*\{[^}]*visibility:\s*visible/);
   assert.match(css, /prefers-reduced-motion/);
 });
+
+test("Phase 4 tools expose labelled dynamic controls and independent results", async () => {
+  const irr = await readSource("../src/tools/IrrTool.tsx");
+  const cheque = await readSource("../src/tools/ChequeTool.tsx");
+  const password = await readSource("../src/tools/PasswordTool.tsx");
+  const qr = await readSource("../src/tools/QrTool.tsx");
+  assert.match(irr, /<Field id=\{`irr-cash-flow-/);
+  assert.match(irr, /aria-label=\{`\$\{t\.remove\}/);
+  assert.match(cheque, /label=\{t\.english\}/);
+  assert.match(cheque, /label=\{t\.traditional\}/);
+  assert.match(password, /<fieldset/);
+  assert.match(password, /<legend>/);
+  assert.match(qr, /type="file"/);
+  assert.match(qr, /q\.removeLogo/);
+  assert.match(qr, /alt=\{t\.qrAlt\}/);
+});

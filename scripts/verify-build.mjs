@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import { SITE_ORIGIN } from "../src/registry.js";
+import { CATEGORIES, INFO_PAGES, LANGUAGES, SITE_ORIGIN, TOOLS } from "../src/registry.js";
 import { CATEGORY_CONTENT, TOOL_CONTENT } from "../src/content/index.js";
 import { validateContentRegistry } from "../src/lib/content.js";
 import { buildPath, listCanonicalRoutes } from "../src/lib/routes.js";
@@ -9,9 +9,10 @@ import { getRouteMetadata, renderMetadataTags } from "../src/lib/seo.js";
 
 const distDir = resolve("dist");
 const routes = listCanonicalRoutes();
-assert.equal(routes.length, 93, "Expected exactly 93 canonical routes.");
+const expectedRouteCount = LANGUAGES.length * (1 + TOOLS.length + CATEGORIES.length + INFO_PAGES.length);
+assert.equal(routes.length, expectedRouteCount, "Canonical route count must match the registry.");
 assert.deepEqual(validateContentRegistry(), {
-  toolCount: 22,
+  toolCount: TOOLS.length,
   categoryCount: 4,
   languageCount: 3,
 });
@@ -78,7 +79,7 @@ const sitemap = await readFile(join(distDir, "sitemap.xml"), "utf8");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 const expectedUrls = routes.map(route => `${SITE_ORIGIN}${buildPath(route)}`);
 assert.deepEqual(sitemapUrls, expectedUrls, "Sitemap must match canonical route order and content.");
-assert.equal(new Set(sitemapUrls).size, 93, "Sitemap URLs must be unique.");
+assert.equal(new Set(sitemapUrls).size, expectedRouteCount, "Sitemap URLs must be unique.");
 assert.ok(sitemapUrls.every(url => url.startsWith("https://tools.godeskhub.com/")));
 assert.doesNotMatch(sitemap, /https:\/\/godeskhub\.com/);
 
@@ -100,4 +101,4 @@ assert.match(redirects, /^\/tools\/:slug \/en\/tools\/:slug 301$/m);
 assert.match(redirects, /^\/categories\/:slug \/en\/categories\/:slug 301$/m);
 assert.doesNotMatch(redirects, /^\/\* /m);
 
-globalThis.console.log("Verified 93 static routes, metadata, Sitemap, deep links, redirects, and assets.");
+globalThis.console.log(`Verified ${expectedRouteCount} static routes, metadata, Sitemap, deep links, redirects, and assets.`);
