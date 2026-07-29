@@ -8,13 +8,21 @@ HTML for every canonical route at build time.
 
 - `src/App.tsx`: URL-driven route state, tool directory, policy pages, metadata synchronization, and top-level navigation actions.
 - `src/registry.js`: canonical origin, languages, stable slugs, categories, tools, and localized SEO copy.
+- `src/content/*`: locale-split tool guidance and category content, keyed by the same stable registry IDs.
 - `src/catalog.ts`: compatibility views derived from the canonical registry for existing tool components.
 - `src/lib/routes.js`: route parsing, building, language switching, and canonical route enumeration.
-- `src/lib/seo.js`: per-route metadata, hreflang, Open Graph, JSON-LD, and head rendering.
+- `src/lib/content.js`: build-time validation for multilingual content coverage, FAQs, references, and placeholders.
+- `src/lib/seo.js`: per-route metadata, hreflang, Open Graph, and a page-specific JSON-LD `@graph`.
+- `src/lib/search.js`: dependency-free localized search across names, aliases, keywords, summaries, scenarios, and categories.
+- `src/lib/feedback.js`: allowlisted feedback context and encoded user-initiated email links.
+- `src/lib/static-content.js`: escaped semantic HTML generated from the shared route and content registries.
 - `src/i18n.ts`: shared English, Simplified Chinese, and Traditional Chinese UI and field copy.
 - `src/components/AppShell.tsx`: responsive top bar, desktop shell, mobile drawer, and footer.
 - `src/components/ToolSidebar.tsx`: category-first tree navigation derived from the central registry.
 - `src/components/ToolWorkspace.tsx`: shared breadcrumb, tool header, tool body, help copy, and related tools.
+- `src/components/ToolContentSections.tsx`: localized scenarios, steps, examples, limits, FAQs, references, and related tools below the interactive controls.
+- `src/components/SearchDialog.tsx`: global local-search dialog with keyboard selection and current-language routes.
+- `src/components/ToolFeedback.tsx`: four tool-level feedback categories without tool input or output.
 - `src/components/Field.tsx`: accessible visible labels, inline validation, and contextual help popovers.
 - `src/components/ResultCard.tsx`: shared output surface with clipboard state and reset support.
 - `src/components/SwapButton.tsx`: reusable accessible swap action for reversible tools.
@@ -41,11 +49,19 @@ slugs under `/tools/`, and categories use stable slugs under `/categories/`.
 Client navigation uses `pushState`, refresh reconstructs state from the URL,
 and `popstate` handles Back and Forward.
 
-Vite first produces the shared asset bundle. The static generator then copies
-the built HTML shell to every canonical route and injects route-specific
-title, description, canonical, Open Graph, hreflang, HTML language, and
-JSON-LD. A top-level `404.html` disables Cloudflare Pages' implicit SPA
+Vite first produces the shared asset bundle. The static generator validates the
+content registry, then copies the built HTML shell to every canonical route and
+injects route-specific title, description, canonical, Open Graph, hreflang,
+HTML language, visible route content, and one JSON-LD `@graph`. Tool graphs
+include `WebApplication`, visible FAQ data, and breadcrumbs; category graphs
+include `CollectionPage`, `ItemList`, and breadcrumbs. A top-level `404.html`
+disables Cloudflare Pages' implicit SPA
 fallback so unknown paths retain real 404 behavior.
+
+React replaces the generated content inside `#root` when JavaScript runs. The
+interactive tool stays above the guidance content, while crawlers and
+no-JavaScript readers still receive the localized summary, guide, FAQ,
+references, related links, and feedback entry in the original response HTML.
 
 ## Responsive layout
 

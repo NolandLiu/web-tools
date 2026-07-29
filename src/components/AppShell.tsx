@@ -2,6 +2,7 @@ import { useState } from "react";
 import { messages, navLabels } from "../i18n";
 import type { Lang, Page, Tool } from "../types";
 import { Icon } from "./Icons";
+import { SearchDialog } from "./SearchDialog";
 import { ToolSidebar } from "./ToolSidebar";
 
 type Props = {
@@ -36,6 +37,7 @@ export function AppShell({ lang, activeTool, onLanguageChange, onNavigate, onOpe
         <button className="brand" type="button" onClick={() => navigate("home")}>
           <span className="brand-mark">GH</span><span>{t.siteName}</span>
         </button>
+        <SearchDialog lang={lang} onOpenTool={openTool} />
         <label className="language">
           <span className="sr-only">Language</span>
           <select value={lang} onChange={event => onLanguageChange(event.target.value as Lang)}>

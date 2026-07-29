@@ -106,3 +106,30 @@ test("navigation and QR effects do not synchronously reset local state", async (
   assert.doesNotMatch(shell, /useEffect\(\(\) => \{\s*setDrawerOpen/);
   assert.doesNotMatch(qr, /if \(!validation\.ok\) \{\s*setDataUrl/);
 });
+
+test("tool workspace keeps controls before localized content, related tools, and feedback", async () => {
+  const workspace = await readFile(new URL("../src/components/ToolWorkspace.tsx", import.meta.url), "utf8");
+  const content = await readFile(new URL("../src/components/ToolContentSections.tsx", import.meta.url), "utf8");
+  const feedback = await readFile(new URL("../src/components/ToolFeedback.tsx", import.meta.url), "utf8");
+
+  assert.ok(workspace.indexOf('className="tool-surface"') < workspace.indexOf("<ToolContentSections"));
+  assert.match(workspace, /<ToolContentSections/);
+  assert.match(workspace, /<ToolFeedback/);
+  assert.match(content, /content\.useCases/);
+  assert.match(content, /content\.steps/);
+  assert.match(content, /content\.faqs/);
+  assert.match(content, /content\.references/);
+  assert.match(content, /related/);
+  assert.doesNotMatch(content, /<section[^>]*>\s*\{content\.[a-zA-Z]+\?\.map/);
+  assert.match(feedback, /buildFeedbackMailto/);
+});
+
+test("category pages expose breadcrumb, scenarios, summaries, and category boundaries", async () => {
+  const category = await readFile(new URL("../src/components/CategoryPage.tsx", import.meta.url), "utf8");
+
+  assert.match(category, /CATEGORY_CONTENT/);
+  assert.match(category, /className="breadcrumb"/);
+  assert.match(category, /content\.useCases/);
+  assert.match(category, /content\.distinction/);
+  assert.match(category, /tool\.text\[lang\]\.description/);
+});

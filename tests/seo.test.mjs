@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import { generateSite } from "../scripts/generate-static-pages.mjs";
+import { TOOL_CONTENT } from "../src/content/index.js";
 import { listCanonicalRoutes } from "../src/lib/routes.js";
 import { getRouteMetadata } from "../src/lib/seo.js";
 
@@ -43,9 +44,20 @@ test("localized route metadata includes canonical, Open Graph, hreflang, and JSO
     { hreflang: "x-default", href: "https://tools.godeskhub.com/en/tools/json-tools" },
   ]);
   assert.equal(metadata.jsonLd["@context"], "https://schema.org");
-  assert.equal(metadata.jsonLd["@type"], "WebApplication");
-  assert.equal(metadata.jsonLd.url, metadata.canonical);
-  assert.equal(metadata.jsonLd.inLanguage, "zh-CN");
+  assert.ok(Array.isArray(metadata.jsonLd["@graph"]));
+  assert.deepEqual(
+    metadata.jsonLd["@graph"].map(item => item["@type"]),
+    ["WebApplication", "BreadcrumbList", "FAQPage"],
+  );
+  const application = metadata.jsonLd["@graph"][0];
+  assert.equal(application.url, metadata.canonical);
+  assert.equal(application.inLanguage, "zh-CN");
+  assert.equal(application.applicationCategory, "DeveloperApplication");
+  const faq = metadata.jsonLd["@graph"][2];
+  assert.deepEqual(
+    faq.mainEntity.map(item => [item.name, item.acceptedAnswer.text]),
+    TOOL_CONTENT.json["zh-CN"].faqs.map(item => [item.question, item.answer]),
+  );
 });
 
 test("home, category, and information pages receive distinct localized metadata", () => {
@@ -53,9 +65,13 @@ test("home, category, and information pages receive distinct localized metadata"
   const category = getRouteMetadata({ kind: "category", lang: "en", categoryId: "units" });
   const privacy = getRouteMetadata({ kind: "info", lang: "en", page: "privacy" });
 
-  assert.equal(home.jsonLd["@type"], "WebSite");
-  assert.equal(category.jsonLd["@type"], "CollectionPage");
-  assert.equal(privacy.jsonLd["@type"], "WebPage");
+  assert.deepEqual(home.jsonLd["@graph"].map(item => item["@type"]), ["WebSite"]);
+  assert.deepEqual(
+    category.jsonLd["@graph"].map(item => item["@type"]),
+    ["CollectionPage", "ItemList", "BreadcrumbList"],
+  );
+  assert.deepEqual(privacy.jsonLd["@graph"].map(item => item["@type"]), ["WebPage"]);
+  assert.equal(category.jsonLd["@graph"][1].itemListElement.length, 8);
   assert.notEqual(home.title, category.title);
   assert.notEqual(category.title, privacy.title);
   assert.notEqual(home.description, category.description);
@@ -71,6 +87,10 @@ test("all canonical routes produce complete and unique canonical metadata", () =
     assert.equal(item.openGraph.url, item.canonical);
     assert.equal(item.alternates.length, 4);
     assert.equal(item.robots, "index, follow");
+    assert.equal(item.jsonLd["@context"], "https://schema.org");
+    assert.ok(item.jsonLd["@graph"].length >= 1);
+    assert.equal(new Set(item.jsonLd["@graph"].map(entity => entity["@id"])).size, item.jsonLd["@graph"].length);
+    assert.doesNotMatch(JSON.stringify(item.jsonLd), /undefined|AggregateRating|Review|Offer/);
   }
 });
 
@@ -93,7 +113,8 @@ test("static generation writes localized metadata into deep-link HTML without Ja
   assert.match(html, /rel="canonical" href="https:\/\/tools\.godeskhub\.com\/zh-cn\/tools\/json-tools"/);
   assert.match(html, /hreflang="en" href="https:\/\/tools\.godeskhub\.com\/en\/tools\/json-tools"/);
   assert.match(html, /hreflang="x-default" href="https:\/\/tools\.godeskhub\.com\/en\/tools\/json-tools"/);
-  assert.match(html, /"@type":"WebApplication"/);
+  assert.match(html, /"@graph":\[\{"@id":"https:\/\/tools\.godeskhub\.com\/zh-cn\/tools\/json-tools#application","@type":"WebApplication"/);
+  assert.match(html, /"@type":"FAQPage"/);
   assert.match(html, /src="\/assets\/app\.js"/);
 
   const sitemap = await readFile(join(tempRoot, "sitemap.xml"), "utf8");

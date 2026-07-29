@@ -13,7 +13,10 @@ export type RouteMetadata = {
     url: string;
   };
   alternates: Array<{ hreflang: string; href: string }>;
-  jsonLd: Record<string, string | boolean>;
+  jsonLd: {
+    "@context": "https://schema.org";
+    "@graph": Array<Record<string, unknown>>;
+  };
 };
 
 export function getRouteMetadata(route: AppRoute): RouteMetadata;

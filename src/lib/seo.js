@@ -6,6 +6,7 @@ import {
   SITE_ORIGIN,
   TOOLS,
 } from "../registry.js";
+import { TOOL_CONTENT } from "../content/index.js";
 import { buildPath, switchRouteLanguage } from "./routes.js";
 
 const HOME_TEXT = {
@@ -45,11 +46,136 @@ function findRouteText(route) {
   };
 }
 
-function schemaType(route) {
-  if (route.kind === "home") return "WebSite";
-  if (route.kind === "tool") return "WebApplication";
-  if (route.kind === "category") return "CollectionPage";
-  return "WebPage";
+function breadcrumbEntity(route, canonical) {
+  if (route.kind !== "tool" && route.kind !== "category") return null;
+  const items = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: HOME_TEXT[route.lang].title,
+      item: `${SITE_ORIGIN}${buildPath({ kind: "home", lang: route.lang })}`,
+    },
+  ];
+  if (route.kind === "tool") {
+    const tool = TOOLS.find(item => item.id === route.toolId);
+    const category = CATEGORIES.find(item => item.id === tool?.category);
+    if (category) {
+      items.push({
+        "@type": "ListItem",
+        position: 2,
+        name: category.text[route.lang].name,
+        item: `${SITE_ORIGIN}${buildPath({ kind: "category", lang: route.lang, categoryId: category.id })}`,
+      });
+    }
+    if (tool) {
+      items.push({
+        "@type": "ListItem",
+        position: 3,
+        name: tool.text[route.lang].name,
+        item: canonical,
+      });
+    }
+  } else {
+    const category = CATEGORIES.find(item => item.id === route.categoryId);
+    if (category) {
+      items.push({
+        "@type": "ListItem",
+        position: 2,
+        name: category.text[route.lang].name,
+        item: canonical,
+      });
+    }
+  }
+  return {
+    "@id": `${canonical}#breadcrumb`,
+    "@type": "BreadcrumbList",
+    itemListElement: items,
+  };
+}
+
+function structuredDataGraph(route, text, canonical) {
+  if (route.kind === "home") {
+    return [{
+      "@id": `${canonical}#website`,
+      "@type": "WebSite",
+      name: "GoDeskHub",
+      description: text.description,
+      url: canonical,
+      inLanguage: route.lang,
+    }];
+  }
+
+  if (route.kind === "tool") {
+    const tool = TOOLS.find(item => item.id === route.toolId);
+    const content = TOOL_CONTENT[route.toolId]?.[route.lang];
+    const categoryTypes = {
+      units: "UtilitiesApplication",
+      developer: "DeveloperApplication",
+      calculators: "UtilitiesApplication",
+      qr: "MultimediaApplication",
+    };
+    const application = {
+      "@id": `${canonical}#application`,
+      "@type": "WebApplication",
+      name: tool?.text[route.lang].name ?? text.title,
+      description: text.description,
+      url: canonical,
+      inLanguage: route.lang,
+      applicationCategory: categoryTypes[tool?.category] ?? "UtilitiesApplication",
+      operatingSystem: "Any",
+      isAccessibleForFree: true,
+    };
+    const breadcrumb = breadcrumbEntity(route, canonical);
+    const faq = {
+      "@id": `${canonical}#faq`,
+      "@type": "FAQPage",
+      mainEntity: (content?.faqs ?? []).map(item => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    };
+    return [application, breadcrumb, faq].filter(Boolean);
+  }
+
+  if (route.kind === "category") {
+    const category = CATEGORIES.find(item => item.id === route.categoryId);
+    const tools = TOOLS.filter(tool => tool.category === route.categoryId);
+    return [
+      {
+        "@id": `${canonical}#collection`,
+        "@type": "CollectionPage",
+        name: category?.text[route.lang].name ?? text.title,
+        description: text.description,
+        url: canonical,
+        inLanguage: route.lang,
+      },
+      {
+        "@id": `${canonical}#items`,
+        "@type": "ItemList",
+        numberOfItems: tools.length,
+        itemListElement: tools.map((tool, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: tool.text[route.lang].name,
+          url: `${SITE_ORIGIN}${buildPath({ kind: "tool", lang: route.lang, toolId: tool.id })}`,
+        })),
+      },
+      breadcrumbEntity(route, canonical),
+    ].filter(Boolean);
+  }
+
+  return [{
+    "@id": `${canonical}#webpage`,
+    "@type": "WebPage",
+    name: text.title,
+    description: text.description,
+    url: canonical,
+    inLanguage: route.lang,
+  }];
 }
 
 export function getRouteMetadata(route) {
@@ -84,12 +210,7 @@ export function getRouteMetadata(route) {
     alternates,
     jsonLd: {
       "@context": "https://schema.org",
-      "@type": schemaType(route),
-      name: text.title,
-      description: text.description,
-      url: canonical,
-      inLanguage: route.lang,
-      isAccessibleForFree: true,
+      "@graph": structuredDataGraph(route, text, canonical),
     },
   };
 }
