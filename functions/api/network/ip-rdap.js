@@ -1,9 +1,10 @@
 /* global Response */
 
 import { handleRdapRequest } from "../../../src/lib/network-ip.js";
+import { createRdapOrgProvider } from "./providers.js";
 
 export async function onRequestPost(context) {
-  return handleRdapRequest(context.request);
+  return handleRdapRequest(context.request, { provider: createRdapOrgProvider() });
 }
 
 export async function onRequest() {
