@@ -18,6 +18,7 @@ export const NETWORK_ERROR_CODES = [
   "UPSTREAM_TIMEOUT",
   "UPSTREAM_UNAVAILABLE",
   "UPSTREAM_INVALID_RESPONSE",
+  "ALL_PROVIDERS_FAILED",
   "RESPONSE_TOO_LARGE",
   "CONFIGURATION_ERROR",
   "INTERNAL_ERROR",
@@ -431,7 +432,7 @@ export function createApiResponse(body, status = 200) {
   });
 }
 
-export async function readStrictJsonRequest(request, { maxBytes = 2048, allowedFields = ["ip"] } = {}) {
+export async function readStrictJsonRequest(request, { maxBytes = 2048, allowedFields = ["ip", "mode"] } = {}) {
   if (request.method !== "POST") return failApi("INVALID_REQUEST", false);
   const contentType = request.headers.get("Content-Type") || "";
   if (!contentType.toLowerCase().startsWith("application/json")) return failApi("INVALID_CONTENT_TYPE", false);
@@ -445,17 +446,32 @@ export async function readStrictJsonRequest(request, { maxBytes = 2048, allowedF
   }
   if (!body || typeof body !== "object" || Array.isArray(body)) return failApi("INVALID_REQUEST", false);
   if (Object.keys(body).some(key => !allowedFields.includes(key))) return failApi("INVALID_REQUEST", false);
+  if (body.mode !== undefined) {
+    if (body.mode !== "current") return failApi("INVALID_REQUEST", false);
+    if (body.ip !== undefined) return failApi("INVALID_REQUEST", false);
+    return ok({ mode: "current" });
+  }
   if (typeof body.ip !== "string") return failApi("INVALID_IP", false);
-  return ok(body);
+  return ok({ mode: "ip", ip: body.ip });
 }
 
 export function failApi(code, retryable = false) {
   return { ok: false, error: { code, message: code, retryable } };
 }
 
-export async function handleIpLookupRequest(request, { provider, now = () => new Date() } = {}) {
+export async function handleIpLookupRequest(request, { provider, currentProvider, now = () => new Date() } = {}) {
   const parsed = await readStrictJsonRequest(request);
   if (!parsed.ok) return createApiResponse(parsed, parsed.error.code === "INVALID_CONTENT_TYPE" ? 415 : 400);
+  if (parsed.data.mode === "current") {
+    if (!currentProvider) return createApiResponse(failApi("CONFIGURATION_ERROR"), 503);
+    const result = await currentProvider.lookup();
+    if (!result.ok) return createApiResponse(failApi(result.code, result.retryable ?? false), result.status ?? 502);
+    return createApiResponse({
+      ok: true,
+      data: result.data,
+      meta: { source: result.source, retrievedAt: now().toISOString(), ...(result.meta ?? {}) },
+    });
+  }
   const normalized = isPublicQueryableIp(parsed.data.ip);
   if (!normalized.ok) {
     return createApiResponse(failApi(normalized.reason === "unsupported-address-type" ? "UNSUPPORTED_ADDRESS_TYPE" : "INVALID_IP"), 400);
@@ -466,7 +482,7 @@ export async function handleIpLookupRequest(request, { provider, now = () => new
   return createApiResponse({
     ok: true,
     data: result.data,
-    meta: { source: result.source, retrievedAt: now().toISOString() },
+    meta: { source: result.source, retrievedAt: now().toISOString(), ...(result.meta ?? {}) },
   });
 }
 
@@ -483,6 +499,6 @@ export async function handleRdapRequest(request, { provider, now = () => new Dat
   return createApiResponse({
     ok: true,
     data: result.data,
-    meta: { source: result.source, retrievedAt: now().toISOString() },
+    meta: { source: result.source, retrievedAt: now().toISOString(), ...(result.meta ?? {}) },
   });
 }

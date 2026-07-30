@@ -236,9 +236,32 @@ export function Ipv6Toolbox({ lang }: { lang: Lang }) {
   );
 }
 
-async function queryNetworkApi(path: string, ip: string) {
-  const response = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ip }) });
-  return response.json();
+type NetworkApiPayload = { ip: string } | { mode: "current" };
+
+function networkErrorMessage(lang: Lang, code?: string, fallback?: string) {
+  if (code === "RATE_LIMITED") return local(lang, "Upstream services are temporarily limited. Please wait and try again.", "上游服务暂时限流，请稍后重试。", "上游服務暫時限流，請稍後重試。");
+  if (code === "UPSTREAM_TIMEOUT") return local(lang, "The upstream service timed out. Please try again.", "上游服务超时，请重试。", "上游服務逾時，請重試。");
+  if (code === "UPSTREAM_UNAVAILABLE" || code === "ALL_PROVIDERS_FAILED") return local(lang, "The upstream service is temporarily unavailable. Please try again later.", "上游服务暂时不可用，请稍后重试。", "上游服務暫時無法使用，請稍後重試。");
+  if (code === "UPSTREAM_INVALID_RESPONSE") return local(lang, "The upstream service returned a response this tool could not read.", "上游服务返回了本工具无法读取的响应。", "上游服務傳回了本工具無法讀取的回應。");
+  if (code === "CONFIGURATION_ERROR") return local(lang, "The lookup service is not configured correctly.", "查询服务配置不完整。", "查詢服務設定不完整。");
+  return fallback ?? local(lang, "The network request failed.", "网络请求失败。", "網絡要求失敗。");
+}
+
+async function queryNetworkApi(path: string, payload: NetworkApiPayload) {
+  const response = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+  const body = await response.json();
+  if (!body?.ok) {
+    const error = new Error(body?.error?.code || "UPSTREAM_UNAVAILABLE") as Error & { code?: string };
+    error.code = body?.error?.code || "UPSTREAM_UNAVAILABLE";
+    throw error;
+  }
+  return body;
+}
+
+function apiErrorCode(error: unknown) {
+  return error && typeof error === "object" && "code" in error && typeof (error as { code?: unknown }).code === "string"
+    ? (error as { code: string }).code
+    : undefined;
 }
 
 function IpLookupModule({ lang }: { lang: Lang }) {
@@ -252,9 +275,17 @@ function IpLookupModule({ lang }: { lang: Lang }) {
       return;
     }
     try {
-      setState({ result: await queryNetworkApi(NETWORK_API_PATHS.lookup, localCheck.data.ip) });
-    } catch {
-      setState({ error: local(lang, "The lookup request failed.", "查询请求失败。", "查詢要求失敗。") });
+      setState({ result: await queryNetworkApi(NETWORK_API_PATHS.lookup, { ip: localCheck.data.ip }) });
+    } catch (error) {
+      setState({ error: networkErrorMessage(lang, apiErrorCode(error), local(lang, "The lookup request failed.", "查询请求失败。", "查詢要求失敗。")) });
+    }
+  };
+  const submitCurrent = async () => {
+    setState({ loading: true });
+    try {
+      setState({ result: await queryNetworkApi(NETWORK_API_PATHS.lookup, { mode: "current" }) });
+    } catch (error) {
+      setState({ error: networkErrorMessage(lang, apiErrorCode(error), local(lang, "The current IP lookup request failed.", "当前 IP 查询请求失败。", "目前 IP 查詢要求失敗。")) });
     }
   };
   const display = state.loading ? local(lang, "Loading…", "查询中…", "查詢中…") : state.error || (state.result ? <pre>{JSON.stringify(state.result, null, 2)}</pre> : local(lang, "Run a lookup to see estimated public network data.", "点击查询后显示公网网络估算数据。", "點擊查詢後顯示公網網絡估算資料。"));
@@ -264,6 +295,7 @@ function IpLookupModule({ lang }: { lang: Lang }) {
         <Field id="ip-lookup-input" label="IP address" help="Only one public IPv4 or IPv6 address is accepted. The query is sent only after submit." lang={lang} error={state.error}><input value={input} onChange={event => { setInput(event.target.value); setState({}); }} /></Field>
         <p className="helper-note">{local(lang, "IP geolocation is an estimate and may describe an ISP node or registry location, not a person or exact street address.", "IP 地理位置是数据库估算，可能代表运营商节点或注册位置，不能确定个人或精确地址。", "IP 地理位置是資料庫估算，可能代表營運商節點或註冊位置，不能確定個人或精確地址。")}</p>
         <button type="submit" aria-busy={state.loading}>{local(lang, "Query", "查询", "查詢")}</button>
+        <button type="button" className="secondary-button" aria-busy={state.loading} onClick={() => { void submitCurrent(); }}>{local(lang, "Use my current IP", "使用当前 IP", "使用目前 IP")}</button>
       </form>
       <ResultCard label={messages[lang].result} displayValue={display} copyValue="" lang={lang} code onClear={() => { setInput(""); setState({}); }} />
     </ModuleCard>
@@ -281,9 +313,9 @@ function IpRdapModule({ lang }: { lang: Lang }) {
       return;
     }
     try {
-      setState({ result: await queryNetworkApi(NETWORK_API_PATHS.rdap, localCheck.data.ip) });
-    } catch {
-      setState({ error: local(lang, "The RDAP request failed.", "RDAP 请求失败。", "RDAP 要求失敗。") });
+      setState({ result: await queryNetworkApi(NETWORK_API_PATHS.rdap, { ip: localCheck.data.ip }) });
+    } catch (error) {
+      setState({ error: networkErrorMessage(lang, apiErrorCode(error), local(lang, "The RDAP request failed.", "RDAP 请求失败。", "RDAP 要求失敗。")) });
     }
   };
   const display = state.loading ? local(lang, "Loading…", "查询中…", "查詢中…") : state.error || (state.result ? <details><summary>Raw RDAP JSON</summary><pre>{JSON.stringify(state.result, null, 2)}</pre></details> : local(lang, "Run a lookup to see public RDAP registration data.", "点击查询后显示公开 RDAP 注册资料。", "點擊查詢後顯示公開 RDAP 註冊資料。"));

@@ -29,7 +29,7 @@ export function classifyIpv6(input: string | bigint): { type: string; label: str
 export function normalizeIp(input: string): { ok: true; data: { version: number; ip: string; numeric: bigint; classification: { type: string; label: string; publicQuery?: boolean } } } | { ok: false; reason: string };
 export function isPublicQueryableIp(input: string): { ok: true; data: { version: number; ip: string; numeric: bigint; classification: { type: string; label: string; publicQuery?: boolean } } } | { ok: false; reason: string };
 export function createApiResponse(body: unknown, status?: number): Response;
-export function readStrictJsonRequest(request: Request, options?: { maxBytes?: number; allowedFields?: string[] }): Promise<{ ok: true; data: Record<string, unknown> } | { ok: false; error: { code: string; message: string; retryable: boolean } }>;
+export function readStrictJsonRequest(request: Request, options?: { maxBytes?: number; allowedFields?: string[] }): Promise<{ ok: true; data: { mode: "current" } | { mode: "ip"; ip: string } } | { ok: false; error: { code: string; message: string; retryable: boolean } }>;
 export function failApi(code: string, retryable?: boolean): { ok: false; error: { code: string; message: string; retryable: boolean } };
-export function handleIpLookupRequest(request: Request, options?: { provider?: { lookup(input: unknown): Promise<unknown> }; now?: () => Date }): Promise<Response>;
+export function handleIpLookupRequest(request: Request, options?: { provider?: { lookup(input: unknown): Promise<unknown> }; currentProvider?: { lookup(): Promise<unknown> }; now?: () => Date }): Promise<Response>;
 export function handleRdapRequest(request: Request, options?: { provider?: { lookup(input: unknown): Promise<unknown> }; now?: () => Date }): Promise<Response>;
