@@ -12,3 +12,5 @@ export function parsePath(pathname: string): AppRoute;
 export function buildPath(route: AppRoute): string;
 export function switchRouteLanguage<T extends AppRoute>(route: T, lang: Lang): T;
 export function listCanonicalRoutes(): CanonicalRoute[];
+export const LEGACY_TOOL_REDIRECTS: Record<string, { toolId: string; anchor: string }>;
+export function listLegacyRedirects(): Array<{ from: string; to: string; status: 301 }>;

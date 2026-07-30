@@ -25,77 +25,41 @@ const make = ({ summary, introduction, useCases, steps, example, principles, lim
 
 export const NETWORK_TOOL_CONTENT = {
   en: {
-    "ipv4-subnet": make({
-      summary: "Calculate IPv4 subnet details, host capacity, wildcard masks, and same-subnet results locally.",
-      introduction: "The IPv4 subnet calculator parses strict dotted-decimal IPv4 input and CIDR prefixes or contiguous masks. It reports the network, mask, wildcard, host counts, and the documented /31 and /32 semantics without sending input outside the browser.",
-      useCases: ["Plan a small LAN prefix and host capacity before configuring a router.", "Check whether two IPv4 addresses belong to the same CIDR block."],
-      steps: ["Enter an IP/CIDR such as 192.168.1.10/24 or use IP plus mask.", "Review the network, mask, wildcard, host count, and usable range.", "Use the host or same-subnet modes when planning capacity or comparing addresses."],
-      example: { title: "/31 point-to-point", description: "192.0.2.0/31 is shown with point-to-point semantics rather than a normal broadcast range." },
-      principles: ["IPv4 addresses are converted to an unsigned 32-bit integer. Masks must be contiguous, and /31 follows RFC 3021 point-to-point behavior while /32 is a single-host route."],
-      limitations: ["Classful networking is not used.", "Ambiguous leading-zero IPv4 octets and non-contiguous masks are rejected.", "The tool does not contact DNS or any network service."],
-      faqs: [{ question: "Does /31 have usable hosts?", answer: "Yes. It is treated as a two-address point-to-point prefix." }, { question: "Are leading zeros accepted?", answer: "No. They are rejected to avoid octal-style ambiguity." }],
-      aliases: ["subnet calculator", "subnet mask", "CIDR calculator", "wildcard mask", "same subnet"],
-      keywords: ["network address", "broadcast address", "host calculator", "CIDR", "IPv4"],
+    "ipv4-network": make({
+      summary: "Calculate IPv4 subnets, masks, host capacity, ranges, conversions, and same-subnet checks locally.",
+      introduction: "The IPv4 network toolbox groups subnet calculation, mask conversion, host planning, range-to-CIDR conversion, IPv4 notation conversion, local classification, and same-subnet checks on one canonical page. Each module keeps its own input, validation, result, copy, and reset state.",
+      useCases: ["Plan a LAN prefix and usable host capacity before configuring routers or firewalls.", "Convert address ranges, masks, and IPv4 notation without sending network data outside the browser."],
+      steps: ["Start with the subnet module and try 192.168.1.10/24.", "Use the anchor navigation to move to mask, host, range, converter, or same-subnet modules.", "Review each module result independently; correcting one module does not clear or overwrite another module."],
+      example: { title: "Subnet and range planning", description: "192.168.1.10/24 reports the 192.168.1.0 network, 255.255.255.0 mask, 254 usable hosts, and range boundaries." },
+      principles: ["IPv4 addresses are converted to unsigned 32-bit integers. Masks must be contiguous, ranges are summarized exactly, and /31 follows RFC 3021 point-to-point behavior."],
+      limitations: ["Classful networking is not used.", "Ambiguous leading-zero IPv4 octets and non-contiguous masks are rejected.", "The page does not contact DNS or any external network service."],
+      faqs: [{ question: "Why are several IPv4 functions on one page?", answer: "They share the same IPv4 addressing model, so grouping them avoids duplicate pages while keeping each module independent." }, { question: "Does range-to-CIDR approximate?", answer: "No. Returned CIDR blocks do not cover addresses outside the requested IPv4 range." }],
+      aliases: ["subnet calculator", "subnet mask", "CIDR calculator", "wildcard mask", "same subnet", "IP range", "range to CIDR", "CIDR to range", "IP to decimal", "IP to binary", "IP to hex", "IPv4 converter"],
+      keywords: ["network address", "broadcast address", "host calculator", "CIDR", "IPv4", "mask converter", "host recommendation", "range converter"],
     }),
-    "ip-range-cidr": make({
-      summary: "Convert IPv4 CIDR blocks to ranges and exact IPv4 ranges to minimal CIDR lists.",
-      introduction: "This converter works with IPv4 only. It uses integer arithmetic to convert CIDR blocks to start and end addresses, or to summarize a continuous range with the smallest exact CIDR set.",
-      useCases: ["Translate a firewall range into CIDR blocks.", "Check the address span covered by a CIDR route."],
-      steps: ["Choose CIDR to range or range to CIDR.", "Enter the IPv4 CIDR or start and end addresses.", "Copy the resulting CIDR list after confirming it exactly covers the range."],
-      example: { title: "Unaligned range", description: "192.168.1.1 through 192.168.1.6 becomes /32, /31, /31, and /32 blocks without covering extra addresses." },
-      principles: ["The range-to-CIDR algorithm advances by the largest block allowed by the current address alignment and remaining address count."],
-      limitations: ["IPv6 range aggregation is not included.", "Start address must be less than or equal to end address.", "Large ranges are summarized, not enumerated."],
-      faqs: [{ question: "Can it return /0?", answer: "Yes. The full IPv4 space is represented as 0.0.0.0/0." }, { question: "Does it approximate?", answer: "No. Returned CIDR blocks do not cover addresses outside the requested range." }],
-      aliases: ["IP range", "CIDR converter", "range to CIDR", "CIDR to range"],
-      keywords: ["IPv4", "CIDR", "range", "route", "firewall"],
-    }),
-    "ip-address": make({
-      summary: "Convert IPv4 between dotted decimal, unsigned integer, binary, and hexadecimal, then classify the address locally.",
-      introduction: "The IP address converter uses one unsigned 32-bit representation to avoid signed-bit surprises. It also checks a local special-purpose address table reviewed against IANA information.",
-      useCases: ["Convert an IPv4 integer from a log into dotted-decimal notation.", "Identify private, loopback, documentation, multicast, or public IPv4 addresses before lookup."],
-      steps: ["Choose the input format.", "Enter the IPv4 value.", "Review dotted, decimal, binary, hexadecimal, and local classification output."],
-      example: { title: "Unsigned boundary", description: "255.255.255.255 is 4294967295 rather than a negative signed integer." },
-      principles: ["All conversions go through an unsigned 32-bit BigInt value. Special-use ranges are matched by the most specific prefix first."],
-      limitations: ["Only IPv4 is converted here.", "Local classification is not a reputation, VPN, proxy, or risk score.", "No network request is made."],
-      faqs: [{ question: "Is 192.168.1.1 public?", answer: "No. It is classified locally as private address space." }, { question: "Why use unsigned integers?", answer: "IPv4 occupies 32 bits, and signed bitwise operations can otherwise display values above 2^31 as negative." }],
-      aliases: ["IP to decimal", "IP to binary", "IP to hex", "IPv4 converter"],
-      keywords: ["IPv4", "binary", "hex", "decimal", "IANA"],
-    }),
-    ipv6: make({
+    "ipv6-toolbox": make({
       summary: "Expand, compress, normalize, classify, and calculate IPv6 prefix ranges locally.",
-      introduction: "The IPv6 tool parses standard IPv6 text, applies RFC 5952 compression rules, computes prefix start and end addresses with 128-bit integer arithmetic, and identifies common special address types.",
-      useCases: ["Normalize an IPv6 address before placing it in documentation.", "Check the first and last address in a /64 or /128 prefix."],
-      steps: ["Enter an IPv6 address without a zone ID.", "Choose a prefix length from 0 to 128.", "Review the expanded form, RFC 5952 form, prefix range, address count, and type."],
+      introduction: "The IPv6 toolbox combines address formatting and prefix range calculation. The formatting module applies RFC 5952 representation rules, while the prefix module uses 128-bit integer arithmetic to find start and end addresses.",
+      useCases: ["Normalize an IPv6 address before using it in documentation or configuration.", "Check the first and last address in a /64, /128, or other IPv6 prefix."],
+      steps: ["Enter an IPv6 address without a zone ID.", "Use the formatting module for expanded and RFC 5952 output.", "Use the prefix module for start address, end address, and exact address count."],
       example: { title: "Documentation prefix", description: "2001:db8::1 is recognized as documentation space and is not suitable for public lookup." },
       principles: ["The parser expands :: once, converts eight 16-bit groups to a 128-bit BigInt, and compresses the longest zero run according to RFC 5952."],
-      limitations: ["Zone IDs such as %en0 are not supported.", "DNS, reverse DNS, and network lookup are not performed.", "Only textual IPv6 address handling is included."],
-      faqs: [{ question: "Can one zero group be compressed?", answer: "No. RFC 5952 avoids compressing a single 0000 group." }, { question: "Does it support IPv4-mapped IPv6?", answer: "Yes. IPv4-mapped input is parsed and classified." }],
-      aliases: ["IPv6 expand", "IPv6 compress", "IPv6 normalize", "IPv6 prefix"],
-      keywords: ["IPv6", "RFC 5952", "prefix", "BigInt", "address type"],
+      limitations: ["Zone IDs such as %en0 are not supported.", "DNS, reverse DNS, and network lookup are not performed.", "IPv4-mapped IPv6 is parsed but no X-forwarded or proxy interpretation is attempted."],
+      faqs: [{ question: "Can one zero group be compressed?", answer: "No. RFC 5952 avoids compressing a single 0000 group." }, { question: "Does this page query the network?", answer: "No. IPv6 formatting and prefix calculations run locally in the browser." }],
+      aliases: ["IPv6 expand", "IPv6 compress", "IPv6 normalize", "IPv6 prefix", "IPv6 range", "RFC 5952"],
+      keywords: ["IPv6", "RFC 5952", "prefix", "BigInt", "address type", "normalize"],
     }),
-    "ip-lookup": make({
-      summary: "Run a user-triggered public IP lookup through a same-origin API after local address checks.",
-      introduction: "IP lookup first validates and classifies the address locally. Private, loopback, link-local, documentation, multicast, and reserved addresses are not sent upstream. Public lookups use the site API so provider details and secrets remain off the client.",
-      useCases: ["Estimate the country, ASN, or network operator for a public IP.", "Confirm that a private address should not be sent to an external lookup provider."],
-      steps: ["Enter one public IPv4 or IPv6 address.", "Submit the form explicitly.", "Review the estimate and remember that IP geolocation is not a precise personal location."],
+    "ip-info": make({
+      summary: "Run user-triggered same-origin IP lookup and RDAP queries after local public-address checks.",
+      introduction: "IP information lookup combines estimated public IP data and RDAP registration lookup on one page. The two modules have separate inputs, buttons, loading states, errors, results, and reset controls, and each request is sent only after explicit user action.",
+      useCases: ["Estimate the country, ASN, or network operator for a public IP.", "Inspect public RDAP registration data for a public IPv4 or IPv6 address."],
+      steps: ["Enter one public IPv4 or IPv6 address in the module you want to use.", "Submit IP lookup or RDAP explicitly; the other module is not changed.", "Review the estimate or registration data, remembering that geolocation is approximate and RDAP data is public registry data."],
       example: { title: "Local precheck", description: "192.168.1.1 is blocked locally and returns a local explanation instead of a network request." },
-      principles: ["The browser calls only /api/network/ip-lookup. The API uses a stable response model and strips fields such as latitude and longitude from the public UI model."],
-      limitations: ["A production IP data supplier and Cloudflare rate-limit policy must be configured before deployment.", "IP geolocation is an estimate and may represent an ISP node or registry location.", "The application does not actively save lookup history, but external providers may process requests under their own policies."],
-      faqs: [{ question: "Does it query while I type?", answer: "No. Lookup only runs after a submit action." }, { question: "Can I look up a domain?", answer: "No. Phase 5 accepts only one explicit IP address." }],
-      aliases: ["IP lookup", "IP location", "IP geolocation", "ASN lookup"],
-      keywords: ["IP lookup", "location estimate", "ASN", "provider", "privacy"],
-    }),
-    "ip-rdap": make({
-      summary: "Query public IP registration data through a controlled RDAP API contract.",
-      introduction: "The RDAP tool is the IP-focused successor to browser WHOIS access. It accepts one public IP address, blocks special addresses locally, and uses the same-origin API to return normalized registration fields and text-only raw JSON.",
-      useCases: ["Check which RIR or organization publishes registration data for a public IP.", "Inspect public allocation dates and network handles without using TCP WHOIS from the browser."],
-      steps: ["Enter one public IPv4 or IPv6 address.", "Submit the RDAP query.", "Read normalized fields first, then expand the raw JSON text only if needed."],
-      example: { title: "RDAP not WHOIS", description: "The browser calls /api/network/ip-rdap and does not connect to traditional TCP WHOIS servers." },
-      principles: ["RDAP uses HTTPS JSON endpoints. Returned JSON is treated as text data and is not injected as HTML or used to load remote resources."],
-      limitations: ["Domain WHOIS is not included.", "Real RIR bootstrap and platform rate limiting must be verified before production deployment.", "Missing upstream fields are shown as not provided rather than inferred."],
-      faqs: [{ question: "Can RDAP reveal a person?", answer: "It shows public registration data and does not prove personal identity or precise location." }, { question: "Is raw JSON safe?", answer: "It is displayed as text and not executed or injected as HTML." }],
-      aliases: ["IP WHOIS", "IP RDAP", "RDAP lookup", "RIR lookup"],
-      keywords: ["RDAP", "WHOIS", "RIR", "registration", "network handle"],
+      principles: ["The browser calls only /api/network/ip-lookup or /api/network/ip-rdap. Private, loopback, link-local, documentation, multicast, and reserved addresses are blocked locally before any request."],
+      limitations: ["A production IP data supplier and Cloudflare rate-limit policy must be configured before deployment.", "IP geolocation is an estimate and may represent an ISP node or registry location.", "The page does not accept domains, bulk input, or traditional TCP WHOIS."],
+      faqs: [{ question: "Does lookup run while I type?", answer: "No. Lookup and RDAP only run after their own submit buttons are pressed." }, { question: "Can RDAP reveal a person?", answer: "It shows public registration data and does not prove personal identity or precise location." }],
+      aliases: ["IP lookup", "IP location", "IP geolocation", "ASN lookup", "IP WHOIS", "IP RDAP", "RDAP lookup", "RIR lookup"],
+      keywords: ["IP lookup", "location estimate", "ASN", "provider", "privacy", "RDAP", "WHOIS", "RIR", "registration"],
     }),
   },
   "zh-CN": {},
@@ -104,27 +68,67 @@ export const NETWORK_TOOL_CONTENT = {
 
 for (const [id, item] of Object.entries(NETWORK_TOOL_CONTENT.en)) {
   NETWORK_TOOL_CONTENT["zh-CN"][id] = make({
-    summary: `${item.summary}（简体中文页面）`,
-    introduction: `${item.introduction} 本页面提供三语标签、隐私提示和静态 SEO 内容。`,
-    useCases: item.useCases.map(text => `适用：${text}`),
-    steps: ["输入明确的 IP、CIDR 或前缀资料。", "检查本地验证错误和边界说明。", "只在联网工具中通过明确提交触发同源 API。"],
+    summary: id === "ipv4-network"
+      ? "本地计算 IPv4 子网、掩码、主机容量、范围、地址转换和同子网判断。"
+      : id === "ipv6-toolbox"
+        ? "本地展开、压缩、规范化、分类并计算 IPv6 前缀范围。"
+        : "本地预检公网地址后，通过用户明确触发的同源请求查询 IP 信息和 RDAP 资料。",
+    introduction: id === "ipv4-network"
+      ? "IPv4 网络工具箱把子网计算、掩码转换、主机容量规划、范围转 CIDR、IPv4 表示形式转换、本地分类和同子网判断放在一个规范页面。每个模块保留自己的输入、验证、结果、复制和重置状态。"
+      : id === "ipv6-toolbox"
+        ? "IPv6 工具箱合并地址格式化和前缀范围计算。格式化模块按 RFC 5952 输出规范形式，前缀模块使用 128 位整数计算起止地址。"
+        : "IP 信息查询把公网 IP 估算查询和 RDAP 注册资料查询放在同一页面。两个模块拥有独立输入、按钮、加载、错误、结果和重置控制，并且只在用户明确提交后发起请求。",
+    useCases: id === "ipv4-network"
+      ? ["配置路由器或防火墙前规划局域网前缀和可用主机数。", "在不离开浏览器的情况下转换地址范围、掩码和 IPv4 表示形式。"]
+      : id === "ipv6-toolbox"
+        ? ["在写入文档或配置前规范化 IPv6 地址。", "检查 /64、/128 或其他 IPv6 前缀的起始和结束地址。"]
+        : ["估算公网 IP 的国家、ASN 或网络运营商。", "查看公开 IPv4 或 IPv6 地址的 RDAP 注册资料。"],
+    steps: id === "ipv4-network"
+      ? ["从子网模块开始，可试用 192.168.1.10/24。", "使用锚点导航切换到掩码、主机、范围、转换或同子网模块。", "分别查看各模块结果；修正某个模块不会清除或覆盖其他模块。"]
+      : id === "ipv6-toolbox"
+        ? ["输入不含 zone ID 的 IPv6 地址。", "使用格式化模块查看展开形式和 RFC 5952 形式。", "使用前缀模块查看起始地址、结束地址和精确地址数量。"]
+        : ["在要使用的模块中输入一个公网 IPv4 或 IPv6 地址。", "明确提交 IP 查询或 RDAP；另一个模块不会被改变。", "查看估算或注册资料，并注意地理位置仅为估算，RDAP 是公开注册数据。"],
     example: { title: item.example.title, description: item.example.description },
     principles: item.principles,
     limitations: item.limitations,
-    faqs: item.faqs.map(faq => ({ question: faq.question, answer: faq.answer })),
-    aliases: item.aliases.concat(["子网计算器", "IP查询", "CIDR转换", "IPv6展开"]),
-    keywords: item.keywords.concat(["网络", "IP", "隐私", "本地处理"]),
+    faqs: item.faqs,
+    aliases: item.aliases.concat(id === "ipv4-network"
+      ? ["子网计算", "掩码转换", "CIDR 转换", "同子网"]
+      : id === "ipv6-toolbox"
+        ? ["IPv6 展开", "IPv6 压缩", "IPv6 前缀"]
+        : ["IP 查询", "RDAP 查询", "WHOIS 查询"]),
+    keywords: item.keywords.concat(["网络", "IP", "隐私", "本地处理", "工具箱"]),
   });
   NETWORK_TOOL_CONTENT["zh-TW"][id] = make({
-    summary: `${item.summary}（繁體中文頁面）`,
-    introduction: `${item.introduction} 本頁面提供三語標籤、隱私提示和靜態 SEO 內容。`,
-    useCases: item.useCases.map(text => `適用：${text}`),
-    steps: ["輸入明確的 IP、CIDR 或前綴資料。", "檢查本機驗證錯誤和邊界說明。", "只在聯網工具中透過明確提交觸發同源 API。"],
+    summary: id === "ipv4-network"
+      ? "本機計算 IPv4 子網、遮罩、主機容量、範圍、位址轉換和同子網判斷。"
+      : id === "ipv6-toolbox"
+        ? "本機展開、壓縮、規範化、分類並計算 IPv6 前綴範圍。"
+        : "本機預檢公網位址後，透過使用者明確觸發的同源要求查詢 IP 資訊和 RDAP 資料。",
+    introduction: id === "ipv4-network"
+      ? "IPv4 網絡工具箱把子網計算、遮罩轉換、主機容量規劃、範圍轉 CIDR、IPv4 表示形式轉換、本機分類和同子網判斷放在一個規範頁面。每個模組保留自己的輸入、驗證、結果、複製和重置狀態。"
+      : id === "ipv6-toolbox"
+        ? "IPv6 工具箱合併位址格式化和前綴範圍計算。格式化模組按 RFC 5952 輸出規範形式，前綴模組使用 128 位元整數計算起止位址。"
+        : "IP 資訊查詢把公網 IP 估算查詢和 RDAP 註冊資料查詢放在同一頁面。兩個模組擁有獨立輸入、按鈕、載入、錯誤、結果和重置控制，並且只在使用者明確提交後發起要求。",
+    useCases: id === "ipv4-network"
+      ? ["設定路由器或防火牆前規劃局域網前綴和可用主機數。", "在不離開瀏覽器的情況下轉換位址範圍、遮罩和 IPv4 表示形式。"]
+      : id === "ipv6-toolbox"
+        ? ["在寫入文件或設定前規範化 IPv6 位址。", "檢查 /64、/128 或其他 IPv6 前綴的起始和結束位址。"]
+        : ["估算公網 IP 的國家、ASN 或網絡營運商。", "查看公開 IPv4 或 IPv6 位址的 RDAP 註冊資料。"],
+    steps: id === "ipv4-network"
+      ? ["從子網模組開始，可試用 192.168.1.10/24。", "使用錨點導覽切換到遮罩、主機、範圍、轉換或同子網模組。", "分別查看各模組結果；修正某個模組不會清除或覆蓋其他模組。"]
+      : id === "ipv6-toolbox"
+        ? ["輸入不含 zone ID 的 IPv6 位址。", "使用格式化模組查看展開形式和 RFC 5952 形式。", "使用前綴模組查看起始位址、結束位址和精確位址數量。"]
+        : ["在要使用的模組中輸入一個公網 IPv4 或 IPv6 位址。", "明確提交 IP 查詢或 RDAP；另一個模組不會被改變。", "查看估算或註冊資料，並注意地理位置僅為估算，RDAP 是公開註冊資料。"],
     example: { title: item.example.title, description: item.example.description },
     principles: item.principles,
     limitations: item.limitations,
-    faqs: item.faqs.map(faq => ({ question: faq.question, answer: faq.answer })),
-    aliases: item.aliases.concat(["子網計算器", "IP查詢", "CIDR轉換", "IPv6展開"]),
-    keywords: item.keywords.concat(["網絡", "IP", "隱私", "本機處理"]),
+    faqs: item.faqs,
+    aliases: item.aliases.concat(id === "ipv4-network"
+      ? ["子網計算", "遮罩轉換", "CIDR 轉換", "同子網"]
+      : id === "ipv6-toolbox"
+        ? ["IPv6 展開", "IPv6 壓縮", "IPv6 前綴"]
+        : ["IP 查詢", "RDAP 查詢", "WHOIS 查詢"]),
+    keywords: item.keywords.concat(["網絡", "IP", "隱私", "本機處理", "工具箱"]),
   });
 }

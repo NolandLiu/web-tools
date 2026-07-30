@@ -95,7 +95,7 @@ test("cheque formatting options do not serialize user amounts or results", async
 test("persistent tool contracts contain no user input or result fields", () => {
   for (const contract of Object.values(TOOL_CONTRACTS)) {
     assert.deepEqual(contract.privacy.persistentFields, []);
-    assert.equal(contract.privacy.network, ["ip-lookup", "ip-rdap"].includes(contract.id));
+    assert.equal(contract.privacy.network, contract.id === "ip-info");
   }
 });
 

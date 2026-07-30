@@ -31,6 +31,16 @@ test("search results use the current language route and useful labels", () => {
   assert.deepEqual(search.searchTools("definitely-no-tool", "en"), []);
 });
 
+test("network search aliases resolve to consolidated main pages", () => {
+  assert.ok(search, "search module must exist");
+  assert.equal(search.searchTools("subnet mask", "en")[0].toolId, "ipv4-network");
+  assert.equal(search.searchTools("range to CIDR", "en")[0].toolId, "ipv4-network");
+  assert.equal(search.searchTools("IPv6 prefix", "en")[0].toolId, "ipv6-toolbox");
+  assert.equal(search.searchTools("IP RDAP", "en")[0].toolId, "ip-info");
+  assert.equal(search.searchTools("子网计算", "zh-CN")[0].path, "/zh-cn/tools/ipv4-network-toolbox");
+  assert.equal(search.searchTools("RDAP 查詢", "zh-TW")[0].path, "/zh-tw/tools/ip-info-lookup");
+});
+
 test("keyboard selection wraps safely", () => {
   assert.ok(search, "search module must exist");
   assert.equal(search.moveSearchSelection(-1, "next", 3), 0);

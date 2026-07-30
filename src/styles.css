@@ -155,6 +155,17 @@ textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.55
 .stats-grid strong { display: block; font-size: 24px; }
 .stats-grid span { color: var(--muted); font-size: 12px; }
 .helper-note { margin: 18px 0 0; color: var(--muted); font-size: 13px; }
+.tool-anchor-nav { margin: 18px 0 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tool-anchor-nav a { padding: 8px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--accent-strong); font-size: 13px; font-weight: 720; text-decoration: none; }
+.tool-anchor-nav a:hover { background: var(--accent-soft); }
+.network-toolbox { display: grid; gap: 22px; }
+.network-toolbox > .helper-note { margin-top: 0; }
+.network-module { min-width: 0; scroll-margin-top: 92px; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: #fbfdfc; }
+.network-module > h3 { margin: 0 0 16px; font-size: 20px; }
+.network-module .result-card { margin-top: 16px; min-height: 160px; }
+.network-module-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.network-module-grid.two { align-items: stretch; }
+.network-query-form { display: grid; gap: 14px; }
 .cash-flow-list { margin-top: 18px; display: grid; gap: 12px; }
 .cash-flow-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: end; }
 .cash-flow-row .field + .field { margin-top: 0; }
@@ -216,7 +227,7 @@ footer { margin-left: var(--sidebar-width); padding: 24px 28px; display: flex; j
 @media (max-width: 1099px) {
   :root { --sidebar-width: 228px; }
   .tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .converter-layout, .text-tool-layout, .calculator-layout, .qr-layout { grid-template-columns: 1fr; }
+  .converter-layout, .text-tool-layout, .calculator-layout, .qr-layout, .network-module-grid { grid-template-columns: 1fr; }
   .result-card { min-height: 190px; }
 }
 
@@ -245,7 +256,7 @@ footer { margin-left: var(--sidebar-width); padding: 24px 28px; display: flex; j
   .workspace-icon { width: 44px; height: 44px; }
   .workspace-head h1 { font-size: 30px; }
   .tool-surface { padding: 14px; }
-  .input-panel, .result-card { padding: 16px; }
+  .input-panel, .result-card, .network-module { padding: 16px; }
   .cash-flow-row { grid-template-columns: 1fr; }
   .cash-flow-row > button { justify-self: start; }
   .password-category { grid-template-columns: 1fr; }

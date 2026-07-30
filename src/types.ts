@@ -19,12 +19,9 @@ export type ToolKind =
   | "irr"
   | "cheque"
   | "password"
-  | "ipv4-subnet"
-  | "ip-range-cidr"
-  | "ip-address"
-  | "ipv6"
-  | "ip-lookup"
-  | "ip-rdap";
+  | "ipv4-network"
+  | "ipv6-toolbox"
+  | "ip-info";
 
 export type CalculatorKind = "percentage" | "discount" | "bmi" | "compound" | "date";
 
