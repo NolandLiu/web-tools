@@ -1,9 +1,10 @@
 /* global Response */
 
 import { handleIpLookupRequest } from "../../../src/lib/network-ip.js";
+import { createIpWhoIsProvider } from "./providers.js";
 
 export async function onRequestPost(context) {
-  return handleIpLookupRequest(context.request);
+  return handleIpLookupRequest(context.request, { provider: createIpWhoIsProvider() });
 }
 
 export async function onRequest() {

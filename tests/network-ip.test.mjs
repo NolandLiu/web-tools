@@ -19,6 +19,8 @@ import {
   requiredHostsToPrefix,
   sameIpv4Subnet,
 } from "../src/lib/network-ip.js";
+import { onRequestPost as onIpLookupPost } from "../functions/api/network/ip-lookup.js";
+import { onRequestPost as onRdapPost } from "../functions/api/network/ip-rdap.js";
 
 test("IPv4 parser rejects ambiguous and malformed address forms", () => {
   assert.equal(parseIpv4("192.168.1.1").data.numeric, 3232235777n);
@@ -194,4 +196,84 @@ test("network API maps invalid methods, content types, fields, and upstream fail
     ok: false,
     error: { code: "RATE_LIMITED", message: "RATE_LIMITED", retryable: true },
   });
+});
+
+test("Cloudflare IP lookup Function entry provides a production provider", async () => {
+  const originalFetch = globalThis.fetch;
+  let calledUrl = "";
+  globalThis.fetch = async url => {
+    calledUrl = String(url);
+    return new Response(JSON.stringify({
+      success: true,
+      ip: "8.8.8.8",
+      type: "IPv4",
+      country: "United States",
+      country_code: "US",
+      region: "California",
+      city: "Mountain View",
+      latitude: 37.386,
+      longitude: -122.0838,
+      connection: {
+        asn: 15169,
+        org: "Google LLC",
+        isp: "Google LLC",
+        domain: "google.com",
+      },
+    }), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  try {
+    const response = await onIpLookupPost({ request: new Request("https://tools.godeskhub.com/api/network/ip-lookup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ip: "8.8.8.8" }),
+    }) });
+    assert.equal(response.status, 200);
+    assert.equal(calledUrl, "https://ipwho.is/8.8.8.8");
+    const body = await response.json();
+    assert.equal(body.ok, true);
+    assert.equal(body.data.ip, "8.8.8.8");
+    assert.equal(body.data.asn, 15169);
+    assert.equal(body.meta.source, "ipwho.is");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("Cloudflare RDAP Function entry provides a production provider and keeps private IPs local", async () => {
+  const originalFetch = globalThis.fetch;
+  let fetchCount = 0;
+  globalThis.fetch = async url => {
+    fetchCount += 1;
+    assert.equal(String(url), "https://rdap.org/ip/8.8.8.8");
+    return new Response(JSON.stringify({
+      objectClassName: "ip network",
+      handle: "NET-8-8-8-0-2",
+      name: "GOGL",
+      startAddress: "8.8.8.0",
+      endAddress: "8.8.8.255",
+    }), { status: 200, headers: { "Content-Type": "application/rdap+json" } });
+  };
+  try {
+    const blocked = await onRdapPost({ request: new Request("https://tools.godeskhub.com/api/network/ip-rdap", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ip: "192.168.1.1" }),
+    }) });
+    assert.equal(blocked.status, 400);
+    assert.equal(fetchCount, 0);
+
+    const response = await onRdapPost({ request: new Request("https://tools.godeskhub.com/api/network/ip-rdap", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ip: "8.8.8.8" }),
+    }) });
+    assert.equal(response.status, 200);
+    assert.equal(fetchCount, 1);
+    const body = await response.json();
+    assert.equal(body.ok, true);
+    assert.equal(body.data.handle, "NET-8-8-8-0-2");
+    assert.equal(body.meta.source, "rdap.org");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });
