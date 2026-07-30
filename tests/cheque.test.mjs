@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  formatChequeDisplayInput,
   formatChequeAmount,
   parseChequeAmount,
   toEnglishChequeWords,
+  toSimplifiedChequeWords,
   toTraditionalChequeWords,
 } from "../src/lib/cheque.js";
 
@@ -83,6 +85,63 @@ test("formatChequeAmount returns both independently copyable values", () => {
     ok: true,
     normalized: "999999999999999.99",
     english: "NINE HUNDRED NINETY-NINE TRILLION NINE HUNDRED NINETY-NINE BILLION NINE HUNDRED NINETY-NINE MILLION NINE HUNDRED NINETY-NINE THOUSAND NINE HUNDRED NINETY-NINE AND 99/100 ONLY",
+    chinese: "玖佰玖拾玖兆玖仟玖佰玖拾玖億玖仟玖佰玖拾玖萬玖仟玖佰玖拾玖圓玖角玖分",
     traditional: "玖佰玖拾玖兆玖仟玖佰玖拾玖億玖仟玖佰玖拾玖萬玖仟玖佰玖拾玖圓玖角玖分",
   });
+});
+
+test("cheque formatter keeps the default currency-neutral output compatible", () => {
+  assert.deepEqual(formatChequeAmount("21.05", { currency: "none", englishCase: "upper", chineseScript: "traditional" }), {
+    ok: true,
+    normalized: "21.05",
+    english: "TWENTY-ONE AND 05/100 ONLY",
+    chinese: "貳拾壹圓零伍分",
+    traditional: "貳拾壹圓零伍分",
+  });
+});
+
+test("cheque formatter can add approved currency labels without changing the parsed amount", () => {
+  const cases = new Map([
+    ["HKD", ["HONG KONG DOLLARS TWENTY-ONE AND CENTS FIVE ONLY", "港幣貳拾壹圓零伍分"]],
+    ["USD", ["US DOLLARS TWENTY-ONE AND CENTS FIVE ONLY", "美元貳拾壹圓零伍分"]],
+    ["RMB", ["RENMINBI TWENTY-ONE AND FEN FIVE ONLY", "人民幣貳拾壹圓零伍分"]],
+    ["SGD", ["SINGAPORE DOLLARS TWENTY-ONE AND CENTS FIVE ONLY", "新加坡元貳拾壹圓零伍分"]],
+  ]);
+  for (const [currency, [english, chinese]] of cases) {
+    const result = formatChequeAmount("21.05", { currency, englishCase: "upper", chineseScript: "traditional" });
+    assert.equal(result.ok, true);
+    assert.equal(result.normalized, "21.05");
+    assert.equal(result.english, english);
+    assert.equal(result.chinese, chinese);
+  }
+});
+
+test("English cheque output supports title and sentence case", () => {
+  assert.equal(
+    formatChequeAmount("21.05", { currency: "USD", englishCase: "title", chineseScript: "traditional" }).english,
+    "US Dollars Twenty-One And Cents Five Only",
+  );
+  assert.equal(
+    formatChequeAmount("21.05", { currency: "USD", englishCase: "sentence", chineseScript: "traditional" }).english,
+    "US dollars twenty-one and cents five only",
+  );
+  assert.equal(
+    formatChequeAmount("21.05", { currency: "none", englishCase: "title", chineseScript: "traditional" }).english,
+    "Twenty-One And 05/100 Only",
+  );
+});
+
+test("Simplified financial words use simplified units and digits", () => {
+  assert.equal(toSimplifiedChequeWords(21n, 5), "贰拾壹圆零伍分");
+  assert.equal(toSimplifiedChequeWords(1001n, 50), "壹仟零壹圆伍角正");
+  const result = formatChequeAmount("21.05", { currency: "RMB", englishCase: "upper", chineseScript: "simplified" });
+  assert.equal(result.ok, true);
+  assert.equal(result.chinese, "人民币贰拾壹圆零伍分");
+});
+
+test("valid cheque display input can be grouped without silently fixing invalid input", () => {
+  assert.equal(formatChequeDisplayInput("1000000.50"), "1,000,000.50");
+  assert.equal(formatChequeDisplayInput("001000000.5"), "1,000,000.50");
+  assert.equal(formatChequeDisplayInput("1,00"), "1,00");
+  assert.equal(formatChequeDisplayInput("1.234"), "1.234");
 });

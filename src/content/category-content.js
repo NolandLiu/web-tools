@@ -35,17 +35,17 @@ export const CATEGORY_CONTENT = {
   },
   calculators: {
     en: {
-      introduction: "Calculators combine clearly labelled inputs with focused rules or formulas. This collection covers everyday arithmetic, BMI and compound growth references, elapsed dates, fixed-period IRR, and currency-neutral cheque amount wording.",
+      introduction: "Calculators combine clearly labelled inputs with focused rules or formulas. This collection covers everyday arithmetic, BMI and compound growth references, elapsed dates, fixed-period IRR, and cheque amount wording.",
       useCases: ["Check everyday arithmetic before making a decision.", "Explore a simplified scenario and copy the numeric result for further work."],
       distinction: "Calculators evaluate a formula rather than translate equivalent units. Their outputs are reference values and do not replace professional financial, medical, or legal advice.",
     },
     "zh-CN": {
-      introduction: "计算工具通过清晰标注的输入执行明确规则或公式，覆盖日常算术、BMI 与复利参考、日期差、固定周期 IRR 和不绑定币种的支票金额文字。",
+      introduction: "计算工具通过清晰标注的输入执行明确规则或公式，覆盖日常算术、BMI 与复利参考、日期差、固定周期 IRR 和支票金额文字。",
       useCases: ["在做决定前核对日常算术。", "探索简化情景，并复制结果用于后续工作。"],
       distinction: "计算工具执行公式，而不是转换等价单位；结果仅供参考，不能代替专业金融、医疗或法律意见。",
     },
     "zh-TW": {
-      introduction: "計算工具以清楚標示的輸入執行明確規則或公式，涵蓋日常算術、BMI 與複利參考、日期差、固定週期 IRR 及不綁定幣別的支票金額文字。",
+      introduction: "計算工具以清楚標示的輸入執行明確規則或公式，涵蓋日常算術、BMI 與複利參考、日期差、固定週期 IRR 及支票金額文字。",
       useCases: ["作決定前核對日常算術。", "探索簡化情境，並複製結果供後續使用。"],
       distinction: "計算工具執行公式，而不是轉換等值單位；結果僅供參考，不能取代專業金融、醫療或法律意見。",
     },

@@ -59,7 +59,10 @@ test("Phase 4 tools expose labelled dynamic controls and independent results", a
   assert.match(irr, /<Field id=\{`irr-cash-flow-/);
   assert.match(irr, /aria-label=\{`\$\{t\.remove\}/);
   assert.match(cheque, /label=\{t\.english\}/);
-  assert.match(cheque, /label=\{t\.traditional\}/);
+  assert.match(cheque, /label=\{t\.currency\}/);
+  assert.match(cheque, /label=\{t\.englishCase\}/);
+  assert.match(cheque, /label=\{t\.chineseScript\}/);
+  assert.match(cheque, /role="note"/);
   assert.match(password, /<fieldset/);
   assert.match(password, /<legend>/);
   assert.match(qr, /type="file"/);
