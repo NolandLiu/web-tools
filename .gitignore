@@ -10,3 +10,5 @@ TASK.local.md
 TASK.*.local.md
 .codex/tasks/private/
 tasks/
+*.tsbuildinfo
+_worker.bundle

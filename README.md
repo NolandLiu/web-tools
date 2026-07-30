@@ -1,6 +1,6 @@
 # GoDeskHub
 
-GoDeskHub 是一个隐私优先的多语言在线工具网站，目标部署到 Cloudflare Pages。当前 MVP 覆盖单位转换、格式与开发工具、计算工具和 QR Code 生成器，用户输入默认只在浏览器本地处理。
+GoDeskHub 是一个隐私优先的多语言在线工具网站，目标部署到 Cloudflare Pages。当前 MVP 覆盖单位转换、格式与开发工具、计算工具、QR Code 生成器以及网络与 IP 工具。除明确标注的 IP 查询和 RDAP 查询外，用户输入默认只在浏览器本地处理。
 
 ## 功能范围
 
@@ -8,6 +8,7 @@ GoDeskHub 是一个隐私优先的多语言在线工具网站，目标部署到 
 - 格式与开发工具：JSON、Base64、URL、UUID、时间戳、文本大小写、字数统计、颜色转换。
 - 计算工具：百分比、折扣、BMI、复利、日期间隔。
 - QR Code：本地生成、尺寸与颜色设置、PNG 下载。
+- 网络与 IP：IPv4 子网、IP 范围与 CIDR、IPv4 转换与分类、IPv6 地址、IP 查询、IP WHOIS / RDAP。
 - 页面：首页、About Us、Privacy Policy、Terms of Service、Contact Us、404 fallback。
 
 ## 合规页面
@@ -65,10 +66,43 @@ Build output directory: dist
 Production branch: main
 ```
 
-构建会从统一注册表生成三语首页、25 个工具、4 个分类和 4 个基础页面，
-共 102 个静态 HTML。工具与分类的主要可见内容会在构建时写入原始 HTML，
+构建会从统一注册表生成三语首页、31 个工具、5 个分类和 4 个基础页面，
+共 123 个静态 HTML。工具与分类的主要可见内容会在构建时写入原始 HTML，
 同时生成 Sitemap、自定义 404 和旧路径 redirects。
 Cloudflare Pages 因此可以直接返回规范深链，不需要 catch-all SPA fallback。
+
+### Network API Functions
+
+Phase 5 新增两个同源 API 路径：
+
+```text
+POST /api/network/ip-lookup
+POST /api/network/ip-rdap
+```
+
+Pages Functions 薄入口位于：
+
+```text
+functions/api/network/ip-lookup.js
+functions/api/network/ip-rdap.js
+```
+
+前端只调用上述同源相对路径，不直接调用第三方 IP 数据服务或 RIR。当前本地实现已包含稳定请求／响应契约、内容类型校验、请求体大小限制、私网和特殊地址预检、`Cache-Control: no-store` 与 `X-Content-Type-Options: nosniff`。真实 IP 查询供应商、RDAP bootstrap、Cloudflare 平台限流和生产环境变量仍需部署前复核。
+
+建议部署前配置的变量或 Secret 示例，不包含真实值：
+
+```text
+IP_LOOKUP_PROVIDER=
+IP_LOOKUP_BASE_URL=
+IP_LOOKUP_API_KEY=
+RDAP_BOOTSTRAP_SOURCE=
+UPSTREAM_TIMEOUT_MS=
+UPSTREAM_MAX_BYTES=
+```
+
+缺少真实供应商配置时，API 应返回稳定的 `CONFIGURATION_ERROR`，不得把 API Key、内部 URL、堆栈或用户查询 IP 写入响应、前端构建产物或 Git。Cloudflare 免费计划下的限流能力需要在部署前按实际账户和 Pages Functions 能力复核；核心业务逻辑不依赖 KV、D1、Durable Objects 或 Queues。
+
+未来迁移到普通 Node/VPS 时，保持前端 `/api/network/*` 路径和 `src/lib/network-ip.js` 中的核心校验、错误模型、provider 接口不变，只替换 HTTP 入口、环境变量加载和部署层。
 
 ## 多语言与本地统计
 
@@ -79,7 +113,7 @@ Cloudflare Pages 因此可以直接返回规范深链，不需要 catch-all SPA 
 
 ## 隐私、Analytics 和 AdSense
 
-计算、转换、文本和 QR Code 输入不得发送到分析服务。当前未接入 Cloudflare Web Analytics；如需启用，优先使用 Cloudflare Pages 平台侧配置，避免重复注入脚本。AdSense 默认关闭，没有 publisher ID、脚本、空广告容器或网络请求。
+计算、转换、文本、QR Code 和本地网络计算输入不得发送到分析服务。IP 查询和 RDAP 查询只在用户明确提交后发送到本站同源 API，并可能由服务端继续请求经批准的外部数据源；应用不主动保存查询历史，但不得声称互联网基础设施或外部供应商完全不记录请求。当前未接入 Cloudflare Web Analytics；如需启用，优先使用 Cloudflare Pages 平台侧配置，避免重复注入脚本。AdSense 默认关闭，没有 publisher ID、脚本、空广告容器或网络请求。
 
 ## 当前限制
 

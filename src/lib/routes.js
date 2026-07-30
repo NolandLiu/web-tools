@@ -15,6 +15,15 @@ const categoryById = new Map(CATEGORIES.map(category => [category.id, category])
 const infoBySlug = new Map(INFO_PAGES.map(page => [page.slug, page]));
 const infoById = new Map(INFO_PAGES.map(page => [page.id, page]));
 
+export const LEGACY_TOOL_REDIRECTS = {
+  "ipv4-subnet-calculator": { toolId: "ipv4-network", anchor: "subnet" },
+  "ip-range-cidr-converter": { toolId: "ipv4-network", anchor: "range-cidr" },
+  "ip-address-converter": { toolId: "ipv4-network", anchor: "ipv4-converter" },
+  "ipv6-address-tool": { toolId: "ipv6-toolbox", anchor: "ipv6-normalize" },
+  "ip-lookup": { toolId: "ip-info", anchor: "ip-lookup" },
+  "ip-whois-rdap": { toolId: "ip-info", anchor: "ip-rdap" },
+};
+
 export function parsePath(pathname) {
   const segments = pathname.split("?")[0].split("#")[0].split("/").filter(Boolean);
   const language = languageByPath.get(segments[0]?.toLowerCase());
@@ -75,4 +84,12 @@ export function listCanonicalRoutes() {
     ...CATEGORIES.map(category => ({ kind: "category", lang, categoryId: category.id })),
     ...INFO_PAGES.map(page => ({ kind: "info", lang, page: page.id })),
   ]);
+}
+
+export function listLegacyRedirects() {
+  return LANGUAGES.flatMap(language => Object.entries(LEGACY_TOOL_REDIRECTS).map(([legacySlug, redirect]) => ({
+    from: `/${language.path}/tools/${legacySlug}`,
+    to: `${buildPath({ kind: "tool", lang: language.id, toolId: redirect.toolId })}#${redirect.anchor}`,
+    status: 301,
+  })));
 }

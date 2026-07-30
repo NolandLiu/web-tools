@@ -13,8 +13,8 @@ const expectedRouteCount = LANGUAGES.length * (1 + TOOLS.length + CATEGORIES.len
 assert.equal(routes.length, expectedRouteCount, "Canonical route count must match the registry.");
 assert.deepEqual(validateContentRegistry(), {
   toolCount: TOOLS.length,
-  categoryCount: 4,
-  languageCount: 3,
+  categoryCount: CATEGORIES.length,
+  languageCount: LANGUAGES.length,
 });
 
 function escapeVisibleText(value) {

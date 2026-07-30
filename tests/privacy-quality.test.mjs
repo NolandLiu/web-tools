@@ -68,7 +68,10 @@ test("local tool stats accept only registered IDs and validated aggregate values
 test("tool runtime source contains no external request or dynamic execution primitives", async () => {
   const paths = await sourceFiles(new URL("../src/tools/", import.meta.url).pathname);
   const source = (await Promise.all(paths.map(path => readFile(path, "utf8")))).join("\n");
-  assert.doesNotMatch(source, /\bfetch\s*\(|XMLHttpRequest|sendBeacon\s*\(/);
+  const fetchMatches = source.match(/\bfetch\s*\(/g) ?? [];
+  assert.equal(fetchMatches.length, 1, "only the NetworkTools same-origin helper may call fetch");
+  assert.match(source, /fetch\(path, \{ method: "POST"/);
+  assert.doesNotMatch(source, /XMLHttpRequest|sendBeacon\s*\(/);
   assert.doesNotMatch(source, /\beval\s*\(|new\s+Function\s*\(|dangerouslySetInnerHTML/);
 });
 
@@ -92,6 +95,14 @@ test("cheque formatting options do not serialize user amounts or results", async
 test("persistent tool contracts contain no user input or result fields", () => {
   for (const contract of Object.values(TOOL_CONTRACTS)) {
     assert.deepEqual(contract.privacy.persistentFields, []);
-    assert.equal(contract.privacy.network, false);
+    assert.equal(contract.privacy.network, contract.id === "ip-info");
   }
+});
+
+test("only approved network tools call same-origin network API paths", async () => {
+  const source = await readFile(new URL("../src/tools/NetworkTools.tsx", import.meta.url), "utf8");
+  assert.match(source, /NETWORK_API_PATHS\.lookup/);
+  assert.match(source, /NETWORK_API_PATHS\.rdap/);
+  assert.doesNotMatch(source, /https?:\/\/(?:[^"']+)/);
+  assert.doesNotMatch(source, /localStorage|sessionStorage|indexedDB|URLSearchParams|history\.pushState|history\.replaceState/);
 });

@@ -67,4 +67,21 @@ export const CATEGORY_CONTENT = {
       distinction: "QR 產生只是把內容編碼成圖片，不會縮短、驗證、加密、託管或追蹤內容。",
     },
   },
+  "network-ip": {
+    en: {
+      introduction: "Network and IP tools inspect address notation, subnet boundaries, and public registration or lookup data. Four tools run entirely in the browser; IP lookup and RDAP use explicit same-origin API requests only after local public-address checks.",
+      useCases: ["Plan IPv4 subnet boundaries or summarize exact IPv4 ranges.", "Normalize IPv6 addresses and check public IP registration data with clear privacy limits."],
+      distinction: "Choose this category for IP addressing and network metadata. It does not include DNS, port scanning, domain WHOIS, risk scoring, or bulk lookup.",
+    },
+    "zh-CN": {
+      introduction: "网络与 IP 工具用于检查地址表示、子网边界以及公开注册或查询数据。四个工具完全在浏览器本地运行；IP 查询和 RDAP 只在本地确认公网地址后，通过明确提交调用同源 API。",
+      useCases: ["规划 IPv4 子网边界或汇总精确 IPv4 范围。", "规范化 IPv6 地址，并在清晰隐私边界下检查公开 IP 注册资料。"],
+      distinction: "当任务涉及 IP 地址和网络元数据时选择本分类。本分类不包含 DNS、端口扫描、域名 WHOIS、风险评分或批量查询。",
+    },
+    "zh-TW": {
+      introduction: "網絡與 IP 工具用於檢查位址表示、子網邊界以及公開註冊或查詢資料。四個工具完全在瀏覽器本機執行；IP 查詢和 RDAP 只在本機確認公網位址後，透過明確提交呼叫同源 API。",
+      useCases: ["規劃 IPv4 子網邊界或彙總精確 IPv4 範圍。", "規範化 IPv6 位址，並在清楚隱私邊界下檢查公開 IP 註冊資料。"],
+      distinction: "當工作涉及 IP 位址和網絡中繼資料時選擇本分類。本分類不包含 DNS、連接埠掃描、網域 WHOIS、風險評分或批次查詢。",
+    },
+  },
 };

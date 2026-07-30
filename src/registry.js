@@ -62,6 +62,18 @@ export const CATEGORIES = [
       "在瀏覽器本機建立可自訂的 QR Code。",
     ),
   },
+  {
+    id: "network-ip",
+    slug: "network-ip",
+    text: localized(
+      "Network & IP",
+      "Calculate subnets, convert IP ranges, inspect IPv4 and IPv6 addresses, and run controlled IP lookups.",
+      "网络与 IP",
+      "计算子网、转换 IP 范围、检查 IPv4 与 IPv6 地址，并执行受控 IP 查询。",
+      "網絡與 IP",
+      "計算子網、轉換 IP 範圍、檢查 IPv4 與 IPv6 位址，並執行受控 IP 查詢。",
+    ),
+  },
 ];
 
 const tool = (definition, text) => ({ ...definition, text });
@@ -92,6 +104,9 @@ export const TOOLS = [
   tool({ id: "irr", slug: "irr-calculator", kind: "irr", category: "calculators", icon: "trend", order: 23, defaultWeight: 7 }, localized("IRR calculator", "Calculate fixed-period IRR and its annualized equivalent.", "IRR 计算器", "计算固定周期内部收益率及其年化结果。", "IRR 計算器", "計算固定週期內部收益率及其年化結果。")),
   tool({ id: "cheque", slug: "cheque-amount-converter", kind: "cheque", category: "calculators", icon: "text", order: 24, defaultWeight: 6 }, localized("Cheque amount converter", "Write a decimal amount in English and Chinese financial words.", "支票金额转换", "把十进制金额转换为英文和中文金融大写。", "支票金額轉換", "把十進位金額轉換為英文和中文金融大寫。")),
   tool({ id: "password", slug: "password-generator", kind: "password", category: "developer", icon: "hash", order: 25, defaultWeight: 8 }, localized("Password generator", "Generate constrained passwords with browser cryptography.", "密码生成器", "使用浏览器密码学安全随机源生成符合规则的密码。", "密碼產生器", "使用瀏覽器密碼學安全隨機來源產生符合規則的密碼。")),
+  tool({ id: "ipv4-network", slug: "ipv4-network-toolbox", kind: "ipv4-network", category: "network-ip", icon: "hash", order: 26, defaultWeight: 8 }, localized("IPv4 network toolbox", "Calculate IPv4 subnets, masks, host capacity, ranges, conversions, and same-subnet checks locally.", "IPv4 网络工具箱", "本地计算 IPv4 子网、掩码、主机容量、范围、地址转换和同子网判断。", "IPv4 網絡工具箱", "本機計算 IPv4 子網、遮罩、主機容量、範圍、位址轉換和同子網判斷。")),
+  tool({ id: "ipv6-toolbox", slug: "ipv6-toolbox", kind: "ipv6-toolbox", category: "network-ip", icon: "code", order: 27, defaultWeight: 7 }, localized("IPv6 toolbox", "Expand, compress, normalize, classify, and calculate IPv6 prefix ranges locally.", "IPv6 工具箱", "本地展开、压缩、规范化、分类并计算 IPv6 前缀范围。", "IPv6 工具箱", "本機展開、壓縮、規範化、分類並計算 IPv6 前綴範圍。")),
+  tool({ id: "ip-info", slug: "ip-info-lookup", kind: "ip-info", category: "network-ip", icon: "search", order: 28, defaultWeight: 6 }, localized("IP information lookup", "Run user-triggered same-origin IP lookup and RDAP queries after local public-address checks.", "IP 信息查询", "本地确认公网地址后，通过用户触发的同源请求查询 IP 信息和 RDAP 资料。", "IP 資訊查詢", "本機確認公網位址後，透過使用者觸發的同源要求查詢 IP 資訊和 RDAP 資料。")),
 ];
 
 export const INFO_PAGES = [

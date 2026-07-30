@@ -58,6 +58,17 @@ test("category, home, information, and 404 HTML have distinct visible shells", a
   assert.match(notFound, /Page not found/);
 });
 
+test("network category static HTML lists only consolidated network pages", async () => {
+  const root = await generateFixture();
+  const category = await readFile(join(root, "en", "categories", "network-ip.html"), "utf8");
+  assert.match(category, /IPv4 network toolbox/);
+  assert.match(category, /IPv6 toolbox/);
+  assert.match(category, /IP information lookup/);
+  assert.doesNotMatch(category, /IPv4 subnet calculator/);
+  assert.doesNotMatch(category, /IP range and CIDR converter/);
+  assert.doesNotMatch(category, /IP WHOIS \/ RDAP lookup/);
+});
+
 test("visible FAQ and FAQPage JSON-LD are generated from the same content", async () => {
   const root = await generateFixture();
   const html = await readFile(join(root, "en", "tools", "json-tools.html"), "utf8");

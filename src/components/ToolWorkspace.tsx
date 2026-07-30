@@ -9,6 +9,7 @@ import { QrTool } from "../tools/QrTool";
 import { Base64Tool, CaseTool, ColorTool, JsonTool, TextTool, TimestampTool, UrlTool, UuidTool } from "../tools/TextTools";
 import { UnitTool } from "../tools/UnitTool";
 import { Icon } from "./Icons";
+import { IpInfoTool, Ipv4NetworkToolbox, Ipv6Toolbox } from "../tools/NetworkTools";
 import { ToolContentSections } from "./ToolContentSections";
 import { ToolFeedback } from "./ToolFeedback";
 
@@ -38,6 +39,9 @@ export function ToolWorkspace({ tool, lang, onOpenTool }: { tool: Tool; lang: La
         {tool.kind === "irr" && <IrrTool lang={lang} />}
         {tool.kind === "password" && <PasswordTool lang={lang} />}
         {tool.kind === "qr" && <QrTool lang={lang} />}
+        {tool.kind === "ipv4-network" && <Ipv4NetworkToolbox lang={lang} />}
+        {tool.kind === "ipv6-toolbox" && <Ipv6Toolbox lang={lang} />}
+        {tool.kind === "ip-info" && <IpInfoTool lang={lang} />}
       </div>
       <ToolContentSections tool={tool} lang={lang} onOpenTool={onOpenTool} />
       <ToolFeedback tool={tool} lang={lang} />

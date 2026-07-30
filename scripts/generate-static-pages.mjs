@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { SITE_ORIGIN } from "../src/registry.js";
-import { buildPath, listCanonicalRoutes } from "../src/lib/routes.js";
+import { buildPath, listCanonicalRoutes, listLegacyRedirects } from "../src/lib/routes.js";
 import { getRouteMetadata, renderMetadataTags } from "../src/lib/seo.js";
 import { renderStaticRouteContent } from "../src/lib/static-content.js";
 import { validateContentRegistry } from "../src/lib/content.js";
@@ -61,6 +61,7 @@ function renderRedirects() {
     "/privacy /en/privacy 301",
     "/terms /en/terms 301",
     "/contact /en/contact 301",
+    ...listLegacyRedirects().map(item => `${item.from} ${item.to} ${item.status}`),
     "/tools/:slug /en/tools/:slug 301",
     "/categories/:slug /en/categories/:slug 301",
     "",

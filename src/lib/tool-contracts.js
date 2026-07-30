@@ -19,13 +19,13 @@ const textInput = (id = "text", range = "bounded UTF-8 text") => (
 const selectInput = id => editableInput(id, "selection", "registered option ID");
 const dateInput = id => editableInput(id, "date", "YYYY-MM-DD", "valid Gregorian date");
 
-const privacy = ({ clipboard = "user-only", download = "none" } = {}) => ({
+const privacy = ({ clipboard = "user-only", download = "none", network = false } = {}) => ({
   level: "local-private",
   urlFields: [],
   persistentFields: [],
   clipboard,
   download,
-  network: false,
+  network,
 });
 
 const accessibility = {
@@ -390,6 +390,51 @@ export const TOOL_CONTRACTS = {
     invariants: ["production generation never uses Math.random or a weak fallback"],
     testFile: "tests/password.test.mjs",
     privacyOptions: { clipboard: "user-only" },
+  }),
+  "ipv4-network": qualityContract({
+    id: "ipv4-network",
+    operation: "ipv4NetworkToolbox",
+    inputs: [
+      editableInput("cidr", "text", "strict dotted-decimal IPv4 with CIDR prefix"),
+      editableInput("mask", "text", "strict contiguous IPv4 subnet mask"),
+      editableInput("range", "text", "inclusive IPv4 start and end addresses"),
+      selectInput("format"),
+    ],
+    rule: "group IPv4 subnet, mask, host, range, conversion, classification, and same-subnet operations while each module keeps independent state",
+    output: { format: "module-scoped network details, mask prefix, host recommendation, CIDR list, conversion table, or same-subnet result" },
+    limitations: ["classful networking, IPv6 aggregation, DNS lookup, and network calls are excluded"],
+    normal: { input: "192.168.1.10/24", expected: "192.168.1.0/24" },
+    boundary: { input: ["0.0.0.0", "255.255.255.255"], expected: ["0.0.0.0/0"] },
+    invalid: { input: "192.168.001.1", error: "ambiguous-leading-zero" },
+    invariants: ["IPv4 modules calculate locally and do not share result, error, or loading state"],
+    testFile: "tests/network-ip.test.mjs",
+  }),
+  "ipv6-toolbox": qualityContract({
+    id: "ipv6-toolbox",
+    operation: "ipv6Toolbox",
+    inputs: [editableInput("address", "text", "standard IPv6 text without zone ID"), numberInput("prefix", "integer from 0 through 128")],
+    rule: "group IPv6 formatting, classification, and prefix range modules while each module keeps independent state",
+    output: { format: "expanded address, RFC 5952 form, type, prefix range, and count" },
+    limitations: ["zone IDs, DNS, reverse DNS, and network lookup are excluded"],
+    normal: { input: "2001:db8::1", expected: "2001:db8::1" },
+    boundary: { input: "::/0", expected: "2^128 addresses" },
+    invalid: { input: "2001::1::1", error: "format" },
+    invariants: ["single zero groups are not compressed and prefix counts use exact 128-bit arithmetic"],
+    testFile: "tests/network-ip.test.mjs",
+  }),
+  "ip-info": qualityContract({
+    id: "ip-info",
+    operation: "ipInformationLookup",
+    inputs: [editableInput("ip", "text", "single public IPv4 or IPv6 address")],
+    rule: "preclassify locally, block special addresses, then call same-origin /api/network/ip-lookup or /api/network/ip-rdap only on explicit module submit",
+    output: { format: "separate lookup or RDAP result, loading state, and safe error code" },
+    limitations: ["geolocation is approximate; domain WHOIS, bulk lookup, and traditional TCP WHOIS are excluded"],
+    normal: { input: "8.8.8.8", expected: "same-origin lookup or RDAP request" },
+    boundary: { input: "2001:4860:4860::8888", expected: "same-origin lookup or RDAP request" },
+    invalid: { input: "192.168.1.1", error: "UNSUPPORTED_ADDRESS_TYPE" },
+    invariants: ["lookup and RDAP modules never serialize input to URL, storage, metadata, JSON-LD, analytics, or feedback"],
+    testFile: "tests/network-ip.test.mjs",
+    privacyOptions: { network: true },
   }),
   qr: qualityContract({
     id: "qr",
