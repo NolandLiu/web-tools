@@ -161,6 +161,47 @@ test("network API contract validates request shape and blocks unsupported addres
   assert.equal(success.headers.get("X-Content-Type-Options"), "nosniff");
 });
 
+test("Cloudflare current-IP lookup uses request metadata without an upstream provider", async () => {
+  const originalFetch = globalThis.fetch;
+  let fetchCount = 0;
+  globalThis.fetch = async () => {
+    fetchCount += 1;
+    throw new Error("current IP lookup must not call an upstream provider");
+  };
+  try {
+    const request = new Request("https://tools.godeskhub.com/api/network/ip-lookup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "CF-Connecting-IP": "203.0.113.99",
+      },
+      body: JSON.stringify({ mode: "current" }),
+    });
+    Object.defineProperty(request, "cf", {
+      value: {
+        country: "HK",
+        region: "Hong Kong",
+        city: "Hong Kong",
+        latitude: "22.3193",
+        longitude: "114.1694",
+        asn: 13335,
+        asOrganization: "Cloudflare, Inc.",
+      },
+    });
+    const response = await onIpLookupPost({ request });
+    assert.equal(response.status, 200);
+    assert.equal(fetchCount, 0);
+    const body = await response.json();
+    assert.equal(body.ok, true);
+    assert.equal(body.data.ip, "203.0.113.99");
+    assert.equal(body.data.countryCode, "HK");
+    assert.equal(body.data.asn, 13335);
+    assert.equal(body.meta.source, "cloudflare-request-cf");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("network API maps invalid methods, content types, fields, and upstream failures safely", async () => {
   const noProvider = await handleRdapRequest(new Request("https://tools.godeskhub.com/api/network/ip-rdap", {
     method: "POST",
@@ -239,6 +280,56 @@ test("Cloudflare IP lookup Function entry provides a production provider", async
   }
 });
 
+test("Cloudflare IP lookup falls back to a second no-secret HTTPS provider", async () => {
+  const originalFetch = globalThis.fetch;
+  const urls = [];
+  globalThis.fetch = async url => {
+    urls.push(String(url));
+    if (String(url).startsWith("https://ipwho.is/")) {
+      return new Response(JSON.stringify({ success: false, message: "Rate limit exceeded" }), {
+        status: 429,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    return new Response(JSON.stringify({
+      ipAddress: "8.8.8.8",
+      ipVersion: 4,
+      countryName: "United States",
+      countryCode: "US",
+      regionName: "California",
+      cityName: "Mountain View",
+      latitude: 37.4056,
+      longitude: -122.0775,
+      asn: 15169,
+      asnOrganization: "Google LLC",
+    }), { status: 200, headers: { "Content-Type": "application/json" } });
+  };
+  try {
+    const request = new Request("https://tools.godeskhub.com/api/network/ip-lookup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ip: "8.8.8.8" }),
+    });
+    Object.defineProperty(request, "cf", {
+      value: { country: "HK", city: "Hong Kong", asn: 13335 },
+    });
+    const response = await onIpLookupPost({ request });
+    assert.equal(response.status, 200);
+    assert.deepEqual(urls, [
+      "https://ipwho.is/8.8.8.8",
+      "https://free.freeipapi.com/api/json/8.8.8.8",
+    ]);
+    const body = await response.json();
+    assert.equal(body.ok, true);
+    assert.equal(body.data.ip, "8.8.8.8");
+    assert.equal(body.data.countryCode, "US");
+    assert.equal(body.data.asn, 15169);
+    assert.equal(body.meta.source, "freeipapi.com");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("Cloudflare RDAP Function entry provides a production provider and keeps private IPs local", async () => {
   const originalFetch = globalThis.fetch;
   let fetchCount = 0;
@@ -275,5 +366,52 @@ test("Cloudflare RDAP Function entry provides a production provider and keeps pr
     assert.equal(body.meta.source, "rdap.org");
   } finally {
     globalThis.fetch = originalFetch;
+  }
+});
+
+test("Cloudflare RDAP Function caches successful results and returns cached JSON", async () => {
+  const originalFetch = globalThis.fetch;
+  const originalCaches = globalThis.caches;
+  const store = new Map();
+  let fetchCount = 0;
+  globalThis.caches = {
+    default: {
+      async match(request) {
+        return store.get(String(request.url));
+      },
+      async put(request, response) {
+        store.set(String(request.url), response.clone());
+      },
+    },
+  };
+  globalThis.fetch = async url => {
+    fetchCount += 1;
+    assert.equal(String(url), "https://rdap.org/ip/8.8.8.8");
+    return new Response(JSON.stringify({
+      objectClassName: "ip network",
+      handle: "NET-8-8-8-0-2",
+      name: "GOGL",
+    }), { status: 200, headers: { "Content-Type": "application/rdap+json" } });
+  };
+  try {
+    const makeRequest = () => new Request("https://tools.godeskhub.com/api/network/ip-rdap", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ip: "8.8.8.8" }),
+    });
+    const first = await onRdapPost({ request: makeRequest() });
+    assert.equal(first.status, 200);
+    assert.equal((await first.json()).meta.cache, "miss");
+
+    const second = await onRdapPost({ request: makeRequest() });
+    assert.equal(second.status, 200);
+    const body = await second.json();
+    assert.equal(fetchCount, 1);
+    assert.equal(body.data.handle, "NET-8-8-8-0-2");
+    assert.equal(body.meta.cache, "hit");
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalCaches === undefined) delete globalThis.caches;
+    else globalThis.caches = originalCaches;
   }
 });

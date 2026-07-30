@@ -1,10 +1,13 @@
 /* global Response */
 
 import { handleIpLookupRequest } from "../../../src/lib/network-ip.js";
-import { createIpWhoIsProvider } from "./providers.js";
+import { createCloudflareCurrentIpProvider, createFallbackIpLookupProvider } from "./providers.js";
 
 export async function onRequestPost(context) {
-  return handleIpLookupRequest(context.request, { provider: createIpWhoIsProvider() });
+  return handleIpLookupRequest(context.request, {
+    currentProvider: createCloudflareCurrentIpProvider(context.request),
+    provider: createFallbackIpLookupProvider(),
+  });
 }
 
 export async function onRequest() {

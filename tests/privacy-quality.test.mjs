@@ -103,6 +103,13 @@ test("only approved network tools call same-origin network API paths", async () 
   const source = await readFile(new URL("../src/tools/NetworkTools.tsx", import.meta.url), "utf8");
   assert.match(source, /NETWORK_API_PATHS\.lookup/);
   assert.match(source, /NETWORK_API_PATHS\.rdap/);
+  assert.match(source, /mode: "current"/);
+  assert.match(source, /Use my current IP/);
+  assert.match(source, /使用当前 IP/);
+  assert.match(source, /使用目前 IP/);
+  assert.match(source, /Upstream services are temporarily limited/);
+  assert.match(source, /上游服务暂时限流/);
+  assert.match(source, /上游服務暫時限流/);
   assert.doesNotMatch(source, /https?:\/\/(?:[^"']+)/);
   assert.doesNotMatch(source, /localStorage|sessionStorage|indexedDB|URLSearchParams|history\.pushState|history\.replaceState/);
 });
