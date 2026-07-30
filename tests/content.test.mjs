@@ -102,6 +102,8 @@ test("special tool guidance matches the implemented behavior and boundaries", ()
   assert.match(TOOL_CONTENT.datecalc.en.limitations.join(" "), /not inclusive|excludes/i);
   assert.match(TOOL_CONTENT.text.en.principles.join(" "), /whitespace/i);
   assert.match(TOOL_CONTENT.qr.en.limitations.join(" "), /1,200|1200/);
+  assert.match(TOOL_CONTENT.cheque.en.introduction, /HKD.*USD.*RMB.*SGD/);
+  assert.match(TOOL_CONTENT.cheque.en.limitations.join(" "), /currency-neutral|tampering/i);
 });
 
 test("content validator accepts the complete registry and reports exact counts", () => {

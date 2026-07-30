@@ -82,6 +82,13 @@ test("password and QR production sources exclude weak random and remote logo pat
   assert.match(qr, /download="lite-tools-qr\.png"/);
 });
 
+test("cheque formatting options do not serialize user amounts or results", async () => {
+  const cheque = await readFile(new URL("../src/tools/ChequeTool.tsx", import.meta.url), "utf8");
+  assert.match(cheque, /formatChequeAmount\(input, \{ currency, englishCase, chineseScript \}\)/);
+  assert.doesNotMatch(cheque, /localStorage|sessionStorage|indexedDB|URLSearchParams|history\.pushState|history\.replaceState/);
+  assert.doesNotMatch(cheque, /metadata|jsonLd|feedback/i);
+});
+
 test("persistent tool contracts contain no user input or result fields", () => {
   for (const contract of Object.values(TOOL_CONTRACTS)) {
     assert.deepEqual(contract.privacy.persistentFields, []);
