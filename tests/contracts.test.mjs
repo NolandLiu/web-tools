@@ -18,10 +18,10 @@ test("every registered tool has one enforceable behavior contract", () => {
 
   assert.deepEqual(contractIds, registeredIds);
   assert.deepEqual(validateToolContracts(), {
-    toolCount: 25,
-    normalCases: 25,
-    boundaryCases: 25,
-    invalidCases: 25,
+    toolCount: TOOLS.length,
+    normalCases: TOOLS.length,
+    boundaryCases: TOOLS.length,
+    invalidCases: TOOLS.length,
   });
 });
 
@@ -62,7 +62,7 @@ test("contracts define executable behavior, privacy, and accessibility boundarie
     assert.ok(contract.cases.boundary.length >= 1);
     assert.ok(contract.cases.invalid.length >= 1);
     assert.ok(contract.invariants.length >= 1);
-    assert.equal(contract.privacy.network, false);
+    assert.equal(contract.privacy.network, ["ip-lookup", "ip-rdap"].includes(tool.id));
     assert.deepEqual(contract.privacy.urlFields, []);
     assert.deepEqual(contract.privacy.persistentFields, []);
     assert.ok(["none", "user-only"].includes(contract.privacy.clipboard));

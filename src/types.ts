@@ -2,7 +2,7 @@ export type Lang = "en" | "zh-CN" | "zh-TW";
 
 export type Page = "home" | "about" | "privacy" | "terms" | "contact" | "not-found";
 
-export type CategoryId = "units" | "developer" | "calculators" | "qr";
+export type CategoryId = "units" | "developer" | "calculators" | "qr" | "network-ip";
 
 export type ToolKind =
   | "unit"
@@ -18,7 +18,13 @@ export type ToolKind =
   | "qr"
   | "irr"
   | "cheque"
-  | "password";
+  | "password"
+  | "ipv4-subnet"
+  | "ip-range-cidr"
+  | "ip-address"
+  | "ipv6"
+  | "ip-lookup"
+  | "ip-rdap";
 
 export type CalculatorKind = "percentage" | "discount" | "bmi" | "compound" | "date";
 

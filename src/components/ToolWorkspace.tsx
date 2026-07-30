@@ -9,6 +9,7 @@ import { QrTool } from "../tools/QrTool";
 import { Base64Tool, CaseTool, ColorTool, JsonTool, TextTool, TimestampTool, UrlTool, UuidTool } from "../tools/TextTools";
 import { UnitTool } from "../tools/UnitTool";
 import { Icon } from "./Icons";
+import { IpAddressConverterTool, IpLookupTool, IpRangeCidrTool, IpRdapTool, Ipv4SubnetTool, Ipv6Tool } from "../tools/NetworkTools";
 import { ToolContentSections } from "./ToolContentSections";
 import { ToolFeedback } from "./ToolFeedback";
 
@@ -38,6 +39,12 @@ export function ToolWorkspace({ tool, lang, onOpenTool }: { tool: Tool; lang: La
         {tool.kind === "irr" && <IrrTool lang={lang} />}
         {tool.kind === "password" && <PasswordTool lang={lang} />}
         {tool.kind === "qr" && <QrTool lang={lang} />}
+        {tool.kind === "ipv4-subnet" && <Ipv4SubnetTool lang={lang} />}
+        {tool.kind === "ip-range-cidr" && <IpRangeCidrTool lang={lang} />}
+        {tool.kind === "ip-address" && <IpAddressConverterTool lang={lang} />}
+        {tool.kind === "ipv6" && <Ipv6Tool lang={lang} />}
+        {tool.kind === "ip-lookup" && <IpLookupTool lang={lang} />}
+        {tool.kind === "ip-rdap" && <IpRdapTool lang={lang} />}
       </div>
       <ToolContentSections tool={tool} lang={lang} onOpenTool={onOpenTool} />
       <ToolFeedback tool={tool} lang={lang} />

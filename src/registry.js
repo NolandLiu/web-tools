@@ -62,6 +62,18 @@ export const CATEGORIES = [
       "在瀏覽器本機建立可自訂的 QR Code。",
     ),
   },
+  {
+    id: "network-ip",
+    slug: "network-ip",
+    text: localized(
+      "Network & IP",
+      "Calculate subnets, convert IP ranges, inspect IPv4 and IPv6 addresses, and run controlled IP lookups.",
+      "网络与 IP",
+      "计算子网、转换 IP 范围、检查 IPv4 与 IPv6 地址，并执行受控 IP 查询。",
+      "網絡與 IP",
+      "計算子網、轉換 IP 範圍、檢查 IPv4 與 IPv6 位址，並執行受控 IP 查詢。",
+    ),
+  },
 ];
 
 const tool = (definition, text) => ({ ...definition, text });
@@ -92,6 +104,12 @@ export const TOOLS = [
   tool({ id: "irr", slug: "irr-calculator", kind: "irr", category: "calculators", icon: "trend", order: 23, defaultWeight: 7 }, localized("IRR calculator", "Calculate fixed-period IRR and its annualized equivalent.", "IRR 计算器", "计算固定周期内部收益率及其年化结果。", "IRR 計算器", "計算固定週期內部收益率及其年化結果。")),
   tool({ id: "cheque", slug: "cheque-amount-converter", kind: "cheque", category: "calculators", icon: "text", order: 24, defaultWeight: 6 }, localized("Cheque amount converter", "Write a decimal amount in English and Chinese financial words.", "支票金额转换", "把十进制金额转换为英文和中文金融大写。", "支票金額轉換", "把十進位金額轉換為英文和中文金融大寫。")),
   tool({ id: "password", slug: "password-generator", kind: "password", category: "developer", icon: "hash", order: 25, defaultWeight: 8 }, localized("Password generator", "Generate constrained passwords with browser cryptography.", "密码生成器", "使用浏览器密码学安全随机源生成符合规则的密码。", "密碼產生器", "使用瀏覽器密碼學安全隨機來源產生符合規則的密碼。")),
+  tool({ id: "ipv4-subnet", slug: "ipv4-subnet-calculator", kind: "ipv4-subnet", category: "network-ip", icon: "hash", order: 26, defaultWeight: 8 }, localized("IPv4 subnet calculator", "Calculate IPv4 network, broadcast, masks, wildcard, host counts, and same-subnet checks.", "IPv4 子网计算器", "计算 IPv4 网络地址、广播地址、掩码、反掩码、主机数量和同子网判断。", "IPv4 子網計算器", "計算 IPv4 網絡位址、廣播位址、遮罩、反遮罩、主機數量和同子網判斷。")),
+  tool({ id: "ip-range-cidr", slug: "ip-range-cidr-converter", kind: "ip-range-cidr", category: "network-ip", icon: "link", order: 27, defaultWeight: 7 }, localized("IP range and CIDR converter", "Convert IPv4 CIDR blocks to ranges and exact ranges to minimal CIDR sets.", "IP 范围与 CIDR 转换器", "把 IPv4 CIDR 转为范围，或把精确范围转为最小 CIDR 集合。", "IP 範圍與 CIDR 轉換器", "把 IPv4 CIDR 轉為範圍，或把精確範圍轉為最小 CIDR 集合。")),
+  tool({ id: "ip-address", slug: "ip-address-converter", kind: "ip-address", category: "network-ip", icon: "binary", order: 28, defaultWeight: 7 }, localized("IP address converter", "Convert and classify IPv4 addresses locally.", "IP 地址转换与检测", "在本地转换并识别 IPv4 地址类型。", "IP 位址轉換與檢測", "在本機轉換並識別 IPv4 位址類型。")),
+  tool({ id: "ipv6", slug: "ipv6-address-tool", kind: "ipv6", category: "network-ip", icon: "code", order: 29, defaultWeight: 7 }, localized("IPv6 address tool", "Expand, compress, normalize, classify, and calculate IPv6 prefix ranges.", "IPv6 地址工具", "展开、压缩、规范化、分类并计算 IPv6 前缀范围。", "IPv6 位址工具", "展開、壓縮、規範化、分類並計算 IPv6 前綴範圍。")),
+  tool({ id: "ip-lookup", slug: "ip-lookup", kind: "ip-lookup", category: "network-ip", icon: "search", order: 30, defaultWeight: 6 }, localized("IP lookup", "Run a user-triggered same-origin IP lookup after local public-address checks.", "IP 查询", "本地确认公网地址后，通过用户触发的同源请求查询 IP 信息。", "IP 查詢", "本機確認公網位址後，透過使用者觸發的同源要求查詢 IP 資訊。")),
+  tool({ id: "ip-rdap", slug: "ip-whois-rdap", kind: "ip-rdap", category: "network-ip", icon: "search", order: 31, defaultWeight: 6 }, localized("IP WHOIS / RDAP lookup", "Query public IP registration data through a controlled RDAP API contract.", "IP WHOIS / RDAP 查询", "通过受控 RDAP API 契约查询公开 IP 注册资料。", "IP WHOIS / RDAP 查詢", "透過受控 RDAP API 契約查詢公開 IP 註冊資料。")),
 ];
 
 export const INFO_PAGES = [

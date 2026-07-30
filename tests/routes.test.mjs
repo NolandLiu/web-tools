@@ -15,7 +15,7 @@ import {
   switchRouteLanguage,
 } from "../src/lib/routes.js";
 
-test("registry contains the approved origin, languages, categories, and all 25 tools", () => {
+test("registry contains the approved origin, languages, categories, and registered Phase 5 tools", () => {
   assert.equal(SITE_ORIGIN, "https://tools.godeskhub.com");
   assert.equal(DEFAULT_LANG, "en");
   assert.deepEqual(
@@ -31,14 +31,23 @@ test("registry contains the approved origin, languages, categories, and all 25 t
     "developer-tools",
     "calculators",
     "qr-code",
+    "network-ip",
   ]);
-  assert.equal(TOOLS.length, 25);
+  assert.equal(TOOLS.length, 31);
+  assert.deepEqual(TOOLS.slice(-6).map(tool => tool.id), [
+    "ipv4-subnet",
+    "ip-range-cidr",
+    "ip-address",
+    "ipv6",
+    "ip-lookup",
+    "ip-rdap",
+  ]);
   assert.equal(INFO_PAGES.length, 4);
 });
 
 test("tool and category slugs are unique and every reference is valid", () => {
   assert.equal(new Set(TOOLS.map(tool => tool.slug)).size, TOOLS.length);
-  assert.equal(new Set(CATEGORIES.map(category => category.slug)).size, 4);
+  assert.equal(new Set(CATEGORIES.map(category => category.slug)).size, CATEGORIES.length);
   const categoryIds = new Set(CATEGORIES.map(category => category.id));
   for (const tool of TOOLS) {
     assert.ok(categoryIds.has(tool.category), `${tool.id} references an unknown category`);
@@ -90,6 +99,10 @@ test("canonical route enumeration covers every registered localized page exactly
   assert.ok(paths.includes("/en/tools/irr-calculator"));
   assert.ok(paths.includes("/zh-cn/tools/cheque-amount-converter"));
   assert.ok(paths.includes("/zh-tw/tools/password-generator"));
+  assert.ok(paths.includes("/en/tools/ipv4-subnet-calculator"));
+  assert.ok(paths.includes("/zh-cn/tools/ip-lookup"));
+  assert.ok(paths.includes("/zh-tw/tools/ip-whois-rdap"));
+  assert.ok(paths.includes("/en/categories/network-ip"));
   assert.ok(paths.includes("/zh-cn/categories/calculators"));
   assert.ok(paths.includes("/zh-tw/contact"));
   assert.ok(paths.every(path => /^\/(en|zh-cn|zh-tw)\//.test(path)));
