@@ -122,6 +122,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .field-tooltip { position: absolute; left: 0; top: 34px; z-index: 15; width: min(280px, calc(100vw - 48px)); padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 9px; background: var(--ink); color: white; box-shadow: var(--shadow); font-size: 13px; font-weight: 500; line-height: 1.5; }
 input, select, textarea { width: 100%; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); color: var(--ink); }
 input, select { height: 44px; padding: 0 12px; }
+input[type="checkbox"], input[type="radio"] { width: 16px; height: 16px; min-width: 16px; padding: 0; flex: 0 0 auto; accent-color: var(--accent); }
 input[type="color"] { padding: 4px; }
 textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.55; }
 .has-error input, .has-error textarea, .has-error select { border-color: var(--danger); }
@@ -161,9 +162,9 @@ textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.55
 .password-categories { margin: 18px 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; }
 .password-categories legend { padding: 0 6px; font-weight: 750; }
 .password-category { display: grid; grid-template-columns: minmax(150px, 1fr) minmax(130px, auto); align-items: center; gap: 12px; padding: 8px 0; }
-.password-category label { display: flex; align-items: center; gap: 8px; }
+.password-category label { display: inline-flex; align-items: center; gap: 8px; line-height: 1.35; }
 .password-category input[type="number"] { width: 76px; min-height: 40px; }
-.checkbox-row { display: flex; align-items: center; gap: 9px; min-height: 44px; font-weight: 650; }
+.checkbox-row { display: inline-flex; align-items: center; gap: 9px; min-height: 44px; line-height: 1.35; font-weight: 650; }
 .irr-tool .stacked-tools { align-content: start; }
 .irr-tool .result-card { min-height: 160px; }
 .single-result-tool { max-width: 760px; margin: 0 auto; }

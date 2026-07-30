@@ -51,6 +51,16 @@ test("focus indicators and narrow-screen wrapping remain explicit", async () => 
   assert.match(css, /prefers-reduced-motion/);
 });
 
+test("checkbox controls keep native size and align with labels", async () => {
+  const css = await readSource("../src/styles.css");
+  assert.match(css, /input\[type="checkbox"\],\s*input\[type="radio"\]/);
+  assert.match(css, /input\[type="checkbox"\][\s\S]*width:\s*16px/);
+  assert.match(css, /input\[type="checkbox"\][\s\S]*height:\s*16px/);
+  assert.match(css, /input\[type="checkbox"\][\s\S]*accent-color:\s*var\(--accent\)/);
+  assert.match(css, /\.password-category label\s*\{[^}]*align-items:\s*center/);
+  assert.match(css, /\.checkbox-row\s*\{[^}]*align-items:\s*center/);
+});
+
 test("Phase 4 tools expose labelled dynamic controls and independent results", async () => {
   const irr = await readSource("../src/tools/IrrTool.tsx");
   const cheque = await readSource("../src/tools/ChequeTool.tsx");
