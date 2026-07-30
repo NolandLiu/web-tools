@@ -1,0 +1,5 @@
+name = "web-tools-nl1"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-07-17"
+
+[env.production]
