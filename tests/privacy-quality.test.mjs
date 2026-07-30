@@ -106,3 +106,12 @@ test("only approved network tools call same-origin network API paths", async () 
   assert.doesNotMatch(source, /https?:\/\/(?:[^"']+)/);
   assert.doesNotMatch(source, /localStorage|sessionStorage|indexedDB|URLSearchParams|history\.pushState|history\.replaceState/);
 });
+
+test("privacy policy names Google Analytics and excludes tool content from analytics", async () => {
+  const source = await readFile(new URL("../src/App.tsx", import.meta.url), "utf8");
+  assert.match(source, /Google Analytics/);
+  assert.match(source, /Google tag/);
+  assert.match(source, /工具输入、输出、密码、金额、二维码内容、文件和自由文本不会由应用发送到 Google Analytics/);
+  assert.match(source, /工具輸入、輸出、密碼、金額、QR Code 內容、檔案和自由文字不會由應用程式傳送到 Google Analytics/);
+  assert.match(source, /[Tt]ool inputs, outputs, passwords, amounts, QR Code content, files, and free-form text are not sent to Google Analytics/);
+});

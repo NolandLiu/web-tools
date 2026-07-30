@@ -69,6 +69,23 @@ const copy = {
   },
 };
 
+const infoDetails = {
+  privacy: {
+    en: [
+      "GoDeskHub uses the Google tag and Google Analytics to understand page visits. Google Analytics may process visit information such as browser and device details, visit time, referrer, and page path.",
+      "Tool inputs, outputs, passwords, amounts, QR Code content, files, and free-form text are not sent to Google Analytics by the application.",
+    ],
+    "zh-CN": [
+      "GoDeskHub 使用 Google tag 和 Google Analytics 了解页面访问情况。Google Analytics 可能处理浏览器和设备信息、访问时间、来源页面和页面路径等访问类信息。",
+      "工具输入、输出、密码、金额、二维码内容、文件和自由文本不会由应用发送到 Google Analytics。",
+    ],
+    "zh-TW": [
+      "GoDeskHub 使用 Google tag 和 Google Analytics 了解頁面造訪情況。Google Analytics 可能處理瀏覽器和裝置資訊、造訪時間、來源頁面和頁面路徑等造訪類資訊。",
+      "工具輸入、輸出、密碼、金額、QR Code 內容、檔案和自由文字不會由應用程式傳送到 Google Analytics。",
+    ],
+  },
+};
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -156,10 +173,12 @@ function renderCategory(route) {
 function renderInfo(route) {
   const page = INFO_PAGES.find(item => item.id === route.page);
   if (!page) return renderNotFound({ kind: "not-found", lang: route.lang });
+  const details = infoDetails[page.id]?.[route.lang] ?? [];
   return `<main class="static-route-content" data-static-route="info">
     <nav class="breadcrumb" aria-label="Breadcrumb">${routeLink({ kind: "home", lang: route.lang }, copy[route.lang].home)}<span>›</span><strong>${escapeHtml(page.text[route.lang].name)}</strong></nav>
     <h1>${escapeHtml(page.text[route.lang].name)}</h1>
     <p>${escapeHtml(page.text[route.lang].description)}</p>
+    ${details.map(item => `<p>${escapeHtml(item)}</p>`).join("")}
   </main>`;
 }
 

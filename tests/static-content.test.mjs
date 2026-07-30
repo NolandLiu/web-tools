@@ -6,12 +6,13 @@ import test from "node:test";
 import { generateSite } from "../scripts/generate-static-pages.mjs";
 import { TOOL_CONTENT } from "../src/content/index.js";
 
+const analyticsScriptUrl = "https://www.googletagmanager.com/gtag/js?id=G-N47VDQ0D85";
+const analyticsConfigCall = "gtag('config', 'G-N47VDQ0D85')";
+
 async function generateFixture() {
   const root = await mkdtemp(join(tmpdir(), "godeskhub-content-"));
-  await writeFile(
-    join(root, "index.html"),
-    '<!doctype html><html lang="en"><head><!-- route-metadata:start --><title>Template</title><!-- route-metadata:end --></head><body><div id="root"></div><script type="module" src="/assets/app.js"></script></body></html>',
-  );
+  const template = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  await writeFile(join(root, "index.html"), template);
   await generateSite({ distDir: root });
   return root;
 }
@@ -53,9 +54,31 @@ test("category, home, information, and 404 HTML have distinct visible shells", a
   assert.match(category, /本分类处理表示形式和标识符/);
   assert.match(privacy, /data-static-route="info"/);
   assert.match(privacy, /隱私權政策/);
+  assert.match(privacy, /Google Analytics/);
+  assert.match(privacy, /工具輸入、輸出、密碼、金額、QR Code 內容、檔案和自由文字不會由應用程式傳送到 Google Analytics/);
   assert.doesNotMatch(privacy, /"@type":"FAQPage"/);
   assert.match(notFound, /data-static-route="not-found"/);
   assert.match(notFound, /Page not found/);
+});
+
+test("static HTML pages include one Google tag inherited from the template", async () => {
+  const root = await generateFixture();
+  const paths = [
+    join(root, "en", "index.html"),
+    join(root, "en", "tools", "json-tools.html"),
+    join(root, "zh-cn", "categories", "developer-tools.html"),
+    join(root, "zh-tw", "privacy.html"),
+    join(root, "404.html"),
+  ];
+
+  for (const path of paths) {
+    const html = await readFile(path, "utf8");
+    assert.equal(html.split(analyticsScriptUrl).length - 1, 1);
+    assert.equal((html.match(/window\.dataLayer = window\.dataLayer \|\| \[\]/g) ?? []).length, 1);
+    assert.equal((html.match(new RegExp(analyticsConfigCall.replace(/[()']/g, "\\$&"), "g")) ?? []).length, 1);
+    assert.ok(html.indexOf("<head>") < html.indexOf(analyticsScriptUrl));
+    assert.ok(html.indexOf(analyticsScriptUrl) < html.indexOf("<!-- route-metadata:start -->"));
+  }
 });
 
 test("network category static HTML lists only consolidated network pages", async () => {
