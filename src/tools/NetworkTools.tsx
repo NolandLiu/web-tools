@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import type { ChangeEvent } from "react";
+import { cloneElement, useEffect, useMemo, useRef, useState } from "react";
+import type { ChangeEvent, ReactElement } from "react";
 import { Field } from "../components/Field";
 import { Icon } from "../components/Icons";
 import { ResultCard } from "../components/ResultCard";
@@ -135,9 +135,59 @@ function getSubnetText(lang: Lang) {
   };
 }
 
-function CopyAction({ value, label, lang, compact }: { value: string; label: string; lang: Lang; compact?: boolean }) {
+function getIpv4ToolboxText(lang: Lang) {
+  const subnetText = getSubnetText(lang);
+  const labels = {
+    ...subnetText.labels,
+    maskInput: local(lang, "Subnet mask", "子网掩码", "子網遮罩"),
+    hostInput: local(lang, "Required hosts", "所需主机数", "所需主機數"),
+    cidrInput: local(lang, "CIDR block", "CIDR 网段", "CIDR 網段"),
+    startIp: local(lang, "Start IP", "起始 IP", "起始 IP"),
+    endIp: local(lang, "End IP", "结束 IP", "結束 IP"),
+    inputFormat: local(lang, "Input format", "输入格式", "輸入格式"),
+    ipv4Value: local(lang, "IPv4 value", "IPv4 值", "IPv4 值"),
+    ipA: local(lang, "IPv4 A", "IPv4 A", "IPv4 A"),
+    ipB: local(lang, "IPv4 B", "IPv4 B", "IPv4 B"),
+    recommendedPrefix: local(lang, "Recommended prefix", "推荐掩码位", "建議遮罩位"),
+    totalAddresses: local(lang, "Total addresses", "总地址数", "總位址數"),
+    usableHosts: local(lang, "Usable hosts", "可用主机数", "可用主機數"),
+    startAddress: local(lang, "Start address", "起始地址", "起始位址"),
+    endAddress: local(lang, "End address", "结束地址", "結束位址"),
+    cidrBlocks: local(lang, "CIDR blocks", "CIDR 网段列表", "CIDR 網段列表"),
+    dotted: local(lang, "Dotted decimal", "点分十进制", "點分十進位"),
+    decimal: local(lang, "Unsigned integer", "无符号整数", "無符號整數"),
+    groupedBinary: local(lang, "Grouped binary", "分组二进制", "分組二進位"),
+    hex: local(lang, "Hex", "十六进制", "十六進位"),
+    sameSubnet: local(lang, "Same subnet", "是否同子网", "是否同子網"),
+    yes: local(lang, "Yes", "是", "是"),
+    no: local(lang, "No", "否", "否"),
+    sourceFormatDotted: local(lang, "Dotted decimal", "点分十进制", "點分十進位"),
+    sourceFormatDecimal: local(lang, "Unsigned integer", "无符号整数", "無符號整數"),
+    sourceFormatBinary: local(lang, "32-bit binary", "32 位二进制", "32 位二進位"),
+    sourceFormatHex: local(lang, "8-digit hex", "8 位十六进制", "8 位十六進位"),
+  };
+  return {
+    ...subnetText,
+    labels,
+    help: {
+      maskInput: local(lang, "Example: 255.255.255.0.", "示例：255.255.255.0。", "範例：255.255.255.0。"),
+      hostInput: local(lang, "Regular LAN planning subtracts network and broadcast except /31 and /32 semantics.", "普通局域网规划会扣除网络地址和广播地址，/31 与 /32 语义除外。", "一般區域網絡規劃會扣除網絡位址和廣播位址，/31 與 /32 語義除外。"),
+      cidrInput: local(lang, "Example: 192.168.1.0/24.", "示例：192.168.1.0/24。", "範例：192.168.1.0/24。"),
+      startIp: local(lang, "First IPv4 address in the range.", "范围内第一个 IPv4 地址。", "範圍內第一個 IPv4 位址。"),
+      endIp: local(lang, "Last IPv4 address in the range.", "范围内最后一个 IPv4 地址。", "範圍內最後一個 IPv4 位址。"),
+      inputFormat: local(lang, "Choose the format used by the input.", "选择输入内容使用的格式。", "選擇輸入內容使用的格式。"),
+      ipv4Value: local(lang, "Classification uses local IANA special-purpose rules reviewed on 2026-07-30.", "分类使用本地 IANA 特殊用途规则，审查日期为 2026-07-30。", "分類使用本機 IANA 特殊用途規則，審查日期為 2026-07-30。"),
+      ipA: local(lang, "First IPv4 address.", "第一个 IPv4 地址。", "第一個 IPv4 位址。"),
+      ipB: local(lang, "Second IPv4 address.", "第二个 IPv4 地址。", "第二個 IPv4 位址。"),
+      prefix: local(lang, "CIDR prefix from 0 to 32.", "CIDR 掩码位，范围 0 到 32。", "CIDR 遮罩位，範圍 0 到 32。"),
+    },
+  };
+}
+
+function CopyAction({ value, label, lang, compact, iconOnly }: { value: string; label: string; lang: Lang; compact?: boolean; iconOnly?: boolean }) {
   const [status, setStatus] = useState<"idle" | "copied" | "failed">("idle");
   const t = messages[lang];
+  const className = compact ? "metric-copy" : `dashboard-copy-button${iconOnly ? " dashboard-copy-button-icon" : ""}`;
 
   useEffect(() => {
     if (status === "idle") return;
@@ -156,15 +206,15 @@ function CopyAction({ value, label, lang, compact }: { value: string; label: str
   };
 
   return (
-    <button type="button" className={compact ? "metric-copy" : "dashboard-copy-button"} aria-label={label} title={label} disabled={!value} onClick={() => void copy()}>
+    <button type="button" className={className} aria-label={label} title={label} disabled={!value} onClick={() => void copy()}>
       <Icon name={status === "copied" ? "check" : "copy"} size={compact ? 15 : 16} />
-      {!compact && <span>{status === "copied" ? t.copied : label}</span>}
+      {!compact && !iconOnly && <span>{status === "copied" ? t.copied : label}</span>}
       <span className="sr-only" aria-live="polite">{status === "failed" ? t.copyFailed : status === "copied" ? t.copied : ""}</span>
     </button>
   );
 }
 
-function MetricRow({ label, value, copyValue, lang, tone = "default" }: { label: string; value: React.ReactNode; copyValue: string; lang: Lang; tone?: "default" | "mono" | "code" | "primary" }) {
+function MetricRow({ label, value, copyValue, lang, tone = "default" }: { label: string; value: React.ReactNode; copyValue: string; lang: Lang; tone?: "default" | "mono" | "code" | "primary" | "success" | "danger" }) {
   const rowClass = tone === "default" || tone === "mono" ? "metric-row" : `metric-row metric-row-${tone}`;
   const valueClass = tone === "default" ? "metric-value" : `metric-value metric-value-${tone}`;
   return (
@@ -174,6 +224,52 @@ function MetricRow({ label, value, copyValue, lang, tone = "default" }: { label:
       <CopyAction value={copyValue} label={getSubnetText(lang).labels.copyItem(label)} lang={lang} compact />
     </div>
   );
+}
+
+function MetricList({ children }: { children: React.ReactNode }) {
+  return <div className="metric-list">{children}</div>;
+}
+
+function DashboardInputPanel({ label, help, children, showLabel = true, headerContent }: { label: string; help: string; children: React.ReactNode; showLabel?: boolean; headerContent?: React.ReactNode }) {
+  const hasHeader = showLabel || headerContent;
+  return (
+    <section className="tool-dashboard-input" aria-label={label}>
+      {hasHeader && <div className="dashboard-input-panel-header">
+        {showLabel ? <span className="dashboard-input-label">{label}</span> : <span className="sr-only">{label}</span>}
+        {headerContent}
+      </div>}
+      {children}
+      <p className="helper-note">{help}</p>
+    </section>
+  );
+}
+
+function DashboardInputField({ id, label, help, error, hideLabel = false, children }: { id: string; label: string; help?: string; error?: string; hideLabel?: boolean; children: ReactElement<Record<string, unknown>> }) {
+  const helpId = help ? `${id}-help` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+  return (
+    <div className="dashboard-input-field">
+      <label htmlFor={id} className={hideLabel ? "sr-only" : undefined}>{label}</label>
+      {cloneElement(children, { id, "aria-describedby": [helpId, errorId].filter(Boolean).join(" ") || undefined, "aria-invalid": error ? true : undefined })}
+      {help && <span className="helper-note" id={helpId}>{help}</span>}
+      {error && <span className="field-error" id={errorId}>{error}</span>}
+    </div>
+  );
+}
+
+function DashboardResultPanel({ lang, children }: { lang: Lang; children: React.ReactNode }) {
+  const labels = getIpv4ToolboxText(lang).labels;
+  return (
+    <section className="dashboard-result-area" aria-label={labels.result}>
+      <div className="dashboard-result-single">
+        {children}
+      </div>
+    </section>
+  );
+}
+
+function copyLines(rowsToCopy: Array<[string, unknown]>) {
+  return rowsToCopy.map(([label, value]) => `${label}: ${big(value)}`).join("\n");
 }
 
 function BinaryBitSplit({ binary, prefix, lang }: { binary: string; prefix: number; lang: Lang }) {
@@ -292,7 +388,7 @@ function Ipv4SubnetModule({ lang }: { lang: Lang }) {
         <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv4-binary-breakdown-title">
           <div className="dashboard-card-head">
             <CardTitle icon="binary" id="ipv4-binary-breakdown-title">{subnetText.labels.binaryBreakdown}</CardTitle>
-            <CopyAction value={String(data.binaryAddress)} label={subnetText.labels.copyBinary} lang={lang} />
+            <CopyAction value={String(data.binaryAddress)} label={subnetText.labels.copyBinary} lang={lang} iconOnly />
           </div>
           <BinaryBitSplit binary={String(data.binaryAddress)} prefix={Number(data.prefix)} lang={lang} />
         </section>
@@ -358,25 +454,90 @@ function Ipv4SubnetModule({ lang }: { lang: Lang }) {
 
 function MaskConverterModule({ lang }: { lang: Lang }) {
   const [mask, setMask] = useState("255.255.255.0");
+  const ipv4Text = getIpv4ToolboxText(lang);
   const result = parseSubnetMask(mask);
-  const display = result.ok ? rows([["CIDR prefix", `/${result.data.prefix}`], ["Mask", result.data.mask]]) : errorText(lang, result.reason);
+  const data = result.ok ? result.data as { prefix: number; mask: bigint } : undefined;
+  const subnet = data ? calculateIpv4Subnet({ ip: "0.0.0.0", prefix: data.prefix }) : undefined;
+  const maskDetails = subnet?.ok ? subnet.data as ValueMap : {};
+  const copyValue = result.ok ? copyLines([
+    [ipv4Text.labels.recommendedPrefix, `/${data?.prefix}`],
+    [ipv4Text.labels.mask, maskDetails.mask],
+    [local(lang, "Wildcard", "反掩码", "反遮罩"), maskDetails.wildcard],
+    [local(lang, "Mask binary", "掩码二进制", "遮罩二進位"), maskDetails.maskBinary],
+  ]) : "";
   return (
-    <ModuleCard id="mask-converter" title={local(lang, "Mask / CIDR converter", "掩码 / CIDR 转换", "遮罩 / CIDR 轉換")}>
-      <Field id="mask-input" label={local(lang, "Subnet mask", "子网掩码", "子網遮罩")} help="Example: 255.255.255.0" lang={lang} error={!result.ok ? resultText(result, lang) : undefined}><input value={mask} onChange={event => setMask(event.target.value)} /></Field>
-      <ResultCard label={messages[lang].result} displayValue={display} copyValue={result.ok ? `/${result.data.prefix}` : ""} lang={lang} onClear={() => setMask("255.255.255.0")} />
+    <ModuleCard id="mask-converter" icon="network" layout="dashboard" title={local(lang, "Mask / CIDR converter", "掩码 / CIDR 转换", "遮罩 / CIDR 轉換")}>
+      <DashboardInputPanel label={ipv4Text.labels.maskInput} help={ipv4Text.help.maskInput}>
+        <div className="dashboard-input-actions">
+          <div className="dashboard-form-grid">
+            <DashboardInputField id="mask-input" label={ipv4Text.labels.maskInput} error={!result.ok ? resultText(result, lang) : undefined} hideLabel>
+              <input value={mask} onChange={event => setMask(event.target.value)} />
+            </DashboardInputField>
+          </div>
+          <button type="button" className="button-secondary dashboard-reset-button" onClick={() => setMask("255.255.255.0")}><Icon name="swap" size={16} />{messages[lang].reset}</button>
+        </div>
+      </DashboardInputPanel>
+      <DashboardResultPanel lang={lang}>
+        {result.ok
+          ? <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv4-mask-result-title">
+            <div className="dashboard-card-head">
+              <CardTitle icon="network" id="ipv4-mask-result-title">{local(lang, "Converted mask", "转换结果", "轉換結果")}</CardTitle>
+              <CopyAction value={copyValue} label={ipv4Text.labels.copyAll} lang={lang} />
+            </div>
+            <MetricList>
+              <MetricRow label={ipv4Text.labels.recommendedPrefix} value={`/${data?.prefix}`} copyValue={`/${data?.prefix}`} lang={lang} tone="mono" />
+              <MetricRow label={ipv4Text.labels.mask} value={String(maskDetails.mask)} copyValue={String(maskDetails.mask)} lang={lang} tone="mono" />
+              <MetricRow label={local(lang, "Wildcard", "反掩码", "反遮罩")} value={String(maskDetails.wildcard)} copyValue={String(maskDetails.wildcard)} lang={lang} tone="mono" />
+              <MetricRow label={local(lang, "Mask binary", "掩码二进制", "遮罩二進位")} value={String(maskDetails.maskBinary)} copyValue={String(maskDetails.maskBinary)} lang={lang} tone="code" />
+            </MetricList>
+          </section>
+          : <section className="dashboard-result-card dashboard-card-wide"><InfoNote>{errorText(lang, result.reason)}</InfoNote></section>}
+      </DashboardResultPanel>
     </ModuleCard>
   );
 }
 
 function HostRecommendationModule({ lang }: { lang: Lang }) {
   const [hosts, setHosts] = useState("254");
+  const ipv4Text = getIpv4ToolboxText(lang);
   const result = requiredHostsToPrefix(hosts);
   const data = result.ok ? result.data as ValueMap : {};
-  const display = result.ok ? rows([["CIDR prefix", `/${data.prefix}`], ["Total addresses", data.total], ["Usable hosts", data.usable]]) : errorText(lang, result.reason);
+  const subnet = result.ok ? calculateIpv4Subnet({ ip: "0.0.0.0", prefix: Number(data.prefix) }) : undefined;
+  const maskDetails = subnet?.ok ? subnet.data as ValueMap : {};
+  const copyValue = result.ok ? copyLines([
+    [ipv4Text.labels.recommendedPrefix, `/${data.prefix}`],
+    [ipv4Text.labels.mask, maskDetails.mask],
+    [ipv4Text.labels.totalAddresses, data.total],
+    [ipv4Text.labels.usableHosts, data.usable],
+  ]) : "";
   return (
-    <ModuleCard id="host-recommendation" title={local(lang, "Host recommendation", "主机容量推荐", "主機容量建議")}>
-      <Field id="ipv4-hosts" label={local(lang, "Required hosts", "所需主机数", "所需主機數")} help="Regular LAN host planning subtracts network and broadcast except /31 and /32 semantics." lang={lang} error={!result.ok ? resultText(result, lang) : undefined}><input inputMode="numeric" value={hosts} onChange={event => setHosts(event.target.value)} /></Field>
-      <ResultCard label={messages[lang].result} displayValue={display} copyValue={result.ok ? `/${data.prefix}` : ""} lang={lang} onClear={() => setHosts("254")} />
+    <ModuleCard id="host-recommendation" icon="calculator" layout="dashboard" title={local(lang, "Host recommendation", "主机容量推荐", "主機容量建議")}>
+      <DashboardInputPanel label={ipv4Text.labels.hostInput} help={ipv4Text.help.hostInput}>
+        <div className="dashboard-input-actions">
+          <div className="dashboard-form-grid">
+            <DashboardInputField id="ipv4-hosts" label={ipv4Text.labels.hostInput} error={!result.ok ? resultText(result, lang) : undefined} hideLabel>
+              <input inputMode="numeric" value={hosts} onChange={event => setHosts(event.target.value)} />
+            </DashboardInputField>
+          </div>
+          <button type="button" className="button-secondary dashboard-reset-button" onClick={() => setHosts("254")}><Icon name="swap" size={16} />{messages[lang].reset}</button>
+        </div>
+      </DashboardInputPanel>
+      <DashboardResultPanel lang={lang}>
+        {result.ok
+          ? <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv4-host-result-title">
+            <div className="dashboard-card-head">
+              <CardTitle icon="calculator" id="ipv4-host-result-title">{local(lang, "Recommended subnet", "推荐子网", "建議子網")}</CardTitle>
+              <CopyAction value={copyValue} label={ipv4Text.labels.copyAll} lang={lang} />
+            </div>
+            <MetricList>
+              <MetricRow label={ipv4Text.labels.recommendedPrefix} value={`/${data.prefix}`} copyValue={`/${data.prefix}`} lang={lang} tone="mono" />
+              <MetricRow label={ipv4Text.labels.mask} value={String(maskDetails.mask)} copyValue={String(maskDetails.mask)} lang={lang} tone="mono" />
+              <MetricRow label={ipv4Text.labels.totalAddresses} value={big(data.total)} copyValue={big(data.total)} lang={lang} tone="mono" />
+              <MetricRow label={ipv4Text.labels.usableHosts} value={big(data.usable)} copyValue={big(data.usable)} lang={lang} tone="mono" />
+            </MetricList>
+          </section>
+          : <section className="dashboard-result-card dashboard-card-wide"><InfoNote>{errorText(lang, result.reason)}</InfoNote></section>}
+      </DashboardResultPanel>
     </ModuleCard>
   );
 }
@@ -386,20 +547,67 @@ function RangeCidrModule({ lang }: { lang: Lang }) {
   const [cidr, setCidr] = useState("192.168.1.0/24");
   const [start, setStart] = useState("192.168.1.1");
   const [end, setEnd] = useState("192.168.1.6");
+  const ipv4Text = getIpv4ToolboxText(lang);
   const result = mode === "cidr" ? cidrToIpv4Range(cidr) : ipv4RangeToCidrs(start, end);
   const data = result.ok ? result.data as ValueMap : {};
-  const display = result.ok
+  const cidrList = result.ok && mode === "range" ? data.cidrs as string[] : [];
+  const copyValue = result.ok
     ? mode === "cidr"
-      ? rows([["Start IP", data.start], ["End IP", data.end], ["Total", data.total], ["CIDR", data.cidr]])
-      : <ol className="cidr-list">{(data.cidrs as string[]).map(item => <li key={item}><code>{item}</code></li>)}</ol>
-    : errorText(lang, result.reason);
+      ? copyLines([
+        [ipv4Text.labels.cidrInput, data.cidr],
+        [ipv4Text.labels.startAddress, data.start],
+        [ipv4Text.labels.endAddress, data.end],
+        [ipv4Text.labels.totalAddresses, data.total],
+      ])
+      : copyLines([[ipv4Text.labels.cidrBlocks, cidrList.join("\n")]])
+    : "";
+  const reset = () => {
+    setCidr("192.168.1.0/24");
+    setStart("192.168.1.1");
+    setEnd("192.168.1.6");
+  };
+  const modeLabel = local(lang, "Range / CIDR mode", "范围 / CIDR 模式", "範圍 / CIDR 模式");
   return (
-    <ModuleCard id="range-cidr" title={local(lang, "Range and CIDR", "范围与 CIDR", "範圍與 CIDR")}>
-      <div className="segmented"><button type="button" aria-pressed={mode === "cidr"} className={mode === "cidr" ? "active" : ""} onClick={() => setMode("cidr")}>CIDR → range</button><button type="button" aria-pressed={mode === "range"} className={mode === "range" ? "active" : ""} onClick={() => setMode("range")}>Range → CIDR</button></div>
-      {mode === "cidr"
-        ? <Field id="range-cidr" label="CIDR" help="Example: 192.168.1.0/24" lang={lang} error={!result.ok ? resultText(result, lang) : undefined}><input value={cidr} onChange={event => setCidr(event.target.value)} /></Field>
-        : <><Field id="range-start" label="Start IP" help="First IPv4 address." lang={lang}><input value={start} onChange={event => setStart(event.target.value)} /></Field><Field id="range-end" label="End IP" help="Last IPv4 address." lang={lang} error={!result.ok ? resultText(result, lang) : undefined}><input value={end} onChange={event => setEnd(event.target.value)} /></Field></>}
-      <ResultCard label={messages[lang].result} displayValue={display} copyValue={result.ok && mode === "range" ? (data.cidrs as string[]).join("\n") : ""} lang={lang} onClear={() => { setCidr("192.168.1.0/24"); setStart("192.168.1.1"); setEnd("192.168.1.6"); }} />
+    <ModuleCard id="range-cidr" icon="ruler" layout="dashboard" title={local(lang, "Range and CIDR", "范围与 CIDR", "範圍與 CIDR")}>
+      <DashboardInputPanel label={modeLabel} showLabel={false} headerContent={<div className="segmented dashboard-mode-tabs"><button type="button" aria-pressed={mode === "cidr"} className={mode === "cidr" ? "active" : ""} onClick={() => setMode("cidr")}>CIDR → range</button><button type="button" aria-pressed={mode === "range"} className={mode === "range" ? "active" : ""} onClick={() => setMode("range")}>Range → CIDR</button></div>} help={mode === "cidr" ? ipv4Text.help.cidrInput : `${ipv4Text.help.startIp} ${ipv4Text.help.endIp}`}>
+        <div className="dashboard-input-actions dashboard-input-actions-inline">
+          <div className="dashboard-form-grid dashboard-form-grid-range-cidr">
+            {mode === "cidr"
+              ? <DashboardInputField id="range-cidr" label={ipv4Text.labels.cidrInput} error={!result.ok ? resultText(result, lang) : undefined}>
+                <input className="ipv4-cidr-input" value={cidr} onChange={event => setCidr(event.target.value)} />
+              </DashboardInputField>
+              : <>
+                <DashboardInputField id="range-start" label={ipv4Text.labels.startIp}>
+                  <input className="ipv4-address-input" value={start} onChange={event => setStart(event.target.value)} />
+                </DashboardInputField>
+                <DashboardInputField id="range-end" label={ipv4Text.labels.endIp} error={!result.ok ? resultText(result, lang) : undefined}>
+                  <input className="ipv4-address-input" value={end} onChange={event => setEnd(event.target.value)} />
+                </DashboardInputField>
+              </>}
+          </div>
+          <button type="button" className="button-secondary dashboard-reset-button" onClick={reset}><Icon name="swap" size={16} />{messages[lang].reset}</button>
+        </div>
+      </DashboardInputPanel>
+      <DashboardResultPanel lang={lang}>
+        {result.ok
+          ? <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv4-range-result-title">
+            <div className="dashboard-card-head">
+              <CardTitle icon="ruler" id="ipv4-range-result-title">{mode === "cidr" ? local(lang, "CIDR range", "CIDR 范围", "CIDR 範圍") : ipv4Text.labels.cidrBlocks}</CardTitle>
+              <CopyAction value={copyValue} label={ipv4Text.labels.copyAll} lang={lang} />
+            </div>
+            <MetricList>
+              {mode === "cidr"
+                ? <>
+                  <MetricRow label={ipv4Text.labels.cidrInput} value={String(data.cidr)} copyValue={String(data.cidr)} lang={lang} tone="mono" />
+                  <MetricRow label={ipv4Text.labels.startAddress} value={String(data.start)} copyValue={String(data.start)} lang={lang} tone="mono" />
+                  <MetricRow label={ipv4Text.labels.endAddress} value={String(data.end)} copyValue={String(data.end)} lang={lang} tone="mono" />
+                  <MetricRow label={ipv4Text.labels.totalAddresses} value={big(data.total)} copyValue={big(data.total)} lang={lang} tone="mono" />
+                </>
+                : <MetricRow label={ipv4Text.labels.cidrBlocks} value={<span className="cidr-list cidr-list-compact">{cidrList.map(item => <code key={item}>{item}</code>)}</span>} copyValue={cidrList.join("\n")} lang={lang} tone="code" />}
+            </MetricList>
+          </section>
+          : <section className="dashboard-result-card dashboard-card-wide"><InfoNote>{errorText(lang, result.reason)}</InfoNote></section>}
+      </DashboardResultPanel>
     </ModuleCard>
   );
 }
@@ -407,15 +615,53 @@ function RangeCidrModule({ lang }: { lang: Lang }) {
 function Ipv4ConverterModule({ lang }: { lang: Lang }) {
   const [source, setSource] = useState<"dotted" | "decimal" | "binary" | "hex">("dotted");
   const [input, setInput] = useState("192.168.1.1");
+  const ipv4Text = getIpv4ToolboxText(lang);
   const result = convertIpv4(input, source);
   const data = result.ok ? result.data as ValueMap : {};
   const classification = data.classification as { label?: string } | undefined;
-  const display = result.ok ? rows([["Dotted", data.dotted], ["Decimal", data.decimal], ["Binary", data.binary], ["Grouped binary", data.groupedBinary], ["Hex", data.hex], ["Type", classification?.label]]) : errorText(lang, result.reason);
+  const copyValue = result.ok ? copyLines([
+    [ipv4Text.labels.dotted, data.dotted],
+    [ipv4Text.labels.decimal, data.decimal],
+    [ipv4Text.labels.groupedBinary, data.groupedBinary],
+    [ipv4Text.labels.hex, data.hex],
+    [ipv4Text.labels.class, ipv4Text.classLabel(classification?.label)],
+  ]) : "";
+  const reset = () => {
+    setSource("dotted");
+    setInput("192.168.1.1");
+  };
   return (
-    <ModuleCard id="ipv4-converter" title={local(lang, "IPv4 conversion and classification", "IPv4 转换与分类", "IPv4 轉換與分類")}>
-      <Field id="ipv4-source" label="Input format" help="Choose the format used by the input." lang={lang}><select value={source} onChange={event => setSource(event.target.value as typeof source)}><option value="dotted">Dotted decimal</option><option value="decimal">Unsigned integer</option><option value="binary">32-bit binary</option><option value="hex">8-digit hex</option></select></Field>
-      <Field id="ipv4-convert-input" label="IPv4 value" help="Classification uses local IANA special-purpose rules reviewed on 2026-07-30." lang={lang} error={!result.ok ? resultText(result, lang) : undefined}><input value={input} onChange={event => setInput(event.target.value)} /></Field>
-      <ResultCard label={messages[lang].result} displayValue={display} copyValue="" lang={lang} onClear={() => { setSource("dotted"); setInput("192.168.1.1"); }} />
+    <ModuleCard id="ipv4-converter" icon="hash" layout="dashboard" title={local(lang, "IPv4 conversion and classification", "IPv4 转换与分类", "IPv4 轉換與分類")}>
+      <DashboardInputPanel label={ipv4Text.labels.ipv4Value} help={ipv4Text.help.ipv4Value}>
+        <div className="dashboard-input-actions dashboard-input-actions-inline">
+          <div className="dashboard-form-grid dashboard-form-grid-ipv4-converter">
+            <DashboardInputField id="ipv4-source" label={ipv4Text.labels.inputFormat}>
+              <select className="ipv4-format-select" value={source} onChange={event => setSource(event.target.value as typeof source)}><option value="dotted">{ipv4Text.labels.sourceFormatDotted}</option><option value="decimal">{ipv4Text.labels.sourceFormatDecimal}</option><option value="binary">{ipv4Text.labels.sourceFormatBinary}</option><option value="hex">{ipv4Text.labels.sourceFormatHex}</option></select>
+            </DashboardInputField>
+            <DashboardInputField id="ipv4-convert-input" label={ipv4Text.labels.ipv4Value} error={!result.ok ? resultText(result, lang) : undefined}>
+              <input className="ipv4-address-input" value={input} onChange={event => setInput(event.target.value)} />
+            </DashboardInputField>
+          </div>
+          <button type="button" className="button-secondary dashboard-reset-button" onClick={reset}><Icon name="swap" size={16} />{messages[lang].reset}</button>
+        </div>
+      </DashboardInputPanel>
+      <DashboardResultPanel lang={lang}>
+        {result.ok
+          ? <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv4-convert-result-title">
+            <div className="dashboard-card-head">
+              <CardTitle icon="hash" id="ipv4-convert-result-title">{local(lang, "Converted address", "转换结果", "轉換結果")}</CardTitle>
+              <CopyAction value={copyValue} label={ipv4Text.labels.copyAll} lang={lang} />
+            </div>
+            <MetricList>
+              <MetricRow label={ipv4Text.labels.dotted} value={String(data.dotted)} copyValue={String(data.dotted)} lang={lang} tone="mono" />
+              <MetricRow label={ipv4Text.labels.decimal} value={String(data.decimal)} copyValue={String(data.decimal)} lang={lang} tone="mono" />
+              <MetricRow label={ipv4Text.labels.groupedBinary} value={String(data.groupedBinary)} copyValue={String(data.groupedBinary)} lang={lang} tone="code" />
+              <MetricRow label={ipv4Text.labels.hex} value={String(data.hex)} copyValue={String(data.hex)} lang={lang} tone="mono" />
+              <MetricRow label={ipv4Text.labels.class} value={ipv4Text.classLabel(classification?.label)} copyValue={ipv4Text.classLabel(classification?.label)} lang={lang} />
+            </MetricList>
+          </section>
+          : <section className="dashboard-result-card dashboard-card-wide"><InfoNote>{errorText(lang, result.reason)}</InfoNote></section>}
+      </DashboardResultPanel>
     </ModuleCard>
   );
 }
@@ -424,14 +670,63 @@ function SameSubnetModule({ lang }: { lang: Lang }) {
   const [ipA, setIpA] = useState("192.168.1.10");
   const [ipB, setIpB] = useState("192.168.1.200");
   const [samePrefix, setSamePrefix] = useState("24");
+  const ipv4Text = getIpv4ToolboxText(lang);
   const result = sameIpv4Subnet(ipA, ipB, samePrefix);
-  const display = result.ok ? rows([["Same subnet", result.data.same ? local(lang, "Yes", "是", "是") : local(lang, "No", "否", "否")]]) : errorText(lang, result.reason);
+  const aSubnet = result.ok ? calculateIpv4Subnet({ ip: ipA, prefix: samePrefix }) : undefined;
+  const bSubnet = result.ok ? calculateIpv4Subnet({ ip: ipB, prefix: samePrefix }) : undefined;
+  const aData = aSubnet?.ok ? aSubnet.data as ValueMap : {};
+  const bData = bSubnet?.ok ? bSubnet.data as ValueMap : {};
+  const sameText = result.ok && result.data.same ? ipv4Text.labels.yes : ipv4Text.labels.no;
+  const copyValue = result.ok ? copyLines([
+    [ipv4Text.labels.sameSubnet, sameText],
+    [ipv4Text.labels.ipA, ipA],
+    [ipv4Text.labels.ipB, ipB],
+    [ipv4Text.labels.prefix, `/${samePrefix}`],
+    [local(lang, "Network A", "网络 A", "網絡 A"), aData.network],
+    [local(lang, "Network B", "网络 B", "網絡 B"), bData.network],
+  ]) : "";
+  const reset = () => {
+    setIpA("192.168.1.10");
+    setIpB("192.168.1.200");
+    setSamePrefix("24");
+  };
   return (
-    <ModuleCard id="same-subnet" title={local(lang, "Same subnet", "同子网判断", "同子網判斷")}>
-      <Field id="ipv4-a" label="IPv4 A" help="First IPv4 address." lang={lang}><input value={ipA} onChange={event => setIpA(event.target.value)} /></Field>
-      <Field id="ipv4-b" label="IPv4 B" help="Second IPv4 address." lang={lang}><input value={ipB} onChange={event => setIpB(event.target.value)} /></Field>
-      <Field id="ipv4-prefix" label="CIDR prefix" help="0 to 32." lang={lang} error={!result.ok ? resultText(result, lang) : undefined}><input inputMode="numeric" value={samePrefix} onChange={event => setSamePrefix(event.target.value)} /></Field>
-      <ResultCard label={messages[lang].result} displayValue={display} copyValue="" lang={lang} onClear={() => { setIpA("192.168.1.10"); setIpB("192.168.1.200"); setSamePrefix("24"); }} />
+    <ModuleCard id="same-subnet" icon="network" layout="dashboard" title={local(lang, "Same subnet", "同子网判断", "同子網判斷")}>
+      <DashboardInputPanel label={ipv4Text.labels.sameSubnet} help={ipv4Text.help.prefix}>
+        <div className="dashboard-input-actions dashboard-input-actions-inline">
+          <div className="dashboard-form-grid dashboard-form-grid-same-subnet">
+            <DashboardInputField id="ipv4-a" label={ipv4Text.labels.ipA}>
+              <input className="ipv4-address-input" value={ipA} onChange={event => setIpA(event.target.value)} />
+            </DashboardInputField>
+            <DashboardInputField id="ipv4-b" label={ipv4Text.labels.ipB}>
+              <input className="ipv4-address-input" value={ipB} onChange={event => setIpB(event.target.value)} />
+            </DashboardInputField>
+            <DashboardInputField id="ipv4-prefix" label={ipv4Text.labels.prefix} error={!result.ok ? resultText(result, lang) : undefined}>
+              <select value={samePrefix} onChange={event => setSamePrefix(event.target.value)}>
+                {Array.from({ length: 33 }, (_, prefixValue) => <option key={prefixValue} value={String(prefixValue)}>/{prefixValue}</option>)}
+              </select>
+            </DashboardInputField>
+          </div>
+          <button type="button" className="button-secondary dashboard-reset-button" onClick={reset}><Icon name="swap" size={16} />{messages[lang].reset}</button>
+        </div>
+      </DashboardInputPanel>
+      <DashboardResultPanel lang={lang}>
+        {result.ok
+          ? <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv4-same-result-title">
+            <div className="dashboard-card-head">
+              <CardTitle icon="network" id="ipv4-same-result-title">{ipv4Text.labels.sameSubnet}</CardTitle>
+              <CopyAction value={copyValue} label={ipv4Text.labels.copyAll} lang={lang} />
+            </div>
+            <MetricList>
+              <MetricRow label={ipv4Text.labels.sameSubnet} value={sameText} copyValue={sameText} lang={lang} tone={result.data.same ? "success" : "danger"} />
+              <MetricRow label={ipv4Text.labels.ipA} value={ipA} copyValue={ipA} lang={lang} tone="mono" />
+              <MetricRow label={ipv4Text.labels.ipB} value={ipB} copyValue={ipB} lang={lang} tone="mono" />
+              <MetricRow label={local(lang, "Network A", "网络 A", "網絡 A")} value={String(aData.network)} copyValue={String(aData.network)} lang={lang} tone="mono" />
+              <MetricRow label={local(lang, "Network B", "网络 B", "網絡 B")} value={String(bData.network)} copyValue={String(bData.network)} lang={lang} tone="mono" />
+            </MetricList>
+          </section>
+          : <section className="dashboard-result-card dashboard-card-wide"><InfoNote>{errorText(lang, result.reason)}</InfoNote></section>}
+      </DashboardResultPanel>
     </ModuleCard>
   );
 }
@@ -449,9 +744,11 @@ export function Ipv4NetworkToolbox({ lang }: { lang: Lang }) {
         ["same-subnet", local(lang, "Same subnet", "同子网", "同子網")],
       ]} />
       <Ipv4SubnetModule lang={lang} />
-      <div className="network-module-grid">
+      <div className="network-module-grid network-module-pair">
         <MaskConverterModule lang={lang} />
         <HostRecommendationModule lang={lang} />
+      </div>
+      <div className="network-module-stack">
         <RangeCidrModule lang={lang} />
         <Ipv4ConverterModule lang={lang} />
         <SameSubnetModule lang={lang} />
