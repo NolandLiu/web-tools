@@ -1,5 +1,7 @@
 {
   "version": 1,
-  "include": [],
+  "include": [
+    "/__disabled-functions-placeholder"
+  ],
   "exclude": []
 }
