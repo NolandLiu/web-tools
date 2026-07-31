@@ -43,6 +43,22 @@ export function parseIpv4(input) {
   return ok({ value, numeric });
 }
 
+export function parseIpv4Octets(octets) {
+  const values = Array.isArray(octets) ? octets.map(value => String(value ?? "").trim()) : [];
+  if (values.length !== 4) return fail("format");
+  if (values.some(value => !value)) return fail("empty");
+  const parsed = parseIpv4(values.join("."));
+  return parsed.ok ? ok({ ...parsed.data, ip: parsed.data.value }) : parsed;
+}
+
+export function shouldAutoAdvanceIpv4Octet({ value, inputType, index }) {
+  const text = String(value ?? "").trim();
+  if (Number(index) >= 3) return false;
+  if (inputType !== "insertText") return false;
+  if (!/^\d{3}$/.test(text)) return false;
+  return parseIpv4Octets([text, "0", "0", "0"]).ok;
+}
+
 export function ipv4ToString(numeric) {
   const value = BigInt(numeric);
   if (value < 0n || value > IPV4_MAX) throw new RangeError("IPv4 out of range");

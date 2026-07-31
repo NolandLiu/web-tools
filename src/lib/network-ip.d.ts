@@ -5,6 +5,8 @@ export const NETWORK_API_PATHS: {
 export const NETWORK_ERROR_CODES: string[];
 export const IPV4_SPECIAL_RANGES_REVIEWED_AT: string;
 export function parseIpv4(input: string): { ok: true; data: { value: string; numeric: bigint } } | { ok: false; reason: string };
+export function parseIpv4Octets(octets: string[]): { ok: true; data: { value: string; numeric: bigint } } | { ok: false; reason: string };
+export function shouldAutoAdvanceIpv4Octet(input: { value: string; inputType?: string; index: number }): boolean;
 export function ipv4ToString(numeric: bigint): string;
 export function parseIpv4Integer(input: string): { ok: true; data: { numeric: bigint } } | { ok: false; reason: string };
 export function parseIpv4Binary(input: string): { ok: true; data: { numeric: bigint; binary: string } } | { ok: false; reason: string };

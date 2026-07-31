@@ -13,10 +13,12 @@ import {
   ipv6PrefixRange,
   ipv6ToCompressed,
   ipv6ToExpanded,
+  parseIpv4Octets,
   parseIpv4,
   parseSubnetMask,
   parseIpv6,
   requiredHostsToPrefix,
+  shouldAutoAdvanceIpv4Octet,
   sameIpv4Subnet,
 } from "../src/lib/network-ip.js";
 import { onRequestPost as onIpLookupPost } from "../functions/api/network/ip-lookup.js";
@@ -28,6 +30,21 @@ test("IPv4 parser rejects ambiguous and malformed address forms", () => {
   assert.equal(parseIpv4("192.168.1").reason, "format");
   assert.equal(parseIpv4("192.168.1.256").reason, "range");
   assert.equal(parseIpv4("-1.0.0.0").reason, "format");
+});
+
+test("IPv4 octet input model validates split address fields and focus advance rules", () => {
+  assert.equal(parseIpv4Octets(["192", "168", "1", "10"]).data.ip, "192.168.1.10");
+  assert.equal(parseIpv4Octets(["192", "168", "", "10"]).reason, "empty");
+  assert.equal(parseIpv4Octets(["192", "168", "001", "10"]).reason, "ambiguous-leading-zero");
+  assert.equal(parseIpv4Octets(["192", "168", "1", "256"]).reason, "range");
+
+  assert.equal(shouldAutoAdvanceIpv4Octet({ value: "192", inputType: "insertText", index: 0 }), true);
+  assert.equal(shouldAutoAdvanceIpv4Octet({ value: "99", inputType: "insertText", index: 0 }), false);
+  assert.equal(shouldAutoAdvanceIpv4Octet({ value: "256", inputType: "insertText", index: 0 }), false);
+  assert.equal(shouldAutoAdvanceIpv4Octet({ value: "001", inputType: "insertText", index: 0 }), false);
+  assert.equal(shouldAutoAdvanceIpv4Octet({ value: "192", inputType: "insertFromPaste", index: 0 }), false);
+  assert.equal(shouldAutoAdvanceIpv4Octet({ value: "192", inputType: "deleteContentBackward", index: 0 }), false);
+  assert.equal(shouldAutoAdvanceIpv4Octet({ value: "192", inputType: "insertText", index: 3 }), false);
 });
 
 test("IPv4 subnet calculator handles boundary prefixes and RFC 3021 semantics", () => {
