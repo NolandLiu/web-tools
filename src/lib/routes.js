@@ -20,8 +20,6 @@ export const LEGACY_TOOL_REDIRECTS = {
   "ip-range-cidr-converter": { toolId: "ipv4-network", anchor: "range-cidr" },
   "ip-address-converter": { toolId: "ipv4-network", anchor: "ipv4-converter" },
   "ipv6-address-tool": { toolId: "ipv6-toolbox", anchor: "ipv6-normalize" },
-  "ip-lookup": { toolId: "ip-info", anchor: "ip-lookup" },
-  "ip-whois-rdap": { toolId: "ip-info", anchor: "ip-rdap" },
 };
 
 export function parsePath(pathname) {

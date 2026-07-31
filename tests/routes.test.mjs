@@ -34,11 +34,11 @@ test("registry contains the approved origin, languages, categories, and register
     "qr-code",
     "network-ip",
   ]);
-  assert.equal(TOOLS.length, 28);
+  assert.equal(TOOLS.length, 27);
   assert.deepEqual(TOOLS.slice(-3).map(tool => tool.id), [
+    "password",
     "ipv4-network",
     "ipv6-toolbox",
-    "ip-info",
   ]);
   assert.equal(INFO_PAGES.length, 4);
 });
@@ -99,8 +99,7 @@ test("canonical route enumeration covers every registered localized page exactly
   assert.ok(paths.includes("/zh-tw/tools/password-generator"));
   assert.ok(paths.includes("/en/tools/ipv4-network-toolbox"));
   assert.ok(paths.includes("/zh-cn/tools/ipv6-toolbox"));
-  assert.ok(paths.includes("/zh-tw/tools/ip-info-lookup"));
-  assert.ok(!paths.some(path => /ipv4-subnet-calculator|ip-range-cidr-converter|ip-address-converter|ipv6-address-tool|ip-lookup$|ip-whois-rdap/.test(path)));
+  assert.ok(!paths.some(path => /ip-info-lookup|ipv4-subnet-calculator|ip-range-cidr-converter|ip-address-converter|ipv6-address-tool|ip-lookup$|ip-whois-rdap/.test(path)));
   assert.ok(paths.includes("/en/categories/network-ip"));
   assert.ok(paths.includes("/zh-cn/categories/calculators"));
   assert.ok(paths.includes("/zh-tw/contact"));
@@ -110,14 +109,15 @@ test("canonical route enumeration covers every registered localized page exactly
 test("legacy network tool routes redirect to consolidated canonical pages and anchors", () => {
   assert.deepEqual(parsePath("/en/tools/ipv4-network-toolbox"), { kind: "tool", lang: "en", toolId: "ipv4-network" });
   assert.deepEqual(parsePath("/zh-cn/tools/ipv6-toolbox"), { kind: "tool", lang: "zh-CN", toolId: "ipv6-toolbox" });
-  assert.deepEqual(parsePath("/zh-tw/tools/ip-info-lookup"), { kind: "tool", lang: "zh-TW", toolId: "ip-info" });
+  assert.deepEqual(parsePath("/zh-tw/tools/ip-info-lookup"), { kind: "not-found", lang: "zh-TW" });
+  assert.deepEqual(parsePath("/en/tools/ip-lookup"), { kind: "not-found", lang: "en" });
+  assert.deepEqual(parsePath("/zh-cn/tools/ip-whois-rdap"), { kind: "not-found", lang: "zh-CN" });
 
   const redirects = listLegacyRedirects();
   assert.ok(redirects.some(item => item.from === "/en/tools/ipv4-subnet-calculator" && item.to === "/en/tools/ipv4-network-toolbox#subnet"));
   assert.ok(redirects.some(item => item.from === "/zh-cn/tools/ip-range-cidr-converter" && item.to === "/zh-cn/tools/ipv4-network-toolbox#range-cidr"));
   assert.ok(redirects.some(item => item.from === "/zh-tw/tools/ip-address-converter" && item.to === "/zh-tw/tools/ipv4-network-toolbox#ipv4-converter"));
   assert.ok(redirects.some(item => item.from === "/en/tools/ipv6-address-tool" && item.to === "/en/tools/ipv6-toolbox#ipv6-normalize"));
-  assert.ok(redirects.some(item => item.from === "/zh-cn/tools/ip-lookup" && item.to === "/zh-cn/tools/ip-info-lookup#ip-lookup"));
-  assert.ok(redirects.some(item => item.from === "/zh-tw/tools/ip-whois-rdap" && item.to === "/zh-tw/tools/ip-info-lookup#ip-rdap"));
+  assert.ok(!redirects.some(item => /ip-lookup|ip-whois-rdap|ip-info-lookup/.test(`${item.from} ${item.to}`)));
   assert.equal(new Set(redirects.map(item => item.from)).size, redirects.length);
 });
