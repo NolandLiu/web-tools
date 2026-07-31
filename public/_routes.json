@@ -1,8 +1,5 @@
 {
   "version": 1,
-  "include": [
-    "/api/network/ip-lookup",
-    "/api/network/ip-rdap"
-  ],
+  "include": [],
   "exclude": []
 }

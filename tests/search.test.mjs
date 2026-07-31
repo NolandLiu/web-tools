@@ -36,9 +36,10 @@ test("network search aliases resolve to consolidated main pages", () => {
   assert.equal(search.searchTools("subnet mask", "en")[0].toolId, "ipv4-network");
   assert.equal(search.searchTools("range to CIDR", "en")[0].toolId, "ipv4-network");
   assert.equal(search.searchTools("IPv6 prefix", "en")[0].toolId, "ipv6-toolbox");
-  assert.equal(search.searchTools("IP RDAP", "en")[0].toolId, "ip-info");
   assert.equal(search.searchTools("子网计算", "zh-CN")[0].path, "/zh-cn/tools/ipv4-network-toolbox");
-  assert.equal(search.searchTools("RDAP 查詢", "zh-TW")[0].path, "/zh-tw/tools/ip-info-lookup");
+  assert.deepEqual(search.searchTools("IP RDAP", "en"), []);
+  assert.deepEqual(search.searchTools("RDAP 查詢", "zh-TW"), []);
+  assert.deepEqual(search.searchTools("WHOIS", "en"), []);
 });
 
 test("keyboard selection wraps safely", () => {

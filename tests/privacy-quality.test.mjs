@@ -114,6 +114,11 @@ test("only approved network tools call same-origin network API paths", async () 
   assert.doesNotMatch(source, /localStorage|sessionStorage|indexedDB|URLSearchParams|history\.pushState|history\.replaceState/);
 });
 
+test("unpublished IP information APIs are excluded from Cloudflare Pages routes", async () => {
+  const routes = JSON.parse(await readFile(new URL("../public/_routes.json", import.meta.url), "utf8"));
+  assert.deepEqual(routes, { version: 1, include: [], exclude: [] });
+});
+
 test("privacy policy names Google Analytics and excludes tool content from analytics", async () => {
   const source = await readFile(new URL("../src/App.tsx", import.meta.url), "utf8");
   assert.match(source, /Google Analytics/);

@@ -86,10 +86,14 @@ test("network category static HTML lists only consolidated network pages", async
   const category = await readFile(join(root, "en", "categories", "network-ip.html"), "utf8");
   assert.match(category, /IPv4 network toolbox/);
   assert.match(category, /IPv6 toolbox/);
-  assert.match(category, /IP information lookup/);
+  assert.doesNotMatch(category, /IP information lookup/);
   assert.doesNotMatch(category, /IPv4 subnet calculator/);
   assert.doesNotMatch(category, /IP range and CIDR converter/);
   assert.doesNotMatch(category, /IP WHOIS \/ RDAP lookup/);
+  await assert.rejects(
+    readFile(join(root, "en", "tools", "ip-info-lookup.html"), "utf8"),
+    /ENOENT/,
+  );
 });
 
 test("visible FAQ and FAQPage JSON-LD are generated from the same content", async () => {
