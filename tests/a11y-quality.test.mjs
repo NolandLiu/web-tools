@@ -380,3 +380,44 @@ test("remaining IPv4 modules use localized dashboard labels instead of hard-code
   assert.doesNotMatch(source, /label="Start IP"/);
   assert.doesNotMatch(source, /label="End IP"/);
 });
+
+test("IPv6 toolbox uses the approved single-column dashboard layout with visual hextet details", async () => {
+  const source = await readSource("../src/tools/NetworkTools.tsx");
+  const css = await readSource("../src/styles.css");
+  const normalizeBlock = sliceBetween(source, "function Ipv6NormalizeModule", "function Ipv6PrefixModule");
+  const prefixBlock = sliceBetween(source, "function Ipv6PrefixModule", "export function Ipv6Toolbox");
+  const toolboxBlock = sliceBetween(source, "export function Ipv6Toolbox", "type NetworkApiPayload");
+
+  assert.match(source, /function getIpv6ToolboxText/);
+  assert.match(source, /function Ipv6HextetStrip/);
+  assert.match(source, /function Ipv6BitBreakdown/);
+  assert.match(toolboxBlock, /className="network-module-stack network-module-stack-ipv6"/);
+
+  for (const [name, block] of [["Ipv6NormalizeModule", normalizeBlock], ["Ipv6PrefixModule", prefixBlock]]) {
+    assert.match(block, /layout="dashboard"/, `${name} should use the shared dashboard module shell`);
+    assert.match(block, /<DashboardInputPanel/, `${name} should use the floating dashboard input panel`);
+    assert.match(block, /<DashboardResultPanel/, `${name} should use dashboard result spacing`);
+    assert.match(block, /<DashboardInputField/, `${name} should expose labelled compact inputs`);
+    assert.match(block, /dashboard-input-actions-inline/, `${name} should align Reset with the inputs`);
+    assert.match(block, /dashboard-reset-button/, `${name} should expose a Reset action`);
+    assert.match(block, /className="dashboard-card-head"/, `${name} should place Copy all in the result card header`);
+    assert.match(block, /<MetricRow/, `${name} should expose row-level copy actions`);
+    assert.doesNotMatch(block, /<Field /, `${name} should not use the old field layout`);
+    assert.doesNotMatch(block, /<ResultCard/, `${name} should not use the old result card`);
+  }
+
+  assert.match(normalizeBlock, /<Ipv6HextetStrip/);
+  assert.match(prefixBlock, /<Ipv6BitBreakdown/);
+  assert.match(prefixBlock, /Array\.from\(\{ length: 129 \}/);
+
+  assert.match(css, /\.network-module-stack-ipv6/);
+  assert.match(css, /\.dashboard-form-grid-ipv6-normalize\s*\{[^}]*grid-template-columns:\s*minmax\(260px,\s*620px\)/);
+  assert.match(css, /\.dashboard-form-grid-ipv6-prefix\s*\{[^}]*grid-template-columns:\s*minmax\(260px,\s*560px\)\s+minmax\(80px,\s*104px\)/);
+  assert.match(css, /\.ipv6-address-input/);
+  assert.match(css, /\.ipv6-prefix-input/);
+  assert.match(css, /\.ipv6-hextet-strip/);
+  assert.match(css, /\.ipv6-bit-breakdown/);
+  assert.match(css, /\.ipv6-hextet-network/);
+  assert.match(css, /\.ipv6-hextet-host/);
+  assert.match(css, /\.ipv6-prefix-boundary/);
+});

@@ -233,8 +233,12 @@ textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.55
 .dashboard-form-grid-range-cidr { flex: 0 1 auto; grid-template-columns: minmax(180px, 300px) minmax(180px, 300px); }
 .dashboard-form-grid-ipv4-converter { flex: 0 1 auto; grid-template-columns: minmax(150px, 190px) minmax(180px, 300px); }
 .dashboard-form-grid-same-subnet { flex: 0 1 auto; grid-template-columns: minmax(150px, 190px) minmax(150px, 190px) minmax(88px, 112px); }
+.dashboard-form-grid-ipv6-normalize { flex: 0 1 auto; grid-template-columns: minmax(260px, 620px); }
+.dashboard-form-grid-ipv6-prefix { flex: 0 1 auto; grid-template-columns: minmax(260px, 560px) minmax(80px, 104px); align-items: end; }
 .ipv4-format-select, .ipv4-address-input, .ipv4-cidr-input { width: 100%; }
 .ipv4-address-input, .ipv4-cidr-input { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.ipv6-address-input { width: 100%; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.ipv6-prefix-input { width: 100%; min-width: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .dashboard-input-field { min-width: 0; display: grid; gap: var(--space-2); }
 .dashboard-input-field label { color: var(--ink); font-size: var(--text-sm); font-weight: var(--weight-semibold); line-height: var(--leading-snug); }
 .dashboard-input-field .helper-note { margin: 0; }
@@ -258,6 +262,7 @@ textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.55
 .ipv4-subnet-results { display: grid; gap: var(--space-5); }
 .dashboard-result-single { display: grid; gap: var(--space-4); }
 .dashboard-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); align-items: stretch; }
+.dashboard-card-grid-ipv6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .dashboard-result-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-lg); background: #fff; box-shadow: var(--shadow-elevated); }
 .dashboard-result-card h4, .dashboard-card-head { min-height: 44px; margin: 0; padding: var(--space-3) var(--space-4); display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); border-bottom: 1px solid var(--line); font-size: var(--text-body); font-weight: var(--weight-semibold); line-height: var(--leading-tight); }
 .dashboard-result-card .dashboard-card-title { justify-content: flex-start; }
@@ -303,6 +308,19 @@ textarea { min-height: 130px; padding: 12px; resize: vertical; line-height: 1.55
 .binary-network-swatch, .binary-host-swatch { width: 14px; height: 14px; display: inline-block; border-radius: var(--radius-sm); }
 .binary-network-swatch { background: var(--accent); }
 .binary-host-swatch { background: #d19a09; }
+.network-module-stack-ipv6 { display: grid; gap: var(--space-6); }
+.ipv6-hextet-strip { padding: var(--space-4); display: flex; align-items: center; flex-wrap: nowrap; gap: 0; overflow-x: auto; font-family: var(--font-mono); font-size: var(--text-body); font-weight: var(--weight-medium); line-height: var(--leading-tight); font-variant-numeric: tabular-nums; }
+.ipv6-hextet-unit { display: inline-flex; align-items: center; white-space: nowrap; }
+.ipv6-hextet { min-width: 76px; display: inline-flex; align-items: center; justify-content: center; padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; color: var(--ink); }
+.ipv6-hextet-neutral { background: #fff; color: var(--ink); }
+.ipv6-hextet-network { background: rgba(20, 122, 104, .1); color: var(--accent-strong); border-color: rgba(20, 122, 104, .28); }
+.ipv6-hextet-host { background: rgba(227, 176, 32, .14); color: #a66d00; border-color: rgba(209, 154, 9, .32); }
+.ipv6-hextet-split { background: linear-gradient(90deg, rgba(20, 122, 104, .1), rgba(227, 176, 32, .14)); color: var(--ink); border-color: rgba(20, 122, 104, .2); }
+.ipv6-hextet-separator { width: 34px; min-height: 36px; display: inline-grid; place-items: center; position: relative; flex: 0 0 34px; }
+.ipv6-hextet-dot { width: 6px; height: 6px; display: inline-block; border-radius: 999px; background: var(--muted); }
+.ipv6-prefix-boundary { position: absolute; left: 50%; top: -6px; bottom: -6px; width: 0; border-left: 2px dashed var(--muted); transform: translateX(-50%); }
+.ipv6-bit-breakdown { padding: var(--space-1) 0 var(--space-4); overflow: hidden; }
+.ipv6-bit-breakdown .ipv6-hextet-strip { padding-bottom: var(--space-2); }
 .cidr-list-compact { display: grid; justify-content: end; gap: 4px; }
 .cidr-list-compact code { font-family: var(--font-mono); font-size: inherit; color: inherit; background: transparent; padding: 0; }
 .dashboard-info-note { margin: 0; padding: var(--space-4); display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: var(--space-3); align-items: start; border: 1px solid var(--info-line); border-radius: var(--radius-lg); background: var(--info-surface); color: var(--info-ink); font-size: var(--text-sm); line-height: var(--leading-normal); }

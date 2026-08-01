@@ -27,10 +27,6 @@ const local = (lang: Lang, en: string, zhCN: string, zhTW: string) => lang === "
 const big = (value: unknown) => typeof value === "bigint" ? value.toString() : String(value ?? "—");
 type ValueMap = Record<string, unknown>;
 
-function rows(values: Array<[string, unknown]>) {
-  return <dl className="result-list">{values.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{big(value)}</dd></div>)}</dl>;
-}
-
 function errorText(lang: Lang, reason?: string) {
   const base = messages[lang].invalid;
   return reason ? `${base} (${reason})` : base;
@@ -757,17 +753,146 @@ export function Ipv4NetworkToolbox({ lang }: { lang: Lang }) {
   );
 }
 
+function getIpv6ToolboxText(lang: Lang) {
+  const labels = {
+    address: local(lang, "IPv6 address", "IPv6 地址", "IPv6 位址"),
+    prefix: local(lang, "Prefix length", "前缀长度", "前綴長度"),
+    copyAll: local(lang, "Copy all", "复制全部", "複製全部"),
+    copyItem: (label: string) => local(lang, `Copy ${label}`, `复制${label}`, `複製${label}`),
+    normalizedAddress: local(lang, "Normalized address", "规范化地址", "規範化位址"),
+    rfc5952: local(lang, "RFC 5952", "RFC 5952", "RFC 5952"),
+    expanded: local(lang, "Expanded", "展开形式", "展開形式"),
+    type: local(lang, "Type", "类型", "類型"),
+    hextets: local(lang, "Hextets", "十六位分组", "十六位分組"),
+    prefixSummary: local(lang, "Prefix summary", "前缀摘要", "前綴摘要"),
+    prefixCidr: local(lang, "Prefix / CIDR", "前缀 / CIDR", "前綴 / CIDR"),
+    addressCount: local(lang, "Address count", "地址数量", "位址數量"),
+    addressRange: local(lang, "Address range", "地址范围", "位址範圍"),
+    startAddress: local(lang, "Start address", "起始地址", "起始位址"),
+    endAddress: local(lang, "End address", "结束地址", "結束位址"),
+    bitBreakdown: local(lang, "Bit breakdown", "位拆解", "位元拆解"),
+    networkBits: (count: number) => local(lang, `Network bits (${count})`, `网络位（${count}）`, `網絡位（${count}）`),
+    hostBits: (count: number) => local(lang, `Host bits (${count})`, `主机位（${count}）`, `主機位（${count}）`),
+  };
+  const classLabels: Record<string, string> = {
+    Invalid: local(lang, "Invalid", "无效地址", "無效位址"),
+    Unspecified: local(lang, "Unspecified", "未指定地址", "未指定位址"),
+    Loopback: local(lang, "Loopback", "环回地址", "迴路位址"),
+    "IPv4-mapped IPv6": local(lang, "IPv4-mapped IPv6", "IPv4 映射 IPv6", "IPv4 映射 IPv6"),
+    "Unique local": local(lang, "Unique local", "唯一本地地址", "唯一本機位址"),
+    "Link-local": local(lang, "Link-local", "链路本地地址", "鏈路本機位址"),
+    Multicast: local(lang, "Multicast", "组播地址", "群播位址"),
+    Documentation: local(lang, "Documentation", "文档示例地址", "文件範例位址"),
+    "Global Unicast": local(lang, "Global Unicast", "全球单播地址", "全球單播位址"),
+    "Reserved or special": local(lang, "Reserved or special", "保留或特殊地址", "保留或特殊位址"),
+  };
+  return {
+    labels,
+    help: {
+      normalize: local(lang, "Zone IDs such as %en0 are not supported. No DNS or network lookup runs here.", "不支持 %en0 这类 zone ID；本模块不会执行 DNS 或网络查询。", "不支援 %en0 這類 zone ID；本模組不會執行 DNS 或網絡查詢。"),
+      prefix: local(lang, "The prefix range is calculated locally with 128-bit integer arithmetic.", "前缀范围使用本地 128 位整数计算。", "前綴範圍使用本機 128 位元整數計算。"),
+    },
+    classLabel: (label: unknown) => classLabels[String(label)] ?? String(label ?? "—"),
+  };
+}
+
+function ipv6CopyRows(rowsToCopy: Array<[string, unknown]>) {
+  return copyLines(rowsToCopy);
+}
+
+function Ipv6HextetStrip({ words, prefix, lang }: { words: string[]; prefix?: number; lang: Lang }) {
+  const labels = getIpv6ToolboxText(lang).labels;
+  const copyValue = words.join(":");
+  return (
+    <div className="ipv6-hextet-strip" aria-label={`${labels.hextets}: ${copyValue}`}>
+      {words.map((word, index) => {
+        const start = index * 16;
+        const end = start + 16;
+        const tone = prefix === undefined
+          ? "neutral"
+          : prefix >= end
+            ? "network"
+            : prefix <= start
+              ? "host"
+              : "split";
+        const boundaryHere = prefix !== undefined && prefix === end && index < words.length - 1;
+        return (
+          <span className="ipv6-hextet-unit" key={`${word}-${index}`}>
+            <span className={`ipv6-hextet ipv6-hextet-${tone}`}>{word}</span>
+            {index < words.length - 1 && <span className="ipv6-hextet-separator" aria-hidden="true">
+              {boundaryHere && <span className="ipv6-prefix-boundary" aria-hidden="true" />}
+              <span className="ipv6-hextet-dot" />
+            </span>}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+function Ipv6BitBreakdown({ words, prefix, lang }: { words: string[]; prefix: number; lang: Lang }) {
+  const labels = getIpv6ToolboxText(lang).labels;
+  return (
+    <div className="ipv6-bit-breakdown">
+      <Ipv6HextetStrip words={words} prefix={prefix} lang={lang} />
+      <div className="binary-legend">
+        <span><i className="binary-network-swatch" />{labels.networkBits(prefix)}</span>
+        <span><i className="binary-host-swatch" />{labels.hostBits(128 - prefix)}</span>
+      </div>
+    </div>
+  );
+}
+
 function Ipv6NormalizeModule({ lang }: { lang: Lang }) {
   const [input, setInput] = useState("2001:db8::1");
   const expanded = ipv6ToExpanded(input);
   const compressed = ipv6ToCompressed(input);
   const classification = classifyIpv6(input);
+  const ipv6Text = getIpv6ToolboxText(lang);
   const valid = expanded.ok && compressed.ok;
-  const display = valid ? rows([["Expanded", expanded.data.expanded], ["RFC 5952", compressed.data.compressed], ["Type", classification.label]]) : errorText(lang, !expanded.ok ? expanded.reason : "invalid");
+  const copyValue = valid ? ipv6CopyRows([
+    [ipv6Text.labels.rfc5952, compressed.data.compressed],
+    [ipv6Text.labels.expanded, expanded.data.expanded],
+    [ipv6Text.labels.type, ipv6Text.classLabel(classification.label)],
+    [ipv6Text.labels.hextets, expanded.data.words.join(" · ")],
+  ]) : "";
+  const reset = () => setInput("2001:db8::1");
   return (
-    <ModuleCard id="ipv6-normalize" title={local(lang, "IPv6 formatting and detection", "IPv6 格式化与识别", "IPv6 格式化與識別")}>
-      <Field id="ipv6-input" label="IPv6 address" help="Zone IDs such as %en0 are not supported." lang={lang} error={!valid ? errorText(lang) : undefined}><input value={input} onChange={event => setInput(event.target.value)} /></Field>
-      <ResultCard label={messages[lang].result} displayValue={display} copyValue="" lang={lang} code onClear={() => setInput("2001:db8::1")} />
+    <ModuleCard id="ipv6-normalize" icon="binary" layout="dashboard" title={local(lang, "IPv6 formatting and detection", "IPv6 格式化与识别", "IPv6 格式化與識別")}>
+      <DashboardInputPanel label={ipv6Text.labels.address} help={ipv6Text.help.normalize}>
+        <div className="dashboard-input-actions dashboard-input-actions-inline">
+          <div className="dashboard-form-grid dashboard-form-grid-ipv6-normalize">
+            <DashboardInputField id="ipv6-input" label={ipv6Text.labels.address} error={!valid ? errorText(lang, !expanded.ok ? expanded.reason : "invalid") : undefined} hideLabel>
+              <input className="ipv6-address-input" value={input} onChange={event => setInput(event.target.value)} />
+            </DashboardInputField>
+          </div>
+          <button type="button" className="button-secondary dashboard-reset-button" onClick={reset}><Icon name="swap" size={16} />{messages[lang].reset}</button>
+        </div>
+      </DashboardInputPanel>
+      <DashboardResultPanel lang={lang}>
+        {valid
+          ? <>
+            <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv6-normalize-result-title">
+              <div className="dashboard-card-head">
+                <CardTitle icon="check" id="ipv6-normalize-result-title">{ipv6Text.labels.normalizedAddress}</CardTitle>
+                <CopyAction value={copyValue} label={ipv6Text.labels.copyAll} lang={lang} />
+              </div>
+              <MetricList>
+                <MetricRow label={ipv6Text.labels.rfc5952} value={compressed.data.compressed} copyValue={compressed.data.compressed} lang={lang} tone="mono" />
+                <MetricRow label={ipv6Text.labels.expanded} value={expanded.data.expanded} copyValue={expanded.data.expanded} lang={lang} tone="code" />
+                <MetricRow label={ipv6Text.labels.type} value={ipv6Text.classLabel(classification.label)} copyValue={ipv6Text.classLabel(classification.label)} lang={lang} />
+              </MetricList>
+            </section>
+            <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv6-hextets-title">
+              <div className="dashboard-card-head">
+                <CardTitle icon="binary" id="ipv6-hextets-title">{ipv6Text.labels.hextets}</CardTitle>
+                <CopyAction value={expanded.data.words.join(":")} label={ipv6Text.labels.copyItem(ipv6Text.labels.hextets)} lang={lang} iconOnly />
+              </div>
+              <Ipv6HextetStrip words={expanded.data.words} lang={lang} />
+            </section>
+          </>
+          : <section className="dashboard-result-card dashboard-card-wide"><InfoNote>{errorText(lang, !expanded.ok ? expanded.reason : "invalid")}</InfoNote></section>}
+      </DashboardResultPanel>
     </ModuleCard>
   );
 }
@@ -776,12 +901,75 @@ function Ipv6PrefixModule({ lang }: { lang: Lang }) {
   const [input, setInput] = useState("2001:db8::1");
   const [prefix, setPrefix] = useState("64");
   const range = ipv6PrefixRange(input, prefix);
-  const display = range.ok ? rows([["Prefix start", range.data.start], ["Prefix end", range.data.end], ["Address count", range.data.total]]) : errorText(lang, range.reason);
+  const ipv6Text = getIpv6ToolboxText(lang);
+  const parsedPrefix = range.ok ? range.data.prefix : Number(prefix);
+  const startExpanded = range.ok ? ipv6ToExpanded(range.data.start) : undefined;
+  const prefixCidr = range.ok ? `${range.data.start}/${range.data.prefix}` : "";
+  const prefixError = range.ok ? errorText(lang, startExpanded?.ok ? undefined : "invalid") : errorText(lang, range.reason);
+  const copyValue = range.ok ? ipv6CopyRows([
+    [ipv6Text.labels.prefixCidr, prefixCidr],
+    [ipv6Text.labels.prefix, `/${range.data.prefix}`],
+    [ipv6Text.labels.addressCount, range.data.total],
+    [ipv6Text.labels.startAddress, range.data.start],
+    [ipv6Text.labels.endAddress, range.data.end],
+  ]) : "";
+  const reset = () => {
+    setInput("2001:db8::1");
+    setPrefix("64");
+  };
   return (
-    <ModuleCard id="ipv6-prefix" title={local(lang, "IPv6 prefix range", "IPv6 前缀范围", "IPv6 前綴範圍")}>
-      <Field id="ipv6-prefix-input" label="IPv6 address" help="The prefix range is calculated with 128-bit integer arithmetic." lang={lang}><input value={input} onChange={event => setInput(event.target.value)} /></Field>
-      <Field id="ipv6-prefix-length" label="Prefix length" help="0 to 128." lang={lang} error={!range.ok ? resultText(range, lang) : undefined}><input inputMode="numeric" value={prefix} onChange={event => setPrefix(event.target.value)} /></Field>
-      <ResultCard label={messages[lang].result} displayValue={display} copyValue="" lang={lang} code onClear={() => { setInput("2001:db8::1"); setPrefix("64"); }} />
+    <ModuleCard id="ipv6-prefix" icon="network" layout="dashboard" title={local(lang, "IPv6 prefix range", "IPv6 前缀范围", "IPv6 前綴範圍")}>
+      <DashboardInputPanel label={local(lang, "IPv6 address / Prefix", "IPv6 地址 / 前缀", "IPv6 位址 / 前綴")} help={ipv6Text.help.prefix}>
+        <div className="dashboard-input-actions dashboard-input-actions-inline">
+          <div className="dashboard-form-grid dashboard-form-grid-ipv6-prefix">
+            <DashboardInputField id="ipv6-prefix-input" label={ipv6Text.labels.address} hideLabel>
+              <input className="ipv6-address-input" value={input} onChange={event => setInput(event.target.value)} />
+            </DashboardInputField>
+            <DashboardInputField id="ipv6-prefix-length" label={ipv6Text.labels.prefix} error={!range.ok ? resultText(range, lang) : undefined} hideLabel>
+              <select className="ipv6-prefix-input" value={prefix} onChange={event => setPrefix(event.target.value)}>
+                {Array.from({ length: 129 }, (_, prefixValue) => <option key={prefixValue} value={String(prefixValue)}>/{prefixValue}</option>)}
+              </select>
+            </DashboardInputField>
+          </div>
+          <button type="button" className="button-secondary dashboard-reset-button" onClick={reset}><Icon name="swap" size={16} />{messages[lang].reset}</button>
+        </div>
+      </DashboardInputPanel>
+      <DashboardResultPanel lang={lang}>
+        {range.ok && startExpanded?.ok
+          ? <>
+            <div className="dashboard-card-grid dashboard-card-grid-ipv6">
+              <section className="dashboard-result-card" aria-labelledby="ipv6-prefix-summary-title">
+                <div className="dashboard-card-head">
+                  <CardTitle icon="network" id="ipv6-prefix-summary-title">{ipv6Text.labels.prefixSummary}</CardTitle>
+                  <CopyAction value={copyValue} label={ipv6Text.labels.copyAll} lang={lang} iconOnly />
+                </div>
+                <MetricList>
+                  <MetricRow label={ipv6Text.labels.prefixCidr} value={prefixCidr} copyValue={prefixCidr} lang={lang} tone="mono" />
+                  <MetricRow label={ipv6Text.labels.prefix} value={`/${range.data.prefix}`} copyValue={`/${range.data.prefix}`} lang={lang} tone="mono" />
+                  <MetricRow label={ipv6Text.labels.addressCount} value={big(range.data.total)} copyValue={big(range.data.total)} lang={lang} tone="mono" />
+                </MetricList>
+              </section>
+              <section className="dashboard-result-card" aria-labelledby="ipv6-address-range-title">
+                <div className="dashboard-card-head">
+                  <CardTitle icon="ruler" id="ipv6-address-range-title">{ipv6Text.labels.addressRange}</CardTitle>
+                  <CopyAction value={ipv6CopyRows([[ipv6Text.labels.startAddress, range.data.start], [ipv6Text.labels.endAddress, range.data.end]])} label={ipv6Text.labels.copyAll} lang={lang} iconOnly />
+                </div>
+                <MetricList>
+                  <MetricRow label={ipv6Text.labels.startAddress} value={range.data.start} copyValue={range.data.start} lang={lang} tone="mono" />
+                  <MetricRow label={ipv6Text.labels.endAddress} value={range.data.end} copyValue={range.data.end} lang={lang} tone="mono" />
+                </MetricList>
+              </section>
+            </div>
+            <section className="dashboard-result-card dashboard-card-wide" aria-labelledby="ipv6-bit-breakdown-title">
+              <div className="dashboard-card-head">
+                <CardTitle icon="binary" id="ipv6-bit-breakdown-title">{ipv6Text.labels.bitBreakdown}</CardTitle>
+                <CopyAction value={startExpanded.data.words.join(":")} label={ipv6Text.labels.copyItem(ipv6Text.labels.bitBreakdown)} lang={lang} iconOnly />
+              </div>
+              <Ipv6BitBreakdown words={startExpanded.data.words} prefix={parsedPrefix} lang={lang} />
+            </section>
+          </>
+          : <section className="dashboard-result-card dashboard-card-wide"><InfoNote>{prefixError}</InfoNote></section>}
+      </DashboardResultPanel>
     </ModuleCard>
   );
 }
@@ -794,7 +982,7 @@ export function Ipv6Toolbox({ lang }: { lang: Lang }) {
         ["ipv6-normalize", local(lang, "Formatting", "格式化", "格式化")],
         ["ipv6-prefix", local(lang, "Prefix", "前缀", "前綴")],
       ]} />
-      <div className="network-module-grid two">
+      <div className="network-module-stack network-module-stack-ipv6">
         <Ipv6NormalizeModule lang={lang} />
         <Ipv6PrefixModule lang={lang} />
       </div>
