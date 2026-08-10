@@ -13,6 +13,17 @@ export type {
   Resource,
   ResourceLocale,
 } from "./resource.js";
+export {
+  categorySchema,
+  categorySetSchema,
+  collectionSchema,
+  tagSchema,
+} from "./taxonomy.js";
+export type {
+  Category,
+  Collection,
+  Tag,
+} from "./taxonomy.js";
 import { CATALOG_SCHEMA_VERSION } from "./version.js";
 
 export const smokeSchema = z.object({

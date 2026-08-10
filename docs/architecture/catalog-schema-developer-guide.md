@@ -80,3 +80,28 @@ Type-specific fields are intentionally narrow:
 
 Unsafe executable URL schemes such as `javascript:` are rejected at the schema
 boundary.
+
+## Taxonomy And Collection Reference
+
+`CAT-P1-003` adds distinct schemas for browse taxonomy, reusable tags, and
+editorial collections:
+
+| Export | Purpose |
+| --- | --- |
+| `categorySchema` | Primary browse hierarchy records using `cat_` IDs |
+| `categorySetSchema` | Category graph validation for duplicate IDs, unknown parents, cycles, and maximum depth |
+| `tagSchema` | Reusable facet records using `tag_` IDs |
+| `collectionSchema` | Editorial collection records using `col_` IDs |
+
+Category hierarchy depth is limited to three levels in v1. This is enough for
+the current product and keeps navigation predictable.
+
+Collection v1 supports:
+
+- `manual` collections with explicit `resourceIds`;
+- `automatic` collections with typed rules;
+- `hybrid` collections with both explicit `resourceIds` and typed rules.
+
+The automatic rule grammar is deliberately small and data-only. It supports
+`equals` rules over `tagId`, `categoryId`, and `resourceType`; it cannot execute
+arbitrary code.
