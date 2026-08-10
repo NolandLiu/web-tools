@@ -188,7 +188,7 @@ flowchart LR
 ## F. Recommended Execution Order — Next 10 Tasks
 
 1. `ARCH-P0-001` — Freeze the repository architecture baseline. **Completed: baseline frozen at `main@21c3eb8`.**
-2. `ARCH-P0-002` — Produce the complete existing-resource and tool migration inventory.
+2. `ARCH-P0-002` — Produce the complete existing-resource and tool migration inventory. **Completed: inventory generated with 42 logical records, 111 canonical routes, 12 localized redirects, and retained information-page target warnings for later schema work.**
 3. `ARCH-P0-003` — Decide Catalog repository/package topology. **Completed: ADR-021 accepted.**
 4. `ARCH-P0-004` — Freeze IDs, slugs, locale, and task naming conventions. **Completed: ADR-022 accepted.**
 5. `ARCH-P0-005` — Define domain entities and publication lifecycle semantics. **Completed: ADR-023 accepted.**

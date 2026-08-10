@@ -2,7 +2,7 @@
 
 ## Status and authority
 
-- Status: Approved design; implementation not started
+- Status: Implemented and verified
 - Date: 2026-08-11
 - Program task: `ARCH-P0-002`
 - Depends on: `ARCH-P0-001`, ADR-022, ADR-023, and ADR-025
@@ -11,6 +11,37 @@
 This document defines how the current GoDeskHub Tools repository will be
 inventoried before Catalog migration. It does not create Catalog entities,
 change runtime behavior, or move current metadata or content.
+
+## Implementation evidence
+
+The approved inventory has been implemented as a deterministic, read-only
+generator and checked into the repository as generated evidence:
+
+- Generator: `scripts/generate-migration-inventory.mjs`
+- Machine-readable evidence:
+  `docs/architecture/repository-migration-inventory.json`
+- Human review evidence:
+  `docs/architecture/repository-migration-inventory.md`
+- Private implementation task: `TASK-097`
+
+Current generated summary:
+
+| Inventory class | Count |
+| --- | ---: |
+| Logical records | 42 |
+| Published records | 37 |
+| Compatibility redirect records | 4 |
+| Retained unpublished records | 1 |
+| Canonical localized routes | 111 |
+| Localized redirect routes | 12 |
+
+The generator reports five review findings:
+
+- `CONTENT_OWNERSHIP_DISTRIBUTED`
+- `INFO_PAGE_CONTENT_OWNERSHIP_SPLIT`
+- `INFO_PAGE_TARGET_UNRESOLVED`
+- `IP_INFO_RETAINED_UNPUBLISHED`
+- `TARGET_IDS_NOT_ALLOCATED`
 
 ## Objective
 

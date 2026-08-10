@@ -55,7 +55,7 @@ Resolved: source code and deterministic output at the accepted `main` commit are
 ### Phase
 Phase 0 — Architecture Baseline
 ### Status
-Planned
+Completed — Migration Inventory Generated
 ### Priority
 P0
 ### Goal
@@ -79,18 +79,38 @@ rather than a public Resource. Treat Home as a site projection, categories as
 category projections, and About, Privacy, Terms, and Contact as unresolved
 public information pages rather than forcing them into the Guide model. See
 `docs/architecture/repository-migration-inventory-design.md`.
+
+Implementation evidence:
+
+- Generator: `scripts/generate-migration-inventory.mjs`.
+- JSON artifact:
+  `docs/architecture/repository-migration-inventory.json`.
+- Markdown review artifact:
+  `docs/architecture/repository-migration-inventory.md`.
+- Current generated summary: 42 logical records, 37 published records,
+  4 compatibility redirect records, 1 retained unpublished record,
+  111 canonical localized routes, and 12 localized redirect routes.
+- Review findings recorded by the generator:
+  `CONTENT_OWNERSHIP_DISTRIBUTED`,
+  `INFO_PAGE_CONTENT_OWNERSHIP_SPLIT`,
+  `INFO_PAGE_TARGET_UNRESOLVED`,
+  `IP_INFO_RETAINED_UNPUBLISHED`, and
+  `TARGET_IDS_NOT_ALLOCATED`.
 ### Acceptance Criteria
-- Every registered tool and information page appears once.
-- Routes and implementation bindings resolve.
-- Missing or duplicated ownership is reported.
+- [x] Every registered tool and information page appears once.
+- [x] Routes and implementation bindings resolve.
+- [x] Missing or duplicated ownership is reported.
 ### Tests / Validation
-Compare inventory IDs against registry, content, route, and behavior-contract IDs.
+Implemented with `tests/migration-inventory.test.mjs`. The test suite compares
+inventory IDs against registry, content, route, behavior-contract, redirect,
+and retained unpublished source identifiers, and verifies generated artifact
+freshness.
 ### Migration / Rollback Considerations
 Inventory is regenerated; no runtime rollback required.
 ### Security Considerations
 Exclude provider secrets and user inputs.
 ### Documentation Updates
-Migration inventory appendix.
+Migration inventory JSON and Markdown review artifacts.
 ### Estimated Complexity
 M
 ### Blocking Decisions
