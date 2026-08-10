@@ -19,14 +19,8 @@ test("published migration items cover every canonical page exactly once", async 
   const inventory = await inventoryModule.buildMigrationInventory();
   const published = inventory.items.filter((item) => item.observedExposure === "published-page");
   assert.equal(published.length, 37);
-  assert.deepEqual(inventory.summary, {
-    logicalItems: 37,
-    publishedItems: 37,
-    redirectItems: 0,
-    unpublishedItems: 0,
-    canonicalRoutes: 111,
-    localizedRedirects: 0,
-  });
+  assert.equal(inventory.summary.publishedItems, 37);
+  assert.equal(inventory.summary.canonicalRoutes, 111);
   assert.equal(published.filter((item) => item.currentKind === "site-projection").length, 1);
   assert.equal(published.filter((item) => item.currentKind === "tool-page").length, 27);
   assert.equal(published.filter((item) => item.currentKind === "category-projection").length, 5);
@@ -74,4 +68,50 @@ test("information pages expose split client and static ownership", async () => {
     assert.equal(item.coverage.routes, true);
     assert.equal(item.coverage.seo, true);
   }
+});
+
+test("compatibility routes remain separate from canonical resources", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  const redirects = inventory.items.filter((item) => item.observedExposure === "redirect-only");
+  assert.equal(redirects.length, 4);
+  assert.equal(redirects.flatMap((item) => item.localizedRoutes).length, 12);
+  assert.ok(redirects.every((item) => item.currentKind === "compatibility-route"));
+  assert.ok(redirects.every((item) => item.migrationTarget === "projection"));
+});
+
+test("retained IP information code is inventoried without becoming public", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  const item = inventory.items.find((entry) => entry.inventoryKey === "unpublished:ip-info");
+  assert.equal(item.observedExposure, "unpublished-source");
+  assert.deepEqual(item.localizedRoutes, []);
+  assert.deepEqual(item.ownership.functions, [
+    "functions/api/network/ip-lookup.js",
+    "functions/api/network/ip-rdap.js",
+  ]);
+  assert.equal(item.coverage.publicRegistry, false);
+  assert.equal(item.coverage.canonicalRoutes, false);
+  assert.equal(item.coverage.cloudflareInclude, false);
+});
+
+test("complete inventory reports the approved summary and warnings", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  assert.deepEqual(inventory.summary, {
+    logicalItems: 42,
+    publishedItems: 37,
+    redirectItems: 4,
+    unpublishedItems: 1,
+    canonicalRoutes: 111,
+    localizedRedirects: 12,
+  });
+  assert.ok(
+    inventory.findings.some((item) => item.code === "INFO_PAGE_TARGET_UNRESOLVED" && item.severity === "warning"),
+  );
+  assert.ok(
+    inventory.findings.some(
+      (item) => item.code === "INFO_PAGE_CONTENT_OWNERSHIP_SPLIT" && item.severity === "warning",
+    ),
+  );
+  assert.ok(
+    inventory.findings.some((item) => item.code === "IP_INFO_RETAINED_UNPUBLISHED" && item.severity === "warning"),
+  );
 });

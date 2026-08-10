@@ -2,8 +2,15 @@ import { existsSync, readFileSync } from "node:fs";
 import { CATEGORIES, INFO_PAGES, LANGUAGES, TOOLS } from "../src/registry.js";
 import { CATEGORY_CONTENT, TOOL_CONTENT } from "../src/content/index.js";
 import { validateContentRegistry } from "../src/lib/content.js";
-import { buildPath, listCanonicalRoutes, parsePath } from "../src/lib/routes.js";
+import {
+  buildPath,
+  LEGACY_TOOL_REDIRECTS,
+  listCanonicalRoutes,
+  listLegacyRedirects,
+  parsePath,
+} from "../src/lib/routes.js";
 import { getRouteMetadata } from "../src/lib/seo.js";
+import { searchTools } from "../src/lib/search.js";
 import { TOOL_CONTRACTS, validateToolContracts } from "../src/lib/tool-contracts.js";
 
 export const INVENTORY_BASELINE = Object.freeze({
@@ -68,6 +75,8 @@ function validateTargetIdCandidate(candidate, inventoryKey) {
 
 function validatePathExists(path) {
   invariant(!path.includes(".."), `unsafe ownership path: ${path}`);
+  invariant(!path.startsWith(".env"), `unsafe ownership path: ${path}`);
+  invariant(!/credential|secret|token|cache/i.test(path), `unsafe ownership path: ${path}`);
   invariant(existsSync(path), `ownership path does not exist: ${path}`);
   return path;
 }
@@ -264,6 +273,150 @@ function buildSummary(items) {
   };
 }
 
+function buildCompatibilityItems() {
+  const redirects = listLegacyRedirects();
+  return Object.entries(LEGACY_TOOL_REDIRECTS).map(([legacySlug, redirect]) => {
+    const localizedRoutesForSlug = LANGUAGES.map((language) => {
+      const from = `/${language.path}/tools/${legacySlug}`;
+      const route = redirects.find((item) => item.from === from);
+      invariant(route, `missing legacy redirect for ${legacySlug}.${language.id}`);
+      invariant(route.status === 301, `legacy redirect must be 301 for ${legacySlug}.${language.id}`);
+      const parsedTarget = parsePath(route.to.split("#")[0]);
+      invariant(
+        parsedTarget.kind === "tool" && parsedTarget.toolId === redirect.toolId,
+        `legacy redirect target mismatch for ${legacySlug}.${language.id}`,
+      );
+      invariant(route.to.endsWith(`#${redirect.anchor}`), `legacy redirect anchor mismatch for ${legacySlug}.${language.id}`);
+      return { locale: language.id, from: route.from, to: route.to, status: route.status };
+    });
+
+    return {
+      inventoryKey: `redirect:${legacySlug}`,
+      currentKind: "compatibility-route",
+      observedExposure: "redirect-only",
+      currentIdentity: { legacySlug, targetToolId: redirect.toolId, anchor: redirect.anchor, status: 301 },
+      localizedRoutes: localizedRoutesForSlug,
+      ownership: {
+        routes: validatePaths(["src/lib/routes.js"]),
+        output: validatePaths(["scripts/generate-static-pages.mjs"]),
+      },
+      coverage: { target: true, locales: true, redirectStatus: true },
+      migrationTarget: "projection",
+      targetIdCandidate: null,
+      notes: ["Compatibility URL; excluded from canonical metadata and Sitemap."],
+    };
+  });
+}
+
+function buildUnpublishedIpInfoItem() {
+  const routesConfig = JSON.parse(readFileSync("public/_routes.json", "utf8"));
+  const canonicalPaths = listCanonicalRoutes().map((route) => buildPath(route));
+  const legacyPaths = listLegacyRedirects().flatMap((route) => [route.from, route.to]);
+  const searchResults = LANGUAGES.flatMap(({ id: lang }) => searchTools("IP lookup RDAP WHOIS", lang, 50));
+
+  const coverage = {
+    publicRegistry: !TOOLS.some((tool) => tool.id === "ip-info" || tool.kind === "ip-info"),
+    canonicalRoutes: !canonicalPaths.some((path) => path.includes("ip-info")),
+    legacyRedirects: !legacyPaths.some((path) => /ip-info|ip-lookup|ip-whois-rdap/.test(path)),
+    search: !searchResults.some((result) => result.toolId === "ip-info"),
+    cloudflareInclude: !routesConfig.include.includes("/api/network/ip-lookup")
+      && !routesConfig.include.includes("/api/network/ip-rdap"),
+  };
+
+  invariant(Object.values(coverage).every((value) => value === true), "unpublished IP information leaked into public projections");
+
+  return {
+    inventoryKey: "unpublished:ip-info",
+    currentKind: "unpublished-capability",
+    observedExposure: "unpublished-source",
+    currentIdentity: { registryId: "ip-info", slug: "ip-info-lookup", public: false },
+    localizedRoutes: [],
+    ownership: {
+      component: validatePaths(["src/tools/NetworkTools.tsx"]),
+      clientContract: validatePaths(["src/lib/network-ip.js", "src/lib/network-ip.d.ts"]),
+      content: validatePaths(["src/content/network-tool-content.js"]),
+      functions: validatePaths([
+        "functions/api/network/ip-lookup.js",
+        "functions/api/network/ip-rdap.js",
+      ]),
+      tests: validatePaths([
+        "tests/network-ip.test.mjs",
+        "tests/privacy-quality.test.mjs",
+        "tests/routes.test.mjs",
+        "tests/static-content.test.mjs",
+      ]),
+    },
+    coverage: {
+      publicRegistry: false,
+      canonicalRoutes: false,
+      legacyRedirects: false,
+      search: false,
+      cloudflareInclude: false,
+      retainedSource: true,
+    },
+    migrationTarget: "unresolved",
+    targetIdCandidate: null,
+    notes: ["Implementation and tests are retained but not published."],
+  };
+}
+
+function buildFindings() {
+  return [
+    {
+      code: "CONTENT_OWNERSHIP_DISTRIBUTED",
+      severity: "warning",
+      inventoryKeys: ["tool:ipv4-network", "tool:ipv6-toolbox"],
+      sources: ["src/content/index.js", "src/content/network-tool-content.js"],
+      remediationOwner: "future Catalog content migration",
+      message: "Some tool content is distributed across specialized content modules.",
+    },
+    {
+      code: "INFO_PAGE_CONTENT_OWNERSHIP_SPLIT",
+      severity: "warning",
+      inventoryKeys: ["info:about", "info:privacy", "info:terms", "info:contact"],
+      sources: ["src/App.tsx", "src/lib/static-content.js"],
+      remediationOwner: "future public information page migration",
+      message: "Public information page body ownership is split between client and static rendering sources.",
+    },
+    {
+      code: "INFO_PAGE_TARGET_UNRESOLVED",
+      severity: "warning",
+      inventoryKeys: ["info:about", "info:privacy", "info:terms", "info:contact"],
+      sources: ["src/registry.js", "src/App.tsx", "src/lib/static-content.js"],
+      remediationOwner: "future Catalog schema decision",
+      message: "Public information pages have no approved ADR-023 v1 target entity type.",
+    },
+    {
+      code: "IP_INFO_RETAINED_UNPUBLISHED",
+      severity: "warning",
+      inventoryKeys: ["unpublished:ip-info"],
+      sources: [
+        "src/tools/NetworkTools.tsx",
+        "functions/api/network/ip-lookup.js",
+        "functions/api/network/ip-rdap.js",
+      ],
+      remediationOwner: "future network provider decision",
+      message: "IP information lookup implementation and tests remain in source while the public page and API routes stay unpublished.",
+    },
+    {
+      code: "TARGET_IDS_NOT_ALLOCATED",
+      severity: "warning",
+      inventoryKeys: ["projection:home", "tool:json", "category:units"],
+      sources: ["docs/adr/ADR-022-identifier-slug-locale-task-naming.md"],
+      remediationOwner: "future Catalog identity allocation",
+      message: "Inventory target ID candidates are suggestions and are not formal Catalog allocations.",
+    },
+  ].sort((left, right) => left.code.localeCompare(right.code));
+}
+
+function validateSerializedEvidence(inventory) {
+  const serialized = JSON.stringify(inventory);
+  invariant(
+    !/(?:api[_-]?key|access[_-]?token|client[_-]?secret|authorization|bearer|account_id|credential)/i.test(serialized),
+    "generated inventory evidence contains sensitive-looking text",
+  );
+}
+
 export function validateMigrationInventory(inventory) {
   invariant(inventory && typeof inventory === "object", "inventory must be an object");
   invariant(inventory.schemaVersion === 1, "inventory schemaVersion must be 1");
@@ -307,17 +460,29 @@ export function validateMigrationInventory(inventory) {
   validateUnique(canonicalPaths, "canonical path");
   invariant(canonicalPaths.length === listCanonicalRoutes().length, "canonical route count mismatch");
 
+  validateUnique(
+    inventory.items
+      .filter((item) => item.observedExposure === "redirect-only")
+      .flatMap((item) => item.localizedRoutes.map((route) => route.from)),
+    "legacy redirect source path",
+  );
+  validateSerializedEvidence(inventory);
+
   return inventory;
 }
 
 export async function buildMigrationInventory() {
-  const items = buildPublishedItems();
+  const items = [
+    ...buildPublishedItems(),
+    ...buildCompatibilityItems(),
+    buildUnpublishedIpInfoItem(),
+  ];
   const inventory = {
     schemaVersion: 1,
     baseline: { ...INVENTORY_BASELINE },
     summary: buildSummary(items),
     items,
-    findings: [],
+    findings: buildFindings(),
   };
 
   return validateMigrationInventory(inventory);
