@@ -45,3 +45,33 @@ test("current pages preserve approved migration classifications", async () => {
   assert.equal(privacy.migrationTarget, "unresolved");
   assert.equal(privacy.targetIdCandidate, null);
 });
+
+test("every published tool has locale, content, FAQ, SEO, contract, and implementation coverage", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  const tools = inventory.items.filter((item) => item.currentKind === "tool-page");
+  for (const item of tools) {
+    assert.deepEqual(item.coverage, {
+      locales: true,
+      content: true,
+      faq: true,
+      seo: true,
+      routes: true,
+      contract: true,
+      implementation: true,
+      category: true,
+    });
+    assert.equal(item.ownership.implementation.length, 1);
+    assert.ok(item.ownership.content.length >= 1);
+  }
+});
+
+test("information pages expose split client and static ownership", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  for (const item of inventory.items.filter((entry) => entry.currentKind === "public-info-page")) {
+    assert.deepEqual(item.ownership.clientContent, ["src/App.tsx"]);
+    assert.deepEqual(item.ownership.staticContent, ["src/lib/static-content.js"]);
+    assert.equal(item.coverage.locales, true);
+    assert.equal(item.coverage.routes, true);
+    assert.equal(item.coverage.seo, true);
+  }
+});
