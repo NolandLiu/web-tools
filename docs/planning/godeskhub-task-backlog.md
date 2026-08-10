@@ -313,7 +313,7 @@ Resolved: registry data is authoritative; snapshots must be dated; support docum
 ### Phase
 Phase 0 — Architecture Baseline
 ### Status
-Planned
+Completed — Migration And Rollback Baseline Approved
 ### Priority
 P0
 ### Goal
@@ -329,22 +329,30 @@ ARCH-P0-002, ARCH-P0-005.
 ### Likely Files / Areas
 `docs/architecture/migration-strategy.md`, `docs/adr/`, release templates.
 ### Implementation Notes
-Require route/SEO diffing and behavior regression for each batch.
+Approved baseline: each migration batch must define entry gates, exit gates,
+rollback gates, source-of-truth stage, snapshot retention, route and SEO
+comparison evidence, behavior regression, and restoration command or snapshot
+pointer. See `docs/architecture/migration-strategy.md`.
 ### Acceptance Criteria
-- Every migration batch has entry, exit, and rollback gates.
-- One authoritative source is defined at each stage.
+- [x] Every migration batch has entry, exit, and rollback gates.
+- [x] One authoritative source is defined at each stage.
+- [x] Tabletop rollback exercise is documented using a representative tool
+  Catalog fixture scenario.
 ### Tests / Validation
-Tabletop rollback exercise using a representative tool Catalog fixture.
+Implemented with `tests/architecture-docs.test.mjs`. The test verifies concrete
+migration strategy headings, required route/SEO/search/behavior/snapshot
+evidence terms, backlog status, and roadmap completion text.
 ### Migration / Rollback Considerations
 This task defines the rollback contract.
 ### Security Considerations
 Snapshots must exclude secrets and user data.
 ### Documentation Updates
-Migration strategy and release checklist.
+`docs/architecture/migration-strategy.md`, backlog status, and roadmap status.
 ### Estimated Complexity
 M
 ### Blocking Decisions
-None.
+Resolved: migration batches stay independently reversible and only one source
+authorizes publication at each stage.
 
 ---
 

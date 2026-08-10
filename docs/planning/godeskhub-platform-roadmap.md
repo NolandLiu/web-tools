@@ -194,7 +194,7 @@ flowchart LR
 5. `ARCH-P0-005` — Define domain entities and publication lifecycle semantics. **Completed: ADR-023 accepted.**
 6. `ARCH-P0-006` — Reconcile analytics and privacy policy before platform events expand. **Completed: ADR-024 accepted.**
 7. `ARCH-P0-007` — Repair current documentation and task-board status drift. **Completed: ADR-025 accepted.**
-8. `ARCH-P0-008` — Approve the migration and rollback baseline.
+8. `ARCH-P0-008` — Approve the migration and rollback baseline. **Completed: migration batch, source-of-truth, snapshot, comparison, and rollback gates are defined.**
 9. `CAT-P1-001` — Bootstrap the CMS-neutral schema package.
 10. `CAT-P1-002` — Implement Resource, ResourceLocale, and PublicationStatus schemas.
 
