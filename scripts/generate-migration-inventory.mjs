@@ -1,4 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
+import { rename, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { CATEGORIES, INFO_PAGES, LANGUAGES, TOOLS } from "../src/registry.js";
 import { CATEGORY_CONTENT, TOOL_CONTENT } from "../src/content/index.js";
 import { validateContentRegistry } from "../src/lib/content.js";
@@ -31,6 +34,7 @@ const EXPOSURES = new Set(["published-page", "redirect-only", "unpublished-sourc
 const MIGRATION_TARGETS = new Set(["resource", "category", "projection", "unresolved"]);
 const RESOURCE_ID_PATTERN = /^res_(website|tool|guide)_[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const ENTITY_ID_PATTERN = /^(cat|tag|col|faq|rel)_[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const DEFAULT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
 const KIND_IMPLEMENTATIONS = {
   unit: { symbol: "UnitTool", file: "src/tools/UnitTool.tsx" },
@@ -486,4 +490,159 @@ export async function buildMigrationInventory() {
   };
 
   return validateMigrationInventory(inventory);
+}
+
+export function renderMigrationInventoryJson(inventory) {
+  validateMigrationInventory(inventory);
+  return `${JSON.stringify(inventory, null, 2)}\n`;
+}
+
+function markdownCell(value) {
+  return String(value ?? "")
+    .replaceAll("|", "\\|")
+    .replaceAll("\n", "<br>");
+}
+
+function markdownList(values) {
+  if (!Array.isArray(values) || values.length === 0) return "";
+  return values.map(markdownCell).join("<br>");
+}
+
+function renderTable(headers, rows) {
+  return [
+    `| ${headers.map(markdownCell).join(" | ")} |`,
+    `| ${headers.map(() => "---").join(" | ")} |`,
+    ...rows.map((row) => `| ${row.map(markdownCell).join(" | ")} |`),
+  ].join("\n");
+}
+
+export function renderMigrationInventoryMarkdown(inventory) {
+  validateMigrationInventory(inventory);
+
+  const tools = inventory.items.filter((item) => item.currentKind === "tool-page");
+  const publicPages = inventory.items.filter((item) => item.currentKind !== "tool-page"
+    && item.observedExposure === "published-page");
+  const redirects = inventory.items.filter((item) => item.observedExposure === "redirect-only");
+  const unpublished = inventory.items.filter((item) => item.observedExposure === "unpublished-source");
+
+  const lines = [
+    "# Repository Migration Inventory",
+    "",
+    "## Baseline",
+    "",
+    `- Source commit: \`${inventory.baseline.sourceCommit}\``,
+    `- Evidence date: \`${inventory.baseline.evidenceDate}\``,
+    `- Summary: ${inventory.summary.logicalItems} logical records, ${inventory.summary.canonicalRoutes} canonical routes, ${inventory.summary.localizedRedirects} localized redirects.`,
+    "",
+    "## Summary",
+    "",
+    renderTable(
+      ["Logical records", "Published", "Redirect-only", "Unpublished", "Canonical routes", "Localized redirects"],
+      [[
+        inventory.summary.logicalItems,
+        inventory.summary.publishedItems,
+        inventory.summary.redirectItems,
+        inventory.summary.unpublishedItems,
+        inventory.summary.canonicalRoutes,
+        inventory.summary.localizedRedirects,
+      ]],
+    ),
+    "",
+    "## Published Tools",
+    "",
+    renderTable(
+      ["Inventory key", "Registry ID", "Slug", "Kind", "Category", "Target candidate", "Routes"],
+      tools.map((item) => [
+        item.inventoryKey,
+        item.currentIdentity.registryId,
+        item.currentIdentity.slug,
+        item.currentIdentity.kind,
+        item.currentIdentity.categoryId,
+        item.targetIdCandidate,
+        markdownList(item.localizedRoutes.map((route) => route.path)),
+      ]),
+    ),
+    "",
+    "## Published Projections And Information Pages",
+    "",
+    renderTable(
+      ["Inventory key", "Current kind", "Registry ID", "Migration target", "Target candidate", "Routes"],
+      publicPages.map((item) => [
+        item.inventoryKey,
+        item.currentKind,
+        item.currentIdentity.registryId,
+        item.migrationTarget,
+        item.targetIdCandidate,
+        markdownList(item.localizedRoutes.map((route) => route.path)),
+      ]),
+    ),
+    "",
+    "## Compatibility Redirects",
+    "",
+    renderTable(
+      ["Inventory key", "Legacy slug", "Target tool", "Anchor", "Routes"],
+      redirects.map((item) => [
+        item.inventoryKey,
+        item.currentIdentity.legacySlug,
+        item.currentIdentity.targetToolId,
+        item.currentIdentity.anchor,
+        markdownList(item.localizedRoutes.map((route) => `${route.from} -> ${route.to} (${route.status})`)),
+      ]),
+    ),
+    "",
+    "## Unpublished Sources",
+    "",
+    renderTable(
+      ["Inventory key", "Registry ID", "Migration target", "Functions", "Notes"],
+      unpublished.map((item) => [
+        item.inventoryKey,
+        item.currentIdentity.registryId,
+        item.migrationTarget,
+        markdownList(item.ownership.functions),
+        markdownList(item.notes),
+      ]),
+    ),
+    "",
+    "## Findings",
+    "",
+    renderTable(
+      ["Code", "Severity", "Inventory keys", "Sources", "Remediation owner", "Message"],
+      inventory.findings.map((finding) => [
+        finding.code,
+        finding.severity,
+        markdownList(finding.inventoryKeys),
+        markdownList(finding.sources),
+        finding.remediationOwner,
+        finding.message,
+      ]),
+    ),
+    "",
+  ];
+
+  return `${lines.join("\n").trimEnd()}\n`;
+}
+
+export async function writeMigrationInventory({
+  root = DEFAULT_ROOT,
+  outputDirectory,
+} = {}) {
+  const inventory = await buildMigrationInventory({ root });
+  const directory = outputDirectory ?? resolve(root, "docs/architecture");
+  const json = renderMigrationInventoryJson(inventory);
+  const markdown = renderMigrationInventoryMarkdown(inventory);
+  const jsonTemporary = resolve(directory, "repository-migration-inventory.json.tmp");
+  const markdownTemporary = resolve(directory, "repository-migration-inventory.md.tmp");
+  const jsonTarget = resolve(directory, "repository-migration-inventory.json");
+  const markdownTarget = resolve(directory, "repository-migration-inventory.md");
+
+  await writeFile(jsonTemporary, json);
+  await writeFile(markdownTemporary, markdown);
+  await rename(jsonTemporary, jsonTarget);
+  await rename(markdownTemporary, markdownTarget);
+
+  return { inventory, json, markdown };
+}
+
+if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
+  await writeMigrationInventory();
 }

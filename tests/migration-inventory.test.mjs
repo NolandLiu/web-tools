@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const inventoryModule = await import("../scripts/generate-migration-inventory.mjs").catch(() => null);
@@ -113,5 +114,31 @@ test("complete inventory reports the approved summary and warnings", async () =>
   );
   assert.ok(
     inventory.findings.some((item) => item.code === "IP_INFO_RETAINED_UNPUBLISHED" && item.severity === "warning"),
+  );
+});
+
+test("JSON and Markdown render deterministically from one model", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  const jsonA = inventoryModule.renderMigrationInventoryJson(inventory);
+  const jsonB = inventoryModule.renderMigrationInventoryJson(inventory);
+  const markdownA = inventoryModule.renderMigrationInventoryMarkdown(inventory);
+  const markdownB = inventoryModule.renderMigrationInventoryMarkdown(inventory);
+  assert.equal(jsonA, jsonB);
+  assert.equal(markdownA, markdownB);
+  assert.deepEqual(JSON.parse(jsonA), inventory);
+  assert.match(markdownA, /42 logical records/);
+  assert.match(markdownA, /111 canonical routes/);
+  assert.match(markdownA, /IP_INFO_RETAINED_UNPUBLISHED/);
+});
+
+test("committed migration inventory artifacts match the generator", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  assert.equal(
+    await readFile(new URL("../docs/architecture/repository-migration-inventory.json", import.meta.url), "utf8"),
+    inventoryModule.renderMigrationInventoryJson(inventory),
+  );
+  assert.equal(
+    await readFile(new URL("../docs/architecture/repository-migration-inventory.md", import.meta.url), "utf8"),
+    inventoryModule.renderMigrationInventoryMarkdown(inventory),
   );
 });

@@ -1,0 +1,2479 @@
+{
+  "schemaVersion": 1,
+  "baseline": {
+    "sourceCommit": "21c3eb8dab2205b5ea78ea7b53bf0fbd76bb81ee",
+    "evidenceDate": "2026-08-11"
+  },
+  "summary": {
+    "logicalItems": 42,
+    "publishedItems": 37,
+    "redirectItems": 4,
+    "unpublishedItems": 1,
+    "canonicalRoutes": 111,
+    "localizedRedirects": 12
+  },
+  "items": [
+    {
+      "inventoryKey": "projection:home",
+      "currentKind": "site-projection",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "home",
+        "slug": null
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/"
+        }
+      ],
+      "ownership": {
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "rendering": [
+          "src/App.tsx",
+          "src/lib/static-content.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "routes": true,
+        "seo": true
+      },
+      "migrationTarget": "projection",
+      "targetIdCandidate": null,
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:length",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "length",
+        "slug": "length-converter",
+        "toolBindingId": "length",
+        "kind": "unit",
+        "categoryId": "units",
+        "order": 1
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/length-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/length-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/length-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/UnitTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_length",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:weight",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "weight",
+        "slug": "weight-converter",
+        "toolBindingId": "weight",
+        "kind": "unit",
+        "categoryId": "units",
+        "order": 2
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/weight-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/weight-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/weight-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/UnitTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_weight",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:temperature",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "temperature",
+        "slug": "temperature-converter",
+        "toolBindingId": "temperature",
+        "kind": "unit",
+        "categoryId": "units",
+        "order": 3
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/temperature-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/temperature-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/temperature-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/UnitTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_temperature",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:area",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "area",
+        "slug": "area-converter",
+        "toolBindingId": "area",
+        "kind": "unit",
+        "categoryId": "units",
+        "order": 4
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/area-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/area-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/area-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/UnitTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_area",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:volume",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "volume",
+        "slug": "volume-converter",
+        "toolBindingId": "volume",
+        "kind": "unit",
+        "categoryId": "units",
+        "order": 5
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/volume-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/volume-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/volume-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/UnitTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_volume",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:speed",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "speed",
+        "slug": "speed-converter",
+        "toolBindingId": "speed",
+        "kind": "unit",
+        "categoryId": "units",
+        "order": 6
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/speed-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/speed-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/speed-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/UnitTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_speed",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:time",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "time",
+        "slug": "time-converter",
+        "toolBindingId": "time",
+        "kind": "unit",
+        "categoryId": "units",
+        "order": 7
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/time-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/time-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/time-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/UnitTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_time",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:storage",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "storage",
+        "slug": "data-storage-converter",
+        "toolBindingId": "storage",
+        "kind": "unit",
+        "categoryId": "units",
+        "order": 8
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/data-storage-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/data-storage-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/data-storage-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/UnitTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_storage",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:json",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "json",
+        "slug": "json-tools",
+        "toolBindingId": "json",
+        "kind": "json",
+        "categoryId": "developer",
+        "order": 9
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/json-tools"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/json-tools"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/json-tools"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/TextTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_json",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:base64",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "base64",
+        "slug": "base64-encoder-decoder",
+        "toolBindingId": "base64",
+        "kind": "base64",
+        "categoryId": "developer",
+        "order": 10
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/base64-encoder-decoder"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/base64-encoder-decoder"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/base64-encoder-decoder"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/TextTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_base64",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:url",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "url",
+        "slug": "url-encoder-decoder",
+        "toolBindingId": "url",
+        "kind": "url",
+        "categoryId": "developer",
+        "order": 11
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/url-encoder-decoder"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/url-encoder-decoder"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/url-encoder-decoder"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/TextTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_url",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:uuid",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "uuid",
+        "slug": "uuid-generator",
+        "toolBindingId": "uuid",
+        "kind": "uuid",
+        "categoryId": "developer",
+        "order": 12
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/uuid-generator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/uuid-generator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/uuid-generator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/TextTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_uuid",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:timestamp",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "timestamp",
+        "slug": "timestamp-converter",
+        "toolBindingId": "timestamp",
+        "kind": "timestamp",
+        "categoryId": "developer",
+        "order": 13
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/timestamp-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/timestamp-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/timestamp-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/TextTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_timestamp",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:case",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "case",
+        "slug": "text-case-converter",
+        "toolBindingId": "case",
+        "kind": "case",
+        "categoryId": "developer",
+        "order": 14
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/text-case-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/text-case-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/text-case-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/TextTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_case",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:text",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "text",
+        "slug": "word-counter",
+        "toolBindingId": "text",
+        "kind": "text",
+        "categoryId": "developer",
+        "order": 15
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/word-counter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/word-counter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/word-counter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/TextTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_text",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:color",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "color",
+        "slug": "color-converter",
+        "toolBindingId": "color",
+        "kind": "color",
+        "categoryId": "developer",
+        "order": 16
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/color-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/color-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/color-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/TextTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_color",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:percentage",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "percentage",
+        "slug": "percentage-calculator",
+        "toolBindingId": "percentage",
+        "kind": "calculator",
+        "categoryId": "calculators",
+        "order": 17
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/percentage-calculator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/percentage-calculator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/percentage-calculator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/CalculatorTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_percentage",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:discount",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "discount",
+        "slug": "discount-calculator",
+        "toolBindingId": "discount",
+        "kind": "calculator",
+        "categoryId": "calculators",
+        "order": 18
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/discount-calculator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/discount-calculator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/discount-calculator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/CalculatorTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_discount",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:bmi",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "bmi",
+        "slug": "bmi-calculator",
+        "toolBindingId": "bmi",
+        "kind": "calculator",
+        "categoryId": "calculators",
+        "order": 19
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/bmi-calculator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/bmi-calculator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/bmi-calculator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/CalculatorTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_bmi",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:compound",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "compound",
+        "slug": "compound-interest-calculator",
+        "toolBindingId": "compound",
+        "kind": "calculator",
+        "categoryId": "calculators",
+        "order": 20
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/compound-interest-calculator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/compound-interest-calculator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/compound-interest-calculator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/CalculatorTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_compound",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:datecalc",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "datecalc",
+        "slug": "date-interval-calculator",
+        "toolBindingId": "datecalc",
+        "kind": "calculator",
+        "categoryId": "calculators",
+        "order": 21
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/date-interval-calculator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/date-interval-calculator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/date-interval-calculator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/CalculatorTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_datecalc",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:qr",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "qr",
+        "slug": "qr-code-generator",
+        "toolBindingId": "qr",
+        "kind": "qr",
+        "categoryId": "qr",
+        "order": 22
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/qr-code-generator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/qr-code-generator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/qr-code-generator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/QrTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_qr",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:irr",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "irr",
+        "slug": "irr-calculator",
+        "toolBindingId": "irr",
+        "kind": "irr",
+        "categoryId": "calculators",
+        "order": 23
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/irr-calculator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/irr-calculator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/irr-calculator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/IrrTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_irr",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:cheque",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "cheque",
+        "slug": "cheque-amount-converter",
+        "toolBindingId": "cheque",
+        "kind": "cheque",
+        "categoryId": "calculators",
+        "order": 24
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/cheque-amount-converter"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/cheque-amount-converter"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/cheque-amount-converter"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/ChequeTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_cheque",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:password",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "password",
+        "slug": "password-generator",
+        "toolBindingId": "password",
+        "kind": "password",
+        "categoryId": "developer",
+        "order": 25
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/password-generator"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/password-generator"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/password-generator"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/tool-content.en.js",
+          "src/content/tool-content.zh-cn.js",
+          "src/content/tool-content.zh-tw.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/PasswordTool.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_password",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:ipv4-network",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "ipv4-network",
+        "slug": "ipv4-network-toolbox",
+        "toolBindingId": "ipv4-network",
+        "kind": "ipv4-network",
+        "categoryId": "network-ip",
+        "order": 26
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/ipv4-network-toolbox"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/ipv4-network-toolbox"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/ipv4-network-toolbox"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/network-tool-content.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/NetworkTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_ipv4-network",
+      "notes": []
+    },
+    {
+      "inventoryKey": "tool:ipv6-toolbox",
+      "currentKind": "tool-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "ipv6-toolbox",
+        "slug": "ipv6-toolbox",
+        "toolBindingId": "ipv6-toolbox",
+        "kind": "ipv6-toolbox",
+        "categoryId": "network-ip",
+        "order": 27
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/tools/ipv6-toolbox"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/tools/ipv6-toolbox"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/tools/ipv6-toolbox"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/network-tool-content.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ],
+        "contract": [
+          "src/lib/tool-contracts.js"
+        ],
+        "implementation": [
+          "src/tools/NetworkTools.tsx"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "faq": true,
+        "seo": true,
+        "routes": true,
+        "contract": true,
+        "implementation": true,
+        "category": true
+      },
+      "migrationTarget": "resource",
+      "targetIdCandidate": "res_tool_ipv6-toolbox",
+      "notes": []
+    },
+    {
+      "inventoryKey": "category:units",
+      "currentKind": "category-projection",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "units",
+        "slug": "unit-converters"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/categories/unit-converters"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/categories/unit-converters"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/categories/unit-converters"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/category-content.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "seo": true,
+        "routes": true
+      },
+      "migrationTarget": "category",
+      "targetIdCandidate": "cat_units",
+      "notes": []
+    },
+    {
+      "inventoryKey": "category:developer",
+      "currentKind": "category-projection",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "developer",
+        "slug": "developer-tools"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/categories/developer-tools"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/categories/developer-tools"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/categories/developer-tools"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/category-content.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "seo": true,
+        "routes": true
+      },
+      "migrationTarget": "category",
+      "targetIdCandidate": "cat_developer",
+      "notes": []
+    },
+    {
+      "inventoryKey": "category:calculators",
+      "currentKind": "category-projection",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "calculators",
+        "slug": "calculators"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/categories/calculators"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/categories/calculators"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/categories/calculators"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/category-content.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "seo": true,
+        "routes": true
+      },
+      "migrationTarget": "category",
+      "targetIdCandidate": "cat_calculators",
+      "notes": []
+    },
+    {
+      "inventoryKey": "category:qr",
+      "currentKind": "category-projection",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "qr",
+        "slug": "qr-code"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/categories/qr-code"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/categories/qr-code"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/categories/qr-code"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/category-content.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "seo": true,
+        "routes": true
+      },
+      "migrationTarget": "category",
+      "targetIdCandidate": "cat_qr",
+      "notes": []
+    },
+    {
+      "inventoryKey": "category:network-ip",
+      "currentKind": "category-projection",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "network-ip",
+        "slug": "network-ip"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/categories/network-ip"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/categories/network-ip"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/categories/network-ip"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "content": [
+          "src/content/category-content.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "content": true,
+        "seo": true,
+        "routes": true
+      },
+      "migrationTarget": "category",
+      "targetIdCandidate": "cat_network-ip",
+      "notes": []
+    },
+    {
+      "inventoryKey": "info:about",
+      "currentKind": "public-info-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "about",
+        "slug": "about"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/about"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/about"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/about"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "clientContent": [
+          "src/App.tsx"
+        ],
+        "staticContent": [
+          "src/lib/static-content.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "routes": true,
+        "seo": true
+      },
+      "migrationTarget": "unresolved",
+      "targetIdCandidate": null,
+      "notes": [
+        "Target entity type is not defined by ADR-023 v1."
+      ]
+    },
+    {
+      "inventoryKey": "info:privacy",
+      "currentKind": "public-info-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "privacy",
+        "slug": "privacy"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/privacy"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/privacy"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/privacy"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "clientContent": [
+          "src/App.tsx"
+        ],
+        "staticContent": [
+          "src/lib/static-content.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "routes": true,
+        "seo": true
+      },
+      "migrationTarget": "unresolved",
+      "targetIdCandidate": null,
+      "notes": [
+        "Target entity type is not defined by ADR-023 v1."
+      ]
+    },
+    {
+      "inventoryKey": "info:terms",
+      "currentKind": "public-info-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "terms",
+        "slug": "terms"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/terms"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/terms"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/terms"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "clientContent": [
+          "src/App.tsx"
+        ],
+        "staticContent": [
+          "src/lib/static-content.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "routes": true,
+        "seo": true
+      },
+      "migrationTarget": "unresolved",
+      "targetIdCandidate": null,
+      "notes": [
+        "Target entity type is not defined by ADR-023 v1."
+      ]
+    },
+    {
+      "inventoryKey": "info:contact",
+      "currentKind": "public-info-page",
+      "observedExposure": "published-page",
+      "currentIdentity": {
+        "registryId": "contact",
+        "slug": "contact"
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "path": "/en/contact"
+        },
+        {
+          "locale": "zh-CN",
+          "path": "/zh-cn/contact"
+        },
+        {
+          "locale": "zh-TW",
+          "path": "/zh-tw/contact"
+        }
+      ],
+      "ownership": {
+        "registry": [
+          "src/registry.js"
+        ],
+        "clientContent": [
+          "src/App.tsx"
+        ],
+        "staticContent": [
+          "src/lib/static-content.js"
+        ],
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "seo": [
+          "src/lib/seo.js"
+        ]
+      },
+      "coverage": {
+        "locales": true,
+        "routes": true,
+        "seo": true
+      },
+      "migrationTarget": "unresolved",
+      "targetIdCandidate": null,
+      "notes": [
+        "Target entity type is not defined by ADR-023 v1."
+      ]
+    },
+    {
+      "inventoryKey": "redirect:ipv4-subnet-calculator",
+      "currentKind": "compatibility-route",
+      "observedExposure": "redirect-only",
+      "currentIdentity": {
+        "legacySlug": "ipv4-subnet-calculator",
+        "targetToolId": "ipv4-network",
+        "anchor": "subnet",
+        "status": 301
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "from": "/en/tools/ipv4-subnet-calculator",
+          "to": "/en/tools/ipv4-network-toolbox#subnet",
+          "status": 301
+        },
+        {
+          "locale": "zh-CN",
+          "from": "/zh-cn/tools/ipv4-subnet-calculator",
+          "to": "/zh-cn/tools/ipv4-network-toolbox#subnet",
+          "status": 301
+        },
+        {
+          "locale": "zh-TW",
+          "from": "/zh-tw/tools/ipv4-subnet-calculator",
+          "to": "/zh-tw/tools/ipv4-network-toolbox#subnet",
+          "status": 301
+        }
+      ],
+      "ownership": {
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "output": [
+          "scripts/generate-static-pages.mjs"
+        ]
+      },
+      "coverage": {
+        "target": true,
+        "locales": true,
+        "redirectStatus": true
+      },
+      "migrationTarget": "projection",
+      "targetIdCandidate": null,
+      "notes": [
+        "Compatibility URL; excluded from canonical metadata and Sitemap."
+      ]
+    },
+    {
+      "inventoryKey": "redirect:ip-range-cidr-converter",
+      "currentKind": "compatibility-route",
+      "observedExposure": "redirect-only",
+      "currentIdentity": {
+        "legacySlug": "ip-range-cidr-converter",
+        "targetToolId": "ipv4-network",
+        "anchor": "range-cidr",
+        "status": 301
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "from": "/en/tools/ip-range-cidr-converter",
+          "to": "/en/tools/ipv4-network-toolbox#range-cidr",
+          "status": 301
+        },
+        {
+          "locale": "zh-CN",
+          "from": "/zh-cn/tools/ip-range-cidr-converter",
+          "to": "/zh-cn/tools/ipv4-network-toolbox#range-cidr",
+          "status": 301
+        },
+        {
+          "locale": "zh-TW",
+          "from": "/zh-tw/tools/ip-range-cidr-converter",
+          "to": "/zh-tw/tools/ipv4-network-toolbox#range-cidr",
+          "status": 301
+        }
+      ],
+      "ownership": {
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "output": [
+          "scripts/generate-static-pages.mjs"
+        ]
+      },
+      "coverage": {
+        "target": true,
+        "locales": true,
+        "redirectStatus": true
+      },
+      "migrationTarget": "projection",
+      "targetIdCandidate": null,
+      "notes": [
+        "Compatibility URL; excluded from canonical metadata and Sitemap."
+      ]
+    },
+    {
+      "inventoryKey": "redirect:ip-address-converter",
+      "currentKind": "compatibility-route",
+      "observedExposure": "redirect-only",
+      "currentIdentity": {
+        "legacySlug": "ip-address-converter",
+        "targetToolId": "ipv4-network",
+        "anchor": "ipv4-converter",
+        "status": 301
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "from": "/en/tools/ip-address-converter",
+          "to": "/en/tools/ipv4-network-toolbox#ipv4-converter",
+          "status": 301
+        },
+        {
+          "locale": "zh-CN",
+          "from": "/zh-cn/tools/ip-address-converter",
+          "to": "/zh-cn/tools/ipv4-network-toolbox#ipv4-converter",
+          "status": 301
+        },
+        {
+          "locale": "zh-TW",
+          "from": "/zh-tw/tools/ip-address-converter",
+          "to": "/zh-tw/tools/ipv4-network-toolbox#ipv4-converter",
+          "status": 301
+        }
+      ],
+      "ownership": {
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "output": [
+          "scripts/generate-static-pages.mjs"
+        ]
+      },
+      "coverage": {
+        "target": true,
+        "locales": true,
+        "redirectStatus": true
+      },
+      "migrationTarget": "projection",
+      "targetIdCandidate": null,
+      "notes": [
+        "Compatibility URL; excluded from canonical metadata and Sitemap."
+      ]
+    },
+    {
+      "inventoryKey": "redirect:ipv6-address-tool",
+      "currentKind": "compatibility-route",
+      "observedExposure": "redirect-only",
+      "currentIdentity": {
+        "legacySlug": "ipv6-address-tool",
+        "targetToolId": "ipv6-toolbox",
+        "anchor": "ipv6-normalize",
+        "status": 301
+      },
+      "localizedRoutes": [
+        {
+          "locale": "en",
+          "from": "/en/tools/ipv6-address-tool",
+          "to": "/en/tools/ipv6-toolbox#ipv6-normalize",
+          "status": 301
+        },
+        {
+          "locale": "zh-CN",
+          "from": "/zh-cn/tools/ipv6-address-tool",
+          "to": "/zh-cn/tools/ipv6-toolbox#ipv6-normalize",
+          "status": 301
+        },
+        {
+          "locale": "zh-TW",
+          "from": "/zh-tw/tools/ipv6-address-tool",
+          "to": "/zh-tw/tools/ipv6-toolbox#ipv6-normalize",
+          "status": 301
+        }
+      ],
+      "ownership": {
+        "routes": [
+          "src/lib/routes.js"
+        ],
+        "output": [
+          "scripts/generate-static-pages.mjs"
+        ]
+      },
+      "coverage": {
+        "target": true,
+        "locales": true,
+        "redirectStatus": true
+      },
+      "migrationTarget": "projection",
+      "targetIdCandidate": null,
+      "notes": [
+        "Compatibility URL; excluded from canonical metadata and Sitemap."
+      ]
+    },
+    {
+      "inventoryKey": "unpublished:ip-info",
+      "currentKind": "unpublished-capability",
+      "observedExposure": "unpublished-source",
+      "currentIdentity": {
+        "registryId": "ip-info",
+        "slug": "ip-info-lookup",
+        "public": false
+      },
+      "localizedRoutes": [],
+      "ownership": {
+        "component": [
+          "src/tools/NetworkTools.tsx"
+        ],
+        "clientContract": [
+          "src/lib/network-ip.js",
+          "src/lib/network-ip.d.ts"
+        ],
+        "content": [
+          "src/content/network-tool-content.js"
+        ],
+        "functions": [
+          "functions/api/network/ip-lookup.js",
+          "functions/api/network/ip-rdap.js"
+        ],
+        "tests": [
+          "tests/network-ip.test.mjs",
+          "tests/privacy-quality.test.mjs",
+          "tests/routes.test.mjs",
+          "tests/static-content.test.mjs"
+        ]
+      },
+      "coverage": {
+        "publicRegistry": false,
+        "canonicalRoutes": false,
+        "legacyRedirects": false,
+        "search": false,
+        "cloudflareInclude": false,
+        "retainedSource": true
+      },
+      "migrationTarget": "unresolved",
+      "targetIdCandidate": null,
+      "notes": [
+        "Implementation and tests are retained but not published."
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "code": "CONTENT_OWNERSHIP_DISTRIBUTED",
+      "severity": "warning",
+      "inventoryKeys": [
+        "tool:ipv4-network",
+        "tool:ipv6-toolbox"
+      ],
+      "sources": [
+        "src/content/index.js",
+        "src/content/network-tool-content.js"
+      ],
+      "remediationOwner": "future Catalog content migration",
+      "message": "Some tool content is distributed across specialized content modules."
+    },
+    {
+      "code": "INFO_PAGE_CONTENT_OWNERSHIP_SPLIT",
+      "severity": "warning",
+      "inventoryKeys": [
+        "info:about",
+        "info:privacy",
+        "info:terms",
+        "info:contact"
+      ],
+      "sources": [
+        "src/App.tsx",
+        "src/lib/static-content.js"
+      ],
+      "remediationOwner": "future public information page migration",
+      "message": "Public information page body ownership is split between client and static rendering sources."
+    },
+    {
+      "code": "INFO_PAGE_TARGET_UNRESOLVED",
+      "severity": "warning",
+      "inventoryKeys": [
+        "info:about",
+        "info:privacy",
+        "info:terms",
+        "info:contact"
+      ],
+      "sources": [
+        "src/registry.js",
+        "src/App.tsx",
+        "src/lib/static-content.js"
+      ],
+      "remediationOwner": "future Catalog schema decision",
+      "message": "Public information pages have no approved ADR-023 v1 target entity type."
+    },
+    {
+      "code": "IP_INFO_RETAINED_UNPUBLISHED",
+      "severity": "warning",
+      "inventoryKeys": [
+        "unpublished:ip-info"
+      ],
+      "sources": [
+        "src/tools/NetworkTools.tsx",
+        "functions/api/network/ip-lookup.js",
+        "functions/api/network/ip-rdap.js"
+      ],
+      "remediationOwner": "future network provider decision",
+      "message": "IP information lookup implementation and tests remain in source while the public page and API routes stay unpublished."
+    },
+    {
+      "code": "TARGET_IDS_NOT_ALLOCATED",
+      "severity": "warning",
+      "inventoryKeys": [
+        "projection:home",
+        "tool:json",
+        "category:units"
+      ],
+      "sources": [
+        "docs/adr/ADR-022-identifier-slug-locale-task-naming.md"
+      ],
+      "remediationOwner": "future Catalog identity allocation",
+      "message": "Inventory target ID candidates are suggestions and are not formal Catalog allocations."
+    }
+  ]
+}
