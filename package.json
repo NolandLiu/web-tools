@@ -2,6 +2,9 @@
   "name": "web-tools",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "type": "module",
   "engines": {
     "node": ">=22.13.0 <23"
@@ -14,6 +17,7 @@
     "lint": "eslint .",
     "test": "node --test tests/*.test.mjs",
     "inventory:generate": "node scripts/generate-migration-inventory.mjs",
+    "schema:build": "npm run build --workspace @godeskhub/catalog-schema",
     "verify:build": "node scripts/verify-build.mjs",
     "verify": "npm run lint && npm run test && npm run build && npm run verify:build"
   },
@@ -23,7 +27,8 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "typescript": "5.9.3",
-    "vite": "8.1.5"
+    "vite": "8.1.5",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "9.39.4",
