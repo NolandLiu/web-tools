@@ -643,6 +643,6 @@ export async function writeMigrationInventory({
   return { inventory, json, markdown };
 }
 
-if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
+if (globalThis.process.argv[1] && pathToFileURL(resolve(globalThis.process.argv[1])).href === import.meta.url) {
   await writeMigrationInventory();
 }
