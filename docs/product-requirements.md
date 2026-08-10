@@ -24,7 +24,7 @@ GoDeskHub is a privacy-first multilingual collection of browser-side utilities f
 - `npm ci`, `npm run lint`, `npm run test`, `npm run build`, `npm run verify`, and `npm audit` pass.
 - Build output is `dist` and production HTML references built `/assets/*`, not `/src/main.tsx`.
 - Private task briefs are ignored and never committed.
-- All 93 canonical localized routes exist as static HTML and generated Sitemap entries.
+- Every canonical localized route enumerated by `listCanonicalRoutes()` exists as static HTML and a generated Sitemap entry; verification must compare the build to the registry rather than a permanently hard-coded route count.
 - Unknown routes use the custom 404 instead of silently rendering the homepage.
 - Compliance pages include contact, privacy, terms, cookie, future advertising, and browser-local processing statements.
 - All visible inputs and outputs have names; contextual help is discoverable without permanently adding visual noise.

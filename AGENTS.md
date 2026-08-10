@@ -55,6 +55,14 @@ reused.
 
 - `tasks/` contains private local requirements and status history.
 - The entire directory must remain ignored, untracked, and unpushed.
+- Each `TASK-xxx` identifier has exactly one authority record in a status
+  directory such as `tasks/backlog/`, `tasks/in-progress/`, or
+  `tasks/completed/`.
+- Design notes, implementation plans, screenshots, and other supporting
+  material belong under `tasks/artifacts/TASK-xxx/`. Artifact files must not
+  declare an independent task `id` or `status`, and task scans must exclude the
+  entire `tasks/artifacts/` tree.
+- Cancelled authority records should be normalized under `tasks/cancelled/`.
 - Do not quote complete task content in commits, public PR descriptions, logs, screenshots, or GitHub comments.
 - PR descriptions should contain only the minimum public technical summary necessary to review the code.
 - Before committing, verify that `tasks/` is ignored and no task file is tracked.
