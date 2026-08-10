@@ -14,3 +14,34 @@ test("migration inventory exposes the accepted deterministic baseline", async ()
   assert.ok(Array.isArray(inventory.items));
   assert.ok(Array.isArray(inventory.findings));
 });
+
+test("published migration items cover every canonical page exactly once", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  const published = inventory.items.filter((item) => item.observedExposure === "published-page");
+  assert.equal(published.length, 37);
+  assert.deepEqual(inventory.summary, {
+    logicalItems: 37,
+    publishedItems: 37,
+    redirectItems: 0,
+    unpublishedItems: 0,
+    canonicalRoutes: 111,
+    localizedRedirects: 0,
+  });
+  assert.equal(published.filter((item) => item.currentKind === "site-projection").length, 1);
+  assert.equal(published.filter((item) => item.currentKind === "tool-page").length, 27);
+  assert.equal(published.filter((item) => item.currentKind === "category-projection").length, 5);
+  assert.equal(published.filter((item) => item.currentKind === "public-info-page").length, 4);
+  assert.equal(published.flatMap((item) => item.localizedRoutes).length, 111);
+});
+
+test("current pages preserve approved migration classifications", async () => {
+  const inventory = await inventoryModule.buildMigrationInventory();
+  const json = inventory.items.find((item) => item.inventoryKey === "tool:json");
+  assert.equal(json.currentIdentity.registryId, "json");
+  assert.equal(json.currentIdentity.slug, "json-tools");
+  assert.equal(json.currentIdentity.toolBindingId, "json");
+  assert.equal(json.targetIdCandidate, "res_tool_json");
+  const privacy = inventory.items.find((item) => item.inventoryKey === "info:privacy");
+  assert.equal(privacy.migrationTarget, "unresolved");
+  assert.equal(privacy.targetIdCandidate, null);
+});
