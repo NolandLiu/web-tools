@@ -1,6 +1,19 @@
 import { z } from "zod";
 
-export const CATALOG_SCHEMA_VERSION = "0.1.0" as const;
+export { CATALOG_SCHEMA_VERSION } from "./version.js";
+export {
+  LocaleCode,
+  PublicationStatus,
+  ResourceType,
+  resourceLocaleSchema,
+  resourceLocaleSetSchema,
+  resourceSchema,
+} from "./resource.js";
+export type {
+  Resource,
+  ResourceLocale,
+} from "./resource.js";
+import { CATALOG_SCHEMA_VERSION } from "./version.js";
 
 export const smokeSchema = z.object({
   schemaVersion: z.literal(CATALOG_SCHEMA_VERSION),

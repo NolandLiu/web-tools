@@ -58,3 +58,25 @@ npm run build --workspace @godeskhub/catalog-schema
 
 The package build emits ESM JavaScript and `.d.ts` files under
 `packages/catalog-schema/dist/`.
+
+## Core Resource Field Reference
+
+`CAT-P1-002` adds these core contracts:
+
+| Export | Purpose |
+| --- | --- |
+| `ResourceType` | Literal resource types: `website`, `tool`, and `guide` |
+| `PublicationStatus` | Lifecycle values: `draft`, `review`, `published`, `deprecated`, and `hidden` |
+| `LocaleCode` | Required public locales: `en`, `zh-CN`, and `zh-TW` |
+| `resourceSchema` | Discriminated schema for global Resource identity, slug, status, timestamps, and type-specific fields |
+| `resourceLocaleSchema` | Localized name, summary, SEO text, aliases, and keywords |
+| `resourceLocaleSetSchema` | Completeness validator requiring English, Simplified Chinese, and Traditional Chinese locale records |
+
+Type-specific fields are intentionally narrow:
+
+- `website` requires a reviewed HTTPS `destinationUrl`.
+- `tool` requires a code-owned `toolBindingId` and `primaryCategoryId`.
+- `guide` does not accept tool bindings or external destination URLs.
+
+Unsafe executable URL schemes such as `javascript:` are rejected at the schema
+boundary.
