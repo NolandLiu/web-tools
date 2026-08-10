@@ -105,3 +105,24 @@ Collection v1 supports:
 The automatic rule grammar is deliberately small and data-only. It supports
 `equals` rules over `tagId`, `categoryId`, and `resourceType`; it cannot execute
 arbitrary code.
+
+## FAQ, Relation, And Health Reference
+
+`CAT-P1-004` adds reusable support records:
+
+| Export | Purpose |
+| --- | --- |
+| `faqSchema` | Reusable FAQ identity, placements, and complete three-locale question/answer text |
+| `relationSchema` | Typed directional links between canonical Resource IDs |
+| `healthSchema` | Operational health observations separate from authored Resource content |
+| `RelationType` | `related`, `alternative`, `prerequisite`, `successor`, and `replaces` |
+| `HealthStatus` | `unknown`, `healthy`, `warning`, and `failing` |
+
+FAQ records can be placed on multiple Resources without duplicating the FAQ
+identity. Relations reject self-reference and reference canonical Resource IDs
+only. Relation records do not create redirects or execute dynamic imports.
+
+Health records are review signals only. They never publish, hide, or delete a
+Resource by themselves. Health evidence must stay concise and must not include
+secrets, authorization headers, provider tokens, passwords, raw private
+responses, or full sensitive response bodies.

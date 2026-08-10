@@ -24,6 +24,18 @@ export type {
   Collection,
   Tag,
 } from "./taxonomy.js";
+export {
+  HealthStatus,
+  RelationType,
+  faqSchema,
+  healthSchema,
+  relationSchema,
+} from "./support.js";
+export type {
+  FAQ,
+  ResourceHealth,
+  ResourceRelation,
+} from "./support.js";
 import { CATALOG_SCHEMA_VERSION } from "./version.js";
 
 export const smokeSchema = z.object({
