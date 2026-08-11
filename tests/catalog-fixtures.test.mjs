@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
+import { readdir, readFile } from "node:fs/promises";
 import { promisify } from "node:util";
 import test from "node:test";
 
@@ -15,6 +16,18 @@ async function loadSchemaModule() {
     maxBuffer: 1024 * 1024 * 4,
   });
   return import(`../packages/catalog-schema/dist/index.js?cache=${Date.now()}`);
+}
+
+async function listYamlFiles(directoryUrl) {
+  const entries = await readdir(directoryUrl, { withFileTypes: true });
+  const files = await Promise.all(entries.map(async (entry) => {
+    const childUrl = new URL(`${entry.name}${entry.isDirectory() ? "/" : ""}`, directoryUrl);
+    if (entry.isDirectory()) {
+      return listYamlFiles(childUrl);
+    }
+    return entry.isFile() && entry.name.endsWith(".yml") ? [childUrl] : [];
+  }));
+  return files.flat();
 }
 
 test("repository Catalog fixtures validate and preserve publication states", async () => {
@@ -45,24 +58,25 @@ test("repository Catalog fixtures validate and preserve publication states", asy
 });
 
 test("repository Catalog fixtures contain no obvious private or secret-like data", async () => {
-  const { stdout } = await execFileAsync("rg", [
-    "-n",
-    "API_KEY|TOKEN|SECRET|Authorization|Bearer|password\\s*[:=]|credential|8\\.8\\.8\\.8|real cashflow|真实|真實",
-    "--glob",
-    "*.yml",
-    "catalog",
-  ], {
-    cwd: workspaceRoot,
-    env: { ...process.env, FORCE_COLOR: "0" },
-    maxBuffer: 1024 * 1024 * 4,
-  }).catch((error) => {
-    if (error.code === 1) {
-      return { stdout: "" };
-    }
-    throw error;
-  });
+  const pattern = /API_KEY|TOKEN|SECRET|Authorization|Bearer|password\s*[:=]|credential|8\.8\.8\.8|real cashflow|真实|真實/u;
+  const matches = [];
 
-  assert.equal(stdout, "");
+  for (const fileUrl of await listYamlFiles(new URL("../catalog/", import.meta.url))) {
+    const content = await readFile(fileUrl, "utf8");
+    const lines = content.split(/\r?\n/u);
+    lines.forEach((line, index) => {
+      if (pattern.test(line)) {
+        matches.push(`${fileUrl.pathname}:${index + 1}:${line}`);
+      }
+    });
+  }
+
+  assert.deepEqual(matches, []);
+});
+
+test("repository Catalog fixture privacy scan does not depend on ripgrep being installed", async () => {
+  const source = await readFile(new URL("catalog-fixtures.test.mjs", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /execFileAsync\("rg"/);
 });
 
 test("catalog:validate validates the repository Catalog fixtures", async () => {
