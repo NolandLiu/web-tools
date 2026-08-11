@@ -230,3 +230,34 @@ Validation rule codes:
 Relation targets are Resource IDs only. Executable URLs, dynamic imports, and
 JavaScript module paths are rejected before graph validation by the relation
 schema.
+
+## Normalized Artifact Contract
+
+`CAT-P1-011` adds a byte-stable normalized artifact:
+
+```text
+catalog/artifacts/catalog.normalized.v1.json
+```
+
+The artifact is committed to the repository as public migration evidence and as
+the future read contract for non-YAML consumers. It is not ignored, because the
+migration strategy requires a last-stable artifact for comparison and rollback.
+
+Generate it with:
+
+```bash
+npm run catalog:build
+```
+
+The artifact contains:
+
+- `artifactVersion`: currently `catalog.normalized.v1`;
+- `catalogSchemaVersion`: the schema package version;
+- `checksum`: `sha256-...`, calculated over the normalized payload without the
+  checksum field;
+- `records`: deterministic public Catalog records from the loader.
+
+The artifact intentionally has no timestamp. Identical input must produce
+identical bytes and the same checksum. Consumers must call
+`parseCatalogArtifact()` and reject unsupported artifact or schema versions
+before using the payload.

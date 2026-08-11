@@ -66,6 +66,16 @@ export type {
   CatalogGraphValidationOptions,
   ToolBindingResolver,
 } from "./graph.js";
+export {
+  CATALOG_ARTIFACT_VERSION,
+  buildNormalizedCatalogArtifact,
+  parseCatalogArtifact,
+  serializeCatalogArtifact,
+} from "./artifact.js";
+export type {
+  NormalizedCatalogArtifact,
+  NormalizedCatalogArtifactPayload,
+} from "./artifact.js";
 import { CATALOG_SCHEMA_VERSION } from "./version.js";
 
 export const smokeSchema = z.object({

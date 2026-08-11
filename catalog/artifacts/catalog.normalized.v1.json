@@ -1,0 +1,518 @@
+{
+  "artifactVersion": "catalog.normalized.v1",
+  "catalogSchemaVersion": "0.1.0",
+  "records": {
+    "categories": [
+      {
+        "schemaVersion": "0.1.0",
+        "slug": "calculators",
+        "status": "published",
+        "id": "cat_calculators",
+        "order": 20
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "slug": "developer-tools",
+        "status": "published",
+        "id": "cat_developer",
+        "order": 30
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "slug": "network-ip",
+        "status": "published",
+        "id": "cat_network-ip",
+        "order": 10
+      }
+    ],
+    "collections": [
+      {
+        "schemaVersion": "0.1.0",
+        "slug": "representative-tools",
+        "status": "published",
+        "id": "col_representative-tools",
+        "mode": "hybrid",
+        "resourceIds": [
+          "res_tool_ipv4-network",
+          "res_tool_irr-calculator",
+          "res_tool_password-generator"
+        ],
+        "rules": [
+          {
+            "field": "categoryId",
+            "operator": "equals",
+            "value": "cat_network-ip"
+          },
+          {
+            "field": "tagId",
+            "operator": "equals",
+            "value": "tag_private"
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "schemaVersion": "0.1.0",
+        "id": "faq_fixture-local-processing",
+        "status": "published",
+        "placements": [
+          {
+            "resourceId": "res_tool_password-generator",
+            "order": 1
+          },
+          {
+            "resourceId": "res_tool_irr-calculator",
+            "order": 1
+          }
+        ],
+        "locales": [
+          {
+            "locale": "en",
+            "question": "Are fixture examples based on user data?",
+            "answer": "No. Catalog fixtures use synthetic public-content records only."
+          },
+          {
+            "locale": "zh-CN",
+            "question": "fixture 示例是否来自用户数据？",
+            "answer": "不是。Catalog fixture 只使用合成的公开内容记录。"
+          },
+          {
+            "locale": "zh-TW",
+            "question": "fixture 範例是否來自使用者資料？",
+            "answer": "不是。Catalog fixture 只使用合成的公開內容記錄。"
+          }
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "faq_fixture-publication-state",
+        "status": "published",
+        "placements": [
+          {
+            "resourceId": "res_tool_ipv4-network",
+            "order": 1
+          },
+          {
+            "resourceId": "res_tool_ip-lookup",
+            "order": 1
+          }
+        ],
+        "locales": [
+          {
+            "locale": "en",
+            "question": "Why are some network lookup fixtures hidden?",
+            "answer": "They document known capability boundaries without publishing unavailable lookup routes."
+          },
+          {
+            "locale": "zh-CN",
+            "question": "为什么部分网络查询 fixture 是隐藏状态？",
+            "answer": "它们记录已知能力边界，但不会发布不可用的查询路由。"
+          },
+          {
+            "locale": "zh-TW",
+            "question": "為什麼部分網絡查詢 fixture 是隱藏狀態？",
+            "answer": "它們記錄已知能力邊界，但不會發布不可用的查詢路由。"
+          }
+        ]
+      }
+    ],
+    "health": [
+      {
+        "schemaVersion": "0.1.0",
+        "id": "health_ip-lookup-hidden-fixture",
+        "resourceId": "res_tool_ip-lookup",
+        "checkType": "content-review",
+        "status": "warning",
+        "checkedAt": "2026-08-11T00:00:00.000Z",
+        "evidence": "Synthetic fixture records that IP lookup is hidden until provider service is restored."
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "health_ipv4-fixture",
+        "resourceId": "res_tool_ipv4-network",
+        "checkType": "content-review",
+        "status": "healthy",
+        "checkedAt": "2026-08-11T00:00:00.000Z",
+        "evidence": "Synthetic fixture confirms published IPv4 toolbox catalog coverage."
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "health_irr-fixture",
+        "resourceId": "res_tool_irr-calculator",
+        "checkType": "content-review",
+        "status": "healthy",
+        "checkedAt": "2026-08-11T00:00:00.000Z",
+        "evidence": "Synthetic fixture confirms published IRR calculator catalog coverage."
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "health_password-fixture",
+        "resourceId": "res_tool_password-generator",
+        "checkType": "content-review",
+        "status": "healthy",
+        "checkedAt": "2026-08-11T00:00:00.000Z",
+        "evidence": "Synthetic fixture confirms published local generator catalog coverage."
+      }
+    ],
+    "locales": [
+      {
+        "resourceId": "res_tool_ip-lookup",
+        "locale": "en",
+        "name": "IP information lookup",
+        "summary": "Hidden fixture documenting the temporarily isolated IP lookup capability.",
+        "seoTitle": "IP information lookup fixture",
+        "seoDescription": "Synthetic hidden Catalog fixture for the isolated IP lookup capability.",
+        "searchAliases": [
+          "IP lookup",
+          "geolocation lookup"
+        ],
+        "searchKeywords": [
+          "IP",
+          "lookup",
+          "hidden"
+        ]
+      },
+      {
+        "resourceId": "res_tool_ip-lookup",
+        "locale": "zh-CN",
+        "name": "IP 信息查询",
+        "summary": "记录临时隔离 IP 查询能力的隐藏 fixture。",
+        "seoTitle": "IP 信息查询 fixture",
+        "seoDescription": "临时隔离 IP 查询能力的合成隐藏 Catalog fixture。",
+        "searchAliases": [
+          "IP 查询",
+          "地理位置查询"
+        ],
+        "searchKeywords": [
+          "IP",
+          "查询",
+          "隐藏"
+        ]
+      },
+      {
+        "resourceId": "res_tool_ip-lookup",
+        "locale": "zh-TW",
+        "name": "IP 資訊查詢",
+        "summary": "記錄暫時隔離 IP 查詢能力的隱藏 fixture。",
+        "seoTitle": "IP 資訊查詢 fixture",
+        "seoDescription": "暫時隔離 IP 查詢能力的合成隱藏 Catalog fixture。",
+        "searchAliases": [
+          "IP 查詢",
+          "地理位置查詢"
+        ],
+        "searchKeywords": [
+          "IP",
+          "查詢",
+          "隱藏"
+        ]
+      },
+      {
+        "resourceId": "res_tool_ip-whois-rdap",
+        "locale": "en",
+        "name": "IP WHOIS and RDAP lookup",
+        "summary": "Hidden fixture documenting the temporarily isolated RDAP lookup capability.",
+        "seoTitle": "IP WHOIS and RDAP lookup fixture",
+        "seoDescription": "Synthetic hidden Catalog fixture for the isolated RDAP lookup capability.",
+        "searchAliases": [
+          "WHOIS",
+          "RDAP"
+        ],
+        "searchKeywords": [
+          "IP",
+          "RDAP",
+          "hidden"
+        ]
+      },
+      {
+        "resourceId": "res_tool_ip-whois-rdap",
+        "locale": "zh-CN",
+        "name": "IP WHOIS 与 RDAP 查询",
+        "summary": "记录临时隔离 RDAP 查询能力的隐藏 fixture。",
+        "seoTitle": "IP WHOIS 与 RDAP 查询 fixture",
+        "seoDescription": "临时隔离 RDAP 查询能力的合成隐藏 Catalog fixture。",
+        "searchAliases": [
+          "WHOIS",
+          "RDAP"
+        ],
+        "searchKeywords": [
+          "IP",
+          "RDAP",
+          "隐藏"
+        ]
+      },
+      {
+        "resourceId": "res_tool_ip-whois-rdap",
+        "locale": "zh-TW",
+        "name": "IP WHOIS 與 RDAP 查詢",
+        "summary": "記錄暫時隔離 RDAP 查詢能力的隱藏 fixture。",
+        "seoTitle": "IP WHOIS 與 RDAP 查詢 fixture",
+        "seoDescription": "暫時隔離 RDAP 查詢能力的合成隱藏 Catalog fixture。",
+        "searchAliases": [
+          "WHOIS",
+          "RDAP"
+        ],
+        "searchKeywords": [
+          "IP",
+          "RDAP",
+          "隱藏"
+        ]
+      },
+      {
+        "resourceId": "res_tool_ipv4-network",
+        "locale": "en",
+        "name": "IPv4 network toolbox",
+        "summary": "Calculate IPv4 subnets, masks, host capacity, ranges, conversions, and same-subnet checks locally.",
+        "seoTitle": "IPv4 network toolbox",
+        "seoDescription": "Synthetic Catalog fixture for the published IPv4 network toolbox.",
+        "searchAliases": [
+          "subnet calculator",
+          "CIDR calculator"
+        ],
+        "searchKeywords": [
+          "ipv4",
+          "subnet",
+          "cidr"
+        ]
+      },
+      {
+        "resourceId": "res_tool_ipv4-network",
+        "locale": "zh-CN",
+        "name": "IPv4 网络工具箱",
+        "summary": "本地计算 IPv4 子网、掩码、主机容量、范围、地址转换和同子网判断。",
+        "seoTitle": "IPv4 网络工具箱",
+        "seoDescription": "已发布 IPv4 网络工具箱的合成 Catalog fixture。",
+        "searchAliases": [
+          "子网计算器",
+          "CIDR 计算器"
+        ],
+        "searchKeywords": [
+          "IPv4",
+          "子网",
+          "CIDR"
+        ]
+      },
+      {
+        "resourceId": "res_tool_ipv4-network",
+        "locale": "zh-TW",
+        "name": "IPv4 網絡工具箱",
+        "summary": "本機計算 IPv4 子網、遮罩、主機容量、範圍、位址轉換和同子網判斷。",
+        "seoTitle": "IPv4 網絡工具箱",
+        "seoDescription": "已發布 IPv4 網絡工具箱的合成 Catalog fixture。",
+        "searchAliases": [
+          "子網計算器",
+          "CIDR 計算器"
+        ],
+        "searchKeywords": [
+          "IPv4",
+          "子網",
+          "CIDR"
+        ]
+      },
+      {
+        "resourceId": "res_tool_irr-calculator",
+        "locale": "en",
+        "name": "IRR calculator",
+        "summary": "Calculate fixed-period IRR and its annualized equivalent with synthetic fixture metadata.",
+        "seoTitle": "IRR calculator",
+        "seoDescription": "Synthetic Catalog fixture for the published fixed-period IRR calculator.",
+        "searchAliases": [
+          "internal rate of return",
+          "fixed-period IRR"
+        ],
+        "searchKeywords": [
+          "irr",
+          "finance",
+          "annualized return"
+        ]
+      },
+      {
+        "resourceId": "res_tool_irr-calculator",
+        "locale": "zh-CN",
+        "name": "IRR 计算器",
+        "summary": "使用合成 fixture 元数据记录固定周期内部收益率及其年化结果。",
+        "seoTitle": "IRR 计算器",
+        "seoDescription": "已发布固定周期 IRR 计算器的合成 Catalog fixture。",
+        "searchAliases": [
+          "内部收益率",
+          "固定周期 IRR"
+        ],
+        "searchKeywords": [
+          "IRR",
+          "金融",
+          "年化收益"
+        ]
+      },
+      {
+        "resourceId": "res_tool_irr-calculator",
+        "locale": "zh-TW",
+        "name": "IRR 計算器",
+        "summary": "使用合成 fixture 元資料記錄固定週期內部收益率及其年化結果。",
+        "seoTitle": "IRR 計算器",
+        "seoDescription": "已發布固定週期 IRR 計算器的合成 Catalog fixture。",
+        "searchAliases": [
+          "內部收益率",
+          "固定週期 IRR"
+        ],
+        "searchKeywords": [
+          "IRR",
+          "金融",
+          "年化收益"
+        ]
+      },
+      {
+        "resourceId": "res_tool_password-generator",
+        "locale": "en",
+        "name": "Password generator",
+        "summary": "Generate constrained passwords with browser cryptography using public Catalog metadata only.",
+        "seoTitle": "Password generator",
+        "seoDescription": "Synthetic Catalog fixture for the published local password generator.",
+        "searchAliases": [
+          "secure generator",
+          "random password"
+        ],
+        "searchKeywords": [
+          "password",
+          "private",
+          "browser cryptography"
+        ]
+      },
+      {
+        "resourceId": "res_tool_password-generator",
+        "locale": "zh-CN",
+        "name": "密码生成器",
+        "summary": "使用浏览器密码学安全随机源生成符合规则的密码；fixture 只包含公开元数据。",
+        "seoTitle": "密码生成器",
+        "seoDescription": "已发布本地密码生成器的合成 Catalog fixture。",
+        "searchAliases": [
+          "安全生成器",
+          "随机密码"
+        ],
+        "searchKeywords": [
+          "密码",
+          "隐私",
+          "浏览器密码学"
+        ]
+      },
+      {
+        "resourceId": "res_tool_password-generator",
+        "locale": "zh-TW",
+        "name": "密碼產生器",
+        "summary": "使用瀏覽器密碼學安全隨機來源產生符合規則的密碼；fixture 只包含公開元資料。",
+        "seoTitle": "密碼產生器",
+        "seoDescription": "已發布本機密碼產生器的合成 Catalog fixture。",
+        "searchAliases": [
+          "安全產生器",
+          "隨機密碼"
+        ],
+        "searchKeywords": [
+          "密碼",
+          "隱私",
+          "瀏覽器密碼學"
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "schemaVersion": "0.1.0",
+        "id": "rel_ipv4-to-hidden-ip-lookup",
+        "type": "related",
+        "sourceId": "res_tool_ipv4-network",
+        "targetId": "res_tool_ip-lookup",
+        "order": 1
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "rel_irr-to-password",
+        "type": "related",
+        "sourceId": "res_tool_irr-calculator",
+        "targetId": "res_tool_password-generator",
+        "order": 2
+      }
+    ],
+    "resources": [
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_tool_ip-lookup",
+        "canonicalSlug": "ip-info-lookup",
+        "status": "hidden",
+        "createdAt": "2026-08-11T00:00:00.000Z",
+        "updatedAt": "2026-08-11T00:00:00.000Z",
+        "type": "tool",
+        "toolBindingId": "ip-info",
+        "primaryCategoryId": "cat_network-ip"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_tool_ip-whois-rdap",
+        "canonicalSlug": "ip-whois-rdap",
+        "status": "hidden",
+        "createdAt": "2026-08-11T00:00:00.000Z",
+        "updatedAt": "2026-08-11T00:00:00.000Z",
+        "type": "tool",
+        "toolBindingId": "ip-rdap",
+        "primaryCategoryId": "cat_network-ip"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_tool_ipv4-network",
+        "canonicalSlug": "ipv4-network-toolbox",
+        "status": "published",
+        "createdAt": "2026-08-11T00:00:00.000Z",
+        "updatedAt": "2026-08-11T00:00:00.000Z",
+        "type": "tool",
+        "toolBindingId": "ipv4-network-toolbox",
+        "primaryCategoryId": "cat_network-ip"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_tool_irr-calculator",
+        "canonicalSlug": "irr-calculator",
+        "status": "published",
+        "createdAt": "2026-08-11T00:00:00.000Z",
+        "updatedAt": "2026-08-11T00:00:00.000Z",
+        "type": "tool",
+        "toolBindingId": "irr-calculator",
+        "primaryCategoryId": "cat_calculators"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_tool_password-generator",
+        "canonicalSlug": "password-generator",
+        "status": "published",
+        "createdAt": "2026-08-11T00:00:00.000Z",
+        "updatedAt": "2026-08-11T00:00:00.000Z",
+        "type": "tool",
+        "toolBindingId": "password-generator",
+        "primaryCategoryId": "cat_developer"
+      }
+    ],
+    "tags": [
+      {
+        "schemaVersion": "0.1.0",
+        "slug": "finance",
+        "status": "published",
+        "id": "tag_finance"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "slug": "hidden-capability",
+        "status": "hidden",
+        "id": "tag_hidden-capability"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "slug": "network",
+        "status": "published",
+        "id": "tag_network"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "slug": "private",
+        "status": "published",
+        "id": "tag_private"
+      }
+    ]
+  },
+  "checksum": "sha256-49adc81baa9066580db242a29dca8960849b823a956e12154a8fcc226dbe7307"
+}
