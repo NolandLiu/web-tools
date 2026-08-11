@@ -4,7 +4,7 @@ import {
   listDiscoverTags,
   messages,
 } from "../discover-data.js";
-import { ResourceGrid } from "../components/ResourceGrid";
+import { ResourceCard } from "../components/ResourceCard";
 
 type BrowsePageProps = {
   route: {
@@ -29,16 +29,39 @@ export function BrowsePage({ route }: BrowsePageProps) {
     tagSlug: route.tagSlug,
   });
   const title = category?.name ?? tag?.name ?? route.resourceType ?? t.resources;
+  const typeIntro = route.resourceType === "website"
+    ? t.browseIntro.website
+    : route.resourceType === "guide"
+      ? t.browseIntro.guide
+      : route.resourceType === "collection"
+        ? t.browseIntro.collection
+        : route.resourceType === "tool"
+          ? t.browseIntro.tool
+          : t.browseIntro.default;
+  const countLabel = route.resourceType === "website"
+    ? t.resourceCounts.website
+    : route.resourceType === "guide"
+      ? t.resourceCounts.guide
+      : route.resourceType === "collection"
+        ? t.resourceCounts.collection
+        : route.resourceType === "tool"
+          ? t.resourceCounts.tool
+          : t.resourceCounts.default;
 
   return (
     <section className="discover-page-section" aria-labelledby="discover-browse-title">
-      <div className="discover-section-heading">
+      <div className="discover-browse-hero">
         <div>
           <h1 id="discover-browse-title">{title}</h1>
-          <p>{category?.summary ?? t.featuredText}</p>
+          <p>{category?.summary ?? tag?.name ?? typeIntro}</p>
         </div>
+        <strong>{resources.length} {countLabel}</strong>
       </div>
-      <ResourceGrid resources={resources} locale={route.locale} emptyLabel={t.empty} />
+      {resources.length ? (
+        <div className="discover-resource-list">
+          {resources.map(resource => <ResourceCard key={resource.id} resource={resource} locale={route.locale} />)}
+        </div>
+      ) : <p className="discover-empty-state">{t.empty}</p>}
     </section>
   );
 }

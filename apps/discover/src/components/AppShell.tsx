@@ -28,7 +28,7 @@ export function AppShell({ locale, children }: AppShellProps) {
   ];
 
   return (
-    <div className="discover-shell">
+    <div className="discover-shell" lang={t.htmlLang}>
       <main className="discover-frame">
         <header className="discover-nav" aria-label="GoDeskHub Discover">
           <a className="discover-logo" href={`/${segment}/`}>
@@ -51,7 +51,10 @@ export function AppShell({ locale, children }: AppShellProps) {
         </header>
         {children}
         <footer className="discover-footer">
-          <p>Privacy-first resources. No tracking of tool input.</p>
+          <div className="discover-footer-brand">
+            <span className="discover-logo-mark" aria-hidden="true">GH</span>
+            <p>Privacy-first resources. No tracking of tool input.</p>
+          </div>
           <nav className="discover-footer-links" aria-label="Footer">
             {footer.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
           </nav>

@@ -57,6 +57,7 @@ const tagLabels = {
 
 export const messages = {
   en: {
+    htmlLang: "en",
     nav: { tools: "Tools", websites: "Websites", guides: "Guides", collections: "Collections" },
     footer: { about: "About", contact: "Contact", privacy: "Privacy", terms: "Terms" },
     heroTitle: "Find the right tool without giving up your data",
@@ -73,8 +74,17 @@ export const messages = {
     empty: "No published resources in this section yet.",
     source: "Shared Catalog artifact",
     resources: "Published resources",
+    browseIntro: {
+      tool: "Privacy-first tools that run in your browser whenever possible.",
+      website: "Reliable web references and practical resources worth bookmarking.",
+      guide: "Short guides that explain common workflows without filler.",
+      collection: "Curated sets of resources grouped around a practical goal.",
+      default: "Browse published resources from the shared Catalog.",
+    },
+    resourceCounts: { tool: "tools", website: "websites", guide: "guides", collection: "collections", default: "resources" },
   },
   "zh-CN": {
+    htmlLang: "zh-CN",
     nav: { tools: "工具", websites: "网站", guides: "指南", collections: "集合" },
     footer: { about: "关于", contact: "联系", privacy: "隐私", terms: "条款" },
     heroTitle: "快速找到合适工具，同时保留数据隐私",
@@ -91,8 +101,17 @@ export const messages = {
     empty: "此部分暂时没有已发布资源。",
     source: "Shared Catalog artifact",
     resources: "已发布资源",
+    browseIntro: {
+      tool: "优先收录尽量在浏览器本地运行的隐私友好工具。",
+      website: "值得收藏的可靠网页资料与实用资源。",
+      guide: "用简洁语言解释常见工作流，不堆砌空话。",
+      collection: "围绕具体目标整理的一组相关资源。",
+      default: "浏览 Shared Catalog 中已发布的公开资源。",
+    },
+    resourceCounts: { tool: "个工具", website: "个网站", guide: "篇指南", collection: "个集合", default: "个资源" },
   },
   "zh-TW": {
+    htmlLang: "zh-TW",
     nav: { tools: "工具", websites: "網站", guides: "指南", collections: "集合" },
     footer: { about: "關於", contact: "聯絡", privacy: "隱私", terms: "條款" },
     heroTitle: "快速找到合適工具，同時保留資料隱私",
@@ -109,6 +128,14 @@ export const messages = {
     empty: "此部分暫時沒有已發布資源。",
     source: "Shared Catalog artifact",
     resources: "已發布資源",
+    browseIntro: {
+      tool: "優先收錄盡量在瀏覽器本機執行的隱私友善工具。",
+      website: "值得收藏的可靠網頁資料與實用資源。",
+      guide: "用簡潔語言解釋常見工作流程，不堆砌空話。",
+      collection: "圍繞具體目標整理的一組相關資源。",
+      default: "瀏覽 Shared Catalog 中已發布的公開資源。",
+    },
+    resourceCounts: { tool: "個工具", website: "個網站", guide: "篇指南", collection: "個集合", default: "個資源" },
   },
 };
 
@@ -290,6 +317,11 @@ export function discoverCanonicalPath(route) {
   if (route.kind === "resource") return `/${segment}/resources/${route.resourceType}/${route.slug}/`;
   if (route.kind === "info") return `/${segment}/${route.slug}/`;
   return `/${segment}/404/`;
+}
+
+export function switchDiscoverLocalePath(pathname = "/", targetLocale = defaultLocale) {
+  const route = parseDiscoverPath(pathname);
+  return discoverCanonicalPath({ ...route, locale: targetLocale });
 }
 
 export function buildStaticRoutes() {

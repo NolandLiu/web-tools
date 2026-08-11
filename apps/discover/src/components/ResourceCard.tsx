@@ -2,12 +2,14 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card";
 import { messages } from "../discover-data.js";
+import { DiscoverIcon } from "./DiscoverIcon";
 
 type ResourceCardProps = {
   resource: {
     id: string;
     status: string;
     type: "tool" | "website" | "guide" | "collection";
+    canonicalSlug: string;
     name: string;
     summary: string;
     categoryName?: string;
@@ -27,7 +29,9 @@ export function ResourceCard({ resource, locale }: ResourceCardProps) {
   return (
     <Card className="discover-resource-card">
       <CardHeader>
-        <div className="discover-resource-icon" aria-hidden="true">{resource.type.slice(0, 1).toUpperCase()}</div>
+        <div className="discover-resource-icon" aria-hidden="true">
+          <DiscoverIcon type={resource.type} canonicalSlug={resource.canonicalSlug} />
+        </div>
         <Badge variant={resource.type === "tool" ? "tool" : resource.type === "website" ? "website" : "guide"}>
           {resource.type}
         </Badge>

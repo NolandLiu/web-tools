@@ -22,6 +22,7 @@ export function SearchBox({ locale }: SearchBoxProps) {
           value={query}
           onChange={event => setQuery(event.currentTarget.value)}
         />
+        <kbd className="discover-search-kbd">⌘ K</kbd>
         <Button type="submit">{t.searchButton}</Button>
       </form>
       {query.trim() ? (

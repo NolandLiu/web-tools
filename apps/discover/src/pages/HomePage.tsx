@@ -1,4 +1,5 @@
 import { buildDiscoverHome, localeSegment, messages } from "../discover-data.js";
+import { DiscoverIcon } from "../components/DiscoverIcon";
 import { ResourceGrid } from "../components/ResourceGrid";
 import { SearchBox } from "../components/SearchBox";
 
@@ -14,7 +15,7 @@ export function HomePage({ locale }: HomePageProps) {
   return (
     <>
       <section className="discover-hero" aria-labelledby="discover-home-title">
-        <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-discover-mint-strong">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-discover-mint-strong">
           godeskhub.com
         </p>
         <h1 id="discover-home-title" className="discover-title">{t.heroTitle}</h1>
@@ -41,6 +42,9 @@ export function HomePage({ locale }: HomePageProps) {
         <div className="discover-category-grid">
           {home.categories.map(category => (
             <a key={category.id} className="discover-category-card" href={`/${segment}/categories/${category.slug}/`}>
+              <span className="discover-category-icon" aria-hidden="true">
+                <DiscoverIcon type="category" />
+              </span>
               <span>{category.name}</span>
               <small>{category.summary}</small>
             </a>

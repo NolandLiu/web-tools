@@ -1,4 +1,4 @@
-import { localeSegment, locales } from "../discover-data.js";
+import { locales, switchDiscoverLocalePath } from "../discover-data.js";
 
 type LocaleSwitcherProps = {
   locale: string;
@@ -11,7 +11,7 @@ export function LocaleSwitcher({ locale }: LocaleSwitcherProps) {
       aria-label="Language"
       defaultValue={locale}
       onChange={event => {
-        window.location.href = `/${localeSegment(event.currentTarget.value)}/`;
+        window.location.href = switchDiscoverLocalePath(window.location.pathname, event.currentTarget.value);
       }}
     >
       {locales.map(item => (
