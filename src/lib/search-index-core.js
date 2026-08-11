@@ -36,6 +36,10 @@ function categorySlug(resource, categories) {
   return categories.get(resource.primaryCategoryId)?.slug ?? null;
 }
 
+function categoryText(resource, categories, locale, options) {
+  return options.categoryText?.(resource, locale) ?? categorySlug(resource, categories);
+}
+
 function stableDocument(left, right) {
   return (
     left.locale.localeCompare(right.locale, "en")
@@ -59,6 +63,8 @@ export function buildSearchDocuments(catalogArtifact, options = {}) {
     for (const locale of SUPPORTED_LOCALES) {
       const text = locales.get(locale);
       if (!text) continue;
+      const extraRankingText = options.extraRankingText?.(resource, locale) ?? [];
+      const category = categoryText(resource, categories, locale, options);
       documents.push({
         id: `${resource.id}:${locale}`,
         resourceId: resource.id,
@@ -67,7 +73,7 @@ export function buildSearchDocuments(catalogArtifact, options = {}) {
         status: resource.status,
         name: text.name,
         description: text.summary,
-        category: categorySlug(resource, categories),
+        category,
         tags: [],
         aliases: text.searchAliases ?? [],
         keywords: text.searchKeywords ?? [],
@@ -77,7 +83,8 @@ export function buildSearchDocuments(catalogArtifact, options = {}) {
           text.summary,
           ...(text.searchAliases ?? []),
           ...(text.searchKeywords ?? []),
-          categorySlug(resource, categories) ?? "",
+          ...extraRankingText,
+          category ?? "",
         ].filter(Boolean).map(normalizeSearchQuery),
       });
     }

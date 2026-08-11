@@ -18,10 +18,11 @@
     "test": "npm run schema:build --silent && node --test --test-concurrency=1 tests/*.test.mjs",
     "inventory:generate": "node scripts/generate-migration-inventory.mjs",
     "catalog:validate": "npm run schema:build --silent && node scripts/validate-catalog.mjs",
+    "catalog:locales": "npm run schema:build --silent && node scripts/check-translations.mjs",
     "catalog:build": "npm run schema:build --silent && node scripts/generate-catalog-artifact.mjs && node scripts/generate-search-index.mjs",
     "schema:build": "npm run build --workspace @godeskhub/catalog-schema",
     "verify:build": "node scripts/verify-build.mjs",
-    "verify": "npm run lint && npm run catalog:validate && npm run catalog:build && npm run test && npm run build && npm run verify:build"
+    "verify": "npm run lint && npm run catalog:validate && npm run catalog:locales && npm run catalog:build && npm run test && npm run build && npm run verify:build"
   },
   "dependencies": {
     "@vitejs/plugin-react": "6.0.2",

@@ -21,6 +21,7 @@ import {
   normalizeSearchQuery,
   searchIndex,
 } from "../src/lib/search-index.js";
+import { createCatalogSearchDocumentOptions } from "../src/lib/search-index-enrichment.js";
 import {
   TOOLS_FRONTEND_POLICY,
   resolveCatalogPageMetadata,
@@ -84,7 +85,7 @@ test("unified search documents include only published public resources and no pr
 
 test("localized search index is deterministic, local-only, and within the approved size budget", () => {
   const documents = buildSearchDocuments(catalogArtifact, {
-    frontendPolicy: TOOLS_FRONTEND_POLICY,
+    ...createCatalogSearchDocumentOptions({ frontendPolicy: TOOLS_FRONTEND_POLICY }),
   });
   const left = buildLocalizedSearchIndex(documents);
   const right = buildLocalizedSearchIndex(documents);

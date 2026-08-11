@@ -10,7 +10,7 @@ export default {
           "locale": "en",
           "name": "Area converter",
           "description": "Convert square meters, acres, and square feet.",
-          "category": "unit-converters",
+          "category": "Unit converters",
           "tags": [],
           "aliases": [
             "land area converter",
@@ -38,7 +38,10 @@ export default {
             "square foot",
             "acre",
             "hectare",
-            "unit-converters"
+            "convert square metric units, hectares, acres, and square feet through square metres.",
+            "compare a property listing in acres with an area stated in hectares.",
+            "convert room floor area from square metres to square feet.",
+            "unit converters"
           ]
         },
         {
@@ -48,7 +51,7 @@ export default {
           "locale": "en",
           "name": "Base64 encoder and decoder",
           "description": "Encode and decode Unicode text with Base64.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "base64 encode",
@@ -78,7 +81,10 @@ export default {
             "utf-8",
             "text",
             "not encryption",
-            "developer-tools"
+            "encode unicode text as standard base64 or decode standard base64 back to text.",
+            "encode a short unicode text value for a text-only field.",
+            "decode a standard base64 string to inspect its utf-8 text.",
+            "format & developer tools"
           ]
         },
         {
@@ -88,7 +94,7 @@ export default {
           "locale": "en",
           "name": "BMI calculator",
           "description": "Calculate a body mass index reference.",
-          "category": "calculators",
+          "category": "Calculators",
           "tags": [],
           "aliases": [
             "body mass index",
@@ -118,6 +124,9 @@ export default {
             "height",
             "health",
             "not diagnosis",
+            "calculate adult body mass index from kilograms and centimetres as a general reference.",
+            "calculate a general adult bmi reference from metric measurements.",
+            "check the arithmetic behind a bmi value discussed with a qualified professional.",
             "calculators"
           ]
         },
@@ -128,7 +137,7 @@ export default {
           "locale": "en",
           "name": "Cheque amount converter",
           "description": "Write a decimal amount in English and Chinese financial words.",
-          "category": "calculators",
+          "category": "Calculators",
           "tags": [],
           "aliases": [
             "check amount",
@@ -166,6 +175,9 @@ export default {
             "traditional chinese",
             "simplified chinese",
             "currency label",
+            "convert a non-negative decimal amount to english cheque words and chinese financial numerals.",
+            "prepare a draft english amount line before completing a paper cheque.",
+            "check the zero placement around 萬, 億, 兆, 万, 亿, and 兆 in chinese financial numerals.",
             "calculators"
           ]
         },
@@ -176,7 +188,7 @@ export default {
           "locale": "en",
           "name": "Color converter",
           "description": "Convert HEX, RGB, and HSL colors.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "hex to rgb",
@@ -206,7 +218,10 @@ export default {
             "hsl",
             "css",
             "palette",
-            "developer-tools"
+            "convert hex to rgb, or rgb channel values to hex and hsl.",
+            "inspect the rgb channels of a hex design color.",
+            "create a hex and hsl representation from rgb values.",
+            "format & developer tools"
           ]
         },
         {
@@ -216,7 +231,7 @@ export default {
           "locale": "en",
           "name": "Compound interest calculator",
           "description": "Calculate reference compound growth.",
-          "category": "calculators",
+          "category": "Calculators",
           "tags": [],
           "aliases": [
             "compound interest",
@@ -246,6 +261,9 @@ export default {
             "years",
             "monthly",
             "interest",
+            "estimate compound growth from principal, annual rate, years, and a selected compounding frequency.",
+            "explore a simplified savings-growth scenario.",
+            "compare how a nominal annual rate compounds over a selected number of years.",
             "calculators"
           ]
         },
@@ -256,7 +274,7 @@ export default {
           "locale": "en",
           "name": "Data storage converter",
           "description": "Convert bytes through petabytes.",
-          "category": "unit-converters",
+          "category": "Unit converters",
           "tags": [],
           "aliases": [
             "file size converter",
@@ -290,7 +308,10 @@ export default {
             "gibibyte",
             "1000",
             "1024",
-            "unit-converters"
+            "convert bytes using distinct si decimal kb–pb and iec binary kib–pib units.",
+            "compare decimal drive capacity with an operating system’s binary display.",
+            "translate a file size between si and iec units without changing the underlying byte count.",
+            "unit converters"
           ]
         },
         {
@@ -300,7 +321,7 @@ export default {
           "locale": "en",
           "name": "Date interval calculator",
           "description": "Calculate the days between two dates.",
-          "category": "calculators",
+          "category": "Calculators",
           "tags": [],
           "aliases": [
             "days between dates",
@@ -330,6 +351,9 @@ export default {
             "days",
             "elapsed",
             "timezone",
+            "calculate the absolute elapsed day difference between two browser date inputs.",
+            "check the elapsed-day gap between two ordinary dates.",
+            "compare two deadlines without manually counting calendar squares.",
             "calculators"
           ]
         },
@@ -340,7 +364,7 @@ export default {
           "locale": "en",
           "name": "Discount calculator",
           "description": "Calculate final price and savings.",
-          "category": "calculators",
+          "category": "Calculators",
           "tags": [],
           "aliases": [
             "sale price calculator",
@@ -368,6 +392,9 @@ export default {
             "price",
             "saving",
             "percentage",
+            "calculate a final price and amount saved from an original price and discount rate.",
+            "check a sale price before purchasing.",
+            "compare the saving produced by a listed percentage discount.",
             "calculators"
           ]
         },
@@ -378,7 +405,7 @@ export default {
           "locale": "en",
           "name": "IPv4 network toolbox",
           "description": "Calculate IPv4 subnets, masks, host capacity, ranges, conversions, and same-subnet checks locally.",
-          "category": "network-ip",
+          "category": "Network & IP",
           "tags": [],
           "aliases": [
             "subnet calculator",
@@ -428,7 +455,10 @@ export default {
             "mask converter",
             "host recommendation",
             "range converter",
-            "network-ip"
+            "calculate ipv4 subnets, masks, host capacity, ranges, conversions, and same-subnet checks locally.",
+            "plan a lan prefix and usable host capacity before configuring routers or firewalls.",
+            "convert address ranges, masks, and ipv4 notation without sending network data outside the browser.",
+            "network & ip"
           ]
         },
         {
@@ -438,7 +468,7 @@ export default {
           "locale": "en",
           "name": "IPv6 toolbox",
           "description": "Expand, compress, normalize, classify, and calculate IPv6 prefix ranges locally.",
-          "category": "network-ip",
+          "category": "Network & IP",
           "tags": [],
           "aliases": [
             "IPv6 expand",
@@ -472,7 +502,10 @@ export default {
             "bigint",
             "address type",
             "normalize",
-            "network-ip"
+            "expand, compress, normalize, classify, and calculate ipv6 prefix ranges locally.",
+            "normalize an ipv6 address before using it in documentation or configuration.",
+            "check the first and last address in a /64, /128, or other ipv6 prefix.",
+            "network & ip"
           ]
         },
         {
@@ -482,7 +515,7 @@ export default {
           "locale": "en",
           "name": "IRR calculator",
           "description": "Calculate fixed-period IRR and its annualized equivalent.",
-          "category": "calculators",
+          "category": "Calculators",
           "tags": [],
           "aliases": [
             "internal rate of return",
@@ -512,6 +545,9 @@ export default {
             "periodic",
             "annualized",
             "multiple roots",
+            "solve fixed-period internal rate of return and convert the periodic rate to an annualized equivalent.",
+            "check the fixed-period return implied by an initial outflow and later inflows.",
+            "compare the mathematical annualized equivalent of monthly or quarterly periodic irr.",
             "calculators"
           ]
         },
@@ -522,7 +558,7 @@ export default {
           "locale": "en",
           "name": "JSON tools",
           "description": "Format, minify, and validate JSON locally.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "json formatter",
@@ -552,7 +588,10 @@ export default {
             "validate",
             "parser",
             "developer",
-            "developer-tools"
+            "format, minify, and validate json text locally with the browser’s json parser.",
+            "make a compact api response easier to read while debugging.",
+            "minify a valid configuration snippet before storing or transmitting it.",
+            "format & developer tools"
           ]
         },
         {
@@ -562,7 +601,7 @@ export default {
           "locale": "en",
           "name": "Length converter",
           "description": "Convert meters, feet, miles, and more.",
-          "category": "unit-converters",
+          "category": "Unit converters",
           "tags": [],
           "aliases": [
             "distance converter",
@@ -594,7 +633,10 @@ export default {
             "foot",
             "mile",
             "yard",
-            "unit-converters"
+            "convert common metric, imperial, and us customary length units with a shared metre base.",
+            "compare room or furniture dimensions stated in metres and feet.",
+            "translate road distances between kilometres and miles.",
+            "unit converters"
           ]
         },
         {
@@ -604,7 +646,7 @@ export default {
           "locale": "en",
           "name": "Password generator",
           "description": "Generate constrained passwords with browser cryptography.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "secure password",
@@ -632,7 +674,10 @@ export default {
             "minimum characters",
             "symbols",
             "batch",
-            "developer-tools"
+            "generate one or more constrained passwords with the browser cryptographic random source.",
+            "generate a password that must contain a specified minimum from several character classes.",
+            "create a local batch without sending candidates to a password service.",
+            "format & developer tools"
           ]
         },
         {
@@ -642,7 +687,7 @@ export default {
           "locale": "en",
           "name": "Percentage calculator",
           "description": "Calculate a percentage of a value.",
-          "category": "calculators",
+          "category": "Calculators",
           "tags": [],
           "aliases": [
             "percent of number",
@@ -670,6 +715,9 @@ export default {
             "ratio",
             "base value",
             "calculation",
+            "calculate a selected percentage of a base value.",
+            "calculate a tax or tip amount before adding it to a total.",
+            "find a proportional quantity such as 12.5% of a measurement.",
             "calculators"
           ]
         },
@@ -680,7 +728,7 @@ export default {
           "locale": "en",
           "name": "QR Code generator",
           "description": "Create and download customizable QR Codes locally.",
-          "category": "qr-code",
+          "category": "QR Code",
           "tags": [],
           "aliases": [
             "qr generator",
@@ -710,7 +758,10 @@ export default {
             "capacity",
             "contrast",
             "local",
-            "qr-code"
+            "generate a styled qr code png with controlled shapes and an optional local raster logo.",
+            "create a high-contrast qr code for a public web address.",
+            "add a small local brand mark to a short code after testing the final image with intended scanners.",
+            "qr code"
           ]
         },
         {
@@ -720,7 +771,7 @@ export default {
           "locale": "en",
           "name": "Speed converter",
           "description": "Convert km/h, mph, knots, and m/s.",
-          "category": "unit-converters",
+          "category": "Unit converters",
           "tags": [],
           "aliases": [
             "velocity converter",
@@ -748,7 +799,10 @@ export default {
             "kilometres per hour",
             "mph",
             "knot",
-            "unit-converters"
+            "convert metres per second, kilometres per hour, miles per hour, knots, and feet per second.",
+            "compare kilometres per hour with miles per hour for driving.",
+            "convert a marine speed in knots to metres per second.",
+            "unit converters"
           ]
         },
         {
@@ -758,7 +812,7 @@ export default {
           "locale": "en",
           "name": "Temperature converter",
           "description": "Convert Celsius, Fahrenheit, and Kelvin.",
-          "category": "unit-converters",
+          "category": "Unit converters",
           "tags": [],
           "aliases": [
             "celsius to fahrenheit",
@@ -786,7 +840,10 @@ export default {
             "fahrenheit",
             "kelvin",
             "absolute zero",
-            "unit-converters"
+            "convert celsius, fahrenheit, and kelvin values using the standard offset formulas.",
+            "translate a weather forecast between celsius and fahrenheit.",
+            "convert a laboratory temperature from celsius to kelvin.",
+            "unit converters"
           ]
         },
         {
@@ -796,7 +853,7 @@ export default {
           "locale": "en",
           "name": "Text case converter",
           "description": "Convert upper, lower, title, and camel case.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "uppercase converter",
@@ -826,7 +883,10 @@ export default {
             "title",
             "camelcase",
             "unicode",
-            "developer-tools"
+            "convert text to uppercase, lowercase, title-style words, or a basic camelcase form.",
+            "normalize a heading to uppercase or lowercase.",
+            "turn words separated by spaces, underscores, or hyphens into a basic camelcase identifier.",
+            "format & developer tools"
           ]
         },
         {
@@ -836,7 +896,7 @@ export default {
           "locale": "en",
           "name": "Time converter",
           "description": "Convert milliseconds through weeks.",
-          "category": "unit-converters",
+          "category": "Unit converters",
           "tags": [],
           "aliases": [
             "duration converter",
@@ -868,7 +928,10 @@ export default {
             "hour",
             "day",
             "week",
-            "unit-converters"
+            "convert durations from milliseconds through weeks using fixed second factors.",
+            "translate an application timeout from milliseconds to seconds.",
+            "convert a project duration from hours to days or weeks.",
+            "unit converters"
           ]
         },
         {
@@ -878,7 +941,7 @@ export default {
           "locale": "en",
           "name": "Timestamp converter",
           "description": "Convert seconds, milliseconds, and dates.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "unix timestamp",
@@ -910,7 +973,10 @@ export default {
             "utc",
             "timezone",
             "milliseconds",
-            "developer-tools"
+            "convert unix-style seconds or milliseconds to iso utc text, and local date-time input to both units.",
+            "inspect an api timestamp as a readable utc instant.",
+            "create seconds and milliseconds for a selected local date and time.",
+            "format & developer tools"
           ]
         },
         {
@@ -920,7 +986,7 @@ export default {
           "locale": "en",
           "name": "URL encoder and decoder",
           "description": "Encode and decode URL text safely.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "percent encoder",
@@ -948,7 +1014,10 @@ export default {
             "percent encoding",
             "component",
             "decodeuricomponent",
-            "developer-tools"
+            "encode or decode one url component with javascript percent-encoding rules.",
+            "encode a query parameter value containing spaces or non-ascii text.",
+            "decode a percent-encoded path or parameter value for inspection.",
+            "format & developer tools"
           ]
         },
         {
@@ -958,7 +1027,7 @@ export default {
           "locale": "en",
           "name": "UUID generator",
           "description": "Generate secure UUID v4 values in your browser.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "guid generator",
@@ -988,7 +1057,10 @@ export default {
             "random",
             "identifier",
             "crypto",
-            "developer-tools"
+            "generate random uuid version 4 identifiers with the browser cryptographic random source.",
+            "create identifiers for test fixtures or local records.",
+            "generate a request or correlation id during development.",
+            "format & developer tools"
           ]
         },
         {
@@ -998,7 +1070,7 @@ export default {
           "locale": "en",
           "name": "Volume converter",
           "description": "Convert liters, milliliters, gallons, and cups.",
-          "category": "unit-converters",
+          "category": "Unit converters",
           "tags": [],
           "aliases": [
             "liter converter",
@@ -1028,7 +1100,10 @@ export default {
             "gallon",
             "cup",
             "cubic metre",
-            "unit-converters"
+            "convert litres, millilitres, cubic metres, and common us liquid volume units.",
+            "convert a container capacity from litres to us gallons.",
+            "translate a cooking quantity between millilitres and us cups.",
+            "unit converters"
           ]
         },
         {
@@ -1038,7 +1113,7 @@ export default {
           "locale": "en",
           "name": "Weight converter",
           "description": "Convert kilograms, pounds, ounces, and tons.",
-          "category": "unit-converters",
+          "category": "Unit converters",
           "tags": [],
           "aliases": [
             "mass converter",
@@ -1068,7 +1143,10 @@ export default {
             "pound",
             "ounce",
             "metric ton",
-            "unit-converters"
+            "convert kilograms, grams, milligrams, pounds, ounces, and metric tons through a kilogram base.",
+            "convert a package mass from kilograms to pounds for a shipping form.",
+            "translate recipe quantities between grams and ounces.",
+            "unit converters"
           ]
         },
         {
@@ -1078,7 +1156,7 @@ export default {
           "locale": "en",
           "name": "Word counter",
           "description": "Count characters, words, and lines locally.",
-          "category": "developer-tools",
+          "category": "Format & developer tools",
           "tags": [],
           "aliases": [
             "character counter",
@@ -1108,7 +1186,10 @@ export default {
             "whitespace",
             "unicode",
             "count",
-            "developer-tools"
+            "count user-perceived unicode grapheme clusters, whitespace-separated word groups, and text lines locally.",
+            "check the approximate length of a short draft.",
+            "count lines in pasted notes or a small text block.",
+            "format & developer tools"
           ]
         }
       ]
@@ -1122,7 +1203,7 @@ export default {
           "locale": "zh-CN",
           "name": "面积转换",
           "description": "平方米、公顷、英亩等面积换算。",
-          "category": "unit-converters",
+          "category": "单位转换",
           "tags": [],
           "aliases": [
             "土地面积转换",
@@ -1150,7 +1231,10 @@ export default {
             "平方英尺",
             "英亩",
             "公顷",
-            "unit-converters"
+            "通过平方米转换公制平方单位、公顷、英亩和平方英尺。",
+            "比较英亩和公顷表示的土地面积。",
+            "把房间面积从平方米转换为平方英尺。",
+            "单位转换"
           ]
         },
         {
@@ -1160,7 +1244,7 @@ export default {
           "locale": "zh-CN",
           "name": "Base64 编解码",
           "description": "支持 Unicode 文本编码和解码。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "Base64 编码",
@@ -1190,7 +1274,10 @@ export default {
             "utf-8",
             "文本",
             "非加密",
-            "developer-tools"
+            "把 unicode 文本编码为标准 base64,或解码回文本。",
+            "把短 unicode 文本编码后放入只接受文本的字段。",
+            "解码标准 base64 字符串以查看其 utf-8 文本。",
+            "格式与开发工具"
           ]
         },
         {
@@ -1200,7 +1287,7 @@ export default {
           "locale": "zh-CN",
           "name": "BMI 计算",
           "description": "身体质量指数参考计算。",
-          "category": "calculators",
+          "category": "计算工具",
           "tags": [],
           "aliases": [
             "身体质量指数",
@@ -1230,7 +1317,10 @@ export default {
             "身高",
             "健康",
             "非诊断",
-            "calculators"
+            "用千克和厘米计算成人 bmi 一般参考值。",
+            "用公制数据计算成人 bmi 一般参考。",
+            "核对与专业人员讨论的 bmi 算术过程。",
+            "计算工具"
           ]
         },
         {
@@ -1240,7 +1330,7 @@ export default {
           "locale": "zh-CN",
           "name": "支票金额转换",
           "description": "把十进制金额转换为英文和中文金融大写。",
-          "category": "calculators",
+          "category": "计算工具",
           "tags": [],
           "aliases": [
             "支票金额",
@@ -1276,7 +1366,10 @@ export default {
             "简体中文",
             "金融大写",
             "币种标签",
-            "calculators"
+            "把非负十进制金额转换为英文支票写法和中文金融大写。",
+            "填写纸质支票前准备英文金额草稿。",
+            "核对中文金融大写在萬、億、兆、万和亿边界的零位。",
+            "计算工具"
           ]
         },
         {
@@ -1286,7 +1379,7 @@ export default {
           "locale": "zh-CN",
           "name": "颜色转换",
           "description": "HEX、RGB、HSL 基础转换。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "HEX 转 RGB",
@@ -1316,7 +1409,10 @@ export default {
             "hsl",
             "css",
             "调色板",
-            "developer-tools"
+            "把 hex 转为 rgb,或把 rgb 通道转换为 hex 和 hsl。",
+            "查看设计 hex 颜色的 rgb 通道。",
+            "从 rgb 数值生成 hex 和 hsl 表示。",
+            "格式与开发工具"
           ]
         },
         {
@@ -1326,7 +1422,7 @@ export default {
           "locale": "zh-CN",
           "name": "复利计算",
           "description": "复利增长参考计算。",
-          "category": "calculators",
+          "category": "计算工具",
           "tags": [],
           "aliases": [
             "复利计算",
@@ -1356,7 +1452,10 @@ export default {
             "年数",
             "每月",
             "利息",
-            "calculators"
+            "按本金、年利率、年数和所选复利频率估算增长。",
+            "探索简化的储蓄增长情景。",
+            "比较名义年利率经过若干年每月复利后的结果。",
+            "计算工具"
           ]
         },
         {
@@ -1366,7 +1465,7 @@ export default {
           "locale": "zh-CN",
           "name": "数据存储转换",
           "description": "B、KB、MB、GB、TB 换算。",
-          "category": "unit-converters",
+          "category": "单位转换",
           "tags": [],
           "aliases": [
             "文件大小转换",
@@ -1400,7 +1499,10 @@ export default {
             "gib",
             "1000",
             "1024",
-            "unit-converters"
+            "明确区分 si 十进制 kb–pb 与 iec 二进制 kib–pib 后转换字节容量。",
+            "比较硬盘厂商的十进制容量与操作系统的二进制显示。",
+            "在 si 与 iec 单位之间换算同一个字节数。",
+            "单位转换"
           ]
         },
         {
@@ -1410,7 +1512,7 @@ export default {
           "locale": "zh-CN",
           "name": "日期间隔计算",
           "description": "计算两个日期相隔天数。",
-          "category": "calculators",
+          "category": "计算工具",
           "tags": [],
           "aliases": [
             "日期相差天数",
@@ -1440,7 +1542,10 @@ export default {
             "天数",
             "经过",
             "时区",
-            "calculators"
+            "计算两个浏览器日期输入之间的绝对经过天数。",
+            "查看两个普通日期之间相隔多少天。",
+            "无需手工数日历即可比较两个截止日。",
+            "计算工具"
           ]
         },
         {
@@ -1450,7 +1555,7 @@ export default {
           "locale": "zh-CN",
           "name": "折扣计算",
           "description": "计算折后价和节省金额。",
-          "category": "calculators",
+          "category": "计算工具",
           "tags": [],
           "aliases": [
             "折后价计算",
@@ -1478,7 +1583,10 @@ export default {
             "价格",
             "节省",
             "百分比",
-            "calculators"
+            "根据原价和折扣率计算折后价与节省金额。",
+            "购物前核对促销价格。",
+            "比较某个折扣百分比可以节省多少。",
+            "计算工具"
           ]
         },
         {
@@ -1488,7 +1596,7 @@ export default {
           "locale": "zh-CN",
           "name": "IPv4 网络工具箱",
           "description": "本地计算 IPv4 子网、掩码、主机容量、范围、地址转换和同子网判断。",
-          "category": "network-ip",
+          "category": "网络与 IP",
           "tags": [],
           "aliases": [
             "subnet calculator",
@@ -1556,7 +1664,10 @@ export default {
             "隐私",
             "本地处理",
             "工具箱",
-            "network-ip"
+            "本地计算 ipv4 子网、掩码、主机容量、范围、地址转换和同子网判断。",
+            "配置路由器或防火墙前规划局域网前缀和可用主机数。",
+            "在不离开浏览器的情况下转换地址范围、掩码和 ipv4 表示形式。",
+            "网络与 ip"
           ]
         },
         {
@@ -1566,7 +1677,7 @@ export default {
           "locale": "zh-CN",
           "name": "IPv6 工具箱",
           "description": "本地展开、压缩、规范化、分类并计算 IPv6 前缀范围。",
-          "category": "network-ip",
+          "category": "网络与 IP",
           "tags": [],
           "aliases": [
             "IPv6 expand",
@@ -1616,7 +1727,10 @@ export default {
             "隐私",
             "本地处理",
             "工具箱",
-            "network-ip"
+            "本地展开、压缩、规范化、分类并计算 ipv6 前缀范围。",
+            "在写入文档或配置前规范化 ipv6 地址。",
+            "检查 /64、/128 或其他 ipv6 前缀的起始和结束地址。",
+            "网络与 ip"
           ]
         },
         {
@@ -1626,7 +1740,7 @@ export default {
           "locale": "zh-CN",
           "name": "IRR 计算器",
           "description": "计算固定周期内部收益率及其年化结果。",
-          "category": "calculators",
+          "category": "计算工具",
           "tags": [],
           "aliases": [
             "内部收益率",
@@ -1656,7 +1770,10 @@ export default {
             "每期",
             "年化",
             "多根",
-            "calculators"
+            "计算固定周期内部收益率及其年化等价值。",
+            "核对初始流出和后续流入隐含的固定周期收益率。",
+            "比较月度或季度 irr 的数学年化等价值。",
+            "计算工具"
           ]
         },
         {
@@ -1666,7 +1783,7 @@ export default {
           "locale": "zh-CN",
           "name": "JSON 工具",
           "description": "在本地格式化、压缩并校验 JSON。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "JSON 格式化",
@@ -1696,7 +1813,10 @@ export default {
             "校验",
             "解析器",
             "开发工具",
-            "developer-tools"
+            "使用浏览器 json 解析器在本地格式化、压缩和校验 json。",
+            "把紧凑的 api 响应整理成易读结构。",
+            "在保存前压缩有效的配置片段。",
+            "格式与开发工具"
           ]
         },
         {
@@ -1706,7 +1826,7 @@ export default {
           "locale": "zh-CN",
           "name": "长度转换",
           "description": "米、英尺、英里等单位互转。",
-          "category": "unit-converters",
+          "category": "单位转换",
           "tags": [],
           "aliases": [
             "距离转换",
@@ -1736,7 +1856,10 @@ export default {
             "英尺",
             "英里",
             "码",
-            "unit-converters"
+            "以米为共同基准,转换常见公制、英制和美制长度单位。",
+            "比较以米和英尺标注的房间或家具尺寸。",
+            "在千米和英里之间换算道路距离。",
+            "单位转换"
           ]
         },
         {
@@ -1746,7 +1869,7 @@ export default {
           "locale": "zh-CN",
           "name": "密码生成器",
           "description": "使用浏览器密码学安全随机源生成符合规则的密码。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "安全密码",
@@ -1774,7 +1897,10 @@ export default {
             "最少字符",
             "符号",
             "批量",
-            "developer-tools"
+            "使用浏览器密码学安全随机源生成一组或多组满足约束的密码。",
+            "生成必须满足多个字符类别最少数量的密码。",
+            "无需向密码服务发送候选值即可在本地批量生成。",
+            "格式与开发工具"
           ]
         },
         {
@@ -1784,7 +1910,7 @@ export default {
           "locale": "zh-CN",
           "name": "百分比计算",
           "description": "计算某数值的百分比。",
-          "category": "calculators",
+          "category": "计算工具",
           "tags": [],
           "aliases": [
             "数值百分比",
@@ -1810,7 +1936,10 @@ export default {
             "比例",
             "基准数值",
             "计算",
-            "calculators"
+            "计算一个基准数值的指定百分比。",
+            "计算税额或小费金额。",
+            "求一个测量值的 12.5% 等比例数值。",
+            "计算工具"
           ]
         },
         {
@@ -1820,7 +1949,7 @@ export default {
           "locale": "zh-CN",
           "name": "QR Code 生成器",
           "description": "本地生成并下载可自定义的 QR Code。",
-          "category": "qr-code",
+          "category": "QR Code",
           "tags": [],
           "aliases": [
             "QR 生成器",
@@ -1852,7 +1981,10 @@ export default {
             "容量",
             "对比度",
             "本地",
-            "qr-code"
+            "在本地生成带受控形状和可选本地 logo 的 qr code png。",
+            "为公开网址生成高对比 qr code。",
+            "加入小型本地品牌标志,并用目标扫码器测试最终图片。",
+            "qr code"
           ]
         },
         {
@@ -1862,7 +1994,7 @@ export default {
           "locale": "zh-CN",
           "name": "速度转换",
           "description": "公里／小时、英里／小时、节互转。",
-          "category": "unit-converters",
+          "category": "单位转换",
           "tags": [],
           "aliases": [
             "速度单位转换",
@@ -1890,7 +2022,10 @@ export default {
             "公里每小时",
             "英里每小时",
             "节",
-            "unit-converters"
+            "转换米/秒、公里/小时、英里/小时、节和英尺/秒。",
+            "比较公里/小时和英里/小时的行车速度。",
+            "把以节表示的航速换算为米/秒。",
+            "单位转换"
           ]
         },
         {
@@ -1900,7 +2035,7 @@ export default {
           "locale": "zh-CN",
           "name": "温度转换",
           "description": "摄氏、华氏、开尔文公式换算。",
-          "category": "unit-converters",
+          "category": "单位转换",
           "tags": [],
           "aliases": [
             "摄氏转华氏",
@@ -1928,7 +2063,10 @@ export default {
             "华氏",
             "开尔文",
             "绝对零度",
-            "unit-converters"
+            "使用标准偏移公式转换摄氏、华氏和开尔文温度。",
+            "在摄氏和华氏之间换算天气温度。",
+            "把实验温度从摄氏转换为开尔文。",
+            "单位转换"
           ]
         },
         {
@@ -1938,7 +2076,7 @@ export default {
           "locale": "zh-CN",
           "name": "文本大小写转换",
           "description": "大写、小写、标题和驼峰格式。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "大写转换",
@@ -1968,7 +2106,10 @@ export default {
             "标题",
             "camelcase",
             "unicode",
-            "developer-tools"
+            "把文本转换为大写、小写、标题式或基础 camelcase。",
+            "统一标题的大写或小写形式。",
+            "把空格、下划线或连字符分隔的文本转为基础 camelcase。",
+            "格式与开发工具"
           ]
         },
         {
@@ -1978,7 +2119,7 @@ export default {
           "locale": "zh-CN",
           "name": "时间转换",
           "description": "毫秒、秒、分钟、小时、天互转。",
-          "category": "unit-converters",
+          "category": "单位转换",
           "tags": [],
           "aliases": [
             "时长转换",
@@ -2010,7 +2151,10 @@ export default {
             "小时",
             "天",
             "周",
-            "unit-converters"
+            "用固定秒数因子转换毫秒至周的持续时间。",
+            "把程序超时从毫秒转换为秒。",
+            "把项目时长从小时转换为天或周。",
+            "单位转换"
           ]
         },
         {
@@ -2020,7 +2164,7 @@ export default {
           "locale": "zh-CN",
           "name": "时间戳转换",
           "description": "秒、毫秒和日期时间互转。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "Unix 时间戳",
@@ -2052,7 +2196,10 @@ export default {
             "utc",
             "时区",
             "毫秒",
-            "developer-tools"
+            "在 unix 秒/毫秒、iso utc 文本和本地日期时间之间转换。",
+            "把 api 时间戳查看为可读 utc 时间。",
+            "为选定的本地日期时间生成秒和毫秒值。",
+            "格式与开发工具"
           ]
         },
         {
@@ -2062,7 +2209,7 @@ export default {
           "locale": "zh-CN",
           "name": "URL 编解码",
           "description": "安全编码和还原 URL 文本。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "百分号编码",
@@ -2090,7 +2237,10 @@ export default {
             "百分号编码",
             "组件",
             "decodeuricomponent",
-            "developer-tools"
+            "按 javascript 百分号规则编码或解码一个 url 组件。",
+            "编码包含空格或非 ascii 字符的查询参数值。",
+            "解码百分号编码的路径片段或参数值。",
+            "格式与开发工具"
           ]
         },
         {
@@ -2100,7 +2250,7 @@ export default {
           "locale": "zh-CN",
           "name": "UUID 生成器",
           "description": "用安全随机源生成 UUID v4。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "GUID 生成器",
@@ -2130,7 +2280,10 @@ export default {
             "随机",
             "标识符",
             "加密随机",
-            "developer-tools"
+            "使用浏览器加密随机源生成随机 uuid v4。",
+            "为测试数据或本地记录创建 id。",
+            "开发时生成请求或关联标识符。",
+            "格式与开发工具"
           ]
         },
         {
@@ -2140,7 +2293,7 @@ export default {
           "locale": "zh-CN",
           "name": "体积转换",
           "description": "升、毫升、美制加仑和杯互转。",
-          "category": "unit-converters",
+          "category": "单位转换",
           "tags": [],
           "aliases": [
             "升转换",
@@ -2170,7 +2323,10 @@ export default {
             "加仑",
             "杯",
             "立方米",
-            "unit-converters"
+            "转换升、毫升、立方米及常见美制液体体积单位。",
+            "把容器容量从升换算为美制加仑。",
+            "在毫升和美制杯之间转换烹饪用量。",
+            "单位转换"
           ]
         },
         {
@@ -2180,7 +2336,7 @@ export default {
           "locale": "zh-CN",
           "name": "重量转换",
           "description": "千克、磅、盎司、吨互转。",
-          "category": "unit-converters",
+          "category": "单位转换",
           "tags": [],
           "aliases": [
             "质量转换",
@@ -2210,7 +2366,10 @@ export default {
             "磅",
             "盎司",
             "公吨",
-            "unit-converters"
+            "通过千克基准转换千克、克、毫克、磅、盎司和公吨。",
+            "把包裹质量从千克换算为磅。",
+            "在克和盎司之间转换配方用量。",
+            "单位转换"
           ]
         },
         {
@@ -2220,7 +2379,7 @@ export default {
           "locale": "zh-CN",
           "name": "字数统计",
           "description": "字符数、字词数和行数统计。",
-          "category": "developer-tools",
+          "category": "格式与开发工具",
           "tags": [],
           "aliases": [
             "字符统计",
@@ -2250,7 +2409,10 @@ export default {
             "行数",
             "空白",
             "unicode",
-            "developer-tools"
+            "在本地统计用户可见的 unicode 字素、空白分隔词组和文本行数。",
+            "快速查看短稿长度。",
+            "统计粘贴笔记或小段文本的行数。",
+            "格式与开发工具"
           ]
         }
       ]
@@ -2264,7 +2426,7 @@ export default {
           "locale": "zh-TW",
           "name": "面積轉換",
           "description": "平方公尺、公頃、英畝等面積換算。",
-          "category": "unit-converters",
+          "category": "單位轉換",
           "tags": [],
           "aliases": [
             "土地面積轉換",
@@ -2292,7 +2454,10 @@ export default {
             "平方英尺",
             "英畝",
             "公頃",
-            "unit-converters"
+            "透過平方公尺轉換公制平方單位、公頃、英畝與平方英尺。",
+            "比較以英畝和公頃表示的土地面積。",
+            "把房間面積由平方公尺轉為平方英尺。",
+            "單位轉換"
           ]
         },
         {
@@ -2302,7 +2467,7 @@ export default {
           "locale": "zh-TW",
           "name": "Base64 編解碼",
           "description": "支援 Unicode 文字編碼和解碼。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "Base64 編碼",
@@ -2332,7 +2497,10 @@ export default {
             "utf-8",
             "文字",
             "非加密",
-            "developer-tools"
+            "把 unicode 文字編碼為標準 base64,或解碼回文字。",
+            "把短 unicode 文字編碼後放入只接受文字的欄位。",
+            "解碼標準 base64 字串以查看 utf-8 文字。",
+            "格式與開發工具"
           ]
         },
         {
@@ -2342,7 +2510,7 @@ export default {
           "locale": "zh-TW",
           "name": "BMI 計算",
           "description": "身體質量指數參考計算。",
-          "category": "calculators",
+          "category": "計算工具",
           "tags": [],
           "aliases": [
             "身體質量指數",
@@ -2372,7 +2540,10 @@ export default {
             "身高",
             "健康",
             "非診斷",
-            "calculators"
+            "用公斤和公分計算成人 bmi 一般參考值。",
+            "以公制資料計算成人 bmi 一般參考。",
+            "核對與專業人員討論的 bmi 算式。",
+            "計算工具"
           ]
         },
         {
@@ -2382,7 +2553,7 @@ export default {
           "locale": "zh-TW",
           "name": "支票金額轉換",
           "description": "把十進位金額轉換為英文和中文金融大寫。",
-          "category": "calculators",
+          "category": "計算工具",
           "tags": [],
           "aliases": [
             "支票金額",
@@ -2418,7 +2589,10 @@ export default {
             "簡體中文",
             "金融大寫",
             "幣別標籤",
-            "calculators"
+            "把非負十進位金額轉換為英文支票寫法及中文金融大寫。",
+            "填寫紙本支票前準備英文金額草稿。",
+            "核對中文金融大寫在萬、億、兆、万和亿邊界的零位。",
+            "計算工具"
           ]
         },
         {
@@ -2428,7 +2602,7 @@ export default {
           "locale": "zh-TW",
           "name": "顏色轉換",
           "description": "HEX、RGB、HSL 基礎轉換。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "HEX 轉 RGB",
@@ -2458,7 +2632,10 @@ export default {
             "hsl",
             "css",
             "調色盤",
-            "developer-tools"
+            "把 hex 轉成 rgb,或把 rgb 色頻值轉成 hex 與 hsl。",
+            "查看設計 hex 顏色的 rgb 色頻。",
+            "從 rgb 數值產生 hex 和 hsl 表示。",
+            "格式與開發工具"
           ]
         },
         {
@@ -2468,7 +2645,7 @@ export default {
           "locale": "zh-TW",
           "name": "複利計算",
           "description": "複利成長參考計算。",
-          "category": "calculators",
+          "category": "計算工具",
           "tags": [],
           "aliases": [
             "複利計算",
@@ -2498,7 +2675,10 @@ export default {
             "年數",
             "每月",
             "利息",
-            "calculators"
+            "依本金、年利率、年數和所選複利頻率估算成長。",
+            "探索簡化的儲蓄成長情境。",
+            "比較名目年利率經過若干年每月複利後的結果。",
+            "計算工具"
           ]
         },
         {
@@ -2508,7 +2688,7 @@ export default {
           "locale": "zh-TW",
           "name": "資料儲存轉換",
           "description": "B、KB、MB、GB、TB 換算。",
-          "category": "unit-converters",
+          "category": "單位轉換",
           "tags": [],
           "aliases": [
             "檔案大小轉換",
@@ -2542,7 +2722,10 @@ export default {
             "gib",
             "1000",
             "1024",
-            "unit-converters"
+            "明確區分 si 十進位 kb–pb 與 iec 二進位 kib–pib 後轉換位元組容量。",
+            "比較硬碟廠商的十進位容量與作業系統的二進位顯示。",
+            "在 si 與 iec 單位之間換算同一個位元組數。",
+            "單位轉換"
           ]
         },
         {
@@ -2552,7 +2735,7 @@ export default {
           "locale": "zh-TW",
           "name": "日期間隔計算",
           "description": "計算兩個日期相隔天數。",
-          "category": "calculators",
+          "category": "計算工具",
           "tags": [],
           "aliases": [
             "日期相差天數",
@@ -2582,7 +2765,10 @@ export default {
             "天數",
             "經過",
             "時區",
-            "calculators"
+            "計算兩個瀏覽器日期輸入之間的絕對經過天數。",
+            "查看兩個一般日期相隔多少天。",
+            "不必手動數日曆即可比較兩個截止日。",
+            "計算工具"
           ]
         },
         {
@@ -2592,7 +2778,7 @@ export default {
           "locale": "zh-TW",
           "name": "折扣計算",
           "description": "計算折後價與省下金額。",
-          "category": "calculators",
+          "category": "計算工具",
           "tags": [],
           "aliases": [
             "折後價計算",
@@ -2620,7 +2806,10 @@ export default {
             "價格",
             "省下",
             "百分比",
-            "calculators"
+            "依原價和折扣率計算折後價與省下金額。",
+            "購物前核對促銷價格。",
+            "比較某個折扣百分比可省下多少。",
+            "計算工具"
           ]
         },
         {
@@ -2630,7 +2819,7 @@ export default {
           "locale": "zh-TW",
           "name": "IPv4 網絡工具箱",
           "description": "本機計算 IPv4 子網、遮罩、主機容量、範圍、位址轉換和同子網判斷。",
-          "category": "network-ip",
+          "category": "網絡與 IP",
           "tags": [],
           "aliases": [
             "subnet calculator",
@@ -2698,7 +2887,10 @@ export default {
             "隱私",
             "本機處理",
             "工具箱",
-            "network-ip"
+            "本機計算 ipv4 子網、遮罩、主機容量、範圍、位址轉換和同子網判斷。",
+            "設定路由器或防火牆前規劃局域網前綴和可用主機數。",
+            "在不離開瀏覽器的情況下轉換位址範圍、遮罩和 ipv4 表示形式。",
+            "網絡與 ip"
           ]
         },
         {
@@ -2708,7 +2900,7 @@ export default {
           "locale": "zh-TW",
           "name": "IPv6 工具箱",
           "description": "本機展開、壓縮、規範化、分類並計算 IPv6 前綴範圍。",
-          "category": "network-ip",
+          "category": "網絡與 IP",
           "tags": [],
           "aliases": [
             "IPv6 expand",
@@ -2758,7 +2950,10 @@ export default {
             "隱私",
             "本機處理",
             "工具箱",
-            "network-ip"
+            "本機展開、壓縮、規範化、分類並計算 ipv6 前綴範圍。",
+            "在寫入文件或設定前規範化 ipv6 位址。",
+            "檢查 /64、/128 或其他 ipv6 前綴的起始和結束位址。",
+            "網絡與 ip"
           ]
         },
         {
@@ -2768,7 +2963,7 @@ export default {
           "locale": "zh-TW",
           "name": "IRR 計算器",
           "description": "計算固定週期內部收益率及其年化結果。",
-          "category": "calculators",
+          "category": "計算工具",
           "tags": [],
           "aliases": [
             "內部收益率",
@@ -2798,7 +2993,10 @@ export default {
             "每期",
             "年化",
             "多根",
-            "calculators"
+            "計算固定週期內部收益率及其年化等值。",
+            "核對初始流出與後續流入隱含的固定週期收益率。",
+            "比較每月或每季 irr 的數學年化等值。",
+            "計算工具"
           ]
         },
         {
@@ -2808,7 +3006,7 @@ export default {
           "locale": "zh-TW",
           "name": "JSON 工具",
           "description": "在本機格式化、壓縮並驗證 JSON。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "JSON 格式化",
@@ -2838,7 +3036,10 @@ export default {
             "驗證",
             "解析器",
             "開發工具",
-            "developer-tools"
+            "使用瀏覽器 json 解析器在本機格式化、壓縮與驗證 json。",
+            "把緊湊的 api 回應整理成容易閱讀的結構。",
+            "儲存前壓縮有效的設定片段。",
+            "格式與開發工具"
           ]
         },
         {
@@ -2848,7 +3049,7 @@ export default {
           "locale": "zh-TW",
           "name": "長度轉換",
           "description": "公尺、英尺、英里等單位互轉。",
-          "category": "unit-converters",
+          "category": "單位轉換",
           "tags": [],
           "aliases": [
             "距離轉換",
@@ -2878,7 +3079,10 @@ export default {
             "英尺",
             "英里",
             "碼",
-            "unit-converters"
+            "以公尺為共同基準,轉換常見公制、英制與美制長度單位。",
+            "比較以公尺和英尺標示的房間或家具尺寸。",
+            "在公里和英里之間換算道路距離。",
+            "單位轉換"
           ]
         },
         {
@@ -2888,7 +3092,7 @@ export default {
           "locale": "zh-TW",
           "name": "密碼產生器",
           "description": "使用瀏覽器密碼學安全隨機來源產生符合規則的密碼。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "安全密碼",
@@ -2916,7 +3120,10 @@ export default {
             "最少字元",
             "符號",
             "批次",
-            "developer-tools"
+            "使用瀏覽器密碼學安全隨機來源產生一組或多組符合限制的密碼。",
+            "產生必須符合多個字元類別最少數量的密碼。",
+            "不用向密碼服務傳送候選值即可在本機批次產生。",
+            "格式與開發工具"
           ]
         },
         {
@@ -2926,7 +3133,7 @@ export default {
           "locale": "zh-TW",
           "name": "百分比計算",
           "description": "計算某數值的百分比。",
-          "category": "calculators",
+          "category": "計算工具",
           "tags": [],
           "aliases": [
             "數值百分比",
@@ -2952,7 +3159,10 @@ export default {
             "比例",
             "基準數值",
             "計算",
-            "calculators"
+            "計算一個基準數值的指定百分比。",
+            "計算稅額或小費金額。",
+            "求一個量測值的 12.5% 等比例數值。",
+            "計算工具"
           ]
         },
         {
@@ -2962,7 +3172,7 @@ export default {
           "locale": "zh-TW",
           "name": "QR Code 產生器",
           "description": "本機產生並下載可自訂的 QR Code。",
-          "category": "qr-code",
+          "category": "QR Code",
           "tags": [],
           "aliases": [
             "QR 產生器",
@@ -2994,7 +3204,10 @@ export default {
             "容量",
             "對比",
             "本機",
-            "qr-code"
+            "在本機產生含受控形狀及可選本機 logo 的 qr code png。",
+            "為公開網址產生高對比 qr code。",
+            "加入小型本機品牌標誌,並以目標掃描器測試最終圖片。",
+            "qr code"
           ]
         },
         {
@@ -3004,7 +3217,7 @@ export default {
           "locale": "zh-TW",
           "name": "速度轉換",
           "description": "公里／小時、英里／小時、節互轉。",
-          "category": "unit-converters",
+          "category": "單位轉換",
           "tags": [],
           "aliases": [
             "速度單位轉換",
@@ -3032,7 +3245,10 @@ export default {
             "公里每小時",
             "英里每小時",
             "節",
-            "unit-converters"
+            "轉換公尺/秒、公里/小時、英里/小時、節與英尺/秒。",
+            "比較公里/小時和英里/小時的行車速度。",
+            "把以節表示的航速換算為公尺/秒。",
+            "單位轉換"
           ]
         },
         {
@@ -3042,7 +3258,7 @@ export default {
           "locale": "zh-TW",
           "name": "溫度轉換",
           "description": "攝氏、華氏、克氏公式換算。",
-          "category": "unit-converters",
+          "category": "單位轉換",
           "tags": [],
           "aliases": [
             "攝氏轉華氏",
@@ -3070,7 +3286,10 @@ export default {
             "華氏",
             "克氏",
             "絕對零度",
-            "unit-converters"
+            "使用標準偏移公式轉換攝氏、華氏與克氏溫度。",
+            "在攝氏與華氏之間換算天氣溫度。",
+            "把實驗溫度由攝氏轉為克氏。",
+            "單位轉換"
           ]
         },
         {
@@ -3080,7 +3299,7 @@ export default {
           "locale": "zh-TW",
           "name": "文字大小寫轉換",
           "description": "大寫、小寫、標題和駝峰格式。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "大寫轉換",
@@ -3110,7 +3329,10 @@ export default {
             "標題",
             "camelcase",
             "unicode",
-            "developer-tools"
+            "把文字轉成大寫、小寫、標題式或基礎 camelcase。",
+            "統一標題的大寫或小寫形式。",
+            "把空格、底線或連字號分隔的文字轉成基礎 camelcase。",
+            "格式與開發工具"
           ]
         },
         {
@@ -3120,7 +3342,7 @@ export default {
           "locale": "zh-TW",
           "name": "時間轉換",
           "description": "毫秒、秒、分鐘、小時、天互轉。",
-          "category": "unit-converters",
+          "category": "單位轉換",
           "tags": [],
           "aliases": [
             "時長轉換",
@@ -3152,7 +3374,10 @@ export default {
             "小時",
             "天",
             "週",
-            "unit-converters"
+            "以固定秒數因子轉換毫秒至週的持續時間。",
+            "把程式逾時由毫秒轉成秒。",
+            "把專案時長由小時轉成天或週。",
+            "單位轉換"
           ]
         },
         {
@@ -3162,7 +3387,7 @@ export default {
           "locale": "zh-TW",
           "name": "時間戳轉換",
           "description": "秒、毫秒和日期時間互轉。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "Unix 時間戳",
@@ -3194,7 +3419,10 @@ export default {
             "utc",
             "時區",
             "毫秒",
-            "developer-tools"
+            "在 unix 秒/毫秒、iso utc 文字與本機日期時間之間轉換。",
+            "把 api 時間戳查看為可讀的 utc 時間。",
+            "為選定的本機日期時間產生秒和毫秒值。",
+            "格式與開發工具"
           ]
         },
         {
@@ -3204,7 +3432,7 @@ export default {
           "locale": "zh-TW",
           "name": "URL 編解碼",
           "description": "安全編碼和還原 URL 文字。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "百分比編碼",
@@ -3232,7 +3460,10 @@ export default {
             "百分比編碼",
             "元件",
             "decodeuricomponent",
-            "developer-tools"
+            "依 javascript 百分比編碼規則處理一個 url 元件。",
+            "編碼含空格或非 ascii 字元的查詢參數值。",
+            "解碼百分比編碼的路徑片段或參數值。",
+            "格式與開發工具"
           ]
         },
         {
@@ -3242,7 +3473,7 @@ export default {
           "locale": "zh-TW",
           "name": "UUID 產生器",
           "description": "用安全隨機源產生 UUID v4。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "GUID 產生器",
@@ -3272,7 +3503,10 @@ export default {
             "隨機",
             "識別碼",
             "加密隨機",
-            "developer-tools"
+            "使用瀏覽器加密隨機來源產生隨機 uuid v4。",
+            "為測試資料或本機紀錄建立 id。",
+            "開發時產生請求或關聯識別碼。",
+            "格式與開發工具"
           ]
         },
         {
@@ -3282,7 +3516,7 @@ export default {
           "locale": "zh-TW",
           "name": "體積轉換",
           "description": "公升、毫升、美制加侖與杯互轉。",
-          "category": "unit-converters",
+          "category": "單位轉換",
           "tags": [],
           "aliases": [
             "公升轉換",
@@ -3312,7 +3546,10 @@ export default {
             "加侖",
             "杯",
             "立方公尺",
-            "unit-converters"
+            "轉換公升、毫升、立方公尺及常見美制液體體積單位。",
+            "把容器容量由公升換算為美制加侖。",
+            "在毫升和美制杯之間轉換烹飪用量。",
+            "單位轉換"
           ]
         },
         {
@@ -3322,7 +3559,7 @@ export default {
           "locale": "zh-TW",
           "name": "重量轉換",
           "description": "公斤、磅、盎司、公噸互轉。",
-          "category": "unit-converters",
+          "category": "單位轉換",
           "tags": [],
           "aliases": [
             "質量轉換",
@@ -3352,7 +3589,10 @@ export default {
             "磅",
             "盎司",
             "公噸",
-            "unit-converters"
+            "透過公斤基準轉換公斤、公克、毫克、磅、盎司與公噸。",
+            "把包裹質量由公斤換算為磅。",
+            "在公克與盎司之間轉換食譜用量。",
+            "單位轉換"
           ]
         },
         {
@@ -3362,7 +3602,7 @@ export default {
           "locale": "zh-TW",
           "name": "字數統計",
           "description": "字元數、字詞數和行數統計。",
-          "category": "developer-tools",
+          "category": "格式與開發工具",
           "tags": [],
           "aliases": [
             "字元統計",
@@ -3392,7 +3632,10 @@ export default {
             "行數",
             "空白",
             "unicode",
-            "developer-tools"
+            "在本機統計使用者可見的 unicode 字素、空白分隔詞組與文字行數。",
+            "快速查看短稿長度。",
+            "統計貼上筆記或小段文字的行數。",
+            "格式與開發工具"
           ]
         }
       ]

@@ -2,19 +2,17 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 import catalogArtifact from "../catalog/artifacts/catalog.normalized.v1.mjs";
+import { createCatalogSearchDocumentOptions } from "../src/lib/search-index-enrichment.js";
 import {
   assertSearchIndexSizeBudget,
   buildLocalizedSearchIndex,
   buildSearchDocuments,
 } from "../src/lib/search-index-core.js";
-import { TOOLS_FRONTEND_POLICY } from "../src/lib/catalog-seo.js";
 
 const outputPath = resolve("catalog/artifacts/search-index.v1.json");
 const moduleOutputPath = resolve("catalog/artifacts/search-index.v1.mjs");
 
-const documents = buildSearchDocuments(catalogArtifact, {
-  frontendPolicy: TOOLS_FRONTEND_POLICY,
-});
+const documents = buildSearchDocuments(catalogArtifact, createCatalogSearchDocumentOptions());
 const index = buildLocalizedSearchIndex(documents);
 const size = assertSearchIndexSizeBudget(index);
 

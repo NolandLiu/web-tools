@@ -1,16 +1,17 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SITE_ORIGIN } from "../src/registry.js";
 import { buildPath, listCanonicalRoutes, listLegacyRedirects } from "../src/lib/routes.js";
-import { getRouteMetadata, renderMetadataTags } from "../src/lib/seo.js";
+import { renderMetadataTags } from "../src/lib/seo.js";
+import { resolveCatalogPageMetadata } from "../src/lib/catalog-seo.js";
+import { buildCatalogSitemapUrls } from "../src/lib/catalog-publication.js";
 import { renderStaticRouteContent } from "../src/lib/static-content.js";
 import { validateContentRegistry } from "../src/lib/content.js";
 
 const METADATA_PATTERN = /<!-- route-metadata:start -->[\s\S]*?<!-- route-metadata:end -->/;
 
 function renderPage(template, route) {
-  const metadata = getRouteMetadata(route);
+  const metadata = resolveCatalogPageMetadata(route);
   if (!METADATA_PATTERN.test(template)) {
     throw new Error("The Vite HTML template is missing route metadata markers.");
   }
@@ -36,11 +37,8 @@ function escapeXml(value) {
     .replaceAll("'", "&apos;");
 }
 
-function renderSitemap(routes) {
-  const entries = routes.map(route => {
-    const url = `${SITE_ORIGIN}${buildPath(route)}`;
-    return `  <url><loc>${escapeXml(url)}</loc></url>`;
-  });
+function renderSitemap() {
+  const entries = buildCatalogSitemapUrls().map(url => `  <url><loc>${escapeXml(url)}</loc></url>`);
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
@@ -82,7 +80,7 @@ export async function generateSite({ distDir = resolve("dist") } = {}) {
 
   const notFoundHtml = renderPage(template, { kind: "not-found", lang: "en" });
   await writeFile(join(distDir, "404.html"), notFoundHtml);
-  await writeFile(join(distDir, "sitemap.xml"), renderSitemap(routes));
+  await writeFile(join(distDir, "sitemap.xml"), renderSitemap());
   await writeFile(join(distDir, "_redirects"), renderRedirects());
 
   return { routeCount: routes.length };
