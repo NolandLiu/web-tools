@@ -1,7 +1,0 @@
-schemaVersion: 0.1.0
-id: health_irr-fixture
-resourceId: res_tool_irr-calculator
-checkType: content-review
-status: healthy
-checkedAt: "2026-08-11T00:00:00.000Z"
-evidence: Synthetic fixture confirms published IRR calculator catalog coverage.

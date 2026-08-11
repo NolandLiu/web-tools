@@ -1,0 +1,20 @@
+
+resourceId: res_tool_qr-code-generator
+locale: zh-TW
+name: "QR Code 產生器"
+summary: "本機產生並下載可自訂的 QR Code。"
+seoTitle: "QR Code 產生器 | GoDeskHub"
+seoDescription: "本機產生並下載可自訂的 QR Code。"
+searchAliases:
+  - "QR 產生器"
+  - "二維碼產生"
+  - "文字轉 QR"
+  - "網址 QR"
+searchKeywords:
+  - "QR Code"
+  - "二維碼"
+  - "PNG"
+  - "掃描"
+  - "容量"
+  - "對比"
+  - "本機"

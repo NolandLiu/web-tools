@@ -1,0 +1,18 @@
+
+resourceId: res_tool_speed-converter
+locale: en
+name: "Speed converter"
+summary: "Convert km/h, mph, knots, and m/s."
+seoTitle: "Speed converter | GoDeskHub"
+seoDescription: "Convert km/h, mph, knots, and m/s."
+searchAliases:
+  - "velocity converter"
+  - "kph to mph"
+  - "kmh to mph"
+  - "knots converter"
+searchKeywords:
+  - "speed"
+  - "metres per second"
+  - "kilometres per hour"
+  - "mph"
+  - "knot"

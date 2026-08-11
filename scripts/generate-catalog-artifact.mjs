@@ -11,6 +11,7 @@ import { createToolBindingResolver, listToolCodeBindings } from "../src/tool-bin
 
 const catalogRoot = resolve("catalog");
 const outputPath = resolve("catalog/artifacts/catalog.normalized.v1.json");
+const moduleOutputPath = resolve("catalog/artifacts/catalog.normalized.v1.mjs");
 const toolBindingResolver = createToolBindingResolver(listToolCodeBindings());
 
 const catalog = await loadCatalog({ rootDir: catalogRoot });
@@ -27,6 +28,9 @@ if (diagnostics.length > 0) {
 }
 
 const artifact = buildNormalizedCatalogArtifact(catalog);
+const serializedArtifact = serializeCatalogArtifact(artifact);
 await mkdir(dirname(outputPath), { recursive: true });
-await writeFile(outputPath, serializeCatalogArtifact(artifact), "utf8");
+await writeFile(outputPath, serializedArtifact, "utf8");
+await writeFile(moduleOutputPath, `export default ${serializedArtifact};\n`, "utf8");
 console.log(`Wrote ${outputPath}`);
+console.log(`Wrote ${moduleOutputPath}`);

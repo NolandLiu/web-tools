@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_bmi-calculator-q02
+status: published
+placements:
+  - resourceId: res_tool_bmi-calculator
+    order: 2
+locales:
+  - locale: en
+    question: "Can children use the same interpretation?"
+    answer: "No. Child and adolescent assessment requires age- and sex-specific growth references."
+  - locale: zh-CN
+    question: "儿童能使用相同解释吗？"
+    answer: "不能，儿童和青少年需要按年龄和性别评估。"
+  - locale: zh-TW
+    question: "兒童能用相同方式解讀嗎？"
+    answer: "不能，兒童與青少年需依年齡和性別評估。"

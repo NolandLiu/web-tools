@@ -1,0 +1,29 @@
+
+resourceId: res_tool_ipv6-toolbox
+locale: zh-TW
+name: "IPv6 工具箱"
+summary: "本機展開、壓縮、規範化、分類並計算 IPv6 前綴範圍。"
+seoTitle: "IPv6 工具箱 | GoDeskHub"
+seoDescription: "本機展開、壓縮、規範化、分類並計算 IPv6 前綴範圍。"
+searchAliases:
+  - "IPv6 expand"
+  - "IPv6 compress"
+  - "IPv6 normalize"
+  - "IPv6 prefix"
+  - "IPv6 range"
+  - "RFC 5952"
+  - "IPv6 展開"
+  - "IPv6 壓縮"
+  - "IPv6 前綴"
+searchKeywords:
+  - "IPv6"
+  - "RFC 5952"
+  - "prefix"
+  - "BigInt"
+  - "address type"
+  - "normalize"
+  - "網絡"
+  - "IP"
+  - "隱私"
+  - "本機處理"
+  - "工具箱"

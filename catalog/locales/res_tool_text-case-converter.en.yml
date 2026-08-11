@@ -1,0 +1,19 @@
+
+resourceId: res_tool_text-case-converter
+locale: en
+name: "Text case converter"
+summary: "Convert upper, lower, title, and camel case."
+seoTitle: "Text case converter | GoDeskHub"
+seoDescription: "Convert upper, lower, title, and camel case."
+searchAliases:
+  - "uppercase converter"
+  - "lowercase converter"
+  - "title case"
+  - "camel case"
+searchKeywords:
+  - "text case"
+  - "uppercase"
+  - "lowercase"
+  - "title"
+  - "camelCase"
+  - "Unicode"

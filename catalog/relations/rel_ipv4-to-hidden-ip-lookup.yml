@@ -1,6 +1,0 @@
-schemaVersion: 0.1.0
-id: rel_ipv4-to-hidden-ip-lookup
-type: related
-sourceId: res_tool_ipv4-network
-targetId: res_tool_ip-lookup
-order: 1

@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_weight-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_weight-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Are pounds and ounces avoirdupois units?"
+    answer: "Yes. The implemented factors use the common international avoirdupois pound and ounce."
+  - locale: zh-CN
+    question: "磅和盎司采用常衡制吗？"
+    answer: "是，当前因子采用常见的国际常衡磅和盎司。"
+  - locale: zh-TW
+    question: "磅與盎司採用常衡制嗎？"
+    answer: "是，現有因子採常見的國際常衡磅與盎司。"

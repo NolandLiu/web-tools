@@ -1,0 +1,19 @@
+
+resourceId: res_tool_json-tools
+locale: zh-TW
+name: "JSON 工具"
+summary: "在本機格式化、壓縮並驗證 JSON。"
+seoTitle: "JSON 工具 | GoDeskHub"
+seoDescription: "在本機格式化、壓縮並驗證 JSON。"
+searchAliases:
+  - "JSON 格式化"
+  - "JSON 驗證"
+  - "JSON 壓縮"
+  - "JSON 美化"
+searchKeywords:
+  - "JSON"
+  - "格式化"
+  - "壓縮"
+  - "驗證"
+  - "解析器"
+  - "開發工具"

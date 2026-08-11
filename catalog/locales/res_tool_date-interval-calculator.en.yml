@@ -1,0 +1,19 @@
+
+resourceId: res_tool_date-interval-calculator
+locale: en
+name: "Date interval calculator"
+summary: "Calculate the days between two dates."
+seoTitle: "Date interval calculator | GoDeskHub"
+seoDescription: "Calculate the days between two dates."
+searchAliases:
+  - "days between dates"
+  - "date difference"
+  - "day interval"
+  - "elapsed days"
+searchKeywords:
+  - "date"
+  - "interval"
+  - "difference"
+  - "days"
+  - "elapsed"
+  - "timezone"

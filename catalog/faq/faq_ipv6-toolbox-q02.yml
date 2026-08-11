@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_ipv6-toolbox-q02
+status: published
+placements:
+  - resourceId: res_tool_ipv6-toolbox
+    order: 2
+locales:
+  - locale: en
+    question: "Does this page query the network?"
+    answer: "No. IPv6 formatting and prefix calculations run locally in the browser."
+  - locale: zh-CN
+    question: "Does this page query the network?"
+    answer: "No. IPv6 formatting and prefix calculations run locally in the browser."
+  - locale: zh-TW
+    question: "Does this page query the network?"
+    answer: "No. IPv6 formatting and prefix calculations run locally in the browser."

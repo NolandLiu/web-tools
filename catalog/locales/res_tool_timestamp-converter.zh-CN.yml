@@ -1,0 +1,20 @@
+
+resourceId: res_tool_timestamp-converter
+locale: zh-CN
+name: "时间戳转换"
+summary: "秒、毫秒和日期时间互转。"
+seoTitle: "时间戳转换 | GoDeskHub"
+seoDescription: "秒、毫秒和日期时间互转。"
+searchAliases:
+  - "Unix 时间戳"
+  - "纪元转换"
+  - "秒转日期"
+  - "毫秒转日期"
+searchKeywords:
+  - "时间戳"
+  - "Unix"
+  - "纪元"
+  - "ISO 8601"
+  - "UTC"
+  - "时区"
+  - "毫秒"

@@ -66,7 +66,7 @@ test("catalog adapter keeps legacy output unchanged when pilot allowlist is empt
 test("catalog adapter reports deterministic diagnostics for field ownership conflicts", async () => {
   const artifact = await loadCatalogArtifact();
   const mutated = structuredClone(artifact);
-  const ipv4 = mutated.records.resources.find(resource => resource.id === "res_tool_ipv4-network");
+  const ipv4 = mutated.records.resources.find(resource => resource.toolBindingId === "ipv4-network-toolbox");
   ipv4.canonicalSlug = "changed-ipv4-slug";
 
   const projection = buildCatalogToolProjection(mutated, listToolCodeBindings(), {

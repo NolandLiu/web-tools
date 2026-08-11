@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_uuid-generator-q02
+status: published
+placements:
+  - resourceId: res_tool_uuid-generator
+    order: 2
+locales:
+  - locale: en
+    question: "Can I derive a timestamp from it?"
+    answer: "No. Version 4 UUIDs are random and do not encode creation time."
+  - locale: zh-CN
+    question: "能从中读取生成时间吗？"
+    answer: "不能，版本 4 是随机标识符，不编码时间。"
+  - locale: zh-TW
+    question: "能從中讀取產生時間嗎？"
+    answer: "不能，版本 4 是隨機識別碼，不含時間。"

@@ -1,0 +1,19 @@
+
+resourceId: res_tool_compound-interest-calculator
+locale: zh-TW
+name: "複利計算"
+summary: "複利成長參考計算。"
+seoTitle: "複利計算 | GoDeskHub"
+seoDescription: "複利成長參考計算。"
+searchAliases:
+  - "複利計算"
+  - "每月複利"
+  - "投資成長"
+  - "利息計算"
+searchKeywords:
+  - "複利"
+  - "本金"
+  - "年利率"
+  - "年數"
+  - "每月"
+  - "利息"

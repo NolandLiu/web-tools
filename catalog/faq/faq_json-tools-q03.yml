@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_json-tools-q03
+status: published
+placements:
+  - resourceId: res_tool_json-tools
+    order: 3
+locales:
+  - locale: en
+    question: "Is the pasted JSON uploaded?"
+    answer: "No. This implementation parses and renders the text in the current browser."
+  - locale: zh-CN
+    question: "JSON 会上传吗？"
+    answer: "不会，解析和输出都在当前浏览器进行。"
+  - locale: zh-TW
+    question: "JSON 會上傳嗎？"
+    answer: "不會，解析和輸出都在目前瀏覽器進行。"

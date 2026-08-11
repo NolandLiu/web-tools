@@ -1,13 +1,15 @@
+
 resourceId: res_tool_ip-whois-rdap
 locale: zh-CN
-name: IP WHOIS 与 RDAP 查询
-summary: 记录临时隔离 RDAP 查询能力的隐藏 fixture。
-seoTitle: IP WHOIS 与 RDAP 查询 fixture
-seoDescription: 临时隔离 RDAP 查询能力的合成隐藏 Catalog fixture。
+name: "IP WHOIS 与 RDAP"
+summary: "未发布 IP 注册信息查询的隐藏能力记录。"
+seoTitle: "IP WHOIS 与 RDAP | GoDeskHub"
+seoDescription: "未发布 IP 注册信息查询的隐藏能力记录。"
 searchAliases:
-  - WHOIS
-  - RDAP
+  - "RDAP"
+  - "WHOIS"
 searchKeywords:
-  - IP
-  - RDAP
-  - 隐藏
+  - "IP"
+  - "RDAP"
+  - "WHOIS"
+  - "隐藏"

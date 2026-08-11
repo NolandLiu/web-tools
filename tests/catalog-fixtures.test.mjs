@@ -3,6 +3,8 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import test from "node:test";
 
+import { createToolBindingResolver, listToolCodeBindings } from "../src/tool-bindings.js";
+
 const execFileAsync = promisify(execFile);
 const workspaceRoot = new URL("../", import.meta.url);
 
@@ -18,38 +20,28 @@ async function loadSchemaModule() {
 test("repository Catalog fixtures validate and preserve publication states", async () => {
   const { loadCatalog, validateCatalogGraph } = await loadSchemaModule();
   const catalogRoot = new URL("../catalog", import.meta.url);
+  const toolBindingResolver = createToolBindingResolver(listToolCodeBindings());
 
   const catalog = await loadCatalog({ rootDir: catalogRoot.pathname });
-  const graphDiagnostics = validateCatalogGraph(catalog, {
-    toolBindingResolver: {
-      hasToolBinding: (toolBindingId) => [
-        "ipv4-network-toolbox",
-        "irr-calculator",
-        "password-generator",
-      ].includes(toolBindingId),
-    },
-  });
+  const graphDiagnostics = validateCatalogGraph(catalog, { toolBindingResolver });
 
   assert.equal(catalog.ok, true);
   assert.deepEqual(graphDiagnostics, []);
-  assert.deepEqual(catalog.records.resources.map((resource) => resource.id), [
-    "res_tool_ip-lookup",
-    "res_tool_ip-whois-rdap",
-    "res_tool_ipv4-network",
-    "res_tool_irr-calculator",
-    "res_tool_password-generator",
-  ]);
-  assert.deepEqual(catalog.records.resources.map((resource) => [resource.id, resource.status]), [
-    ["res_tool_ip-lookup", "hidden"],
-    ["res_tool_ip-whois-rdap", "hidden"],
-    ["res_tool_ipv4-network", "published"],
-    ["res_tool_irr-calculator", "published"],
-    ["res_tool_password-generator", "published"],
-  ]);
-  assert.equal(catalog.records.locales.length, 15);
-  assert(catalog.records.faqs.length >= 2);
-  assert(catalog.records.relations.length >= 1);
-  assert(catalog.records.health.length >= 3);
+  assert.equal(catalog.records.resources.filter((resource) => resource.type === "tool" && resource.status === "published").length, 27);
+  assert.deepEqual(
+    catalog.records.resources
+      .filter((resource) => resource.status === "hidden")
+      .map((resource) => [resource.id, resource.toolBindingId])
+      .sort(),
+    [
+      ["res_tool_ip-lookup", "ip-info"],
+      ["res_tool_ip-whois-rdap", "ip-rdap"],
+    ],
+  );
+  assert.equal(catalog.records.locales.length, 87);
+  assert(catalog.records.faqs.length >= 60);
+  assert.equal(catalog.records.categories.length, 5);
+  assert(catalog.records.health.length >= 29);
 });
 
 test("repository Catalog fixtures contain no obvious private or secret-like data", async () => {

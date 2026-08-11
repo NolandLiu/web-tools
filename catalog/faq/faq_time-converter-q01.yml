@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_time-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_time-converter
+    order: 1
+locales:
+  - locale: en
+    question: "Is every day treated as 24 hours?"
+    answer: "Yes. A day is fixed at 86,400 seconds in this converter."
+  - locale: zh-CN
+    question: "每一天都按 24 小时吗？"
+    answer: "是，本转换器固定按 86,400 秒计算一天。"
+  - locale: zh-TW
+    question: "每一天都按 24 小時計算嗎？"
+    answer: "是，本轉換器固定以 86,400 秒計算一天。"

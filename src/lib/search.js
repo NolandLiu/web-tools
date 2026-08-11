@@ -1,5 +1,5 @@
 import { TOOL_CONTENT } from "../content/index.js";
-import { CATEGORIES, TOOLS } from "../registry.js";
+import { CATEGORIES, TOOLS, getCatalogSearchFields } from "../lib/catalog-data.js";
 import { buildPath } from "./routes.js";
 
 function normalize(value) {
@@ -27,11 +27,12 @@ export function searchTools(query, lang, limit = 12) {
 
   return TOOLS.map(tool => {
     const content = TOOL_CONTENT[tool.id][lang];
+    const searchFields = getCatalogSearchFields(tool.id, lang);
     const category = CATEGORIES.find(item => item.id === tool.category);
     const name = tool.text[lang].name;
     const categoryName = category?.text[lang].name ?? "";
-    const score = scoreText(normalizedQuery, name, content.aliases, [
-      ...content.keywords,
+    const score = scoreText(normalizedQuery, name, searchFields.aliases, [
+      ...searchFields.keywords,
       content.summary,
       ...content.useCases,
       categoryName,

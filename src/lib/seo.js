@@ -5,7 +5,7 @@ import {
   LANGUAGES,
   SITE_ORIGIN,
   TOOLS,
-} from "../registry.js";
+} from "../lib/catalog-data.js";
 import { TOOL_CONTENT } from "../content/index.js";
 import { buildPath, switchRouteLanguage } from "./routes.js";
 

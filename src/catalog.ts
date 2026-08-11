@@ -1,4 +1,4 @@
-import { CATEGORIES, TOOLS as REGISTERED_TOOLS } from "./registry.js";
+import { CATEGORIES, TOOLS as REGISTERED_TOOLS } from "./lib/catalog-data.js";
 import type { CategoryId, Lang, Tool } from "./types";
 
 export const CATEGORY_ORDER: CategoryId[] = CATEGORIES.map(category => category.id);

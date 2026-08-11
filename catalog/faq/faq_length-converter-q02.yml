@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_length-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_length-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Can I enter a negative length?"
+    answer: "The calculator accepts any finite number, including negative values, although a negative physical length may not make sense for the task."
+  - locale: zh-CN
+    question: "可以输入负数吗？"
+    answer: "可以输入任何有限数值，但负长度在多数实际场景中没有物理意义。"
+  - locale: zh-TW
+    question: "可以輸入負數嗎？"
+    answer: "可以輸入任何有限數值，但負長度在多數實際情境中沒有物理意義。"

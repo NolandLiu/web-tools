@@ -1,0 +1,19 @@
+
+resourceId: res_tool_volume-converter
+locale: en
+name: "Volume converter"
+summary: "Convert liters, milliliters, gallons, and cups."
+seoTitle: "Volume converter | GoDeskHub"
+seoDescription: "Convert liters, milliliters, gallons, and cups."
+searchAliases:
+  - "liter converter"
+  - "litres to gallons"
+  - "ml to cups"
+  - "liquid volume"
+searchKeywords:
+  - "volume"
+  - "litre"
+  - "millilitre"
+  - "gallon"
+  - "cup"
+  - "cubic metre"

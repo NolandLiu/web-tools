@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_base64-encoder-decoder-q03
+status: published
+placements:
+  - resourceId: res_tool_base64-encoder-decoder
+    order: 3
+locales:
+  - locale: en
+    question: "Does it support Chinese text?"
+    answer: "Yes. Text is converted to UTF-8 bytes before encoding and decoded back with UTF-8."
+  - locale: zh-CN
+    question: "支持中文吗？"
+    answer: "支持，文本会先转换为 UTF-8 字节。"
+  - locale: zh-TW
+    question: "支援中文嗎？"
+    answer: "支援，文字會先轉成 UTF-8 位元組。"

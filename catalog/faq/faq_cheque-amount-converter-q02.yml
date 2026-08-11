@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_cheque-amount-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_cheque-amount-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Will a third decimal digit be rounded?"
+    answer: "No. Inputs with more than two decimal places are rejected."
+  - locale: zh-CN
+    question: "第三位小数会四舍五入吗？"
+    answer: "不会，超过两位小数的输入会被拒绝。"
+  - locale: zh-TW
+    question: "第三位小數會四捨五入嗎？"
+    answer: "不會，超過兩位小數的輸入會被拒絕。"

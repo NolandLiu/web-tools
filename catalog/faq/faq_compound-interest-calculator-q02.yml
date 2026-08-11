@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_compound-interest-calculator-q02
+status: published
+placements:
+  - resourceId: res_tool_compound-interest-calculator
+    order: 2
+locales:
+  - locale: en
+    question: "Are regular contributions included?"
+    answer: "No. Only one initial principal is included."
+  - locale: zh-CN
+    question: "包含定期投入吗？"
+    answer: "不包含，只计算一次初始本金。"
+  - locale: zh-TW
+    question: "包含定期投入嗎？"
+    answer: "不包含，只計算一次初始本金。"

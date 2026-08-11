@@ -1,0 +1,20 @@
+
+resourceId: res_tool_length-converter
+locale: en
+name: "Length converter"
+summary: "Convert meters, feet, miles, and more."
+seoTitle: "Length converter | GoDeskHub"
+seoDescription: "Convert meters, feet, miles, and more."
+searchAliases:
+  - "distance converter"
+  - "meters to feet"
+  - "km to miles"
+  - "m to ft"
+searchKeywords:
+  - "length"
+  - "distance"
+  - "metre"
+  - "meter"
+  - "foot"
+  - "mile"
+  - "yard"

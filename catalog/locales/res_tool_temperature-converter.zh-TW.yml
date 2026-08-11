@@ -1,0 +1,18 @@
+
+resourceId: res_tool_temperature-converter
+locale: zh-TW
+name: "溫度轉換"
+summary: "攝氏、華氏、克氏公式換算。"
+seoTitle: "溫度轉換 | GoDeskHub"
+seoDescription: "攝氏、華氏、克氏公式換算。"
+searchAliases:
+  - "攝氏轉華氏"
+  - "華氏轉攝氏"
+  - "克氏轉換"
+  - "溫標轉換"
+searchKeywords:
+  - "溫度"
+  - "攝氏"
+  - "華氏"
+  - "克氏"
+  - "絕對零度"

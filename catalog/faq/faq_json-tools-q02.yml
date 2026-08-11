@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_json-tools-q02
+status: published
+placements:
+  - resourceId: res_tool_json-tools
+    order: 2
+locales:
+  - locale: en
+    question: "Is minified JSON encrypted or compressed as a file?"
+    answer: "No. Minification only removes insignificant whitespace; the text remains readable and is not encryption or general-purpose compression."
+  - locale: zh-CN
+    question: "压缩是否等于加密？"
+    answer: "不是。压缩模式只移除非必要空白，文本仍可读取。"
+  - locale: zh-TW
+    question: "壓縮等於加密嗎？"
+    answer: "不是，只會移除非必要空白，文字仍可讀取。"

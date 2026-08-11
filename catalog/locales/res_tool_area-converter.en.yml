@@ -1,0 +1,18 @@
+
+resourceId: res_tool_area-converter
+locale: en
+name: "Area converter"
+summary: "Convert square meters, acres, and square feet."
+seoTitle: "Area converter | GoDeskHub"
+seoDescription: "Convert square meters, acres, and square feet."
+searchAliases:
+  - "land area converter"
+  - "sqm to sqft"
+  - "acre to hectare"
+  - "square meter converter"
+searchKeywords:
+  - "area"
+  - "square metre"
+  - "square foot"
+  - "acre"
+  - "hectare"

@@ -1,0 +1,19 @@
+
+resourceId: res_tool_text-case-converter
+locale: zh-TW
+name: "文字大小寫轉換"
+summary: "大寫、小寫、標題和駝峰格式。"
+seoTitle: "文字大小寫轉換 | GoDeskHub"
+seoDescription: "大寫、小寫、標題和駝峰格式。"
+searchAliases:
+  - "大寫轉換"
+  - "小寫轉換"
+  - "標題格式"
+  - "駝峰格式"
+searchKeywords:
+  - "文字大小寫"
+  - "大寫"
+  - "小寫"
+  - "標題"
+  - "camelCase"
+  - "Unicode"

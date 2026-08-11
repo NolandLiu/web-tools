@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_ipv4-network-toolbox-q01
+status: published
+placements:
+  - resourceId: res_tool_ipv4-network-toolbox
+    order: 1
+locales:
+  - locale: en
+    question: "Why are several IPv4 functions on one page?"
+    answer: "They share the same IPv4 addressing model, so grouping them avoids duplicate pages while keeping each module independent."
+  - locale: zh-CN
+    question: "Why are several IPv4 functions on one page?"
+    answer: "They share the same IPv4 addressing model, so grouping them avoids duplicate pages while keeping each module independent."
+  - locale: zh-TW
+    question: "Why are several IPv4 functions on one page?"
+    answer: "They share the same IPv4 addressing model, so grouping them avoids duplicate pages while keeping each module independent."

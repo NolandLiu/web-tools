@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_qr-code-generator-q01
+status: published
+placements:
+  - resourceId: res_tool_qr-code-generator
+    order: 1
+locales:
+  - locale: en
+    question: "Is the QR content uploaded?"
+    answer: "No. The application generates the image in the current browser."
+  - locale: zh-CN
+    question: "QR 内容会上传吗？"
+    answer: "不会，图片在当前浏览器生成。"
+  - locale: zh-TW
+    question: "QR 內容會上傳嗎？"
+    answer: "不會，圖片在目前瀏覽器產生。"

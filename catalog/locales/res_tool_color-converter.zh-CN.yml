@@ -1,0 +1,19 @@
+
+resourceId: res_tool_color-converter
+locale: zh-CN
+name: "颜色转换"
+summary: "HEX、RGB、HSL 基础转换。"
+seoTitle: "颜色转换 | GoDeskHub"
+seoDescription: "HEX、RGB、HSL 基础转换。"
+searchAliases:
+  - "HEX 转 RGB"
+  - "RGB 转 HEX"
+  - "RGB 转 HSL"
+  - "CSS 颜色转换"
+searchKeywords:
+  - "颜色"
+  - "HEX"
+  - "RGB"
+  - "HSL"
+  - "CSS"
+  - "调色板"

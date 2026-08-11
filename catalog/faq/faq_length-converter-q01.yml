@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_length-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_length-converter
+    order: 1
+locales:
+  - locale: en
+    question: "How many feet are in one metre?"
+    answer: "The converter uses the exact international foot definition of 0.3048 metre, so one metre is about 3.280839895 feet."
+  - locale: zh-CN
+    question: "1 米等于多少英尺？"
+    answer: "工具采用国际英尺的精确定义 0.3048 米，因此 1 米约为 3.280839895 英尺。"
+  - locale: zh-TW
+    question: "1 公尺等於多少英尺？"
+    answer: "工具採用國際英尺的精確定義 0.3048 公尺，因此 1 公尺約為 3.280839895 英尺。"

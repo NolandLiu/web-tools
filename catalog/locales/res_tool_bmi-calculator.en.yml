@@ -1,0 +1,19 @@
+
+resourceId: res_tool_bmi-calculator
+locale: en
+name: "BMI calculator"
+summary: "Calculate a body mass index reference."
+seoTitle: "BMI calculator | GoDeskHub"
+seoDescription: "Calculate a body mass index reference."
+searchAliases:
+  - "body mass index"
+  - "BMI checker"
+  - "kg cm BMI"
+  - "health calculator"
+searchKeywords:
+  - "BMI"
+  - "body mass index"
+  - "weight"
+  - "height"
+  - "health"
+  - "not diagnosis"

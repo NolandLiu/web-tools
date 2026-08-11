@@ -1,0 +1,19 @@
+
+resourceId: res_tool_word-counter
+locale: en
+name: "Word counter"
+summary: "Count characters, words, and lines locally."
+seoTitle: "Word counter | GoDeskHub"
+seoDescription: "Count characters, words, and lines locally."
+searchAliases:
+  - "character counter"
+  - "word count"
+  - "line counter"
+  - "text statistics"
+searchKeywords:
+  - "words"
+  - "characters"
+  - "lines"
+  - "whitespace"
+  - "Unicode"
+  - "count"

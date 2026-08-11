@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_base64-encoder-decoder-q01
+status: published
+placements:
+  - resourceId: res_tool_base64-encoder-decoder
+    order: 1
+locales:
+  - locale: en
+    question: "Why is the Base64 output longer?"
+    answer: "Base64 represents each 3 input bytes with 4 printable characters, plus possible padding."
+  - locale: zh-CN
+    question: "为什么输出更长？"
+    answer: "Base64 通常用 4 个字符表示 3 个输入字节，并可能加入填充。"
+  - locale: zh-TW
+    question: "為什麼輸出更長？"
+    answer: "Base64 通常以 4 個字元表示 3 個輸入位元組，並可能加入填補。"

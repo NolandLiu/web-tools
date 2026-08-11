@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_speed-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_speed-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Does mph mean miles per hour?"
+    answer: "Yes. The option uses the international mile and a 3,600-second hour."
+  - locale: zh-CN
+    question: "mph 是否指英里／小时？"
+    answer: "是，使用国际英里和 3,600 秒的小时。"
+  - locale: zh-TW
+    question: "mph 是英里／小時嗎？"
+    answer: "是，使用國際英里和 3,600 秒的小時。"

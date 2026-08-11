@@ -1,0 +1,19 @@
+
+resourceId: res_tool_uuid-generator
+locale: en
+name: "UUID generator"
+summary: "Generate secure UUID v4 values in your browser."
+seoTitle: "UUID generator | GoDeskHub"
+seoDescription: "Generate secure UUID v4 values in your browser."
+searchAliases:
+  - "guid generator"
+  - "uuid v4"
+  - "random id"
+  - "unique identifier"
+searchKeywords:
+  - "UUID"
+  - "GUID"
+  - "version 4"
+  - "random"
+  - "identifier"
+  - "crypto"

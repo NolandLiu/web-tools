@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_word-counter-q01
+status: published
+placements:
+  - resourceId: res_tool_word-counter
+    order: 1
+locales:
+  - locale: en
+    question: "Are spaces counted as characters?"
+    answer: "Yes. Character counting includes whitespace grapheme clusters."
+  - locale: zh-CN
+    question: "空格算字符吗？"
+    answer: "算，字符统计包含空白字素。"
+  - locale: zh-TW
+    question: "空格算字元嗎？"
+    answer: "算，字元統計包含空白字素。"

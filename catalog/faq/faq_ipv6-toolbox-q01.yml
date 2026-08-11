@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_ipv6-toolbox-q01
+status: published
+placements:
+  - resourceId: res_tool_ipv6-toolbox
+    order: 1
+locales:
+  - locale: en
+    question: "Can one zero group be compressed?"
+    answer: "No. RFC 5952 avoids compressing a single 0000 group."
+  - locale: zh-CN
+    question: "Can one zero group be compressed?"
+    answer: "No. RFC 5952 avoids compressing a single 0000 group."
+  - locale: zh-TW
+    question: "Can one zero group be compressed?"
+    answer: "No. RFC 5952 avoids compressing a single 0000 group."

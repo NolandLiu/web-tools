@@ -1,0 +1,21 @@
+
+resourceId: res_tool_data-storage-converter
+locale: zh-CN
+name: "数据存储转换"
+summary: "B、KB、MB、GB、TB 换算。"
+seoTitle: "数据存储转换 | GoDeskHub"
+seoDescription: "B、KB、MB、GB、TB 换算。"
+searchAliases:
+  - "文件大小转换"
+  - "GB 转 MB"
+  - "GiB 转 MiB"
+  - "字节转换"
+searchKeywords:
+  - "存储"
+  - "字节"
+  - "KB"
+  - "KiB"
+  - "GB"
+  - "GiB"
+  - "1000"
+  - "1024"

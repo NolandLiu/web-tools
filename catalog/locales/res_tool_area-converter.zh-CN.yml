@@ -1,0 +1,18 @@
+
+resourceId: res_tool_area-converter
+locale: zh-CN
+name: "面积转换"
+summary: "平方米、公顷、英亩等面积换算。"
+seoTitle: "面积转换 | GoDeskHub"
+seoDescription: "平方米、公顷、英亩等面积换算。"
+searchAliases:
+  - "土地面积转换"
+  - "平方米转平方英尺"
+  - "英亩转公顷"
+  - "平方单位转换"
+searchKeywords:
+  - "面积"
+  - "平方米"
+  - "平方英尺"
+  - "英亩"
+  - "公顷"

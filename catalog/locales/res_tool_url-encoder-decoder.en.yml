@@ -1,0 +1,18 @@
+
+resourceId: res_tool_url-encoder-decoder
+locale: en
+name: "URL encoder and decoder"
+summary: "Encode and decode URL text safely."
+seoTitle: "URL encoder and decoder | GoDeskHub"
+seoDescription: "Encode and decode URL text safely."
+searchAliases:
+  - "percent encoder"
+  - "url encode"
+  - "url decode"
+  - "encodeURIComponent"
+searchKeywords:
+  - "URL"
+  - "URI"
+  - "percent encoding"
+  - "component"
+  - "decodeURIComponent"

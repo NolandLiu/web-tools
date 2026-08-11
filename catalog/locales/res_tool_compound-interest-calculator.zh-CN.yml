@@ -1,0 +1,19 @@
+
+resourceId: res_tool_compound-interest-calculator
+locale: zh-CN
+name: "复利计算"
+summary: "复利增长参考计算。"
+seoTitle: "复利计算 | GoDeskHub"
+seoDescription: "复利增长参考计算。"
+searchAliases:
+  - "复利计算"
+  - "每月复利"
+  - "投资增长"
+  - "利息计算"
+searchKeywords:
+  - "复利"
+  - "本金"
+  - "年利率"
+  - "年数"
+  - "每月"
+  - "利息"

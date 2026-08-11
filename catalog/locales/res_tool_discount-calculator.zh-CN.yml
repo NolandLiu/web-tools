@@ -1,0 +1,18 @@
+
+resourceId: res_tool_discount-calculator
+locale: zh-CN
+name: "折扣计算"
+summary: "计算折后价和节省金额。"
+seoTitle: "折扣计算 | GoDeskHub"
+seoDescription: "计算折后价和节省金额。"
+searchAliases:
+  - "折后价计算"
+  - "促销价格"
+  - "优惠计算"
+  - "节省金额"
+searchKeywords:
+  - "折扣"
+  - "促销"
+  - "价格"
+  - "节省"
+  - "百分比"

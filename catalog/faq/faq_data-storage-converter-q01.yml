@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_data-storage-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_data-storage-converter
+    order: 1
+locales:
+  - locale: en
+    question: "What is the difference between GB and GiB?"
+    answer: "GB is decimal and equals 1,000,000,000 bytes; GiB is binary and equals 1,073,741,824 bytes."
+  - locale: zh-CN
+    question: "GB 与 GiB 有什么区别？"
+    answer: "GB 是十进制单位，等于 1,000,000,000 B；GiB 是二进制单位，等于 1,073,741,824 B。"
+  - locale: zh-TW
+    question: "GB 與 GiB 有什麼差別？"
+    answer: "GB 是十進位單位，等於 1,000,000,000 B；GiB 是二進位單位，等於 1,073,741,824 B。"

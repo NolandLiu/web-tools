@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_compound-interest-calculator-q01
+status: published
+placements:
+  - resourceId: res_tool_compound-interest-calculator
+    order: 1
+locales:
+  - locale: en
+    question: "Can I choose annual, monthly, or daily compounding?"
+    answer: "Yes. Enter 1, 12, or up to 365 compounding periods per year."
+  - locale: zh-CN
+    question: "可以选择按年、按月或按日复利吗？"
+    answer: "可以，分别输入每年 1、12 或最多 365 次复利。"
+  - locale: zh-TW
+    question: "可以選擇按年、按月或按日複利嗎？"
+    answer: "可以，分別輸入每年 1、12 或最多 365 次複利。"

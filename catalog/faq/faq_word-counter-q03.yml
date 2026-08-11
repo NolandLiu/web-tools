@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_word-counter-q03
+status: published
+placements:
+  - resourceId: res_tool_word-counter
+    order: 3
+locales:
+  - locale: en
+    question: "Does a trailing newline add a line?"
+    answer: "Splitting by line breaks can produce an additional empty final line when the input ends with a newline."
+  - locale: zh-CN
+    question: "末尾换行会增加行数吗？"
+    answer: "输入以换行结束时，分隔规则可能产生一个末尾空行。"
+  - locale: zh-TW
+    question: "末尾換行會增加行數嗎？"
+    answer: "輸入以換行結束時，分隔規則可能產生一個末尾空行。"

@@ -1,0 +1,17 @@
+
+resourceId: res_tool_percentage-calculator
+locale: zh-TW
+name: "百分比計算"
+summary: "計算某數值的百分比。"
+seoTitle: "百分比計算 | GoDeskHub"
+seoDescription: "計算某數值的百分比。"
+searchAliases:
+  - "數值百分比"
+  - "百分比工具"
+  - "求百分之幾"
+  - "percent 計算"
+searchKeywords:
+  - "百分比"
+  - "比例"
+  - "基準數值"
+  - "計算"

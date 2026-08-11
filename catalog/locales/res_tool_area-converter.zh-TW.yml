@@ -1,0 +1,18 @@
+
+resourceId: res_tool_area-converter
+locale: zh-TW
+name: "面積轉換"
+summary: "平方公尺、公頃、英畝等面積換算。"
+seoTitle: "面積轉換 | GoDeskHub"
+seoDescription: "平方公尺、公頃、英畝等面積換算。"
+searchAliases:
+  - "土地面積轉換"
+  - "平方公尺轉平方英尺"
+  - "英畝轉公頃"
+  - "平方單位轉換"
+searchKeywords:
+  - "面積"
+  - "平方公尺"
+  - "平方英尺"
+  - "英畝"
+  - "公頃"

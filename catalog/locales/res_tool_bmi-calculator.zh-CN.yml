@@ -1,0 +1,19 @@
+
+resourceId: res_tool_bmi-calculator
+locale: zh-CN
+name: "BMI 计算"
+summary: "身体质量指数参考计算。"
+seoTitle: "BMI 计算 | GoDeskHub"
+seoDescription: "身体质量指数参考计算。"
+searchAliases:
+  - "身体质量指数"
+  - "BMI 查询"
+  - "千克厘米 BMI"
+  - "健康计算"
+searchKeywords:
+  - "BMI"
+  - "身体质量指数"
+  - "体重"
+  - "身高"
+  - "健康"
+  - "非诊断"

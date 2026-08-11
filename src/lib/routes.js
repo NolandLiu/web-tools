@@ -4,7 +4,7 @@ import {
   INFO_PAGES,
   LANGUAGES,
   TOOLS,
-} from "../registry.js";
+} from "../lib/catalog-data.js";
 
 const languageByPath = new Map(LANGUAGES.map(language => [language.path, language]));
 const languageById = new Map(LANGUAGES.map(language => [language.id, language]));

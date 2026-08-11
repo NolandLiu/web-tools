@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_date-interval-calculator-q02
+status: published
+placements:
+  - resourceId: res_tool_date-interval-calculator
+    order: 2
+locales:
+  - locale: en
+    question: "Are both start and end dates counted?"
+    answer: "No. The result is the elapsed gap between them."
+  - locale: zh-CN
+    question: "是否同时包含开始和结束日？"
+    answer: "不包含，结果是两者之间的经过间隔。"
+  - locale: zh-TW
+    question: "會同時包含開始和結束日嗎？"
+    answer: "不會，結果是兩者之間的經過間隔。"

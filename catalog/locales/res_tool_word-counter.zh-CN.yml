@@ -1,0 +1,19 @@
+
+resourceId: res_tool_word-counter
+locale: zh-CN
+name: "字数统计"
+summary: "字符数、字词数和行数统计。"
+seoTitle: "字数统计 | GoDeskHub"
+seoDescription: "字符数、字词数和行数统计。"
+searchAliases:
+  - "字符统计"
+  - "词数统计"
+  - "行数统计"
+  - "文本统计"
+searchKeywords:
+  - "字数"
+  - "字符"
+  - "字词"
+  - "行数"
+  - "空白"
+  - "Unicode"

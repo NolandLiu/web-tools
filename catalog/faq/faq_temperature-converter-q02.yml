@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_temperature-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_temperature-converter
+    order: 2
+locales:
+  - locale: en
+    question: "At what value are Celsius and Fahrenheit equal?"
+    answer: "Both scales have the same numerical value at −40."
+  - locale: zh-CN
+    question: "摄氏和华氏何时数值相同？"
+    answer: "两者在 −40 时数值相同。"
+  - locale: zh-TW
+    question: "攝氏和華氏何時數值相同？"
+    answer: "兩者在 −40 時數值相同。"

@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_irr-calculator-q02
+status: published
+placements:
+  - resourceId: res_tool_irr-calculator
+    order: 2
+locales:
+  - locale: en
+    question: "Why can one cash-flow sequence have multiple IRRs?"
+    answer: "When cash-flow signs change more than once, the NPV equation can cross zero at more than one rate."
+  - locale: zh-CN
+    question: "为什么可能有多个 IRR？"
+    answer: "现金流符号多次变化时，净现值曲线可能多次穿过零点。"
+  - locale: zh-TW
+    question: "為何可能有多個 IRR？"
+    answer: "現金流正負號多次變化時，淨現值曲線可能多次穿過零點。"

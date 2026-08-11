@@ -1,13 +1,14 @@
+
 resourceId: res_tool_ip-lookup
 locale: zh-CN
-name: IP 信息查询
-summary: 记录临时隔离 IP 查询能力的隐藏 fixture。
-seoTitle: IP 信息查询 fixture
-seoDescription: 临时隔离 IP 查询能力的合成隐藏 Catalog fixture。
+name: "IP 查询"
+summary: "未发布 IP 信息查询的隐藏能力记录。"
+seoTitle: "IP 查询 | GoDeskHub"
+seoDescription: "未发布 IP 信息查询的隐藏能力记录。"
 searchAliases:
-  - IP 查询
-  - 地理位置查询
+  - "IP 查询"
+  - "IP 地理位置"
 searchKeywords:
-  - IP
-  - 查询
-  - 隐藏
+  - "IP"
+  - "查询"
+  - "隐藏"

@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_percentage-calculator-q01
+status: published
+placements:
+  - resourceId: res_tool_percentage-calculator
+    order: 1
+locales:
+  - locale: en
+    question: "Does the result include the original value?"
+    answer: "No. It returns only the percentage amount."
+  - locale: zh-CN
+    question: "结果包含原数值吗？"
+    answer: "不包含，只返回百分比对应的数值。"
+  - locale: zh-TW
+    question: "結果包含原數值嗎？"
+    answer: "不包含，只回傳百分比對應的數值。"

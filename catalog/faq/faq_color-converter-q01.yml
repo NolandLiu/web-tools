@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_color-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_color-converter
+    order: 1
+locales:
+  - locale: en
+    question: "Does three-digit HEX work?"
+    answer: "Yes. Each digit is doubled, so #abc is interpreted as #aabbcc."
+  - locale: zh-CN
+    question: "支持三位 HEX 吗？"
+    answer: "支持，例如 #abc 会扩展为 #aabbcc。"
+  - locale: zh-TW
+    question: "支援三位 HEX 嗎？"
+    answer: "支援，例如 #abc 會展開為 #aabbcc。"

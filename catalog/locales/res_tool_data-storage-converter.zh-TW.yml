@@ -1,0 +1,21 @@
+
+resourceId: res_tool_data-storage-converter
+locale: zh-TW
+name: "資料儲存轉換"
+summary: "B、KB、MB、GB、TB 換算。"
+seoTitle: "資料儲存轉換 | GoDeskHub"
+seoDescription: "B、KB、MB、GB、TB 換算。"
+searchAliases:
+  - "檔案大小轉換"
+  - "GB 轉 MB"
+  - "GiB 轉 MiB"
+  - "位元組轉換"
+searchKeywords:
+  - "儲存"
+  - "位元組"
+  - "KB"
+  - "KiB"
+  - "GB"
+  - "GiB"
+  - "1000"
+  - "1024"

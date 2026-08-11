@@ -1,0 +1,20 @@
+
+resourceId: res_tool_time-converter
+locale: en
+name: "Time converter"
+summary: "Convert milliseconds through weeks."
+seoTitle: "Time converter | GoDeskHub"
+seoDescription: "Convert milliseconds through weeks."
+searchAliases:
+  - "duration converter"
+  - "hours to minutes"
+  - "seconds to milliseconds"
+  - "days to weeks"
+searchKeywords:
+  - "time"
+  - "duration"
+  - "millisecond"
+  - "second"
+  - "hour"
+  - "day"
+  - "week"

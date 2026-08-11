@@ -1,0 +1,19 @@
+
+resourceId: res_tool_volume-converter
+locale: zh-TW
+name: "體積轉換"
+summary: "公升、毫升、美制加侖與杯互轉。"
+seoTitle: "體積轉換 | GoDeskHub"
+seoDescription: "公升、毫升、美制加侖與杯互轉。"
+searchAliases:
+  - "公升轉換"
+  - "公升轉加侖"
+  - "毫升轉杯"
+  - "液體體積"
+searchKeywords:
+  - "體積"
+  - "公升"
+  - "毫升"
+  - "加侖"
+  - "杯"
+  - "立方公尺"

@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_percentage-calculator-q02
+status: published
+placements:
+  - resourceId: res_tool_percentage-calculator
+    order: 2
+locales:
+  - locale: en
+    question: "Can the percentage exceed 100?"
+    answer: "Yes. The implementation accepts any finite percentage."
+  - locale: zh-CN
+    question: "百分比可以超过 100 吗？"
+    answer: "可以，当前实现接受任何有限百分比。"
+  - locale: zh-TW
+    question: "百分比可以超過 100 嗎？"
+    answer: "可以，目前實作接受任何有限百分比。"

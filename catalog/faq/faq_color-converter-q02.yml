@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_color-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_color-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Are RGB values clamped?"
+    answer: "No. Values outside 0–255 are rejected instead of clamped."
+  - locale: zh-CN
+    question: "RGB 超出范围会被截断吗？"
+    answer: "不会，低于 0 或高于 255 会被判为无效。"
+  - locale: zh-TW
+    question: "RGB 超出範圍會被截斷嗎？"
+    answer: "不會，低於 0 或高於 255 會被判定無效。"

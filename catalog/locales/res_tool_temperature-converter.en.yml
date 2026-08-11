@@ -1,0 +1,18 @@
+
+resourceId: res_tool_temperature-converter
+locale: en
+name: "Temperature converter"
+summary: "Convert Celsius, Fahrenheit, and Kelvin."
+seoTitle: "Temperature converter | GoDeskHub"
+seoDescription: "Convert Celsius, Fahrenheit, and Kelvin."
+searchAliases:
+  - "celsius to fahrenheit"
+  - "fahrenheit to celsius"
+  - "kelvin converter"
+  - "temperature scale"
+searchKeywords:
+  - "temperature"
+  - "celsius"
+  - "fahrenheit"
+  - "kelvin"
+  - "absolute zero"

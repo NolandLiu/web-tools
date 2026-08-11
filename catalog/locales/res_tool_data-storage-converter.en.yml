@@ -1,0 +1,21 @@
+
+resourceId: res_tool_data-storage-converter
+locale: en
+name: "Data storage converter"
+summary: "Convert bytes through petabytes."
+seoTitle: "Data storage converter | GoDeskHub"
+seoDescription: "Convert bytes through petabytes."
+searchAliases:
+  - "file size converter"
+  - "gb to mb"
+  - "gib to mib"
+  - "bytes converter"
+searchKeywords:
+  - "storage"
+  - "byte"
+  - "kilobyte"
+  - "kibibyte"
+  - "gigabyte"
+  - "gibibyte"
+  - "1000"
+  - "1024"

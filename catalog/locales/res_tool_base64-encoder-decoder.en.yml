@@ -1,0 +1,19 @@
+
+resourceId: res_tool_base64-encoder-decoder
+locale: en
+name: "Base64 encoder and decoder"
+summary: "Encode and decode Unicode text with Base64."
+seoTitle: "Base64 encoder and decoder | GoDeskHub"
+seoDescription: "Encode and decode Unicode text with Base64."
+searchAliases:
+  - "base64 encode"
+  - "base64 decode"
+  - "b64"
+  - "unicode base64"
+searchKeywords:
+  - "Base64"
+  - "encode"
+  - "decode"
+  - "UTF-8"
+  - "text"
+  - "not encryption"

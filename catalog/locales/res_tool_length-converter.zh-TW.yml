@@ -1,0 +1,19 @@
+
+resourceId: res_tool_length-converter
+locale: zh-TW
+name: "長度轉換"
+summary: "公尺、英尺、英里等單位互轉。"
+seoTitle: "長度轉換 | GoDeskHub"
+seoDescription: "公尺、英尺、英里等單位互轉。"
+searchAliases:
+  - "距離轉換"
+  - "公尺轉英尺"
+  - "公里轉英里"
+  - "m 轉 ft"
+searchKeywords:
+  - "長度"
+  - "距離"
+  - "公尺"
+  - "英尺"
+  - "英里"
+  - "碼"

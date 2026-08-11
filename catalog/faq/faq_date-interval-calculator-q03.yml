@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_date-interval-calculator-q03
+status: published
+placements:
+  - resourceId: res_tool_date-interval-calculator
+    order: 3
+locales:
+  - locale: en
+    question: "Does it exclude weekends?"
+    answer: "No. Every elapsed day is treated equally."
+  - locale: zh-CN
+    question: "会排除周末吗？"
+    answer: "不会，所有经过日同等处理。"
+  - locale: zh-TW
+    question: "會排除週末嗎？"
+    answer: "不會，所有經過日同等處理。"

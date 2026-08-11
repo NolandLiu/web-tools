@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_discount-calculator-q01
+status: published
+placements:
+  - resourceId: res_tool_discount-calculator
+    order: 1
+locales:
+  - locale: en
+    question: "Can the discount exceed 100%?"
+    answer: "No. Rates below 0 or above 100 are rejected."
+  - locale: zh-CN
+    question: "折扣率可以超过 100% 吗？"
+    answer: "不可以，低于 0 或高于 100 会被拒绝。"
+  - locale: zh-TW
+    question: "折扣率可以超過 100% 嗎？"
+    answer: "不可以，低於 0 或高於 100 會被拒絕。"

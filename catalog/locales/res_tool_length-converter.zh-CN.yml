@@ -1,0 +1,19 @@
+
+resourceId: res_tool_length-converter
+locale: zh-CN
+name: "长度转换"
+summary: "米、英尺、英里等单位互转。"
+seoTitle: "长度转换 | GoDeskHub"
+seoDescription: "米、英尺、英里等单位互转。"
+searchAliases:
+  - "距离转换"
+  - "米转英尺"
+  - "千米转英里"
+  - "m 转 ft"
+searchKeywords:
+  - "长度"
+  - "距离"
+  - "米"
+  - "英尺"
+  - "英里"
+  - "码"

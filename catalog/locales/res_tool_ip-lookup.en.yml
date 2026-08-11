@@ -1,13 +1,14 @@
+
 resourceId: res_tool_ip-lookup
 locale: en
-name: IP information lookup
-summary: Hidden fixture documenting the temporarily isolated IP lookup capability.
-seoTitle: IP information lookup fixture
-seoDescription: Synthetic hidden Catalog fixture for the isolated IP lookup capability.
+name: "IP lookup"
+summary: "Hidden capability record for the unpublished IP information lookup."
+seoTitle: "IP lookup | GoDeskHub"
+seoDescription: "Hidden capability record for the unpublished IP information lookup."
 searchAliases:
-  - IP lookup
-  - geolocation lookup
+  - "ip lookup"
+  - "ip geolocation"
 searchKeywords:
-  - IP
-  - lookup
-  - hidden
+  - "ip"
+  - "lookup"
+  - "hidden"

@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_url-encoder-decoder-q01
+status: published
+placements:
+  - resourceId: res_tool_url-encoder-decoder
+    order: 1
+locales:
+  - locale: en
+    question: "Why was the slash encoded?"
+    answer: "encodeURIComponent treats the input as one component, so a slash is data rather than a path separator."
+  - locale: zh-CN
+    question: "为什么斜杠也被编码？"
+    answer: "因为 encodeURIComponent 把整段输入视为一个组件，斜杠不是路径分隔符。"
+  - locale: zh-TW
+    question: "為什麼斜線也被編碼？"
+    answer: "因為 encodeURIComponent 把整段輸入視為一個元件，斜線不是路徑分隔符。"

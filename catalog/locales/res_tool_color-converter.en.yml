@@ -1,0 +1,19 @@
+
+resourceId: res_tool_color-converter
+locale: en
+name: "Color converter"
+summary: "Convert HEX, RGB, and HSL colors."
+seoTitle: "Color converter | GoDeskHub"
+seoDescription: "Convert HEX, RGB, and HSL colors."
+searchAliases:
+  - "hex to rgb"
+  - "rgb to hex"
+  - "rgb to hsl"
+  - "css color converter"
+searchKeywords:
+  - "color"
+  - "HEX"
+  - "RGB"
+  - "HSL"
+  - "CSS"
+  - "palette"
