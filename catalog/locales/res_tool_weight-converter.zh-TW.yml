@@ -1,0 +1,19 @@
+
+resourceId: res_tool_weight-converter
+locale: zh-TW
+name: "重量轉換"
+summary: "公斤、磅、盎司、公噸互轉。"
+seoTitle: "重量轉換 | GoDeskHub"
+seoDescription: "公斤、磅、盎司、公噸互轉。"
+searchAliases:
+  - "質量轉換"
+  - "公斤轉磅"
+  - "公克轉盎司"
+  - "kg 轉 lb"
+searchKeywords:
+  - "重量"
+  - "質量"
+  - "公斤"
+  - "磅"
+  - "盎司"
+  - "公噸"

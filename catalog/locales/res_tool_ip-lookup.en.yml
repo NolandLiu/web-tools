@@ -1,0 +1,14 @@
+
+resourceId: res_tool_ip-lookup
+locale: en
+name: "IP lookup"
+summary: "Hidden capability record for the unpublished IP information lookup."
+seoTitle: "IP lookup | GoDeskHub"
+seoDescription: "Hidden capability record for the unpublished IP information lookup."
+searchAliases:
+  - "ip lookup"
+  - "ip geolocation"
+searchKeywords:
+  - "ip"
+  - "lookup"
+  - "hidden"

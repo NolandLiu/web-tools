@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_cheque-amount-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_cheque-amount-converter
+    order: 1
+locales:
+  - locale: en
+    question: "Does the result have to specify dollars, yuan, or another currency?"
+    answer: "No. The default is currency-neutral, and the currency selector is optional."
+  - locale: zh-CN
+    question: "必须添加美元或人民币吗？"
+    answer: "不必须。默认无币种，币种下拉菜单只是可选辅助。"
+  - locale: zh-TW
+    question: "必須加入美元或人民幣嗎？"
+    answer: "不必。預設無幣別，幣別下拉選單只是可選輔助。"

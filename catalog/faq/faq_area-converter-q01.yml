@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_area-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_area-converter
+    order: 1
+locales:
+  - locale: en
+    question: "How many square metres are in a hectare?"
+    answer: "One hectare is 10,000 square metres."
+  - locale: zh-CN
+    question: "1 公顷是多少平方米？"
+    answer: "1 公顷等于 10,000 平方米。"
+  - locale: zh-TW
+    question: "1 公頃是多少平方公尺？"
+    answer: "1 公頃等於 10,000 平方公尺。"

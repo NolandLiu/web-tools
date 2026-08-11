@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_timestamp-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_timestamp-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Why does the ISO result end in Z?"
+    answer: "Z denotes UTC. The tool converts the instant to a UTC ISO string for display."
+  - locale: zh-CN
+    question: "ISO 结果为什么以 Z 结尾？"
+    answer: "Z 表示 UTC，工具会把时刻转换为 UTC 文本。"
+  - locale: zh-TW
+    question: "ISO 結果為何以 Z 結尾？"
+    answer: "Z 表示 UTC，工具會把該時刻轉成 UTC 文字。"

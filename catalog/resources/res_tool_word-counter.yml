@@ -1,0 +1,10 @@
+
+schemaVersion: 0.1.0
+id: res_tool_word-counter
+type: tool
+canonicalSlug: word-counter
+status: published
+createdAt: "2026-08-11T00:00:00.000Z"
+updatedAt: "2026-08-11T00:00:00.000Z"
+toolBindingId: word-counter
+primaryCategoryId: cat_developer

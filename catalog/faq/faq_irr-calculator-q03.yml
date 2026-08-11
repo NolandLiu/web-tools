@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_irr-calculator-q03
+status: published
+placements:
+  - resourceId: res_tool_irr-calculator
+    order: 3
+locales:
+  - locale: en
+    question: "What does no root mean?"
+    answer: "No stable zero crossing was found within the documented bounded search domain; the tool does not fabricate a rate."
+  - locale: zh-CN
+    question: "无根是什么意思？"
+    answer: "在记录的有界搜索域内没有找到稳定零点，工具不会伪造结果。"
+  - locale: zh-TW
+    question: "無根是什麼意思？"
+    answer: "在記錄的有界搜尋域內沒有找到穩定零點，工具不會捏造結果。"

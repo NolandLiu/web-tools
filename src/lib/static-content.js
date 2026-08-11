@@ -1,5 +1,5 @@
 import { CATEGORY_CONTENT, TOOL_CONTENT } from "../content/index.js";
-import { CATEGORIES, INFO_PAGES, SITE_ORIGIN, TOOLS } from "../registry.js";
+import { CATEGORIES, INFO_PAGES, SITE_ORIGIN, TOOLS } from "../lib/catalog-data.js";
 import { buildFeedbackMailto } from "./feedback.js";
 import { buildPath } from "./routes.js";
 

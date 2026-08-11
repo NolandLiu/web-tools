@@ -1,0 +1,15 @@
+
+resourceId: res_tool_ip-whois-rdap
+locale: zh-CN
+name: "IP WHOIS 与 RDAP"
+summary: "未发布 IP 注册信息查询的隐藏能力记录。"
+seoTitle: "IP WHOIS 与 RDAP | GoDeskHub"
+seoDescription: "未发布 IP 注册信息查询的隐藏能力记录。"
+searchAliases:
+  - "RDAP"
+  - "WHOIS"
+searchKeywords:
+  - "IP"
+  - "RDAP"
+  - "WHOIS"
+  - "隐藏"

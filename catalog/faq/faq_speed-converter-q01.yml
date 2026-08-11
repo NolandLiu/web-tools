@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_speed-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_speed-converter
+    order: 1
+locales:
+  - locale: en
+    question: "What is a knot?"
+    answer: "One knot is one nautical mile per hour and is represented here as 0.5144444444 metre per second."
+  - locale: zh-CN
+    question: "“节”是什么？"
+    answer: "1 节是每小时 1 海里，本工具按约 0.5144444444 米／秒计算。"
+  - locale: zh-TW
+    question: "「節」是什麼？"
+    answer: "1 節是每小時 1 海里，本工具以約 0.5144444444 公尺／秒計算。"

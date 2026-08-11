@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_area-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_area-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Is an acre a square with fixed side length?"
+    answer: "An acre is an area of 4,046.8564224 square metres; its boundary can have many shapes."
+  - locale: zh-CN
+    question: "英亩是否必须是正方形？"
+    answer: "不是。英亩是 4,046.8564224 平方米的面积，可以有不同形状。"
+  - locale: zh-TW
+    question: "英畝一定是正方形嗎？"
+    answer: "不是。英畝是 4,046.8564224 平方公尺的面積，可以有不同形狀。"

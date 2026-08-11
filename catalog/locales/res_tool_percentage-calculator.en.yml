@@ -1,0 +1,18 @@
+
+resourceId: res_tool_percentage-calculator
+locale: en
+name: "Percentage calculator"
+summary: "Calculate a percentage of a value."
+seoTitle: "Percentage calculator | GoDeskHub"
+seoDescription: "Calculate a percentage of a value."
+searchAliases:
+  - "percent of number"
+  - "percentage of value"
+  - "percent calculator"
+  - "calculate percent"
+searchKeywords:
+  - "percentage"
+  - "percent"
+  - "ratio"
+  - "base value"
+  - "calculation"

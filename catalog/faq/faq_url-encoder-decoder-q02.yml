@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_url-encoder-decoder-q02
+status: published
+placements:
+  - resourceId: res_tool_url-encoder-decoder
+    order: 2
+locales:
+  - locale: en
+    question: "Does decoding validate the whole URL?"
+    answer: "No. It only decodes percent escapes in the supplied text."
+  - locale: zh-CN
+    question: "解码会校验完整网址吗？"
+    answer: "不会，只处理输入文本中的百分号转义。"
+  - locale: zh-TW
+    question: "解碼會驗證完整網址嗎？"
+    answer: "不會，只處理輸入文字中的百分比跳脫。"

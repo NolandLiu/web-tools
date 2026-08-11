@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_cheque-amount-converter-q03
+status: published
+placements:
+  - resourceId: res_tool_cheque-amount-converter
+    order: 3
+locales:
+  - locale: en
+    question: "Can I switch Chinese financial numerals?"
+    answer: "Yes. The Chinese result can use either Traditional or Simplified financial numerals."
+  - locale: zh-CN
+    question: "可以切换简体和繁体金融大写吗？"
+    answer: "可以。中文结果可以选择繁体或简体金融大写。"
+  - locale: zh-TW
+    question: "可以切換簡體和繁體金融大寫嗎？"
+    answer: "可以。中文結果可選擇繁體或簡體金融大寫。"

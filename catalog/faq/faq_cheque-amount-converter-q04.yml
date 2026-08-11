@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_cheque-amount-converter-q04
+status: published
+placements:
+  - resourceId: res_tool_cheque-amount-converter
+    order: 4
+locales:
+  - locale: en
+    question: "Should I draw a line after the amount on paper?"
+    answer: "Many cheque-writing practices fill the remaining blank space after the written amount to reduce tampering risk. Check your bank's exact requirement."
+  - locale: zh-CN
+    question: "纸质支票金额后要画横线吗？"
+    answer: "很多支票书写习惯会在大写金额后填满剩余空白，以降低被他人补写金额的风险；请以银行要求为准。"
+  - locale: zh-TW
+    question: "紙本支票金額後要畫橫線嗎？"
+    answer: "很多支票書寫習慣會在大寫金額後填滿剩餘空白，以降低被他人補寫金額的風險；請以銀行要求為準。"

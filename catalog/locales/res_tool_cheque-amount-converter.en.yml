@@ -1,0 +1,23 @@
+
+resourceId: res_tool_cheque-amount-converter
+locale: en
+name: "Cheque amount converter"
+summary: "Write a decimal amount in English and Chinese financial words."
+seoTitle: "Cheque amount converter | GoDeskHub"
+seoDescription: "Write a decimal amount in English and Chinese financial words."
+searchAliases:
+  - "check amount"
+  - "number to words"
+  - "financial numerals"
+  - "cheque writing"
+  - "HKD cheque"
+  - "RMB uppercase amount"
+searchKeywords:
+  - "cheque"
+  - "check"
+  - "amount"
+  - "English words"
+  - "financial numerals"
+  - "Traditional Chinese"
+  - "Simplified Chinese"
+  - "currency label"

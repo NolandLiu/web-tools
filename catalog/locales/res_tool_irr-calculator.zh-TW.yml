@@ -1,0 +1,19 @@
+
+resourceId: res_tool_irr-calculator
+locale: zh-TW
+name: "IRR 計算器"
+summary: "計算固定週期內部收益率及其年化結果。"
+seoTitle: "IRR 計算器 | GoDeskHub"
+seoDescription: "計算固定週期內部收益率及其年化結果。"
+searchAliases:
+  - "內部收益率"
+  - "每期 IRR"
+  - "年化 IRR"
+  - "投資回報"
+searchKeywords:
+  - "IRR"
+  - "現金流"
+  - "淨現值"
+  - "每期"
+  - "年化"
+  - "多根"

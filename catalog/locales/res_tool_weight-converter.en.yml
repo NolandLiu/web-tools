@@ -1,0 +1,19 @@
+
+resourceId: res_tool_weight-converter
+locale: en
+name: "Weight converter"
+summary: "Convert kilograms, pounds, ounces, and tons."
+seoTitle: "Weight converter | GoDeskHub"
+seoDescription: "Convert kilograms, pounds, ounces, and tons."
+searchAliases:
+  - "mass converter"
+  - "kg to lb"
+  - "grams to ounces"
+  - "kilograms to pounds"
+searchKeywords:
+  - "weight"
+  - "mass"
+  - "kilogram"
+  - "pound"
+  - "ounce"
+  - "metric ton"

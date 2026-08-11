@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_uuid-generator-q01
+status: published
+placements:
+  - resourceId: res_tool_uuid-generator
+    order: 1
+locales:
+  - locale: en
+    question: "Which UUID version is generated?"
+    answer: "The tool generates UUID version 4 values."
+  - locale: zh-CN
+    question: "生成哪个版本？"
+    answer: "只生成 UUID 版本 4。"
+  - locale: zh-TW
+    question: "會產生哪個版本？"
+    answer: "只產生 UUID 版本 4。"

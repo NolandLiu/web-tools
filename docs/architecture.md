@@ -30,12 +30,12 @@ HTML for every canonical route at build time.
 - `src/lib/core.js`: shared pure functions for conversions, JSON, Base64, URL, timestamps, calculators, colors, QR validation, and local popular-tool ranking.
 - `src/lib/ui.js`: pure navigation, swap, clipboard-state, and structured-result helpers.
 - `tests/*.test.mjs`: Node test runner coverage for pure logic and product shell checks.
-- `scripts/generate-static-pages.mjs`: generates 93 static route documents, Sitemap, redirects, and 404.
+- `scripts/generate-static-pages.mjs`: generates every canonical route returned by `listCanonicalRoutes()`, plus the Sitemap, redirects, and 404. The `2026-08-11` registry snapshot produces 111 canonical route documents.
 - `scripts/verify-build.mjs`: validates generated HTML, assets, Sitemap, redirects, and install metadata.
 - `public/_redirects`: explicit language-less legacy redirects; there is no catch-all rewrite.
 - `public/robots.txt`, `public/manifest.webmanifest`: crawler and install metadata.
 
-Tool logic is kept outside JSX where practical so tests can import it directly. Local popularity stats are versioned in `localStorage` and treated as replaceable adapter logic for future analytics.
+Tool logic is kept outside JSX where practical so tests can import it directly. Local popularity stats are versioned in `localStorage` and remain browser-local. ADR-024 defines the approved consent-gated analytics target; the current unconditional Google tag is a documented migration gap rather than the target architecture.
 
 Public compliance pages are rendered by `InfoPage` in `src/App.tsx`. They use
 the canonical tools subdomain and support email, while preserving the

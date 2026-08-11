@@ -1,0 +1,20 @@
+
+resourceId: res_tool_timestamp-converter
+locale: en
+name: "Timestamp converter"
+summary: "Convert seconds, milliseconds, and dates."
+seoTitle: "Timestamp converter | GoDeskHub"
+seoDescription: "Convert seconds, milliseconds, and dates."
+searchAliases:
+  - "unix timestamp"
+  - "epoch converter"
+  - "seconds to date"
+  - "milliseconds to date"
+searchKeywords:
+  - "timestamp"
+  - "Unix"
+  - "epoch"
+  - "ISO 8601"
+  - "UTC"
+  - "timezone"
+  - "milliseconds"

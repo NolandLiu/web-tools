@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_timestamp-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_timestamp-converter
+    order: 1
+locales:
+  - locale: en
+    question: "How are seconds and milliseconds distinguished?"
+    answer: "You select the unit explicitly, so historic and far-future values are not guessed by digit count."
+  - locale: zh-CN
+    question: "如何区分秒和毫秒？"
+    answer: "由用户明确选择单位，不根据位数猜测历史或远期时间。"
+  - locale: zh-TW
+    question: "如何區分秒和毫秒？"
+    answer: "由使用者明確選擇單位，不依位數猜測歷史或遠期時間。"

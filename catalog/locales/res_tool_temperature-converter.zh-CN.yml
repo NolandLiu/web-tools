@@ -1,0 +1,18 @@
+
+resourceId: res_tool_temperature-converter
+locale: zh-CN
+name: "温度转换"
+summary: "摄氏、华氏、开尔文公式换算。"
+seoTitle: "温度转换 | GoDeskHub"
+seoDescription: "摄氏、华氏、开尔文公式换算。"
+searchAliases:
+  - "摄氏转华氏"
+  - "华氏转摄氏"
+  - "开尔文转换"
+  - "温标转换"
+searchKeywords:
+  - "温度"
+  - "摄氏"
+  - "华氏"
+  - "开尔文"
+  - "绝对零度"

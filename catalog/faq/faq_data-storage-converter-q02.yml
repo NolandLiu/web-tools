@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_data-storage-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_data-storage-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Why can drive capacity and system display differ?"
+    answer: "Drive vendors commonly use decimal units while some systems present binary quantities, so the numeric labels differ for the same byte count."
+  - locale: zh-CN
+    question: "为什么硬盘容量与系统显示可能不同？"
+    answer: "硬盘厂商通常使用十进制单位，部分系统以二进制数量显示，因此同一字节数的标签数值不同。"
+  - locale: zh-TW
+    question: "為什麼硬碟容量與系統顯示可能不同？"
+    answer: "硬碟廠商通常使用十進位單位，部分系統以二進位數量顯示，因此同一位元組數的標示數值不同。"

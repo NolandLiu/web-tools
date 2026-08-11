@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_qr-code-generator-q02
+status: published
+placements:
+  - resourceId: res_tool_qr-code-generator
+    order: 2
+locales:
+  - locale: en
+    question: "Why can a long QR Code be hard to scan?"
+    answer: "More data requires a denser symbol. At a fixed image size, smaller modules are harder for some cameras and printers to resolve."
+  - locale: zh-CN
+    question: "长内容为什么难扫？"
+    answer: "数据越多符号越密，在固定图片尺寸下模块更小。"
+  - locale: zh-TW
+    question: "長內容為何較難掃描？"
+    answer: "資料越多符號越密，在固定圖片尺寸下模組更小。"

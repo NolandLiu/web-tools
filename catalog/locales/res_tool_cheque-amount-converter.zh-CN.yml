@@ -1,0 +1,22 @@
+
+resourceId: res_tool_cheque-amount-converter
+locale: zh-CN
+name: "支票金额转换"
+summary: "把十进制金额转换为英文和中文金融大写。"
+seoTitle: "支票金额转换 | GoDeskHub"
+seoDescription: "把十进制金额转换为英文和中文金融大写。"
+searchAliases:
+  - "支票金额"
+  - "数字转英文"
+  - "金融大写"
+  - "金额大写"
+  - "港币支票"
+  - "人民币大写"
+searchKeywords:
+  - "支票"
+  - "金额"
+  - "英文大写"
+  - "繁体中文"
+  - "简体中文"
+  - "金融大写"
+  - "币种标签"

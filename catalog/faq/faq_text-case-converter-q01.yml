@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_text-case-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_text-case-converter
+    order: 1
+locales:
+  - locale: en
+    question: "Does title mode understand editorial style guides?"
+    answer: "No. It capitalizes word starts and does not keep language-specific minor words lowercase."
+  - locale: zh-CN
+    question: "标题模式是否遵循新闻标题规范？"
+    answer: "不会，它只按规则大写词首。"
+  - locale: zh-TW
+    question: "標題模式會遵循新聞標題規範嗎？"
+    answer: "不會，只會依規則大寫詞首。"

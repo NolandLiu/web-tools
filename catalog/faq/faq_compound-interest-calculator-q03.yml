@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_compound-interest-calculator-q03
+status: published
+placements:
+  - resourceId: res_tool_compound-interest-calculator
+    order: 3
+locales:
+  - locale: en
+    question: "Is the displayed interest simple interest?"
+    answer: "No. It is the final compounded amount minus the principal."
+  - locale: zh-CN
+    question: "显示利息是单利吗？"
+    answer: "不是，是最终复利金额减去本金。"
+  - locale: zh-TW
+    question: "顯示利息是單利嗎？"
+    answer: "不是，是最終複利金額減去本金。"

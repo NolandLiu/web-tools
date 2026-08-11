@@ -1,0 +1,19 @@
+
+resourceId: res_tool_base64-encoder-decoder
+locale: zh-TW
+name: "Base64 編解碼"
+summary: "支援 Unicode 文字編碼和解碼。"
+seoTitle: "Base64 編解碼 | GoDeskHub"
+seoDescription: "支援 Unicode 文字編碼和解碼。"
+searchAliases:
+  - "Base64 編碼"
+  - "Base64 解碼"
+  - "b64"
+  - "Unicode Base64"
+searchKeywords:
+  - "Base64"
+  - "編碼"
+  - "解碼"
+  - "UTF-8"
+  - "文字"
+  - "非加密"

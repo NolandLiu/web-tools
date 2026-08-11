@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_time-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_time-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Can I convert months or years?"
+    answer: "No. Their calendar lengths vary, so they are intentionally not offered as fixed units."
+  - locale: zh-CN
+    question: "可以转换月份或年份吗？"
+    answer: "不可以，因为它们的日历长度并不固定。"
+  - locale: zh-TW
+    question: "可以轉換月份或年份嗎？"
+    answer: "不可以，因為其日曆長度不固定。"

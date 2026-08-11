@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_volume-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_volume-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Can litres be converted directly to kilograms?"
+    answer: "Not without the substance density, which this volume-only tool does not request."
+  - locale: zh-CN
+    question: "可以把升直接换成千克吗？"
+    answer: "不可以，必须知道物质密度，而本工具不要求该数据。"
+  - locale: zh-TW
+    question: "公升能直接換成公斤嗎？"
+    answer: "不能，必須先知道物質密度，而本工具不要求此資料。"

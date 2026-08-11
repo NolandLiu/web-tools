@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_timestamp-converter-q03
+status: published
+placements:
+  - resourceId: res_tool_timestamp-converter
+    order: 3
+locales:
+  - locale: en
+    question: "Which timezone is used for date-time input?"
+    answer: "The browser interprets datetime-local values in its current local timezone."
+  - locale: zh-CN
+    question: "日期时间输入使用哪个时区？"
+    answer: "使用浏览器当前本地时区。"
+  - locale: zh-TW
+    question: "日期時間輸入使用哪個時區？"
+    answer: "使用瀏覽器目前的本機時區。"

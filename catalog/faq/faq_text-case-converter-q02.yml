@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_text-case-converter-q02
+status: published
+placements:
+  - resourceId: res_tool_text-case-converter
+    order: 2
+locales:
+  - locale: en
+    question: "Will camel mode preserve acronyms?"
+    answer: "Not reliably. It applies simple casing rules rather than an acronym dictionary."
+  - locale: zh-CN
+    question: "驼峰模式会保留缩写吗？"
+    answer: "不一定，它没有缩写词典。"
+  - locale: zh-TW
+    question: "駝峰模式會保留縮寫嗎？"
+    answer: "不一定，它沒有縮寫字典。"

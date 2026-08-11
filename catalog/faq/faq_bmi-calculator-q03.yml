@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_bmi-calculator-q03
+status: published
+placements:
+  - resourceId: res_tool_bmi-calculator
+    order: 3
+locales:
+  - locale: en
+    question: "Why are centimetres converted?"
+    answer: "The BMI formula uses height in metres, so centimetres are divided by 100 first."
+  - locale: zh-CN
+    question: "为什么要转换厘米？"
+    answer: "BMI 公式使用米，所以先将厘米除以 100。"
+  - locale: zh-TW
+    question: "為什麼要轉換公分？"
+    answer: "BMI 公式使用公尺，因此先將公分除以 100。"

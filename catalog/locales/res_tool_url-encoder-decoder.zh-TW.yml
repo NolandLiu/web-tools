@@ -1,0 +1,18 @@
+
+resourceId: res_tool_url-encoder-decoder
+locale: zh-TW
+name: "URL 編解碼"
+summary: "安全編碼和還原 URL 文字。"
+seoTitle: "URL 編解碼 | GoDeskHub"
+seoDescription: "安全編碼和還原 URL 文字。"
+searchAliases:
+  - "百分比編碼"
+  - "URL 編碼"
+  - "URL 解碼"
+  - "encodeURIComponent"
+searchKeywords:
+  - "URL"
+  - "URI"
+  - "百分比編碼"
+  - "元件"
+  - "decodeURIComponent"

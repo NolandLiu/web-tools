@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_date-interval-calculator-q01
+status: published
+placements:
+  - resourceId: res_tool_date-interval-calculator
+    order: 1
+locales:
+  - locale: en
+    question: "Does the order of the dates matter?"
+    answer: "No. The absolute difference is used."
+  - locale: zh-CN
+    question: "日期顺序有影响吗？"
+    answer: "没有，工具使用绝对差值。"
+  - locale: zh-TW
+    question: "日期順序有影響嗎？"
+    answer: "沒有，工具使用絕對差值。"

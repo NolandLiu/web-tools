@@ -1,4 +1,4 @@
-import { CATEGORIES, TOOLS } from "../registry.js";
+import { CATEGORIES, TOOLS } from "../lib/catalog-data.js";
 import { CATEGORY_CONTENT } from "../content/index.js";
 import { messages } from "../i18n";
 import type { CategoryId, Lang, Tool } from "../types";

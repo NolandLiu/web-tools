@@ -1,0 +1,18 @@
+
+resourceId: res_tool_discount-calculator
+locale: en
+name: "Discount calculator"
+summary: "Calculate final price and savings."
+seoTitle: "Discount calculator | GoDeskHub"
+seoDescription: "Calculate final price and savings."
+searchAliases:
+  - "sale price calculator"
+  - "percent off"
+  - "discount price"
+  - "savings calculator"
+searchKeywords:
+  - "discount"
+  - "sale"
+  - "price"
+  - "saving"
+  - "percentage"

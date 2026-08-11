@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_temperature-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_temperature-converter
+    order: 1
+locales:
+  - locale: en
+    question: "Why does kelvin not use a degree symbol?"
+    answer: "The SI unit name is kelvin and its symbol is K, without a degree sign."
+  - locale: zh-CN
+    question: "开尔文为什么没有度数符号？"
+    answer: "SI 单位名称是开尔文，符号为 K，不使用度数符号。"
+  - locale: zh-TW
+    question: "克氏為什麼沒有度數符號？"
+    answer: "SI 單位名稱是 kelvin，符號為 K，不使用度數符號。"

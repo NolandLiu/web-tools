@@ -1,0 +1,14 @@
+
+resourceId: res_tool_ip-lookup
+locale: zh-TW
+name: "IP 查詢"
+summary: "未發佈 IP 資訊查詢的隱藏能力記錄。"
+seoTitle: "IP 查詢 | GoDeskHub"
+seoDescription: "未發佈 IP 資訊查詢的隱藏能力記錄。"
+searchAliases:
+  - "IP 查詢"
+  - "IP 地理位置"
+searchKeywords:
+  - "IP"
+  - "查詢"
+  - "隱藏"

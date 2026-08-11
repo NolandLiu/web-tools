@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SITE_ORIGIN, TOOLS } from "../registry.js";
+import { SITE_ORIGIN, TOOLS } from "../lib/catalog-data.js";
 import { messages } from "../i18n";
 import { buildFeedbackMailto } from "../lib/feedback.js";
 import { buildPath } from "../lib/routes.js";

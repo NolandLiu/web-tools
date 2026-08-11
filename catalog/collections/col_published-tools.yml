@@ -1,0 +1,34 @@
+
+schemaVersion: 0.1.0
+id: col_published-tools
+slug: published-tools
+status: published
+mode: manual
+resourceIds:
+  - res_tool_length-converter
+  - res_tool_weight-converter
+  - res_tool_temperature-converter
+  - res_tool_area-converter
+  - res_tool_volume-converter
+  - res_tool_speed-converter
+  - res_tool_time-converter
+  - res_tool_data-storage-converter
+  - res_tool_json-tools
+  - res_tool_base64-encoder-decoder
+  - res_tool_url-encoder-decoder
+  - res_tool_uuid-generator
+  - res_tool_timestamp-converter
+  - res_tool_text-case-converter
+  - res_tool_word-counter
+  - res_tool_color-converter
+  - res_tool_percentage-calculator
+  - res_tool_discount-calculator
+  - res_tool_bmi-calculator
+  - res_tool_compound-interest-calculator
+  - res_tool_date-interval-calculator
+  - res_tool_qr-code-generator
+  - res_tool_irr-calculator
+  - res_tool_cheque-amount-converter
+  - res_tool_password-generator
+  - res_tool_ipv4-network-toolbox
+  - res_tool_ipv6-toolbox

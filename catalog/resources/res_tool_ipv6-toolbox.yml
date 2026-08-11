@@ -1,0 +1,10 @@
+
+schemaVersion: 0.1.0
+id: res_tool_ipv6-toolbox
+type: tool
+canonicalSlug: ipv6-toolbox
+status: published
+createdAt: "2026-08-11T00:00:00.000Z"
+updatedAt: "2026-08-11T00:00:00.000Z"
+toolBindingId: ipv6-toolbox
+primaryCategoryId: cat_network-ip

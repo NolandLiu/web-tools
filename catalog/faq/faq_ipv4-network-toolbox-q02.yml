@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_ipv4-network-toolbox-q02
+status: published
+placements:
+  - resourceId: res_tool_ipv4-network-toolbox
+    order: 2
+locales:
+  - locale: en
+    question: "Does range-to-CIDR approximate?"
+    answer: "No. Returned CIDR blocks do not cover addresses outside the requested IPv4 range."
+  - locale: zh-CN
+    question: "Does range-to-CIDR approximate?"
+    answer: "No. Returned CIDR blocks do not cover addresses outside the requested IPv4 range."
+  - locale: zh-TW
+    question: "Does range-to-CIDR approximate?"
+    answer: "No. Returned CIDR blocks do not cover addresses outside the requested IPv4 range."

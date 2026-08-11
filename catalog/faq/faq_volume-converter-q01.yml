@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_volume-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_volume-converter
+    order: 1
+locales:
+  - locale: en
+    question: "Which gallon does the tool use?"
+    answer: "It uses the US liquid gallon. An imperial gallon has a different volume and is not offered."
+  - locale: zh-CN
+    question: "这里使用哪一种加仑？"
+    answer: "使用美制液体加仑，未提供容量不同的英制加仑。"
+  - locale: zh-TW
+    question: "這裡使用哪一種加侖？"
+    answer: "使用美制液體加侖，未提供容量不同的英制加侖。"

@@ -1,0 +1,20 @@
+
+resourceId: res_tool_time-converter
+locale: zh-TW
+name: "時間轉換"
+summary: "毫秒、秒、分鐘、小時、天互轉。"
+seoTitle: "時間轉換 | GoDeskHub"
+seoDescription: "毫秒、秒、分鐘、小時、天互轉。"
+searchAliases:
+  - "時長轉換"
+  - "小時轉分鐘"
+  - "秒轉毫秒"
+  - "天轉週"
+searchKeywords:
+  - "時間"
+  - "時長"
+  - "毫秒"
+  - "秒"
+  - "小時"
+  - "天"
+  - "週"

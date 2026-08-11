@@ -1,4 +1,4 @@
-import { LANGUAGES, SITE_ORIGIN, TOOLS } from "../registry.js";
+import { LANGUAGES, SITE_ORIGIN, TOOLS } from "../lib/catalog-data.js";
 import { buildPath } from "./routes.js";
 
 export const FEEDBACK_TYPES = [

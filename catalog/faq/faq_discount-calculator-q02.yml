@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_discount-calculator-q02
+status: published
+placements:
+  - resourceId: res_tool_discount-calculator
+    order: 2
+locales:
+  - locale: en
+    question: "Does it know my currency?"
+    answer: "No. Values are unitless, so use the same currency for the original price and result."
+  - locale: zh-CN
+    question: "工具知道货币吗？"
+    answer: "不知道，输入和结果使用同一货币即可。"
+  - locale: zh-TW
+    question: "工具知道貨幣嗎？"
+    answer: "不知道，只要輸入和結果採同一貨幣即可。"

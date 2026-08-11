@@ -1,0 +1,19 @@
+
+resourceId: res_tool_uuid-generator
+locale: zh-CN
+name: "UUID 生成器"
+summary: "用安全随机源生成 UUID v4。"
+seoTitle: "UUID 生成器 | GoDeskHub"
+seoDescription: "用安全随机源生成 UUID v4。"
+searchAliases:
+  - "GUID 生成器"
+  - "UUID v4"
+  - "随机 ID"
+  - "唯一标识符"
+searchKeywords:
+  - "UUID"
+  - "GUID"
+  - "版本 4"
+  - "随机"
+  - "标识符"
+  - "加密随机"

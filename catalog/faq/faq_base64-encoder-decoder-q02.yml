@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_base64-encoder-decoder-q02
+status: published
+placements:
+  - resourceId: res_tool_base64-encoder-decoder
+    order: 2
+locales:
+  - locale: en
+    question: "Can Base64 protect a password?"
+    answer: "No. It provides no confidentiality and must not be treated as encryption."
+  - locale: zh-CN
+    question: "可以保护密码吗？"
+    answer: "不可以，Base64 没有保密能力。"
+  - locale: zh-TW
+    question: "可以保護密碼嗎？"
+    answer: "不可以，Base64 沒有保密能力。"

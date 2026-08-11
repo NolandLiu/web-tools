@@ -1,0 +1,29 @@
+
+resourceId: res_tool_ipv4-network-toolbox
+locale: en
+name: "IPv4 network toolbox"
+summary: "Calculate IPv4 subnets, masks, host capacity, ranges, conversions, and same-subnet checks locally."
+seoTitle: "IPv4 network toolbox | GoDeskHub"
+seoDescription: "Calculate IPv4 subnets, masks, host capacity, ranges, conversions, and same-subnet checks locally."
+searchAliases:
+  - "subnet calculator"
+  - "subnet mask"
+  - "CIDR calculator"
+  - "wildcard mask"
+  - "same subnet"
+  - "IP range"
+  - "range to CIDR"
+  - "CIDR to range"
+  - "IP to decimal"
+  - "IP to binary"
+  - "IP to hex"
+  - "IPv4 converter"
+searchKeywords:
+  - "network address"
+  - "broadcast address"
+  - "host calculator"
+  - "CIDR"
+  - "IPv4"
+  - "mask converter"
+  - "host recommendation"
+  - "range converter"

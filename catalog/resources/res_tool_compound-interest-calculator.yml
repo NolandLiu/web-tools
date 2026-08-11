@@ -1,0 +1,10 @@
+
+schemaVersion: 0.1.0
+id: res_tool_compound-interest-calculator
+type: tool
+canonicalSlug: compound-interest-calculator
+status: published
+createdAt: "2026-08-11T00:00:00.000Z"
+updatedAt: "2026-08-11T00:00:00.000Z"
+toolBindingId: compound-interest-calculator
+primaryCategoryId: cat_calculators

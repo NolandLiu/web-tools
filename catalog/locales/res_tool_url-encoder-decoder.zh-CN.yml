@@ -1,0 +1,18 @@
+
+resourceId: res_tool_url-encoder-decoder
+locale: zh-CN
+name: "URL 编解码"
+summary: "安全编码和还原 URL 文本。"
+seoTitle: "URL 编解码 | GoDeskHub"
+seoDescription: "安全编码和还原 URL 文本。"
+searchAliases:
+  - "百分号编码"
+  - "URL 编码"
+  - "URL 解码"
+  - "encodeURIComponent"
+searchKeywords:
+  - "URL"
+  - "URI"
+  - "百分号编码"
+  - "组件"
+  - "decodeURIComponent"

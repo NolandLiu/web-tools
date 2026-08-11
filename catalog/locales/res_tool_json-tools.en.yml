@@ -1,0 +1,19 @@
+
+resourceId: res_tool_json-tools
+locale: en
+name: "JSON tools"
+summary: "Format, minify, and validate JSON locally."
+seoTitle: "JSON tools | GoDeskHub"
+seoDescription: "Format, minify, and validate JSON locally."
+searchAliases:
+  - "json formatter"
+  - "json validator"
+  - "json minifier"
+  - "pretty print json"
+searchKeywords:
+  - "JSON"
+  - "format"
+  - "minify"
+  - "validate"
+  - "parser"
+  - "developer"

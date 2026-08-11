@@ -1,0 +1,19 @@
+
+resourceId: res_tool_qr-code-generator
+locale: en
+name: "QR Code generator"
+summary: "Create and download customizable QR Codes locally."
+seoTitle: "QR Code generator | GoDeskHub"
+seoDescription: "Create and download customizable QR Codes locally."
+searchAliases:
+  - "qr generator"
+  - "qr code maker"
+  - "text to qr"
+  - "url qr"
+searchKeywords:
+  - "QR Code"
+  - "PNG"
+  - "scanner"
+  - "capacity"
+  - "contrast"
+  - "local"

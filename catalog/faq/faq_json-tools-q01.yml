@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_json-tools-q01
+status: published
+placements:
+  - resourceId: res_tool_json-tools
+    order: 1
+locales:
+  - locale: en
+    question: "Does formatting change the JSON data?"
+    answer: "For valid JSON values it changes whitespace and indentation, not the parsed value. Number precision limits of JavaScript still apply."
+  - locale: zh-CN
+    question: "格式化会改变数据吗？"
+    answer: "对有效 JSON，它主要改变空白和缩进；JavaScript 数值精度限制仍然存在。"
+  - locale: zh-TW
+    question: "格式化會改變資料嗎？"
+    answer: "對有效 JSON，主要改變空白和縮排；JavaScript 數值精度限制仍存在。"

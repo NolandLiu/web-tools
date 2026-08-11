@@ -1,0 +1,15 @@
+
+resourceId: res_tool_ip-whois-rdap
+locale: en
+name: "IP WHOIS and RDAP"
+summary: "Hidden capability record for unpublished IP registry lookup."
+seoTitle: "IP WHOIS and RDAP | GoDeskHub"
+seoDescription: "Hidden capability record for unpublished IP registry lookup."
+searchAliases:
+  - "rdap"
+  - "whois"
+searchKeywords:
+  - "ip"
+  - "rdap"
+  - "whois"
+  - "hidden"

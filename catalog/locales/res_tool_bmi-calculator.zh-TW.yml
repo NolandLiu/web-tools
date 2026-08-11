@@ -1,0 +1,19 @@
+
+resourceId: res_tool_bmi-calculator
+locale: zh-TW
+name: "BMI 計算"
+summary: "身體質量指數參考計算。"
+seoTitle: "BMI 計算 | GoDeskHub"
+seoDescription: "身體質量指數參考計算。"
+searchAliases:
+  - "身體質量指數"
+  - "BMI 查詢"
+  - "公斤公分 BMI"
+  - "健康計算"
+searchKeywords:
+  - "BMI"
+  - "身體質量指數"
+  - "體重"
+  - "身高"
+  - "健康"
+  - "非診斷"

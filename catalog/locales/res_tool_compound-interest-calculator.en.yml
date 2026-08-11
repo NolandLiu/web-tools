@@ -1,0 +1,19 @@
+
+resourceId: res_tool_compound-interest-calculator
+locale: en
+name: "Compound interest calculator"
+summary: "Calculate reference compound growth."
+seoTitle: "Compound interest calculator | GoDeskHub"
+seoDescription: "Calculate reference compound growth."
+searchAliases:
+  - "compound interest"
+  - "monthly compounding"
+  - "investment growth"
+  - "interest calculator"
+searchKeywords:
+  - "compound"
+  - "principal"
+  - "annual rate"
+  - "years"
+  - "monthly"
+  - "interest"

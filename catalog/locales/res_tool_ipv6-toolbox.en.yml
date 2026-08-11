@@ -1,0 +1,21 @@
+
+resourceId: res_tool_ipv6-toolbox
+locale: en
+name: "IPv6 toolbox"
+summary: "Expand, compress, normalize, classify, and calculate IPv6 prefix ranges locally."
+seoTitle: "IPv6 toolbox | GoDeskHub"
+seoDescription: "Expand, compress, normalize, classify, and calculate IPv6 prefix ranges locally."
+searchAliases:
+  - "IPv6 expand"
+  - "IPv6 compress"
+  - "IPv6 normalize"
+  - "IPv6 prefix"
+  - "IPv6 range"
+  - "RFC 5952"
+searchKeywords:
+  - "IPv6"
+  - "RFC 5952"
+  - "prefix"
+  - "BigInt"
+  - "address type"
+  - "normalize"

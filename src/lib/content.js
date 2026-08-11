@@ -1,5 +1,5 @@
 import { CATEGORY_CONTENT, TOOL_CONTENT } from "../content/index.js";
-import { CATEGORIES, LANGUAGES, TOOLS } from "../registry.js";
+import { CATEGORIES, LANGUAGES, TOOLS } from "../lib/catalog-data.js";
 
 const REQUIRED_STRINGS = ["summary", "introduction", "reviewedAt"];
 const REQUIRED_ARRAYS = [

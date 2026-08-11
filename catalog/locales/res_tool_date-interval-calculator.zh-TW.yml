@@ -1,0 +1,19 @@
+
+resourceId: res_tool_date-interval-calculator
+locale: zh-TW
+name: "日期間隔計算"
+summary: "計算兩個日期相隔天數。"
+seoTitle: "日期間隔計算 | GoDeskHub"
+seoDescription: "計算兩個日期相隔天數。"
+searchAliases:
+  - "日期相差天數"
+  - "日期差"
+  - "天數間隔"
+  - "經過天數"
+searchKeywords:
+  - "日期"
+  - "間隔"
+  - "差值"
+  - "天數"
+  - "經過"
+  - "時區"

@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_irr-calculator-q01
+status: published
+placements:
+  - resourceId: res_tool_irr-calculator
+    order: 1
+locales:
+  - locale: en
+    question: "Does this calculator support XIRR?"
+    answer: "No. It accepts period numbers only and assumes equal spacing."
+  - locale: zh-CN
+    question: "支持 XIRR 吗？"
+    answer: "不支持；本工具只使用期数，并假设现金流等间隔。"
+  - locale: zh-TW
+    question: "支援 XIRR 嗎？"
+    answer: "不支援；本工具只使用期數，並假設現金流等間隔。"

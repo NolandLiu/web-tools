@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_weight-converter-q01
+status: published
+placements:
+  - resourceId: res_tool_weight-converter
+    order: 1
+locales:
+  - locale: en
+    question: "Does ton mean metric ton?"
+    answer: "Yes. The t option is a metric ton of 1,000 kilograms, not a US short ton or UK long ton."
+  - locale: zh-CN
+    question: "“吨”指哪一种吨？"
+    answer: "指 1,000 千克的公吨，不是美制短吨或英制长吨。"
+  - locale: zh-TW
+    question: "「噸」是指哪一種噸？"
+    answer: "是 1,000 公斤的公噸，不是美制短噸或英制長噸。"

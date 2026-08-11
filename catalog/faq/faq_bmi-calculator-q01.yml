@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_bmi-calculator-q01
+status: published
+placements:
+  - resourceId: res_tool_bmi-calculator
+    order: 1
+locales:
+  - locale: en
+    question: "Do the displayed BMI ranges provide a diagnosis?"
+    answer: "No. They are general adult screening labels and do not provide a diagnosis."
+  - locale: zh-CN
+    question: "显示的 BMI 范围会构成诊断吗？"
+    answer: "不会，这些只是成人一般筛查标签，不构成诊断。"
+  - locale: zh-TW
+    question: "顯示的 BMI 範圍會構成診斷嗎？"
+    answer: "不會，這些只是成人一般篩檢標籤，不構成診斷。"

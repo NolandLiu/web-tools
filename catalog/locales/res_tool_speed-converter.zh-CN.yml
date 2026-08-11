@@ -1,0 +1,18 @@
+
+resourceId: res_tool_speed-converter
+locale: zh-CN
+name: "速度转换"
+summary: "公里／小时、英里／小时、节互转。"
+seoTitle: "速度转换 | GoDeskHub"
+seoDescription: "公里／小时、英里／小时、节互转。"
+searchAliases:
+  - "速度单位转换"
+  - "公里时转英里时"
+  - "kmh 转 mph"
+  - "节转换"
+searchKeywords:
+  - "速度"
+  - "米每秒"
+  - "公里每小时"
+  - "英里每小时"
+  - "节"

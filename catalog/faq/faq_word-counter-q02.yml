@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_word-counter-q02
+status: published
+placements:
+  - resourceId: res_tool_word-counter
+    order: 2
+locales:
+  - locale: en
+    question: "How are Chinese words counted?"
+    answer: "Only whitespace boundaries are used, so an unspaced Chinese sentence is one word group."
+  - locale: zh-CN
+    question: "中文词数如何计算？"
+    answer: "只按空白边界，连续无空格中文算一个词组。"
+  - locale: zh-TW
+    question: "中文詞數如何計算？"
+    answer: "只按空白邊界，連續無空格中文算一個詞組。"

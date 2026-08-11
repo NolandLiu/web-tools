@@ -1,0 +1,17 @@
+
+schemaVersion: 0.1.0
+id: faq_qr-code-generator-q03
+status: published
+placements:
+  - resourceId: res_tool_qr-code-generator
+    order: 3
+locales:
+  - locale: en
+    question: "Which colors work best?"
+    answer: "A dark foreground on a light, high-contrast background is the safest general choice."
+  - locale: zh-CN
+    question: "什么颜色最稳妥？"
+    answer: "通常使用深色前景和浅色高对比背景。"
+  - locale: zh-TW
+    question: "什麼顏色最穩妥？"
+    answer: "通常使用深色前景和淺色高對比背景。"

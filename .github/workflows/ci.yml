@@ -25,6 +25,10 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run lint
+      - name: Validate Catalog
+        run: npm run catalog:validate
+      - name: Build Catalog artifact
+        run: npm run catalog:build
       - name: Test
         run: npm run test
       - name: Build
