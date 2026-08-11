@@ -60,3 +60,24 @@ test("Phase 0 planning marks ARCH-P0-008 complete with evidence", async () => {
     /`ARCH-P0-008` — Approve the migration and rollback baseline\. \*\*Completed: migration batch, source-of-truth, snapshot, comparison, and rollback gates are defined\.\*\*/,
   );
 });
+
+test("Phase 2 pilot report documents compare-only ownership and rollback boundaries", async () => {
+  const markdown = await readRepositoryText("docs/architecture/catalog-pilot-migration-report.md");
+
+  for (const requiredText of [
+    "TOOLS-P2-001",
+    "TOOLS-P2-002",
+    "TOOLS-P2-003",
+    "compare-only",
+    "existing registries remain production-authoritative",
+    "ipv4-network-toolbox",
+    "irr-calculator",
+    "password-generator",
+    "ip-info",
+    "ip-rdap",
+    "No user tool input",
+    "rollback",
+  ]) {
+    assert.match(markdown, new RegExp(requiredText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `missing text: ${requiredText}`);
+  }
+});

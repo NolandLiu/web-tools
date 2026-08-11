@@ -86,7 +86,7 @@ test("catalog:validate exits 0 for valid Catalog data", async () => {
     "locales/res_tool_ipv4-network.zh-TW.yml": validLocaleYaml("zh-TW"),
   });
 
-  const result = await runCatalogValidate(rootDir, {}, ["--tool-binding", "ipv4-network-toolbox"]);
+  const result = await runCatalogValidate(rootDir);
 
   assert.equal(result.exitCode, 0);
   assert.match(result.stdout, /Catalog validation passed/);

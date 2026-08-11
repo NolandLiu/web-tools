@@ -7,22 +7,15 @@ import {
   serializeCatalogArtifact,
   validateCatalogGraph,
 } from "../packages/catalog-schema/dist/index.js";
+import { createToolBindingResolver, listToolCodeBindings } from "../src/tool-bindings.js";
 
 const catalogRoot = resolve("catalog");
 const outputPath = resolve("catalog/artifacts/catalog.normalized.v1.json");
-const publishedToolBindings = new Set([
-  "ipv4-network-toolbox",
-  "irr-calculator",
-  "password-generator",
-]);
+const toolBindingResolver = createToolBindingResolver(listToolCodeBindings());
 
 const catalog = await loadCatalog({ rootDir: catalogRoot });
 const graphDiagnostics = catalog.ok
-  ? validateCatalogGraph(catalog, {
-    toolBindingResolver: {
-      hasToolBinding: (toolBindingId) => publishedToolBindings.has(toolBindingId),
-    },
-  })
+  ? validateCatalogGraph(catalog, { toolBindingResolver })
   : [];
 const diagnostics = [...catalog.diagnostics, ...graphDiagnostics];
 

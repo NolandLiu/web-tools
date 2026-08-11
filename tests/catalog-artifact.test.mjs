@@ -3,6 +3,7 @@ import { execFile } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { promisify } from "node:util";
 import test from "node:test";
+import { createToolBindingResolver, listToolCodeBindings } from "../src/tool-bindings.js";
 
 const execFileAsync = promisify(execFile);
 const workspaceRoot = new URL("../", import.meta.url);
@@ -26,13 +27,7 @@ test("normalized Catalog artifact is byte-stable and checksum-stable", async () 
   } = await loadSchemaModule();
   const catalog = await loadCatalog({ rootDir: new URL("../catalog", import.meta.url).pathname });
   const graphDiagnostics = validateCatalogGraph(catalog, {
-    toolBindingResolver: {
-      hasToolBinding: (id) => [
-        "ipv4-network-toolbox",
-        "irr-calculator",
-        "password-generator",
-      ].includes(id),
-    },
+    toolBindingResolver: createToolBindingResolver(listToolCodeBindings()),
   });
 
   assert.equal(catalog.ok, true);

@@ -17,7 +17,7 @@
     "lint": "eslint .",
     "test": "npm run schema:build --silent && node --test --test-concurrency=1 tests/*.test.mjs",
     "inventory:generate": "node scripts/generate-migration-inventory.mjs",
-    "catalog:validate": "npm run schema:build --silent && node packages/catalog-schema/dist/cli.js --tool-binding ipv4-network-toolbox --tool-binding irr-calculator --tool-binding password-generator",
+    "catalog:validate": "npm run schema:build --silent && node scripts/validate-catalog.mjs",
     "catalog:build": "npm run schema:build --silent && node scripts/generate-catalog-artifact.mjs",
     "schema:build": "npm run build --workspace @godeskhub/catalog-schema",
     "verify:build": "node scripts/verify-build.mjs",
