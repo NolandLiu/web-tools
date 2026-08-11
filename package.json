@@ -27,10 +27,16 @@
     "verify": "npm run lint && npm run catalog:validate && npm run catalog:locales && npm run catalog:build && npm run test && npm run build && npm run verify:build && npm run discover:build && npm run discover:verify"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.3.3",
+    "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "6.0.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "qrcode": "1.5.4",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "5.9.3",
     "vite": "8.1.5",
     "zod": "^4.4.3"

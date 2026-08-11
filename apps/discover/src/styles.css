@@ -1,68 +1,253 @@
-:root {
-  color: #14211d;
-  background: #f5f8f6;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", "Satoshi", "Avenir Next", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --color-discover-background: #f8faf8;
+  --color-discover-background-soft: #eef7ee;
+  --color-discover-surface: #ffffff;
+  --color-discover-surface-muted: #f2f7f2;
+  --color-discover-foreground: #14231a;
+  --color-discover-forest: #1b3a27;
+  --color-discover-muted: #52685a;
+  --color-discover-line: #cfe0d7;
+  --color-discover-line-strong: #a9c8b7;
+  --color-discover-mint: #c9ecc6;
+  --color-discover-mint-soft: #edf8eb;
+  --color-discover-mint-strong: #69b971;
+  --color-discover-cta: #4caf50;
+  --color-discover-cta-strong: #328f37;
+  --color-discover-search: #ffb347;
+  --color-discover-search-strong: #d88919;
+  --color-discover-ring: #69b971;
+  --color-discover-footer: #0f3a25;
+  --color-discover-sky-soft: #eef6ff;
+  --color-discover-sky-line: #b8d7ff;
+  --color-discover-sky-ink: #24547c;
+  --color-discover-amber-soft: #fff7e8;
+  --color-discover-amber-line: #f3ca83;
+  --color-discover-amber-ink: #8a5a1e;
+
+  --radius-discover-card: 1rem;
+  --radius-discover-panel: 1.375rem;
+  --shadow-discover-card: 0 18px 50px rgb(27 58 39 / 0.08);
+  --shadow-discover-panel: 0 26px 80px rgb(27 58 39 / 0.12);
 }
 
-body {
-  margin: 0;
+@layer base {
+  html {
+    min-width: 320px;
+    color: var(--color-discover-foreground);
+    background:
+      radial-gradient(circle at top left, rgb(201 236 198 / 0.34), transparent 34rem),
+      linear-gradient(180deg, var(--color-discover-background), var(--color-discover-background-soft));
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100dvh;
+    margin: 0;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    color: var(--color-discover-forest);
+    background: var(--color-discover-mint);
+  }
 }
 
-.discover-bootstrap {
-  display: grid;
-  gap: 1rem;
-  max-width: 48rem;
-  margin: 10vh auto;
-  padding: 2rem;
-}
+@layer components {
+  .discover-shell {
+    min-height: 100dvh;
+    padding: clamp(1rem, 2vw, 1.75rem);
+  }
 
-.discover-eyebrow {
-  margin: 0;
-  color: #0a7568;
-  font-size: 0.8125rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
+  .discover-frame {
+    width: min(100%, 76rem);
+    margin-inline: auto;
+    overflow: hidden;
+    border: 1px solid var(--color-discover-line);
+    border-radius: var(--radius-discover-panel);
+    background: rgb(255 255 255 / 0.82);
+    box-shadow: var(--shadow-discover-panel);
+    backdrop-filter: blur(18px);
+  }
 
-.discover-bootstrap h1 {
-  margin: 0;
-  font-size: clamp(2.5rem, 7vw, 5rem);
-  line-height: 0.95;
-  letter-spacing: -0.07em;
-}
+  .discover-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--color-discover-line);
+    padding: 1rem clamp(1rem, 3vw, 2rem);
+  }
 
-.discover-bootstrap p {
-  max-width: 36rem;
-  margin: 0;
-  color: #4f625b;
-  font-size: 1.125rem;
-  line-height: 1.6;
-}
+  .discover-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--color-discover-forest);
+    font-size: 1.125rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+  }
 
-.discover-bootstrap dl {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 1rem 0 0;
-}
+  .discover-logo-mark {
+    display: grid;
+    width: 2.35rem;
+    height: 2.35rem;
+    place-items: center;
+    border-radius: 0.8rem;
+    background: var(--color-discover-mint-soft);
+    color: var(--color-discover-forest);
+    box-shadow: inset 0 0 0 1px var(--color-discover-mint-strong);
+  }
 
-.discover-bootstrap dl div {
-  border: 1px solid #cfe0d9;
-  border-radius: 1rem;
-  background: white;
-  padding: 1rem;
-}
+  .discover-nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 4vw, 3rem);
+    color: var(--color-discover-forest);
+    font-size: 0.92rem;
+    font-weight: 650;
+  }
 
-.discover-bootstrap dt {
-  color: #5f746c;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
+  .discover-hero {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+    padding: clamp(2.75rem, 7vw, 5rem) clamp(1rem, 4vw, 3rem) clamp(2rem, 5vw, 3.5rem);
+    text-align: center;
+  }
 
-.discover-bootstrap dd {
-  margin: 0.35rem 0 0;
-  font-size: 1.5rem;
-  font-weight: 850;
+  .discover-title {
+    max-width: 14ch;
+    color: var(--color-discover-forest);
+    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    font-weight: 950;
+    line-height: 0.9;
+    letter-spacing: -0.075em;
+  }
+
+  .discover-subtitle {
+    max-width: 42rem;
+    color: var(--color-discover-muted);
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    font-weight: 520;
+    line-height: 1.55;
+  }
+
+  .discover-search-panel {
+    display: grid;
+    width: min(100%, 48rem);
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid var(--color-discover-line);
+    border-radius: 1.25rem;
+    background: rgb(255 255 255 / 0.88);
+    padding: 0.75rem;
+    box-shadow: 0 18px 48px rgb(27 58 39 / 0.1);
+  }
+
+  .discover-sections {
+    display: grid;
+    gap: 1.25rem;
+    padding: 0 clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem);
+  }
+
+  .discover-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .discover-resource-icon {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border-radius: 0.9rem;
+    background: var(--color-discover-mint-soft);
+    color: var(--color-discover-forest);
+    box-shadow: inset 0 0 0 1px var(--color-discover-line);
+  }
+
+  .discover-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid var(--color-discover-line);
+    background: linear-gradient(90deg, rgb(201 236 198 / 0.22), rgb(255 255 255 / 0.75));
+    padding: 1rem clamp(1rem, 3vw, 2rem);
+    color: var(--color-discover-muted);
+    font-size: 0.82rem;
+  }
+
+  .discover-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 1rem;
+    color: var(--color-discover-forest);
+    font-weight: 650;
+  }
+
+  @media (max-width: 760px) {
+    .discover-shell {
+      padding: 0;
+    }
+
+    .discover-frame {
+      min-height: 100dvh;
+      border-radius: 0;
+      border-inline: 0;
+    }
+
+    .discover-nav {
+      align-items: flex-start;
+    }
+
+    .discover-nav-links {
+      display: none;
+    }
+
+    .discover-hero {
+      padding-top: 2rem;
+    }
+
+    .discover-title {
+      font-size: clamp(2.15rem, 12vw, 3.35rem);
+    }
+
+    .discover-search-panel {
+      grid-template-columns: 1fr;
+      border-radius: 1rem;
+    }
+
+    .discover-card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .discover-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .discover-footer-links {
+      justify-content: flex-start;
+    }
+  }
 }
