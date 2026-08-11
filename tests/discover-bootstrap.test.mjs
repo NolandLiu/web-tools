@@ -4,7 +4,8 @@ import test from "node:test";
 
 test("discover app has an independent Vite boundary and build output", async () => {
   const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
-  assert.equal(packageJson.scripts["discover:build"], "vite build --config apps/discover/vite.config.ts");
+  assert.match(packageJson.scripts["discover:build"], /vite build --config apps\/discover\/vite\.config\.ts/);
+  assert.match(packageJson.scripts["discover:build"], /generate-discover-static-pages\.mjs/);
   assert.equal(packageJson.scripts["discover:verify"], "node apps/discover/scripts/verify-discover-build.mjs");
 
   const viteConfig = await readFile(new URL("../apps/discover/vite.config.ts", import.meta.url), "utf8");
@@ -18,8 +19,9 @@ test("discover app has an independent Vite boundary and build output", async () 
 
 test("discover bootstrap consumes the shared Catalog with a token-driven UI system", async () => {
   const app = await readFile(new URL("../apps/discover/src/App.tsx", import.meta.url), "utf8");
-  assert.match(app, /catalog\.normalized\.v1\.mjs/);
-  assert.match(app, /godeskhub\.com/);
+  const data = await readFile(new URL("../apps/discover/src/discover-data.js", import.meta.url), "utf8");
+  assert.match(data, /catalog\.normalized\.v1\.mjs/);
+  assert.match(data, /godeskhub\.com/);
   assert.doesNotMatch(app, /tools\.godeskhub\.com/);
 
   const packageJson = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
