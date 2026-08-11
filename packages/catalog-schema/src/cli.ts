@@ -2,18 +2,27 @@ import { resolve } from "node:path";
 import { inspect } from "node:util";
 
 import { loadCatalog } from "./loader.js";
-import type { CatalogDiagnostic } from "./loader.js";
+import { validateCatalogGraph } from "./graph.js";
+
+interface PrintableDiagnostic {
+  code: string;
+  sourcePath: string;
+  path: string;
+  message: string;
+}
 
 interface CliOptions {
   rootDir: string;
+  toolBindings: Set<string>;
 }
 
 function printUsage(): void {
-  console.error("Usage: catalog:validate [--root <catalog-directory>]");
+  console.error("Usage: catalog:validate [--root <catalog-directory>] [--tool-binding <tool-binding-id>]");
 }
 
 function parseArgs(args: string[]): CliOptions | null {
   let rootDir = "catalog";
+  const toolBindings = new Set<string>();
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
@@ -23,6 +32,16 @@ function parseArgs(args: string[]): CliOptions | null {
         return null;
       }
       rootDir = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg === "--tool-binding") {
+      const value = args[index + 1];
+      if (!value) {
+        return null;
+      }
+      toolBindings.add(value);
       index += 1;
       continue;
     }
@@ -37,10 +56,11 @@ function parseArgs(args: string[]): CliOptions | null {
 
   return {
     rootDir: resolve(rootDir),
+    toolBindings,
   };
 }
 
-function sortedDiagnostics(diagnostics: CatalogDiagnostic[]): CatalogDiagnostic[] {
+function sortedDiagnostics<T extends PrintableDiagnostic>(diagnostics: T[]): T[] {
   return [...diagnostics].sort((left, right) => {
     const sourceOrder = left.sourcePath.localeCompare(right.sourcePath, "en");
     if (sourceOrder !== 0) return sourceOrder;
@@ -50,7 +70,7 @@ function sortedDiagnostics(diagnostics: CatalogDiagnostic[]): CatalogDiagnostic[
   });
 }
 
-function diagnosticLine(diagnostic: CatalogDiagnostic): string {
+function diagnosticLine(diagnostic: PrintableDiagnostic): string {
   return `${diagnostic.code}\t${diagnostic.sourcePath}\t${diagnostic.path}\t${diagnostic.message}`;
 }
 
@@ -63,12 +83,20 @@ export async function runCatalogValidateCli(args = process.argv.slice(2)): Promi
 
   try {
     const catalog = await loadCatalog({ rootDir: options.rootDir });
-    if (catalog.ok) {
+    const graphDiagnostics = catalog.ok
+      ? validateCatalogGraph(catalog, {
+        toolBindingResolver: {
+          hasToolBinding: (toolBindingId) => options.toolBindings.has(toolBindingId),
+        },
+      })
+      : [];
+    const diagnostics = [...catalog.diagnostics, ...graphDiagnostics];
+    if (diagnostics.length === 0) {
       console.log("Catalog validation passed");
       return 0;
     }
 
-    for (const diagnostic of sortedDiagnostics(catalog.diagnostics)) {
+    for (const diagnostic of sortedDiagnostics(diagnostics)) {
       console.error(diagnosticLine(diagnostic));
     }
     return 1;

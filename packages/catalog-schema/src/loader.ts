@@ -39,6 +39,7 @@ export interface LoadedCatalogRecords {
 export interface LoadedCatalog {
   ok: boolean;
   records: LoadedCatalogRecords;
+  sources: Record<string, string>;
   diagnostics: CatalogDiagnostic[];
 }
 
@@ -124,6 +125,7 @@ function parseRecord<T>(
 
 export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCatalog> {
   const records = emptyRecords();
+  const sources: Record<string, string> = {};
   const diagnostics: CatalogDiagnostic[] = [];
   let paths: string[];
 
@@ -140,6 +142,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
     return {
       ok: false,
       records,
+      sources,
       diagnostics,
     };
   }
@@ -181,42 +184,66 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
     switch (classification.section) {
       case "resources": {
         const record = parseRecord(resourceSchema, value, sourcePath, diagnostics);
-        if (record) records.resources.push(record);
+        if (record) {
+          records.resources.push(record);
+          sources[`resource:${record.id}`] = sourcePath;
+        }
         break;
       }
       case "categories": {
         const record = parseRecord(categorySchema, value, sourcePath, diagnostics);
-        if (record) records.categories.push(record);
+        if (record) {
+          records.categories.push(record);
+          sources[`category:${record.id}`] = sourcePath;
+        }
         break;
       }
       case "tags": {
         const record = parseRecord(tagSchema, value, sourcePath, diagnostics);
-        if (record) records.tags.push(record);
+        if (record) {
+          records.tags.push(record);
+          sources[`tag:${record.id}`] = sourcePath;
+        }
         break;
       }
       case "collections": {
         const record = parseRecord(collectionSchema, value, sourcePath, diagnostics);
-        if (record) records.collections.push(record);
+        if (record) {
+          records.collections.push(record);
+          sources[`collection:${record.id}`] = sourcePath;
+        }
         break;
       }
       case "locales": {
         const record = parseRecord(resourceLocaleSchema, value, sourcePath, diagnostics);
-        if (record) records.locales.push(record);
+        if (record) {
+          records.locales.push(record);
+          sources[`locale:${record.resourceId}:${record.locale}`] = sourcePath;
+        }
         break;
       }
       case "faq": {
         const record = parseRecord(faqSchema, value, sourcePath, diagnostics);
-        if (record) records.faqs.push(record);
+        if (record) {
+          records.faqs.push(record);
+          sources[`faq:${record.id}`] = sourcePath;
+        }
         break;
       }
       case "relations": {
         const record = parseRecord(relationSchema, value, sourcePath, diagnostics);
-        if (record) records.relations.push(record);
+        if (record) {
+          records.relations.push(record);
+          sources[`relation:${record.id}`] = sourcePath;
+        }
         break;
       }
       case "health": {
         const record = parseRecord(healthSchema, value, sourcePath, diagnostics);
-        if (record) records.health.push(record);
+        if (record) {
+          records.health.push(record);
+          sources[`health:${record.id}`] = sourcePath;
+        }
         break;
       }
     }
@@ -237,6 +264,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
       resources: sortById(records.resources),
       tags: sortById(records.tags),
     },
+    sources,
     diagnostics,
   };
 }

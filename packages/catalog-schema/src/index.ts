@@ -56,6 +56,15 @@ export type {
   LoadedCatalogRecords,
   LoadCatalogOptions,
 } from "./loader.js";
+export {
+  validateCatalogGraph,
+} from "./graph.js";
+export type {
+  CatalogGraphDiagnostic,
+  CatalogGraphDiagnosticCode,
+  CatalogGraphValidationOptions,
+  ToolBindingResolver,
+} from "./graph.js";
 import { CATALOG_SCHEMA_VERSION } from "./version.js";
 
 export const smokeSchema = z.object({

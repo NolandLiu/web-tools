@@ -23,9 +23,9 @@ async function createCatalogFixture(files) {
   return rootDir;
 }
 
-async function runCatalogValidate(rootDir, extraEnv = {}) {
+async function runCatalogValidate(rootDir, extraEnv = {}, extraArgs = []) {
   try {
-    const result = await execFileAsync("npm", ["run", "catalog:validate", "--", "--root", rootDir], {
+    const result = await execFileAsync("npm", ["run", "catalog:validate", "--", "--root", rootDir, ...extraArgs], {
       cwd: workspaceRoot,
       env: { ...process.env, ...extraEnv, FORCE_COLOR: "0" },
       maxBuffer: 1024 * 1024 * 4,
@@ -56,12 +56,37 @@ toolBindingId: ipv4-network-toolbox
 primaryCategoryId: cat_network-ip
 `;
 
+const validCategoryYaml = `
+schemaVersion: 0.1.0
+id: cat_network-ip
+slug: network-ip
+status: published
+order: 1
+`;
+
+function validLocaleYaml(locale) {
+  return `
+resourceId: res_tool_ipv4-network
+locale: ${locale}
+name: IPv4 network toolbox ${locale}
+summary: IPv4 network summary ${locale}
+seoTitle: IPv4 network title ${locale}
+seoDescription: IPv4 network description ${locale}
+searchAliases: []
+searchKeywords: []
+`;
+}
+
 test("catalog:validate exits 0 for valid Catalog data", async () => {
   const rootDir = await createCatalogFixture({
     "resources/res_tool_ipv4-network.yml": validResourceYaml,
+    "taxonomy/categories/cat_network-ip.yml": validCategoryYaml,
+    "locales/res_tool_ipv4-network.en.yml": validLocaleYaml("en"),
+    "locales/res_tool_ipv4-network.zh-CN.yml": validLocaleYaml("zh-CN"),
+    "locales/res_tool_ipv4-network.zh-TW.yml": validLocaleYaml("zh-TW"),
   });
 
-  const result = await runCatalogValidate(rootDir);
+  const result = await runCatalogValidate(rootDir, {}, ["--tool-binding", "ipv4-network-toolbox"]);
 
   assert.equal(result.exitCode, 0);
   assert.match(result.stdout, /Catalog validation passed/);

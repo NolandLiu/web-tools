@@ -186,3 +186,44 @@ code    sourcePath    fieldPath    message
 
 The command intentionally prints relative Catalog source paths, not absolute
 workspace paths or environment variable values.
+
+## Graph Validation Rules
+
+`CAT-P1-008` adds `validateCatalogGraph(catalog, options)`. The graph validator
+checks schema-valid records as a single Catalog graph without importing React
+components or frontend tool code.
+
+Tool implementation checks use an injected resolver:
+
+```ts
+validateCatalogGraph(catalog, {
+  toolBindingResolver: {
+    hasToolBinding: (toolBindingId) => knownToolIds.has(toolBindingId),
+  },
+});
+```
+
+The Phase 2 production resolver remains a future adapter. The schema package
+only defines the interface and does not import the product registry.
+
+Validation rule codes:
+
+| Code | Meaning |
+| --- | --- |
+| `unknown-primary-category` | a tool Resource references a missing primary category |
+| `missing-tool-binding-resolver` | a published tool Resource was validated without a binding resolver |
+| `unknown-tool-binding` | a published tool Resource references a missing code-owned tool binding |
+| `duplicate-tool-binding` | multiple published tool Resources use the same code binding |
+| `missing-resource-locale` | a Resource is missing an `en`, `zh-CN`, or `zh-TW` locale record |
+| `duplicate-resource-locale` | duplicate locale records exist for the same Resource and locale |
+| `unknown-collection-resource` | a collection references a missing Resource |
+| `unknown-collection-rule-category` | a collection rule references a missing category |
+| `unknown-collection-rule-tag` | a collection rule references a missing tag |
+| `unknown-faq-placement-resource` | an FAQ placement references a missing Resource |
+| `unknown-relation-source` | a relation references a missing source Resource |
+| `unknown-relation-target` | a relation references a missing target Resource |
+| `unknown-health-resource` | a health record references a missing Resource |
+
+Relation targets are Resource IDs only. Executable URLs, dynamic imports, and
+JavaScript module paths are rejected before graph validation by the relation
+schema.
