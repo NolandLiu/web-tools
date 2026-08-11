@@ -36,6 +36,16 @@ export type {
   ResourceHealth,
   ResourceRelation,
 } from "./support.js";
+export {
+  CatalogLayoutSection,
+  classifyCatalogPath,
+  validateCatalogLayoutPaths,
+} from "./layout.js";
+export type {
+  CatalogLayoutLocale,
+  CatalogLayoutSectionName,
+  CatalogPathClassification,
+} from "./layout.js";
 import { CATALOG_SCHEMA_VERSION } from "./version.js";
 
 export const smokeSchema = z.object({
