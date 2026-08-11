@@ -1,0 +1,9 @@
+schemaVersion: 0.1.0
+id: res_tool_ip-whois-rdap
+type: tool
+canonicalSlug: ip-whois-rdap
+status: hidden
+createdAt: "2026-08-11T00:00:00.000Z"
+updatedAt: "2026-08-11T00:00:00.000Z"
+toolBindingId: ip-rdap
+primaryCategoryId: cat_network-ip

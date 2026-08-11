@@ -1,0 +1,13 @@
+resourceId: res_tool_ip-whois-rdap
+locale: en
+name: IP WHOIS and RDAP lookup
+summary: Hidden fixture documenting the temporarily isolated RDAP lookup capability.
+seoTitle: IP WHOIS and RDAP lookup fixture
+seoDescription: Synthetic hidden Catalog fixture for the isolated RDAP lookup capability.
+searchAliases:
+  - WHOIS
+  - RDAP
+searchKeywords:
+  - IP
+  - RDAP
+  - hidden

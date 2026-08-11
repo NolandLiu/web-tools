@@ -1,0 +1,13 @@
+resourceId: res_tool_ipv4-network
+locale: zh-TW
+name: IPv4 網絡工具箱
+summary: 本機計算 IPv4 子網、遮罩、主機容量、範圍、位址轉換和同子網判斷。
+seoTitle: IPv4 網絡工具箱
+seoDescription: 已發布 IPv4 網絡工具箱的合成 Catalog fixture。
+searchAliases:
+  - 子網計算器
+  - CIDR 計算器
+searchKeywords:
+  - IPv4
+  - 子網
+  - CIDR

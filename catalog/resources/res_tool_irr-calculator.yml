@@ -1,0 +1,9 @@
+schemaVersion: 0.1.0
+id: res_tool_irr-calculator
+type: tool
+canonicalSlug: irr-calculator
+status: published
+createdAt: "2026-08-11T00:00:00.000Z"
+updatedAt: "2026-08-11T00:00:00.000Z"
+toolBindingId: irr-calculator
+primaryCategoryId: cat_calculators

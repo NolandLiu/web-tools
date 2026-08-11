@@ -1,0 +1,13 @@
+resourceId: res_tool_irr-calculator
+locale: en
+name: IRR calculator
+summary: Calculate fixed-period IRR and its annualized equivalent with synthetic fixture metadata.
+seoTitle: IRR calculator
+seoDescription: Synthetic Catalog fixture for the published fixed-period IRR calculator.
+searchAliases:
+  - internal rate of return
+  - fixed-period IRR
+searchKeywords:
+  - irr
+  - finance
+  - annualized return

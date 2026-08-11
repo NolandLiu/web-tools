@@ -26,6 +26,12 @@ the canonical record from the entity ID without searching generated artifacts.
 - Duplicate `.yml` and `.yaml` authority files for the same ID are invalid.
 - Unknown YAML paths are invalid and must be fixed before publication.
 
+## Fixture Publication Notes
+
+Representative fixtures include both published and hidden resources. Hidden IP
+lookup and RDAP resources document the known capability boundary without adding
+published routes, Sitemap entries, or public discovery surfaces.
+
 ## Data Boundary
 
 Catalog records describe published or publishable public content. They must not

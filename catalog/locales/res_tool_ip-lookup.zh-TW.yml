@@ -1,0 +1,13 @@
+resourceId: res_tool_ip-lookup
+locale: zh-TW
+name: IP 資訊查詢
+summary: 記錄暫時隔離 IP 查詢能力的隱藏 fixture。
+seoTitle: IP 資訊查詢 fixture
+seoDescription: 暫時隔離 IP 查詢能力的合成隱藏 Catalog fixture。
+searchAliases:
+  - IP 查詢
+  - 地理位置查詢
+searchKeywords:
+  - IP
+  - 查詢
+  - 隱藏
