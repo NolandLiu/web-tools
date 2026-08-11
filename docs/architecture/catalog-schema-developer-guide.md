@@ -210,7 +210,10 @@ Validation rule codes:
 
 | Code | Meaning |
 | --- | --- |
+| `duplicate-resource-id` | multiple Resource records declare the same ID |
 | `unknown-primary-category` | a tool Resource references a missing primary category |
+| `unknown-category-parent` | a category references a missing parent category |
+| `category-cycle` | category parent links form a cycle |
 | `missing-tool-binding-resolver` | a published tool Resource was validated without a binding resolver |
 | `unknown-tool-binding` | a published tool Resource references a missing code-owned tool binding |
 | `duplicate-tool-binding` | multiple published tool Resources use the same code binding |

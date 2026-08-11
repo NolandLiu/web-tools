@@ -4,7 +4,10 @@ import type { Collection } from "./taxonomy.js";
 import type { LoadedCatalog } from "./loader.js";
 
 export type CatalogGraphDiagnosticCode =
+  | "duplicate-resource-id"
   | "unknown-primary-category"
+  | "unknown-category-parent"
+  | "category-cycle"
   | "missing-tool-binding-resolver"
   | "unknown-tool-binding"
   | "duplicate-tool-binding"
@@ -147,6 +150,57 @@ export function validateCatalogGraph(
   const categoryIds = new Set(catalog.records.categories.map((category) => category.id));
   const tagIds = new Set(catalog.records.tags.map((tag) => tag.id));
   const seenToolBindings = new Map<string, string>();
+  const seenResourceIds = new Map<string, string>();
+
+  for (const resourceSource of catalog.recordSources.resources) {
+    const existingSource = seenResourceIds.get(resourceSource.id);
+    const sourcePath = resourceSource.sourcePath;
+    if (existingSource && existingSource !== sourcePath) {
+      diagnostics.push(diagnostic(
+        "duplicate-resource-id",
+        sourcePath,
+        "id",
+        `duplicate resource id: ${resourceSource.id}`,
+      ));
+    } else {
+      seenResourceIds.set(resourceSource.id, sourcePath);
+    }
+  }
+
+  const categoriesById = new Map(catalog.records.categories.map((category) => [category.id, category]));
+  for (const category of catalog.records.categories) {
+    const sourcePath = sourceFor(catalog, `category:${category.id}`);
+    if (category.parentId && !categoryIds.has(category.parentId)) {
+      diagnostics.push(diagnostic(
+        "unknown-category-parent",
+        sourcePath,
+        "parentId",
+        `unknown category parent: ${category.parentId}`,
+      ));
+      continue;
+    }
+
+    const path = new Set<string>();
+    let current = category;
+    while (current.parentId) {
+      if (path.has(current.id)) {
+        diagnostics.push(diagnostic(
+          "category-cycle",
+          sourcePath,
+          "parentId",
+          `category cycle detected at ${current.id}`,
+        ));
+        break;
+      }
+
+      path.add(current.id);
+      const next = categoriesById.get(current.parentId);
+      if (!next) {
+        break;
+      }
+      current = next;
+    }
+  }
 
   for (const resource of catalog.records.resources) {
     const sourcePath = sourceFor(catalog, `resource:${resource.id}`);

@@ -53,6 +53,7 @@ export type {
   CatalogDiagnostic,
   CatalogDiagnosticCode,
   LoadedCatalog,
+  LoadedCatalogRecordSources,
   LoadedCatalogRecords,
   LoadCatalogOptions,
 } from "./loader.js";

@@ -36,10 +36,22 @@ export interface LoadedCatalogRecords {
   tags: Tag[];
 }
 
+export interface LoadedCatalogRecordSources {
+  resources: Array<{ id: string; sourcePath: string }>;
+  categories: Array<{ id: string; sourcePath: string }>;
+  tags: Array<{ id: string; sourcePath: string }>;
+  collections: Array<{ id: string; sourcePath: string }>;
+  locales: Array<{ resourceId: string; locale: string; sourcePath: string }>;
+  faqs: Array<{ id: string; sourcePath: string }>;
+  relations: Array<{ id: string; sourcePath: string }>;
+  health: Array<{ id: string; sourcePath: string }>;
+}
+
 export interface LoadedCatalog {
   ok: boolean;
   records: LoadedCatalogRecords;
   sources: Record<string, string>;
+  recordSources: LoadedCatalogRecordSources;
   diagnostics: CatalogDiagnostic[];
 }
 
@@ -56,6 +68,17 @@ const emptyRecords = (): LoadedCatalogRecords => ({
   relations: [],
   resources: [],
   tags: [],
+});
+
+const emptyRecordSources = (): LoadedCatalogRecordSources => ({
+  resources: [],
+  categories: [],
+  tags: [],
+  collections: [],
+  locales: [],
+  faqs: [],
+  relations: [],
+  health: [],
 });
 
 function toCatalogPath(rootDir: string, absolutePath: string): string {
@@ -126,6 +149,7 @@ function parseRecord<T>(
 export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCatalog> {
   const records = emptyRecords();
   const sources: Record<string, string> = {};
+  const recordSources = emptyRecordSources();
   const diagnostics: CatalogDiagnostic[] = [];
   let paths: string[];
 
@@ -143,6 +167,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
       ok: false,
       records,
       sources,
+      recordSources,
       diagnostics,
     };
   }
@@ -187,6 +212,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
         if (record) {
           records.resources.push(record);
           sources[`resource:${record.id}`] = sourcePath;
+          recordSources.resources.push({ id: record.id, sourcePath });
         }
         break;
       }
@@ -195,6 +221,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
         if (record) {
           records.categories.push(record);
           sources[`category:${record.id}`] = sourcePath;
+          recordSources.categories.push({ id: record.id, sourcePath });
         }
         break;
       }
@@ -203,6 +230,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
         if (record) {
           records.tags.push(record);
           sources[`tag:${record.id}`] = sourcePath;
+          recordSources.tags.push({ id: record.id, sourcePath });
         }
         break;
       }
@@ -211,6 +239,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
         if (record) {
           records.collections.push(record);
           sources[`collection:${record.id}`] = sourcePath;
+          recordSources.collections.push({ id: record.id, sourcePath });
         }
         break;
       }
@@ -219,6 +248,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
         if (record) {
           records.locales.push(record);
           sources[`locale:${record.resourceId}:${record.locale}`] = sourcePath;
+          recordSources.locales.push({ resourceId: record.resourceId, locale: record.locale, sourcePath });
         }
         break;
       }
@@ -227,6 +257,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
         if (record) {
           records.faqs.push(record);
           sources[`faq:${record.id}`] = sourcePath;
+          recordSources.faqs.push({ id: record.id, sourcePath });
         }
         break;
       }
@@ -235,6 +266,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
         if (record) {
           records.relations.push(record);
           sources[`relation:${record.id}`] = sourcePath;
+          recordSources.relations.push({ id: record.id, sourcePath });
         }
         break;
       }
@@ -243,6 +275,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
         if (record) {
           records.health.push(record);
           sources[`health:${record.id}`] = sourcePath;
+          recordSources.health.push({ id: record.id, sourcePath });
         }
         break;
       }
@@ -265,6 +298,7 @@ export async function loadCatalog(options: LoadCatalogOptions): Promise<LoadedCa
       tags: sortById(records.tags),
     },
     sources,
+    recordSources,
     diagnostics,
   };
 }
