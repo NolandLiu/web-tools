@@ -46,6 +46,16 @@ export type {
   CatalogLayoutSectionName,
   CatalogPathClassification,
 } from "./layout.js";
+export {
+  loadCatalog,
+} from "./loader.js";
+export type {
+  CatalogDiagnostic,
+  CatalogDiagnosticCode,
+  LoadedCatalog,
+  LoadedCatalogRecords,
+  LoadCatalogOptions,
+} from "./loader.js";
 import { CATALOG_SCHEMA_VERSION } from "./version.js";
 
 export const smokeSchema = z.object({

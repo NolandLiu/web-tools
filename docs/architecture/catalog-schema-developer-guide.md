@@ -126,3 +126,39 @@ Health records are review signals only. They never publish, hide, or delete a
 Resource by themselves. Health evidence must stay concise and must not include
 secrets, authorization headers, provider tokens, passwords, raw private
 responses, or full sensitive response bodies.
+
+## Catalog Loader Reference
+
+`CAT-P1-006` adds `loadCatalog({ rootDir })`. The loader reads the Git/YAML
+Catalog layout, parses YAML, applies the typed schemas, and returns
+deterministic `records` plus source-scoped `diagnostics`.
+
+The loader uses `yaml` `2.9.0`.
+
+| Field | Value |
+| --- | --- |
+| Package | `yaml` |
+| Version | 2.9.0 |
+| License | ISC |
+| npm unpacked size | 685,953 bytes |
+| Repository | `https://github.com/eemeli/yaml` |
+| Purpose | local YAML parsing for Git-authored Catalog records |
+| Privacy impact | runs locally during authoring, tests, and validation; it does not send data over the network or execute Catalog content |
+
+Loader diagnostics use relative `sourcePath` values and field `path` values.
+They must not contain absolute workspace paths, environment variables, secrets,
+or raw private payloads.
+
+The normalized record collections are exposed under stable names:
+
+- `resources`
+- `categories`
+- `tags`
+- `collections`
+- `locales`
+- `faqs`
+- `relations`
+- `health`
+
+Collections are sorted deterministically by ID. Locale records are sorted by
+`resourceId` and then locale code.
