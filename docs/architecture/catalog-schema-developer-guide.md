@@ -162,3 +162,27 @@ The normalized record collections are exposed under stable names:
 
 Collections are sorted deterministically by ID. Locale records are sorted by
 `resourceId` and then locale code.
+
+## Validation Command
+
+Run Catalog validation locally with:
+
+```bash
+npm run catalog:validate
+```
+
+Use a temporary or alternate Catalog root with:
+
+```bash
+npm run catalog:validate -- --root /path/to/catalog
+```
+
+The command exits `0` for valid Catalog data and nonzero for invalid data.
+Diagnostics are sorted deterministically and use tab-separated fields:
+
+```text
+code    sourcePath    fieldPath    message
+```
+
+The command intentionally prints relative Catalog source paths, not absolute
+workspace paths or environment variable values.
