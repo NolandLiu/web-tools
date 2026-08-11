@@ -71,7 +71,11 @@ export function parseCatalogArtifact(value: unknown): NormalizedCatalogArtifact 
     throw new Error("Catalog artifact records are required");
   }
 
-  const { checksum: _checksum, ...payload } = artifact as NormalizedCatalogArtifact;
+  const payload = {
+    artifactVersion: artifact.artifactVersion,
+    catalogSchemaVersion: artifact.catalogSchemaVersion,
+    records: artifact.records,
+  };
   const expectedChecksum = checksumPayload(payload);
   if (artifact.checksum !== expectedChecksum) {
     throw new Error("Catalog artifact checksum mismatch");
