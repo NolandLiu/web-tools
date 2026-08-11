@@ -5,8 +5,8 @@ import {
   LANGUAGES,
   TOOLS,
 } from "../lib/catalog-data.js";
+import { localeToRouteSegment, routeSegmentToLocale } from "./locale.js";
 
-const languageByPath = new Map(LANGUAGES.map(language => [language.path, language]));
 const languageById = new Map(LANGUAGES.map(language => [language.id, language]));
 const toolBySlug = new Map(TOOLS.map(tool => [tool.slug, tool]));
 const toolById = new Map(TOOLS.map(tool => [tool.id, tool]));
@@ -24,9 +24,8 @@ export const LEGACY_TOOL_REDIRECTS = {
 
 export function parsePath(pathname) {
   const segments = pathname.split("?")[0].split("#")[0].split("/").filter(Boolean);
-  const language = languageByPath.get(segments[0]?.toLowerCase());
-  if (!language) return { kind: "not-found", lang: DEFAULT_LANG };
-  const lang = language.id;
+  const lang = routeSegmentToLocale(segments[0]);
+  if (!lang) return { kind: "not-found", lang: DEFAULT_LANG };
   if (segments.length === 1) return { kind: "home", lang };
   if (segments.length === 2) {
     const page = infoBySlug.get(segments[1]);
@@ -50,8 +49,7 @@ export function parsePath(pathname) {
 }
 
 export function buildPath(route) {
-  const language = languageById.get(route.lang) ?? languageById.get(DEFAULT_LANG);
-  const prefix = `/${language.path}`;
+  const prefix = `/${localeToRouteSegment(route.lang) ?? localeToRouteSegment(DEFAULT_LANG)}`;
   if (route.kind === "home") return `${prefix}/`;
   if (route.kind === "tool") {
     const tool = toolById.get(route.toolId);

@@ -8,6 +8,7 @@ import { createToolBindingResolver, listToolCodeBindings } from "../src/tool-bin
 const execFileAsync = promisify(execFile);
 const workspaceRoot = new URL("../", import.meta.url);
 const artifactPath = new URL("../catalog/artifacts/catalog.normalized.v1.json", import.meta.url);
+const searchIndexPath = new URL("../catalog/artifacts/search-index.v1.json", import.meta.url);
 
 async function loadSchemaModule() {
   await execFileAsync("npm", ["run", "build", "--workspace", "@godeskhub/catalog-schema"], {
@@ -72,4 +73,9 @@ test("committed normalized Catalog artifact matches generator output", async () 
   assert.match(generated, /"artifactVersion": "catalog.normalized.v1"/);
   assert.match(generated, /"checksum": "sha256-/);
   assert(!generated.includes("generatedAt"));
+
+  const searchIndex = await readFile(searchIndexPath, "utf8");
+  assert.match(searchIndex, /"version": "search-index.v1"/);
+  assert.match(searchIndex, /"locales": \{/);
+  assert.doesNotMatch(searchIndex, /ip-whois-rdap|ip-lookup|TOKEN|SECRET|API_KEY/);
 });

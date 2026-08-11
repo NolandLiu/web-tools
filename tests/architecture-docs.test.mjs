@@ -79,3 +79,24 @@ test("Phase 2 migration report documents Catalog ownership and rollback boundari
     assert.match(markdown, new RegExp(requiredText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `missing text: ${requiredText}`);
   }
 });
+
+test("Phase 3A foundation document records locale SEO and search policy decisions", async () => {
+  const markdown = await readRepositoryText("docs/architecture/phase-3a-i18n-seo-search-foundation.md");
+
+  for (const requiredText of [
+    "I18N-P3-001",
+    "SEO-P3-002",
+    "SEARCH-P3-002",
+    "TASK-130",
+    "zh-CN",
+    "zh-cn",
+    "tools.godeskhub.com",
+    "x-default",
+    "50 KB",
+    "Raw queries",
+    "search-index.v1.json",
+    "npm run verify",
+  ]) {
+    assert.match(markdown, new RegExp(requiredText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), `missing text: ${requiredText}`);
+  }
+});
