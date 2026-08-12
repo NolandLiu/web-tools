@@ -1,0 +1,25 @@
+schemaVersion: 0.1.0
+id: res_ai-skill-privacy-safe-summarizer
+type: ai-skill
+canonicalSlug: privacy-safe-summarizer
+status: published
+createdAt: "2026-08-13T00:00:00.000Z"
+updatedAt: "2026-08-13T00:00:00.000Z"
+useCases:
+  - "Summarize notes, research, or product feedback after removing sensitive details."
+  - "Create a public-safe summary from private working material."
+inputRequirements:
+  - "Redacted source notes or a sanitized excerpt."
+  - "The intended audience and the level of detail required."
+  - "A list of details that must stay private."
+outputResults:
+  - "A concise summary that preserves useful decisions while excluding sensitive material."
+  - "A short list of removed or generalized private details for review."
+steps:
+  - "Redact names, access material, private URLs, customer data, and confidential numbers before prompting."
+  - "Ask the AI to summarize only from provided evidence and mark unknowns clearly."
+  - "Review the output for accidental leakage before publishing or sharing."
+  - "Keep the original private notes in a local or approved private system."
+riskNotes:
+  - "Never paste raw private keys, personal data, sign-in data, private financial records, or confidential source text."
+  - "A privacy-safe summary still needs human review before external publication."

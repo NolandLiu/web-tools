@@ -27,7 +27,7 @@ interface CatalogPathPattern {
 const catalogPathPatterns: CatalogPathPattern[] = [
   {
     section: "resources",
-    pattern: /^resources\/(res_(?:website|tool|guide)_[a-z0-9]+(?:-[a-z0-9]+)*)\.ya?ml$/,
+    pattern: /^resources\/((?:res_(?:website|tool|guide)_[a-z0-9]+(?:-[a-z0-9]+)*|res_ai-skill-[a-z0-9]+(?:-[a-z0-9]+)*))\.ya?ml$/,
   },
   {
     section: "categories",
@@ -55,7 +55,7 @@ const catalogPathPatterns: CatalogPathPattern[] = [
   },
   {
     section: "locales",
-    pattern: /^locales\/((?:res_(?:website|tool|guide)|cat|tag|col|faq)_[a-z0-9]+(?:-[a-z0-9]+)*)\.(en|zh-CN|zh-TW)\.ya?ml$/,
+    pattern: /^locales\/((?:(?:res_(?:website|tool|guide)|cat|tag|col|faq)_[a-z0-9]+(?:-[a-z0-9]+)*|res_ai-skill-[a-z0-9]+(?:-[a-z0-9]+)*))\.(en|zh-CN|zh-TW)\.ya?ml$/,
   },
 ];
 

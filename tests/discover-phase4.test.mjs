@@ -21,10 +21,13 @@ test("Discover exposes a typed local route model, shell, and shared resource car
 
   assert.match(app, /<AppShell/);
   assert.match(app, /<HomePage/);
-  for (const expected of ["Tools", "Websites", "Guides", "Collections", "About", "Contact", "Privacy", "Terms"]) {
+  for (const expected of ["Tools", "Websites", "Guides", "AI Skills", "About", "Contact", "Privacy", "Terms"]) {
     assert.match(data, new RegExp(expected));
   }
+  assert.doesNotMatch(data, /Collections/);
   assert.match(shell, /t\.nav\.tools/);
+  assert.match(shell, /t\.nav\.aiSkills/);
+  assert.doesNotMatch(shell, /t\.nav\.collections/);
   assert.match(shell, /t\.footer\.about/);
   assert.doesNotMatch(shell, /footer[\s\S]*(Tools|Websites|Guides|Collections)/);
   assert.match(card, /resource\.type/);
@@ -74,6 +77,15 @@ test("Discover cutover and rollback plan is documented without performing deploy
   assert.match(docs, /Do not deploy/);
 });
 
+test("Discover Phase 6 publication readiness checklist is documented without deployment", async () => {
+  const docs = await read("docs/discover-publication-readiness-checklist.md");
+  assert.match(docs, /AI Skills/);
+  assert.match(docs, /Collections/);
+  assert.match(docs, /npm run verify/);
+  assert.match(docs, /Do not deploy/);
+  assert.match(docs, /Do not change DNS/);
+});
+
 test("Discover homepage visual system uses cohesive typography, icons, spacing, and footer navigation", async () => {
   const styles = await read("apps/discover/src/styles.css");
   const card = await read("apps/discover/src/components/ResourceCard.tsx");
@@ -101,7 +113,7 @@ test("Discover homepage visual system uses cohesive typography, icons, spacing, 
   assert.match(styles, /\.discover-resource-card[\s\S]*grid-template-rows:\s*auto 1fr auto/);
 
   assert.match(icons, /export function DiscoverIcon/);
-  assert.match(icons, /type:\s*"tool" \| "website" \| "guide" \| "collection" \| "category"/);
+  assert.match(icons, /type:\s*"tool" \| "website" \| "guide" \| "ai-skill" \| "collection" \| "category"/);
   assert.match(card, /<DiscoverIcon/);
   assert.doesNotMatch(card, /slice\(0,\s*1\)/);
 
@@ -152,7 +164,8 @@ test("Discover browse and information pages use dedicated layouts instead of pla
   assert.match(browse, /discover-resource-list/);
   assert.match(browse, /route\.resourceType === "website"/);
   assert.match(browse, /route\.resourceType === "guide"/);
-  assert.match(browse, /route\.resourceType === "collection"/);
+  assert.match(browse, /route\.resourceType === "ai-skill"/);
+  assert.doesNotMatch(browse, /route\.resourceType === "collection"/);
 
   assert.match(info, /infoContent/);
   assert.match(info, /discover-info-layout/);
@@ -168,4 +181,71 @@ test("Discover browse and information pages use dedicated layouts instead of pla
   ]) {
     assert.match(styles, new RegExp(`\\.${className}`));
   }
+});
+
+test("Discover Phase 6 IA removes Collections and exposes AI Skills", async () => {
+  const module = await import("../apps/discover/src/discover-data.js");
+
+  assert.equal(module.parseDiscoverPath("/en/collections/").kind, "not-found");
+  assert.deepEqual(module.parseDiscoverPath("/en/ai-skills/"), {
+    locale: "en",
+    resourceType: "ai-skill",
+    slug: undefined,
+    categorySlug: undefined,
+    tagSlug: undefined,
+    kind: "browse",
+  });
+  assert.equal(
+    module.discoverCanonicalPath({ kind: "browse", locale: "zh-CN", resourceType: "ai-skill" }),
+    "/zh-cn/ai-skills/",
+  );
+
+  const staticRoutes = module.buildStaticRoutes();
+  assert.ok(staticRoutes.some((route) => route.kind === "browse" && route.resourceType === "ai-skill"));
+  assert.ok(!staticRoutes.some((route) => route.kind === "browse" && route.resourceType === "collection"));
+});
+
+test("Discover Phase 6 AI Skills have seeded multilingual pages and content", async () => {
+  const module = await import("../apps/discover/src/discover-data.js");
+
+  const aiSkills = module.listDiscoverResources("en", { type: "ai-skill" });
+  assert.ok(aiSkills.length >= 3, "expected at least three seeded AI Skills");
+  assert.ok(aiSkills.every((resource) => resource.href.startsWith("/en/resources/ai-skill/")));
+  assert.ok(aiSkills.some((resource) => resource.canonicalSlug === "prompt-brief-refiner"));
+
+  const zhCn = module.listDiscoverResources("zh-CN", { type: "ai-skill" });
+  const zhTw = module.listDiscoverResources("zh-TW", { type: "ai-skill" });
+  assert.equal(zhCn.length, aiSkills.length);
+  assert.equal(zhTw.length, aiSkills.length);
+  assert.ok(zhCn.some((resource) => resource.name.includes("提示词")));
+  assert.ok(zhTw.some((resource) => resource.name.includes("提示詞")));
+
+  const detailRoute = module.parseDiscoverPath("/en/resources/ai-skill/prompt-brief-refiner/");
+  const detail = module.findResourceByRoute(detailRoute);
+  assert.equal(detail?.type, "ai-skill");
+  assert.ok(detail.useCases.length >= 1);
+  assert.ok(detail.inputRequirements.length >= 1);
+  assert.ok(detail.outputResults.length >= 1);
+  assert.ok(detail.steps.length >= 2);
+  assert.ok(detail.riskNotes.some((note) => /secret|private|password/i.test(note)));
+});
+
+test("Discover Phase 6 search and related resources include AI Skills without exposing Collections", async () => {
+  const module = await import("../apps/discover/src/discover-data.js");
+
+  const aiSearch = module.listDiscoverResources("en", { query: "acceptance criteria" });
+  assert.ok(aiSearch.some((resource) => resource.type === "ai-skill" && resource.canonicalSlug === "prompt-brief-refiner"));
+
+  const zhSearch = module.listDiscoverResources("zh-CN", { query: "提示词" });
+  assert.ok(zhSearch.some((resource) => resource.type === "ai-skill"));
+
+  const detail = module.findResourceByRoute(module.parseDiscoverPath("/en/resources/ai-skill/code-review-checklist/"));
+  const related = module.getRelatedResources(detail, "en");
+  assert.ok(related.length >= 1);
+  assert.ok(related.every((resource) => resource.status === "published"));
+  assert.ok(related.some((resource) => resource.type !== detail.type));
+
+  const all = module.listDiscoverResources("en");
+  assert.ok(!all.some((resource) => resource.type === "collection"));
+  assert.ok(module.buildStaticRoutes().every((route) => route.resourceType !== "collection"));
 });

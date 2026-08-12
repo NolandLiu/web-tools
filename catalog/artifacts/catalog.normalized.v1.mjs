@@ -2192,6 +2192,186 @@ export default {
     ],
     "locales": [
       {
+        "resourceId": "res_ai-skill-code-review-checklist",
+        "locale": "en",
+        "name": "Code review checklist",
+        "summary": "Use AI to structure a code review around correctness, privacy, accessibility, and tests.",
+        "seoTitle": "Code review checklist AI skill | GoDeskHub",
+        "seoDescription": "A practical AI workflow for turning diffs and acceptance criteria into prioritized code review checks.",
+        "searchAliases": [
+          "AI code review",
+          "review checklist",
+          "pull request review"
+        ],
+        "searchKeywords": [
+          "AI skill",
+          "code review",
+          "privacy",
+          "accessibility",
+          "tests"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-code-review-checklist",
+        "locale": "zh-CN",
+        "name": "代码评审清单",
+        "summary": "用 AI 围绕正确性、隐私、无障碍和测试覆盖整理代码评审重点。",
+        "seoTitle": "代码评审清单 AI 技能 | GoDeskHub",
+        "seoDescription": "面向代码差异和验收标准的 AI 工作流，帮助生成有优先级的评审检查项。",
+        "searchAliases": [
+          "AI 代码评审",
+          "评审清单",
+          "PR 评审"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "代码评审",
+          "隐私",
+          "无障碍",
+          "测试"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-code-review-checklist",
+        "locale": "zh-TW",
+        "name": "程式碼評審清單",
+        "summary": "用 AI 圍繞正確性、隱私、無障礙和測試覆蓋整理程式碼評審重點。",
+        "seoTitle": "程式碼評審清單 AI 技能 | GoDeskHub",
+        "seoDescription": "面向程式碼差異和驗收標準的 AI 工作流程，協助產生有優先級的評審檢查項。",
+        "searchAliases": [
+          "AI 程式碼評審",
+          "評審清單",
+          "PR 評審"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "程式碼評審",
+          "隱私",
+          "無障礙",
+          "測試"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-privacy-safe-summarizer",
+        "locale": "en",
+        "name": "Privacy-safe summarizer",
+        "summary": "Summarize notes or feedback while keeping private details out of public output.",
+        "seoTitle": "Privacy-safe summarizer AI skill | GoDeskHub",
+        "seoDescription": "A cautious AI workflow for producing public-safe summaries from redacted notes and evidence.",
+        "searchAliases": [
+          "safe summary",
+          "redacted summary",
+          "privacy summary"
+        ],
+        "searchKeywords": [
+          "AI skill",
+          "summary",
+          "privacy",
+          "redaction",
+          "notes"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-privacy-safe-summarizer",
+        "locale": "zh-CN",
+        "name": "隐私安全摘要",
+        "summary": "在保留关键信息的同时，避免把私密细节写入可公开分享的摘要。",
+        "seoTitle": "隐私安全摘要 AI 技能 | GoDeskHub",
+        "seoDescription": "谨慎使用 AI，从已脱敏的笔记和证据中生成适合公开分享的摘要。",
+        "searchAliases": [
+          "安全摘要",
+          "脱敏摘要",
+          "隐私摘要"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "摘要",
+          "隐私",
+          "脱敏",
+          "笔记"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-privacy-safe-summarizer",
+        "locale": "zh-TW",
+        "name": "隱私安全摘要",
+        "summary": "在保留關鍵資訊的同時，避免把私密細節寫入可公開分享的摘要。",
+        "seoTitle": "隱私安全摘要 AI 技能 | GoDeskHub",
+        "seoDescription": "謹慎使用 AI，從已去識別化的筆記和證據中產生適合公開分享的摘要。",
+        "searchAliases": [
+          "安全摘要",
+          "去識別化摘要",
+          "隱私摘要"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "摘要",
+          "隱私",
+          "去識別化",
+          "筆記"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-prompt-brief-refiner",
+        "locale": "en",
+        "name": "Prompt brief refiner",
+        "summary": "Turn a rough request into a structured, reviewable brief before implementation begins.",
+        "seoTitle": "Prompt brief refiner AI skill | GoDeskHub",
+        "seoDescription": "Use a privacy-aware AI workflow to refine rough requests into scoped briefs, acceptance criteria, assumptions, and risks.",
+        "searchAliases": [
+          "prompt brief",
+          "requirements prompt",
+          "scope refiner"
+        ],
+        "searchKeywords": [
+          "AI skill",
+          "prompt",
+          "requirements",
+          "acceptance criteria",
+          "scope"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-prompt-brief-refiner",
+        "locale": "zh-CN",
+        "name": "提示词需求整理",
+        "summary": "把粗略需求整理成结构清晰、可评审、可执行的任务说明。",
+        "seoTitle": "提示词需求整理 AI 技能 | GoDeskHub",
+        "seoDescription": "使用隐私友好的 AI 工作流，将粗略想法整理为范围、非范围、验收标准、假设和风险。",
+        "searchAliases": [
+          "提示词需求",
+          "需求整理",
+          "任务说明"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "提示词",
+          "需求",
+          "验收标准",
+          "范围"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-prompt-brief-refiner",
+        "locale": "zh-TW",
+        "name": "提示詞需求整理",
+        "summary": "把粗略需求整理成結構清晰、可評審、可執行的任務說明。",
+        "seoTitle": "提示詞需求整理 AI 技能 | GoDeskHub",
+        "seoDescription": "使用隱私友善的 AI 工作流程，將粗略想法整理為範圍、非範圍、驗收標準、假設和風險。",
+        "searchAliases": [
+          "提示詞需求",
+          "需求整理",
+          "任務說明"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "提示詞",
+          "需求",
+          "驗收標準",
+          "範圍"
+        ]
+      },
+      {
         "resourceId": "res_tool_area-converter",
         "locale": "en",
         "name": "Area converter",
@@ -4155,6 +4335,102 @@ export default {
     "resources": [
       {
         "schemaVersion": "0.1.0",
+        "id": "res_ai-skill-code-review-checklist",
+        "canonicalSlug": "code-review-checklist",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "ai-skill",
+        "useCases": [
+          "Review a pull request for correctness, privacy, accessibility, and test coverage.",
+          "Convert broad review concerns into actionable, file-specific comments."
+        ],
+        "inputRequirements": [
+          "A concise summary of the change.",
+          "Relevant diffs or file excerpts that do not contain secrets.",
+          "The project rules or acceptance criteria that should guide the review."
+        ],
+        "outputResults": [
+          "A prioritized review checklist grouped by correctness, privacy, accessibility, and maintainability.",
+          "Specific review comments with severity and suggested fixes."
+        ],
+        "steps": [
+          "Provide the change summary, acceptance criteria, and selected diff context.",
+          "Ask the AI to identify blocking issues before style suggestions.",
+          "Verify each comment against the actual code before posting it publicly.",
+          "Keep private task details out of public review comments."
+        ],
+        "riskNotes": [
+          "Do not paste secrets, private task briefs, real user data, passwords, or API tokens.",
+          "AI review output is advisory; run the real test suite and inspect the diff yourself."
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_ai-skill-privacy-safe-summarizer",
+        "canonicalSlug": "privacy-safe-summarizer",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "ai-skill",
+        "useCases": [
+          "Summarize notes, research, or product feedback after removing sensitive details.",
+          "Create a public-safe summary from private working material."
+        ],
+        "inputRequirements": [
+          "Redacted source notes or a sanitized excerpt.",
+          "The intended audience and the level of detail required.",
+          "A list of details that must stay private."
+        ],
+        "outputResults": [
+          "A concise summary that preserves useful decisions while excluding sensitive material.",
+          "A short list of removed or generalized private details for review."
+        ],
+        "steps": [
+          "Redact names, access material, private URLs, customer data, and confidential numbers before prompting.",
+          "Ask the AI to summarize only from provided evidence and mark unknowns clearly.",
+          "Review the output for accidental leakage before publishing or sharing.",
+          "Keep the original private notes in a local or approved private system."
+        ],
+        "riskNotes": [
+          "Never paste raw private keys, personal data, sign-in data, private financial records, or confidential source text.",
+          "A privacy-safe summary still needs human review before external publication."
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_ai-skill-prompt-brief-refiner",
+        "canonicalSlug": "prompt-brief-refiner",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "ai-skill",
+        "useCases": [
+          "Turn a rough request into an implementation-ready brief.",
+          "Separate scope, non-goals, acceptance criteria, assumptions, and risks before implementation starts."
+        ],
+        "inputRequirements": [
+          "A rough goal or feature request.",
+          "Known constraints such as languages, platforms, privacy limits, or deadlines.",
+          "Any examples of desired or undesired output."
+        ],
+        "outputResults": [
+          "A structured brief with goal, scope, non-scope, acceptance criteria, risks, and open questions.",
+          "A concise handoff prompt that can be reviewed before implementation."
+        ],
+        "steps": [
+          "Paste the rough request into your AI assistant.",
+          "Ask it to identify missing decisions and separate scope from non-scope.",
+          "Review the generated brief and remove private details before sharing it.",
+          "Use the reviewed brief as the approved task source or implementation input."
+        ],
+        "riskNotes": [
+          "Do not paste private keys, private customer data, sign-in data, unpublished access material, or sensitive business plans.",
+          "Review assumptions carefully; the AI may invent requirements if the original request is vague."
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
         "id": "res_tool_area-converter",
         "canonicalSlug": "area-converter",
         "status": "published",
@@ -4500,6 +4776,6 @@ export default {
       }
     ]
   },
-  "checksum": "sha256-a91615f946ea68d8d1b209dbe59ef0372a679ee9b7932d5080df77fe1e469faa"
+  "checksum": "sha256-701402850affb82e48a3699684e643dea09cb4241a917c904f0ea14e39fc5360"
 }
 ;

@@ -51,7 +51,7 @@ test("repository Catalog fixtures validate and preserve publication states", asy
       ["res_tool_ip-whois-rdap", "ip-rdap"],
     ],
   );
-  assert.equal(catalog.records.locales.length, 87);
+  assert.equal(catalog.records.locales.length, 96);
   assert(catalog.records.faqs.length >= 60);
   assert.equal(catalog.records.categories.length, 5);
   assert(catalog.records.health.length >= 29);

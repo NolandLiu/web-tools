@@ -1,0 +1,25 @@
+schemaVersion: 0.1.0
+id: res_ai-skill-prompt-brief-refiner
+type: ai-skill
+canonicalSlug: prompt-brief-refiner
+status: published
+createdAt: "2026-08-13T00:00:00.000Z"
+updatedAt: "2026-08-13T00:00:00.000Z"
+useCases:
+  - "Turn a rough request into an implementation-ready brief."
+  - "Separate scope, non-goals, acceptance criteria, assumptions, and risks before implementation starts."
+inputRequirements:
+  - "A rough goal or feature request."
+  - "Known constraints such as languages, platforms, privacy limits, or deadlines."
+  - "Any examples of desired or undesired output."
+outputResults:
+  - "A structured brief with goal, scope, non-scope, acceptance criteria, risks, and open questions."
+  - "A concise handoff prompt that can be reviewed before implementation."
+steps:
+  - "Paste the rough request into your AI assistant."
+  - "Ask it to identify missing decisions and separate scope from non-scope."
+  - "Review the generated brief and remove private details before sharing it."
+  - "Use the reviewed brief as the approved task source or implementation input."
+riskNotes:
+  - "Do not paste private keys, private customer data, sign-in data, unpublished access material, or sensitive business plans."
+  - "Review assumptions carefully; the AI may invent requirements if the original request is vague."

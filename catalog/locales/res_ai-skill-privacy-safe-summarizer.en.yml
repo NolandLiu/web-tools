@@ -1,0 +1,16 @@
+resourceId: res_ai-skill-privacy-safe-summarizer
+locale: en
+name: "Privacy-safe summarizer"
+summary: "Summarize notes or feedback while keeping private details out of public output."
+seoTitle: "Privacy-safe summarizer AI skill | GoDeskHub"
+seoDescription: "A cautious AI workflow for producing public-safe summaries from redacted notes and evidence."
+searchAliases:
+  - "safe summary"
+  - "redacted summary"
+  - "privacy summary"
+searchKeywords:
+  - "AI skill"
+  - "summary"
+  - "privacy"
+  - "redaction"
+  - "notes"

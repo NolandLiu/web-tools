@@ -26,6 +26,30 @@ export function ResourceDetailPage({ route }: ResourceDetailPageProps) {
         <span className="discover-chip">{resource.type}</span>
         <h1 id="discover-resource-title">{resource.name}</h1>
         <p>{resource.summary}</p>
+        {resource.type === "ai-skill" ? (
+          <div className="discover-ai-skill-detail" aria-label={t.aiSkillDetail.workflowDetails}>
+            <section>
+              <h2>{t.aiSkillDetail.useCases}</h2>
+              <ul>{resource.useCases.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+            <section>
+              <h2>{t.aiSkillDetail.inputs}</h2>
+              <ul>{resource.inputRequirements.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+            <section>
+              <h2>{t.aiSkillDetail.outputs}</h2>
+              <ul>{resource.outputResults.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+            <section>
+              <h2>{t.aiSkillDetail.steps}</h2>
+              <ol>{resource.steps.map((item) => <li key={item}>{item}</li>)}</ol>
+            </section>
+            <section>
+              <h2>{t.aiSkillDetail.privacyNotes}</h2>
+              <ul>{resource.riskNotes.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+          </div>
+        ) : null}
         <Button asChild>
           <a href={resource.primaryHref} rel={resource.primaryHref.startsWith("http") ? "noreferrer" : undefined}>
             {resource.type === "tool" ? t.openTool : t.details}

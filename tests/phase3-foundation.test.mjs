@@ -75,7 +75,7 @@ test("unified search documents include only published public resources and no pr
 
   assert.equal(documents.length, publishedResources.length * SUPPORTED_LOCALES.length);
   assert.ok(documents.some(document => document.type === "tool" && document.locale === "en"));
-  assert.ok(documents.every(document => ["tool", "website", "guide"].includes(document.type)));
+  assert.ok(documents.every(document => ["tool", "website", "guide", "ai-skill"].includes(document.type)));
   assert.ok(documents.every(document => document.status === "published"));
   assert.ok(documents.every(document => document.url.startsWith("/")));
   assert.ok(!documents.some(document => /ip-lookup|ip-whois-rdap|rdap|whois/i.test(`${document.id} ${document.url} ${document.name}`)));

@@ -13,7 +13,7 @@ const infoContent = {
       eyebrow: "About GoDeskHub",
       title: "A compact directory for useful, privacy-first resources.",
       body: [
-        "GoDeskHub Discover helps you find tools, websites, guides, and collections without turning the homepage into a noisy portal.",
+        "GoDeskHub Discover helps you find tools, websites, guides, and AI skills without turning the homepage into a noisy portal.",
         "Owned tools remain on tools.godeskhub.com. Discover keeps the broader resource catalog readable, searchable, and easy to browse.",
       ],
       points: ["Curated resources", "Privacy-first tooling", "Three-language navigation"],
@@ -51,7 +51,7 @@ const infoContent = {
       eyebrow: "关于 GoDeskHub",
       title: "一个紧凑、实用、重视隐私的资源发现目录。",
       body: [
-        "GoDeskHub Discover 帮助你查找工具、网站、指南和集合，不把首页做成嘈杂门户。",
+        "GoDeskHub Discover 帮助你查找工具、网站、指南和 AI Skills，不把首页做成嘈杂门户。",
         "自有工具继续运行在 tools.godeskhub.com。Discover 负责让更广泛的资源目录更易读、可搜索、可浏览。",
       ],
       points: ["精选资源", "隐私优先工具", "三语导航"],
@@ -89,7 +89,7 @@ const infoContent = {
       eyebrow: "關於 GoDeskHub",
       title: "一個緊湊、實用、重視隱私的資源發現目錄。",
       body: [
-        "GoDeskHub Discover 協助你查找工具、網站、指南和集合，不把首頁做成嘈雜入口。",
+        "GoDeskHub Discover 協助你查找工具、網站、指南和 AI Skills，不把首頁做成嘈雜入口。",
         "自有工具繼續運行在 tools.godeskhub.com。Discover 負責讓更廣泛的資源目錄更易讀、可搜尋、可瀏覽。",
       ],
       points: ["精選資源", "隱私優先工具", "三語導航"],

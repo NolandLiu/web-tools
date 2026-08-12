@@ -7,7 +7,9 @@ const requiredPages = [
   "dist-discover/zh-cn/index.html",
   "dist-discover/zh-tw/index.html",
   "dist-discover/en/tools/index.html",
+  "dist-discover/en/ai-skills/index.html",
   "dist-discover/en/categories/network-ip/index.html",
+  "dist-discover/en/resources/ai-skill/prompt-brief-refiner/index.html",
   "dist-discover/en/resources/tool/ipv4-network-toolbox/index.html",
 ];
 
@@ -33,6 +35,14 @@ const home = await readFile(resolve("dist-discover/en/index.html"), "utf8");
 for (const expected of ["Find the right tool", "Featured picks", "Browse by category", "Recently added"]) {
   if (!home.includes(expected)) {
     console.error(`Discover homepage raw HTML is missing ${expected}`);
+    process.exit(1);
+  }
+}
+
+const aiSkill = await readFile(resolve("dist-discover/en/resources/ai-skill/prompt-brief-refiner/index.html"), "utf8");
+for (const expected of ["Prompt brief refiner", "Use cases", "Inputs", "Outputs", "Steps", "Privacy notes"]) {
+  if (!aiSkill.includes(expected)) {
+    console.error(`Discover AI Skill static HTML is missing ${expected}`);
     process.exit(1);
   }
 }

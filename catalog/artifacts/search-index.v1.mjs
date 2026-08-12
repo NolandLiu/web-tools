@@ -4,6 +4,111 @@ export default {
     "en": {
       "documents": [
         {
+          "id": "res_ai-skill-code-review-checklist:en",
+          "resourceId": "res_ai-skill-code-review-checklist",
+          "type": "ai-skill",
+          "locale": "en",
+          "name": "Code review checklist",
+          "description": "Use AI to structure a code review around correctness, privacy, accessibility, and tests.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "AI code review",
+            "review checklist",
+            "pull request review"
+          ],
+          "keywords": [
+            "AI skill",
+            "code review",
+            "privacy",
+            "accessibility",
+            "tests"
+          ],
+          "url": "/en/code-review-checklist",
+          "rankingText": [
+            "code review checklist",
+            "use ai to structure a code review around correctness, privacy, accessibility, and tests.",
+            "ai code review",
+            "review checklist",
+            "pull request review",
+            "ai skill",
+            "code review",
+            "privacy",
+            "accessibility",
+            "tests"
+          ]
+        },
+        {
+          "id": "res_ai-skill-privacy-safe-summarizer:en",
+          "resourceId": "res_ai-skill-privacy-safe-summarizer",
+          "type": "ai-skill",
+          "locale": "en",
+          "name": "Privacy-safe summarizer",
+          "description": "Summarize notes or feedback while keeping private details out of public output.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "safe summary",
+            "redacted summary",
+            "privacy summary"
+          ],
+          "keywords": [
+            "AI skill",
+            "summary",
+            "privacy",
+            "redaction",
+            "notes"
+          ],
+          "url": "/en/privacy-safe-summarizer",
+          "rankingText": [
+            "privacy-safe summarizer",
+            "summarize notes or feedback while keeping private details out of public output.",
+            "safe summary",
+            "redacted summary",
+            "privacy summary",
+            "ai skill",
+            "summary",
+            "privacy",
+            "redaction",
+            "notes"
+          ]
+        },
+        {
+          "id": "res_ai-skill-prompt-brief-refiner:en",
+          "resourceId": "res_ai-skill-prompt-brief-refiner",
+          "type": "ai-skill",
+          "locale": "en",
+          "name": "Prompt brief refiner",
+          "description": "Turn a rough request into a structured, reviewable brief before implementation begins.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "prompt brief",
+            "requirements prompt",
+            "scope refiner"
+          ],
+          "keywords": [
+            "AI skill",
+            "prompt",
+            "requirements",
+            "acceptance criteria",
+            "scope"
+          ],
+          "url": "/en/prompt-brief-refiner",
+          "rankingText": [
+            "prompt brief refiner",
+            "turn a rough request into a structured, reviewable brief before implementation begins.",
+            "prompt brief",
+            "requirements prompt",
+            "scope refiner",
+            "ai skill",
+            "prompt",
+            "requirements",
+            "acceptance criteria",
+            "scope"
+          ]
+        },
+        {
           "id": "res_tool_area-converter:en",
           "resourceId": "res_tool_area-converter",
           "type": "tool",
@@ -1196,6 +1301,111 @@ export default {
     },
     "zh-CN": {
       "documents": [
+        {
+          "id": "res_ai-skill-code-review-checklist:zh-CN",
+          "resourceId": "res_ai-skill-code-review-checklist",
+          "type": "ai-skill",
+          "locale": "zh-CN",
+          "name": "代码评审清单",
+          "description": "用 AI 围绕正确性、隐私、无障碍和测试覆盖整理代码评审重点。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "AI 代码评审",
+            "评审清单",
+            "PR 评审"
+          ],
+          "keywords": [
+            "AI 技能",
+            "代码评审",
+            "隐私",
+            "无障碍",
+            "测试"
+          ],
+          "url": "/zh-cn/code-review-checklist",
+          "rankingText": [
+            "代码评审清单",
+            "用 ai 围绕正确性、隐私、无障碍和测试覆盖整理代码评审重点。",
+            "ai 代码评审",
+            "评审清单",
+            "pr 评审",
+            "ai 技能",
+            "代码评审",
+            "隐私",
+            "无障碍",
+            "测试"
+          ]
+        },
+        {
+          "id": "res_ai-skill-privacy-safe-summarizer:zh-CN",
+          "resourceId": "res_ai-skill-privacy-safe-summarizer",
+          "type": "ai-skill",
+          "locale": "zh-CN",
+          "name": "隐私安全摘要",
+          "description": "在保留关键信息的同时，避免把私密细节写入可公开分享的摘要。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "安全摘要",
+            "脱敏摘要",
+            "隐私摘要"
+          ],
+          "keywords": [
+            "AI 技能",
+            "摘要",
+            "隐私",
+            "脱敏",
+            "笔记"
+          ],
+          "url": "/zh-cn/privacy-safe-summarizer",
+          "rankingText": [
+            "隐私安全摘要",
+            "在保留关键信息的同时,避免把私密细节写入可公开分享的摘要。",
+            "安全摘要",
+            "脱敏摘要",
+            "隐私摘要",
+            "ai 技能",
+            "摘要",
+            "隐私",
+            "脱敏",
+            "笔记"
+          ]
+        },
+        {
+          "id": "res_ai-skill-prompt-brief-refiner:zh-CN",
+          "resourceId": "res_ai-skill-prompt-brief-refiner",
+          "type": "ai-skill",
+          "locale": "zh-CN",
+          "name": "提示词需求整理",
+          "description": "把粗略需求整理成结构清晰、可评审、可执行的任务说明。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "提示词需求",
+            "需求整理",
+            "任务说明"
+          ],
+          "keywords": [
+            "AI 技能",
+            "提示词",
+            "需求",
+            "验收标准",
+            "范围"
+          ],
+          "url": "/zh-cn/prompt-brief-refiner",
+          "rankingText": [
+            "提示词需求整理",
+            "把粗略需求整理成结构清晰、可评审、可执行的任务说明。",
+            "提示词需求",
+            "需求整理",
+            "任务说明",
+            "ai 技能",
+            "提示词",
+            "需求",
+            "验收标准",
+            "范围"
+          ]
+        },
         {
           "id": "res_tool_area-converter:zh-CN",
           "resourceId": "res_tool_area-converter",
@@ -2419,6 +2629,111 @@ export default {
     },
     "zh-TW": {
       "documents": [
+        {
+          "id": "res_ai-skill-code-review-checklist:zh-TW",
+          "resourceId": "res_ai-skill-code-review-checklist",
+          "type": "ai-skill",
+          "locale": "zh-TW",
+          "name": "程式碼評審清單",
+          "description": "用 AI 圍繞正確性、隱私、無障礙和測試覆蓋整理程式碼評審重點。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "AI 程式碼評審",
+            "評審清單",
+            "PR 評審"
+          ],
+          "keywords": [
+            "AI 技能",
+            "程式碼評審",
+            "隱私",
+            "無障礙",
+            "測試"
+          ],
+          "url": "/zh-tw/code-review-checklist",
+          "rankingText": [
+            "程式碼評審清單",
+            "用 ai 圍繞正確性、隱私、無障礙和測試覆蓋整理程式碼評審重點。",
+            "ai 程式碼評審",
+            "評審清單",
+            "pr 評審",
+            "ai 技能",
+            "程式碼評審",
+            "隱私",
+            "無障礙",
+            "測試"
+          ]
+        },
+        {
+          "id": "res_ai-skill-privacy-safe-summarizer:zh-TW",
+          "resourceId": "res_ai-skill-privacy-safe-summarizer",
+          "type": "ai-skill",
+          "locale": "zh-TW",
+          "name": "隱私安全摘要",
+          "description": "在保留關鍵資訊的同時，避免把私密細節寫入可公開分享的摘要。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "安全摘要",
+            "去識別化摘要",
+            "隱私摘要"
+          ],
+          "keywords": [
+            "AI 技能",
+            "摘要",
+            "隱私",
+            "去識別化",
+            "筆記"
+          ],
+          "url": "/zh-tw/privacy-safe-summarizer",
+          "rankingText": [
+            "隱私安全摘要",
+            "在保留關鍵資訊的同時,避免把私密細節寫入可公開分享的摘要。",
+            "安全摘要",
+            "去識別化摘要",
+            "隱私摘要",
+            "ai 技能",
+            "摘要",
+            "隱私",
+            "去識別化",
+            "筆記"
+          ]
+        },
+        {
+          "id": "res_ai-skill-prompt-brief-refiner:zh-TW",
+          "resourceId": "res_ai-skill-prompt-brief-refiner",
+          "type": "ai-skill",
+          "locale": "zh-TW",
+          "name": "提示詞需求整理",
+          "description": "把粗略需求整理成結構清晰、可評審、可執行的任務說明。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "提示詞需求",
+            "需求整理",
+            "任務說明"
+          ],
+          "keywords": [
+            "AI 技能",
+            "提示詞",
+            "需求",
+            "驗收標準",
+            "範圍"
+          ],
+          "url": "/zh-tw/prompt-brief-refiner",
+          "rankingText": [
+            "提示詞需求整理",
+            "把粗略需求整理成結構清晰、可評審、可執行的任務說明。",
+            "提示詞需求",
+            "需求整理",
+            "任務說明",
+            "ai 技能",
+            "提示詞",
+            "需求",
+            "驗收標準",
+            "範圍"
+          ]
+        },
         {
           "id": "res_tool_area-converter:zh-TW",
           "resourceId": "res_tool_area-converter",

@@ -54,6 +54,28 @@ function renderCard(resource, locale) {
   </article>`;
 }
 
+function renderList(title, items, ordered = false) {
+  if (!items?.length) return "";
+  const tag = ordered ? "ol" : "ul";
+  return `<section><h2>${escapeHtml(title)}</h2><${tag}>${items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</${tag}></section>`;
+}
+
+function renderResourceDetail(resource, locale) {
+  const t = messages[locale] ?? messages.en;
+  const base = renderCard(resource, locale);
+  if (resource.type !== "ai-skill") {
+    return base;
+  }
+
+  return `${base}<section class="discover-static-ai-skill">
+    ${renderList(t.aiSkillDetail.useCases, resource.useCases)}
+    ${renderList(t.aiSkillDetail.inputs, resource.inputRequirements)}
+    ${renderList(t.aiSkillDetail.outputs, resource.outputResults)}
+    ${renderList(t.aiSkillDetail.steps, resource.steps, true)}
+    ${renderList(t.aiSkillDetail.privacyNotes, resource.riskNotes)}
+  </section>`;
+}
+
 function renderRoute(route) {
   const t = messages[route.locale] ?? messages.en;
   const home = buildDiscoverHome(route.locale);
@@ -81,7 +103,7 @@ function renderRoute(route) {
     </section>`;
   } else if (route.kind === "resource") {
     const resource = findResourceByRoute(route);
-    body = resource ? renderCard(resource, route.locale) : `<p>${escapeHtml(t.empty)}</p>`;
+    body = resource ? renderResourceDetail(resource, route.locale) : `<p>${escapeHtml(t.empty)}</p>`;
   } else {
     const resources = listDiscoverResources(route.locale, {
       type: route.resourceType,

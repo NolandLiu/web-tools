@@ -17,7 +17,7 @@ export function AppShell({ locale, children }: AppShellProps) {
     [t.nav.tools, `/${segment}/tools/`],
     [t.nav.websites, `/${segment}/websites/`],
     [t.nav.guides, `/${segment}/guides/`],
-    [t.nav.collections, `/${segment}/collections/`],
+    [t.nav.aiSkills, `/${segment}/ai-skills/`],
   ];
 
   const footer = [

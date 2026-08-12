@@ -58,11 +58,11 @@ const tagLabels = {
 export const messages = {
   en: {
     htmlLang: "en",
-    nav: { tools: "Tools", websites: "Websites", guides: "Guides", collections: "Collections" },
+    nav: { tools: "Tools", websites: "Websites", guides: "Guides", aiSkills: "AI Skills" },
     footer: { about: "About", contact: "Contact", privacy: "Privacy", terms: "Terms" },
     heroTitle: "Find the right tool without giving up your data",
-    heroSubtitle: "Discover privacy-first tools, useful websites, and practical guides. Everything in one place.",
-    searchPlaceholder: "Search tools, websites, guides...",
+    heroSubtitle: "Discover privacy-first tools, useful websites, AI skills, and practical guides. Everything in one place.",
+    searchPlaceholder: "Search tools, websites, guides, AI skills...",
     searchButton: "Search",
     featured: "Featured picks",
     featuredText: "Handpicked resources to help you work smarter.",
@@ -78,18 +78,27 @@ export const messages = {
       tool: "Privacy-first tools that run in your browser whenever possible.",
       website: "Reliable web references and practical resources worth bookmarking.",
       guide: "Short guides that explain common workflows without filler.",
-      collection: "Curated sets of resources grouped around a practical goal.",
+      aiSkill: "Reusable AI workflows and prompt patterns that help you complete practical tasks.",
       default: "Browse published resources from the shared Catalog.",
     },
-    resourceCounts: { tool: "tools", website: "websites", guide: "guides", collection: "collections", default: "resources" },
+    resourceTypeLabels: { tool: "Tools", website: "Websites", guide: "Guides", aiSkill: "AI Skills" },
+    resourceCounts: { tool: "tools", website: "websites", guide: "guides", aiSkill: "AI skills", default: "resources" },
+    aiSkillDetail: {
+      useCases: "Use cases",
+      inputs: "Inputs",
+      outputs: "Outputs",
+      steps: "Steps",
+      privacyNotes: "Privacy notes",
+      workflowDetails: "AI Skill workflow details",
+    },
   },
   "zh-CN": {
     htmlLang: "zh-CN",
-    nav: { tools: "工具", websites: "网站", guides: "指南", collections: "集合" },
+    nav: { tools: "工具", websites: "网站", guides: "指南", aiSkills: "AI 技能" },
     footer: { about: "关于", contact: "联系", privacy: "隐私", terms: "条款" },
     heroTitle: "快速找到合适工具，同时保留数据隐私",
-    heroSubtitle: "发现注重隐私的工具、实用网站和操作指南。集中查找，不上传你的内容。",
-    searchPlaceholder: "搜索工具、网站、指南……",
+    heroSubtitle: "发现注重隐私的工具、实用网站、AI 技能和操作指南。集中查找，不上传你的内容。",
+    searchPlaceholder: "搜索工具、网站、指南、AI 技能……",
     searchButton: "搜索",
     featured: "精选资源",
     featuredText: "帮助你更高效完成工作的资源。",
@@ -105,18 +114,27 @@ export const messages = {
       tool: "优先收录尽量在浏览器本地运行的隐私友好工具。",
       website: "值得收藏的可靠网页资料与实用资源。",
       guide: "用简洁语言解释常见工作流，不堆砌空话。",
-      collection: "围绕具体目标整理的一组相关资源。",
+      aiSkill: "可复用的 AI 工作流和提示词模式，帮助你完成具体任务。",
       default: "浏览 Shared Catalog 中已发布的公开资源。",
     },
-    resourceCounts: { tool: "个工具", website: "个网站", guide: "篇指南", collection: "个集合", default: "个资源" },
+    resourceTypeLabels: { tool: "工具", website: "网站", guide: "指南", aiSkill: "AI 技能" },
+    resourceCounts: { tool: "个工具", website: "个网站", guide: "篇指南", aiSkill: "个 AI 技能", default: "个资源" },
+    aiSkillDetail: {
+      useCases: "适用场景",
+      inputs: "输入要求",
+      outputs: "输出结果",
+      steps: "使用步骤",
+      privacyNotes: "隐私提示",
+      workflowDetails: "AI 技能工作流详情",
+    },
   },
   "zh-TW": {
     htmlLang: "zh-TW",
-    nav: { tools: "工具", websites: "網站", guides: "指南", collections: "集合" },
+    nav: { tools: "工具", websites: "網站", guides: "指南", aiSkills: "AI 技能" },
     footer: { about: "關於", contact: "聯絡", privacy: "隱私", terms: "條款" },
     heroTitle: "快速找到合適工具，同時保留資料隱私",
-    heroSubtitle: "發現重視隱私的工具、實用網站和操作指南。集中查找，不上傳你的內容。",
-    searchPlaceholder: "搜尋工具、網站、指南……",
+    heroSubtitle: "發現重視隱私的工具、實用網站、AI 技能和操作指南。集中查找，不上傳你的內容。",
+    searchPlaceholder: "搜尋工具、網站、指南、AI 技能……",
     searchButton: "搜尋",
     featured: "精選資源",
     featuredText: "協助你更高效完成工作的資源。",
@@ -132,10 +150,19 @@ export const messages = {
       tool: "優先收錄盡量在瀏覽器本機執行的隱私友善工具。",
       website: "值得收藏的可靠網頁資料與實用資源。",
       guide: "用簡潔語言解釋常見工作流程，不堆砌空話。",
-      collection: "圍繞具體目標整理的一組相關資源。",
+      aiSkill: "可重用的 AI 工作流程和提示詞模式，協助你完成具體任務。",
       default: "瀏覽 Shared Catalog 中已發布的公開資源。",
     },
-    resourceCounts: { tool: "個工具", website: "個網站", guide: "篇指南", collection: "個集合", default: "個資源" },
+    resourceTypeLabels: { tool: "工具", website: "網站", guide: "指南", aiSkill: "AI 技能" },
+    resourceCounts: { tool: "個工具", website: "個網站", guide: "篇指南", aiSkill: "個 AI 技能", default: "個資源" },
+    aiSkillDetail: {
+      useCases: "適用場景",
+      inputs: "輸入要求",
+      outputs: "輸出結果",
+      steps: "使用步驟",
+      privacyNotes: "隱私提示",
+      workflowDetails: "AI 技能工作流程詳情",
+    },
   },
 };
 
@@ -181,6 +208,9 @@ export function resourcePath(resource, locale = defaultLocale) {
 }
 
 export function resourcePrimaryAction(resource, locale = defaultLocale) {
+  if (resource.type === "ai-skill") {
+    return resourcePath(resource, locale);
+  }
   if (resource.type === "tool") {
     return `${TOOLS_ORIGIN}/${localeSegment(locale)}/tools/${resource.canonicalSlug}`;
   }
@@ -207,6 +237,11 @@ export function projectResource(resource, locale = defaultLocale) {
     categoryName: categoryText?.[0] ?? category?.slug ?? "",
     href: resourcePath(resource, locale),
     primaryHref: resourcePrimaryAction(resource, locale),
+    useCases: resource.useCases ?? [],
+    inputRequirements: resource.inputRequirements ?? [],
+    outputResults: resource.outputResults ?? [],
+    steps: resource.steps ?? [],
+    riskNotes: resource.riskNotes ?? [],
   };
 }
 
@@ -287,8 +322,14 @@ export function parseDiscoverPath(pathname = "/") {
   };
 
   if (rest.length === 0) return route;
-  if (["tools", "websites", "guides", "collections"].includes(rest[0]) && rest.length === 1) {
-    return { ...route, kind: "browse", resourceType: rest[0] === "tools" ? "tool" : rest[0].slice(0, -1) };
+  const browseTypes = {
+    tools: "tool",
+    websites: "website",
+    guides: "guide",
+    "ai-skills": "ai-skill",
+  };
+  if (browseTypes[rest[0]] && rest.length === 1) {
+    return { ...route, kind: "browse", resourceType: browseTypes[rest[0]] };
   }
   if (rest[0] === "categories" && rest[1]) return { ...route, kind: "category", categorySlug: rest[1] };
   if (rest[0] === "tags" && rest[1]) return { ...route, kind: "tag", tagSlug: rest[1] };
@@ -309,7 +350,11 @@ export function discoverCanonicalPath(route) {
   const segment = localeSegment(route.locale);
   if (route.kind === "home") return `/${segment}/`;
   if (route.kind === "browse") {
-    const plural = route.resourceType === "tool" ? "tools" : `${route.resourceType}s`;
+    const plural = route.resourceType === "tool"
+      ? "tools"
+      : route.resourceType === "ai-skill"
+        ? "ai-skills"
+        : `${route.resourceType}s`;
     return `/${segment}/${plural}/`;
   }
   if (route.kind === "category") return `/${segment}/categories/${route.categorySlug}/`;
@@ -328,7 +373,7 @@ export function buildStaticRoutes() {
   const routes = [];
   for (const { locale } of locales) {
     routes.push({ kind: "home", locale });
-    for (const resourceType of ["tool", "website", "guide", "collection"]) routes.push({ kind: "browse", locale, resourceType });
+    for (const resourceType of ["tool", "website", "guide", "ai-skill"]) routes.push({ kind: "browse", locale, resourceType });
     for (const category of listDiscoverCategories(locale)) routes.push({ kind: "category", locale, categorySlug: category.slug });
     for (const tag of listDiscoverTags(locale)) routes.push({ kind: "tag", locale, tagSlug: tag.slug });
     for (const resource of listDiscoverResources(locale)) routes.push({ kind: "resource", locale, resourceType: resource.type, slug: resource.canonicalSlug });

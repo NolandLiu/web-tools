@@ -68,7 +68,7 @@ test("Resource schemas parse valid website, tool, and guide records", async () =
     LocaleCode,
   } = await loadSchemaModule();
 
-  assert.deepEqual(ResourceType, ["website", "tool", "guide"]);
+  assert.deepEqual(ResourceType, ["website", "tool", "guide", "ai-skill"]);
   assert.deepEqual(PublicationStatus, ["draft", "review", "published", "deprecated", "hidden"]);
   assert.deepEqual(LocaleCode, ["en", "zh-CN", "zh-TW"]);
 
@@ -94,6 +94,24 @@ test("Resource schemas parse valid website, tool, and guide records", async () =
     type: "guide",
     canonicalSlug: "json-formatting-guide",
   }).type, "guide");
+
+  const aiSkill = resourceSchema.parse({
+    ...baseResource,
+    id: "res_ai-skill-prompt-brief-refiner",
+    type: "ai-skill",
+    canonicalSlug: "prompt-brief-refiner",
+    useCases: ["Turn a rough request into an implementation-ready brief."],
+    inputRequirements: ["A rough goal, target audience, constraints, and preferred output format."],
+    outputResults: ["A structured brief with scope, non-goals, acceptance criteria, and risks."],
+    steps: [
+      "Paste the rough request into your AI assistant.",
+      "Ask it to identify missing decisions and separate scope from non-scope.",
+      "Review the final brief before using it for implementation.",
+    ],
+    riskNotes: ["Do not paste secrets, private customer data, passwords, or unreleased confidential plans."],
+  });
+  assert.equal(aiSkill.type, "ai-skill");
+  assert.equal(aiSkill.steps.length, 3);
 });
 
 test("Resource schemas reject invalid type-specific fields, lifecycle values, and unsafe URLs", async () => {
@@ -126,6 +144,30 @@ test("Resource schemas reject invalid type-specific fields, lifecycle values, an
     type: "guide",
     toolBindingId: "json",
   }), /toolBindingId/);
+
+  assert.throws(() => resourceSchema.parse({
+    ...baseResource,
+    id: "res_ai-skill_prompt-brief-refiner",
+    type: "ai-skill",
+    canonicalSlug: "prompt-brief-refiner",
+    useCases: ["Clarify a brief."],
+    inputRequirements: ["Rough request."],
+    outputResults: ["Structured brief."],
+    steps: ["Paste the rough request."],
+    riskNotes: ["Do not paste secrets."],
+  }), /id/);
+
+  assert.throws(() => resourceSchema.parse({
+    ...baseResource,
+    id: "res_ai-skill-prompt-brief-refiner",
+    type: "ai-skill",
+    canonicalSlug: "prompt-brief-refiner",
+    useCases: ["Clarify a brief."],
+    inputRequirements: ["Rough request."],
+    outputResults: ["Structured brief."],
+    steps: ["Paste the rough request."],
+    riskNotes: [],
+  }), /riskNotes/);
 });
 
 test("Resource locale schemas require complete English, Simplified Chinese, and Traditional Chinese records", async () => {

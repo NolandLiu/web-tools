@@ -1,0 +1,16 @@
+resourceId: res_ai-skill-privacy-safe-summarizer
+locale: zh-TW
+name: "隱私安全摘要"
+summary: "在保留關鍵資訊的同時，避免把私密細節寫入可公開分享的摘要。"
+seoTitle: "隱私安全摘要 AI 技能 | GoDeskHub"
+seoDescription: "謹慎使用 AI，從已去識別化的筆記和證據中產生適合公開分享的摘要。"
+searchAliases:
+  - "安全摘要"
+  - "去識別化摘要"
+  - "隱私摘要"
+searchKeywords:
+  - "AI 技能"
+  - "摘要"
+  - "隱私"
+  - "去識別化"
+  - "筆記"

@@ -8,7 +8,7 @@ type ResourceCardProps = {
   resource: {
     id: string;
     status: string;
-    type: "tool" | "website" | "guide" | "collection";
+    type: "tool" | "website" | "guide" | "ai-skill" | "collection";
     canonicalSlug: string;
     name: string;
     summary: string;

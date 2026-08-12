@@ -7,7 +7,7 @@ export const RelationType = ["related", "alternative", "prerequisite", "successo
 export const HealthStatus = ["unknown", "healthy", "warning", "failing"] as const;
 
 const resourceIdSchema = z.string().regex(
-  /^res_(website|tool|guide)_[a-z0-9]+(?:-[a-z0-9]+)*$/,
+  /^res_(website|tool|guide)_[a-z0-9]+(?:-[a-z0-9]+)*$|^res_ai-skill-[a-z0-9]+(?:-[a-z0-9]+)*$/,
   "resource id must use a res_ prefix",
 );
 

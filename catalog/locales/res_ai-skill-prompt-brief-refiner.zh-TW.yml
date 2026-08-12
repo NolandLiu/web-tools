@@ -1,0 +1,16 @@
+resourceId: res_ai-skill-prompt-brief-refiner
+locale: zh-TW
+name: "提示詞需求整理"
+summary: "把粗略需求整理成結構清晰、可評審、可執行的任務說明。"
+seoTitle: "提示詞需求整理 AI 技能 | GoDeskHub"
+seoDescription: "使用隱私友善的 AI 工作流程，將粗略想法整理為範圍、非範圍、驗收標準、假設和風險。"
+searchAliases:
+  - "提示詞需求"
+  - "需求整理"
+  - "任務說明"
+searchKeywords:
+  - "AI 技能"
+  - "提示詞"
+  - "需求"
+  - "驗收標準"
+  - "範圍"
