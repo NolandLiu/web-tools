@@ -53,13 +53,23 @@ test("Discover build verifies localized static HTML, SEO metadata, and privacy b
   const packageJson = JSON.parse(await read("package.json"));
   assert.match(packageJson.scripts["discover:build"], /generate-discover-static-pages\.mjs/);
 
+  const generator = await read("apps/discover/scripts/generate-discover-static-pages.mjs");
+  assert.match(generator, /buildDiscoverSitemap/);
+  assert.match(generator, /sitemap\.xml/);
+  assert.match(generator, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
+  assert.match(generator, /hreflang="x-default"/);
+  assert.match(generator, /route\.kind !== "not-found"/);
+  assert.doesNotMatch(generator, /collection/);
+
   const verifier = await read("apps/discover/scripts/verify-discover-build.mjs");
   for (const expected of [
     "dist-discover/en/index.html",
     "dist-discover/zh-cn/index.html",
     "dist-discover/zh-tw/index.html",
+    "dist-discover/sitemap.xml",
     "application/ld+json",
     "hreflang",
+    "x-default",
     "godeskhub.com",
     "raw query",
   ]) {
@@ -67,6 +77,9 @@ test("Discover build verifies localized static HTML, SEO metadata, and privacy b
   }
 
   assert.match(verifier, /html\.includes\("noindex"\)/);
+  assert.match(verifier, /https:\/\/godeskhub\.com\/en\/ai-skills\//);
+  assert.match(verifier, /https:\/\/godeskhub\.com\/en\/resources\/ai-skill\/prompt-brief-refiner\//);
+  assert.match(verifier, /assertNoDuplicateSitemapUrls/);
 });
 
 test("Discover cutover and rollback plan is documented without performing deployment", async () => {
@@ -248,4 +261,24 @@ test("Discover Phase 6 search and related resources include AI Skills without ex
   const all = module.listDiscoverResources("en");
   assert.ok(!all.some((resource) => resource.type === "collection"));
   assert.ok(module.buildStaticRoutes().every((route) => route.resourceType !== "collection"));
+});
+
+test("Discover Phase 7 sitemap and metadata helpers publish localized AI Skills without Collections", async () => {
+  const module = await import("../apps/discover/src/discover-data.js");
+  const routes = module.buildStaticRoutes();
+  const publicRoutes = routes.filter((route) => route.kind !== "not-found");
+
+  assert.ok(publicRoutes.some((route) => route.kind === "browse" && route.resourceType === "ai-skill"));
+  assert.ok(publicRoutes.some((route) => route.kind === "resource" && route.resourceType === "ai-skill"));
+  assert.ok(publicRoutes.every((route) => route.resourceType !== "collection"));
+
+  for (const locale of ["en", "zh-CN", "zh-TW"]) {
+    const path = module.discoverCanonicalPath({ kind: "browse", locale, resourceType: "ai-skill" });
+    assert.match(path, /^\/(en|zh-cn|zh-tw)\/ai-skills\/$/);
+  }
+
+  const staticGenerator = await read("apps/discover/scripts/generate-discover-static-pages.mjs");
+  assert.match(staticGenerator, /"@type": "ItemList"/);
+  assert.match(staticGenerator, /"@type": "HowTo"/);
+  assert.doesNotMatch(staticGenerator, /AggregateRating|Review|Offer/);
 });
