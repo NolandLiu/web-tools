@@ -1,0 +1,14 @@
+resourceId: res_guide_local-data-tool-safety
+locale: zh-TW
+name: "本機資料工具安全"
+summary: "一份瀏覽器工具使用清單，協助避免把敏感文字、文件或結果放到公開位置。"
+seoTitle: "本機資料工具安全指南 | GoDeskHub"
+seoDescription: "在使用瀏覽器工具處理敏感文字、文件或結果前，先核對實用安全檢查項。"
+searchAliases:
+  - "本機工具安全"
+  - "瀏覽器工具隱私"
+  - "安全線上工具"
+searchKeywords:
+  - "隱私"
+  - "本機處理"
+  - "瀏覽器"

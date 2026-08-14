@@ -1,0 +1,14 @@
+resourceId: res_guide_local-data-tool-safety
+locale: en
+name: "Local data tool safety"
+summary: "A checklist for using browser-based tools without putting sensitive text, files, or results into public places."
+seoTitle: "Local data tool safety guide | GoDeskHub"
+seoDescription: "Review practical safety checks before using browser-based tools with sensitive text, files, or results."
+searchAliases:
+  - "local tool safety"
+  - "browser tool privacy"
+  - "safe online tools"
+searchKeywords:
+  - "privacy"
+  - "local processing"
+  - "browser"

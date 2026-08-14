@@ -63,6 +63,7 @@ export const messages = {
     heroTitle: "Find the right tool without giving up your data",
     heroSubtitle: "Discover privacy-first tools, useful websites, AI skills, and practical guides. Everything in one place.",
     searchPlaceholder: "Search tools, websites, guides, AI skills...",
+    searchResultsLabel: "Search results",
     searchButton: "Search",
     featured: "Featured picks",
     featuredText: "Handpicked resources to help you work smarter.",
@@ -99,6 +100,7 @@ export const messages = {
     heroTitle: "快速找到合适工具，同时保留数据隐私",
     heroSubtitle: "发现注重隐私的工具、实用网站、AI 技能和操作指南。集中查找，不上传你的内容。",
     searchPlaceholder: "搜索工具、网站、指南、AI 技能……",
+    searchResultsLabel: "搜索结果",
     searchButton: "搜索",
     featured: "精选资源",
     featuredText: "帮助你更高效完成工作的资源。",
@@ -135,6 +137,7 @@ export const messages = {
     heroTitle: "快速找到合適工具，同時保留資料隱私",
     heroSubtitle: "發現重視隱私的工具、實用網站、AI 技能和操作指南。集中查找，不上傳你的內容。",
     searchPlaceholder: "搜尋工具、網站、指南、AI 技能……",
+    searchResultsLabel: "搜尋結果",
     searchButton: "搜尋",
     featured: "精選資源",
     featuredText: "協助你更高效完成工作的資源。",
@@ -214,7 +217,7 @@ export function resourcePrimaryAction(resource, locale = defaultLocale) {
   if (resource.type === "tool") {
     return `${TOOLS_ORIGIN}/${localeSegment(locale)}/tools/${resource.canonicalSlug}`;
   }
-  return resource.websiteUrl ?? resourcePath(resource, locale);
+  return resource.destinationUrl ?? resource.websiteUrl ?? resourcePath(resource, locale);
 }
 
 export function projectResource(resource, locale = defaultLocale) {

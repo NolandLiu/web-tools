@@ -1,0 +1,25 @@
+schemaVersion: 0.1.0
+id: res_ai-skill-localization-copy-checker
+type: ai-skill
+canonicalSlug: localization-copy-checker
+status: published
+createdAt: "2026-08-13T00:00:00.000Z"
+updatedAt: "2026-08-13T00:00:00.000Z"
+useCases:
+  - "Check whether English, Simplified Chinese, and Traditional Chinese product copy describe the same behavior."
+  - "Find missing labels, inconsistent terms, and locale-specific wording that could confuse users."
+inputRequirements:
+  - "The source English copy and the localized variants."
+  - "A short description of the actual product behavior."
+  - "Any naming terms that must remain stable across locales."
+outputResults:
+  - "A locale-by-locale consistency report."
+  - "Suggested edits that preserve product meaning and avoid unsupported claims."
+steps:
+  - "Provide the copy in grouped language blocks."
+  - "Ask the AI to compare meaning before style."
+  - "Review terms that affect privacy, calculation limits, or user actions."
+  - "Apply only edits that match the actual interface."
+riskNotes:
+  - "Do not paste private roadmap text, user messages, or unpublished acceptance documents."
+  - "Do not let the AI add features, guarantees, or policy claims that the product does not implement."

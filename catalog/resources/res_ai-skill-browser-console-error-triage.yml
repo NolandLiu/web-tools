@@ -1,0 +1,25 @@
+schemaVersion: 0.1.0
+id: res_ai-skill-browser-console-error-triage
+type: ai-skill
+canonicalSlug: browser-console-error-triage
+status: published
+createdAt: "2026-08-13T00:00:00.000Z"
+updatedAt: "2026-08-13T00:00:00.000Z"
+useCases:
+  - "Turn a browser console error and a short reproduction path into a focused debugging checklist."
+  - "Separate network, rendering, hydration, and user-input validation problems before changing code."
+inputRequirements:
+  - "The exact visible error text or stack excerpt."
+  - "The page path, browser, and steps that trigger the problem."
+  - "Relevant source excerpts with private values removed."
+outputResults:
+  - "A short diagnosis tree with the most likely failure category first."
+  - "Minimal reproduction checks and targeted test suggestions."
+steps:
+  - "Paste the error text and the smallest reproduction path."
+  - "Ask the AI to group possible causes by evidence instead of guessing."
+  - "Run the first targeted check locally before modifying code."
+  - "Record any confirmed defect under the project task workflow."
+riskNotes:
+  - "Do not paste user content, browser cookies, private account data, or production-only values."
+  - "Treat the AI output as a triage aid; verify the failing path with local tests or browser inspection."

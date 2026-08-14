@@ -26,7 +26,7 @@ export function SearchBox({ locale }: SearchBoxProps) {
         <Button type="submit">{t.searchButton}</Button>
       </form>
       {query.trim() ? (
-        <div className="discover-search-results" aria-label="Search results">
+        <div className="discover-search-results" aria-live="polite" aria-label={t.searchResultsLabel}>
           {results.length ? results.map(resource => (
             <a key={resource.id} href={resource.href}>
               <span>{resource.name}</span>

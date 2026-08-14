@@ -51,7 +51,10 @@ test("repository Catalog fixtures validate and preserve publication states", asy
       ["res_tool_ip-whois-rdap", "ip-rdap"],
     ],
   );
-  assert.equal(catalog.records.locales.length, 96);
+  assert.equal(catalog.records.resources.filter((resource) => resource.type === "website" && resource.status === "published").length, 2);
+  assert.equal(catalog.records.resources.filter((resource) => resource.type === "guide" && resource.status === "published").length, 2);
+  assert.equal(catalog.records.resources.filter((resource) => resource.type === "ai-skill" && resource.status === "published").length, 5);
+  assert.equal(catalog.records.locales.length, 114);
   assert(catalog.records.faqs.length >= 60);
   assert.equal(catalog.records.categories.length, 5);
   assert(catalog.records.health.length >= 29);

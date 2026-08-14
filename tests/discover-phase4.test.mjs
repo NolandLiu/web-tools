@@ -282,3 +282,77 @@ test("Discover Phase 7 sitemap and metadata helpers publish localized AI Skills 
   assert.match(staticGenerator, /"@type": "HowTo"/);
   assert.doesNotMatch(staticGenerator, /AggregateRating|Review|Offer/);
 });
+
+test("Discover Phase 7 browser acceptance gates are documented and wired into the shell", async () => {
+  const docs = await read("docs/discover-browser-acceptance-checklist.md");
+  const shell = await read("apps/discover/src/components/AppShell.tsx");
+  const search = await read("apps/discover/src/components/SearchBox.tsx");
+  const styles = await read("apps/discover/src/styles.css");
+
+  for (const expected of [
+    "Keyboard",
+    "Mobile",
+    "200% zoom",
+    "Screen reader",
+    "No analytics query",
+    "Manual acceptance is required",
+  ]) {
+    assert.match(docs, new RegExp(expected));
+  }
+
+  assert.match(shell, /discover-skip-link/);
+  assert.match(shell, /href="#discover-main"/);
+  assert.match(shell, /id="discover-main"/);
+  assert.match(search, /aria-live="polite"/);
+  assert.match(search, /aria-label=\{t\.searchResultsLabel\}/);
+  assert.match(styles, /\.discover-skip-link/);
+  assert.match(styles, /@media\s*\(max-width:\s*767px\)/);
+  assert.match(styles, /@media\s*\(min-resolution:\s*2dppx\)/);
+});
+
+test("Discover Phase 7 content seed includes websites, guides, and expanded AI Skills", async () => {
+  const module = await import("../apps/discover/src/discover-data.js");
+
+  const websites = module.listDiscoverResources("en", { type: "website" });
+  const guides = module.listDiscoverResources("en", { type: "guide" });
+  const aiSkills = module.listDiscoverResources("en", { type: "ai-skill" });
+
+  assert.equal(websites.length, 2);
+  assert.equal(guides.length, 2);
+  assert.equal(aiSkills.length, 5);
+  assert.ok(websites.every((resource) => resource.primaryHref.startsWith("https://")));
+  assert.ok(guides.every((resource) => resource.href.startsWith("/en/resources/guide/")));
+  assert.ok(aiSkills.some((resource) => resource.canonicalSlug === "browser-console-error-triage"));
+  assert.ok(aiSkills.some((resource) => resource.canonicalSlug === "localization-copy-checker"));
+
+  const zhCnWebsites = module.listDiscoverResources("zh-CN", { type: "website" });
+  const zhTwGuides = module.listDiscoverResources("zh-TW", { type: "guide" });
+  assert.equal(zhCnWebsites.length, websites.length);
+  assert.equal(zhTwGuides.length, guides.length);
+
+  const search = module.listDiscoverResources("en", { query: "WHATWG URL" });
+  assert.ok(search.some((resource) => resource.canonicalSlug === "whatwg-url-standard"));
+});
+
+test("Discover Phase 7 production dry run and Collections policy are documented", async () => {
+  const dryRun = await read("docs/discover-production-cutover-dry-run.md");
+  const policy = await read("docs/discover-collections-policy.md");
+  const readme = await read("catalog/README.md");
+  const module = await import("../apps/discover/src/discover-data.js");
+
+  for (const expected of [
+    "Dry run only",
+    "Do not deploy",
+    "Do not change DNS",
+    "Rollback",
+    "Cloudflare Pages",
+  ]) {
+    assert.match(dryRun, new RegExp(expected));
+  }
+
+  assert.match(policy, /Collections are not a public Discover surface/);
+  assert.match(policy, /Future reactivation requires a new approved task/);
+  assert.match(readme, /Collections publication policy/);
+  assert.equal(module.parseDiscoverPath("/en/collections/").kind, "not-found");
+  assert.ok(module.buildStaticRoutes().every((route) => route.resourceType !== "collection"));
+});

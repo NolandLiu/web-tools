@@ -29,6 +29,7 @@ export function AppShell({ locale, children }: AppShellProps) {
 
   return (
     <div className="discover-shell" lang={t.htmlLang}>
+      <a className="discover-skip-link" href="#discover-main">Skip to content</a>
       <main className="discover-frame">
         <header className="discover-nav" aria-label="GoDeskHub Discover">
           <a className="discover-logo" href={`/${segment}/`}>
@@ -49,7 +50,9 @@ export function AppShell({ locale, children }: AppShellProps) {
             </details>
           </div>
         </header>
-        {children}
+        <div id="discover-main" tabIndex={-1}>
+          {children}
+        </div>
         <footer className="discover-footer">
           <div className="discover-footer-brand">
             <span className="discover-logo-mark" aria-hidden="true">GH</span>
