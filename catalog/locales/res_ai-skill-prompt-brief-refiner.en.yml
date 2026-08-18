@@ -1,0 +1,16 @@
+resourceId: res_ai-skill-prompt-brief-refiner
+locale: en
+name: "Prompt brief refiner"
+summary: "Turn a rough request into a structured, reviewable brief before implementation begins."
+seoTitle: "Prompt brief refiner AI skill | GoDeskHub"
+seoDescription: "Use a privacy-aware AI workflow to refine rough requests into scoped briefs, acceptance criteria, assumptions, and risks."
+searchAliases:
+  - "prompt brief"
+  - "requirements prompt"
+  - "scope refiner"
+searchKeywords:
+  - "AI skill"
+  - "prompt"
+  - "requirements"
+  - "acceptance criteria"
+  - "scope"

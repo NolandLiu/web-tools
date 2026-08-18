@@ -1,0 +1,14 @@
+resourceId: res_ai-skill-localization-copy-checker
+locale: en
+name: "Localization copy checker"
+summary: "Use AI to compare English, Simplified Chinese, and Traditional Chinese product copy for meaning and completeness."
+seoTitle: "Localization copy checker AI skill | GoDeskHub"
+seoDescription: "A reusable AI workflow for checking multilingual product copy consistency before release."
+searchAliases:
+  - "localization checker"
+  - "translation QA"
+  - "multilingual copy review"
+searchKeywords:
+  - "AI skill"
+  - "localization"
+  - "copy review"

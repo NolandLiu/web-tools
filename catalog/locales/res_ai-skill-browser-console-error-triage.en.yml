@@ -1,0 +1,14 @@
+resourceId: res_ai-skill-browser-console-error-triage
+locale: en
+name: "Browser console error triage"
+summary: "Use AI to turn a console error, page path, and reproduction steps into a focused debugging checklist."
+seoTitle: "Browser console error triage AI skill | GoDeskHub"
+seoDescription: "A practical AI workflow for grouping browser console errors by evidence and choosing targeted checks."
+searchAliases:
+  - "browser error triage"
+  - "console debugging"
+  - "frontend bug checklist"
+searchKeywords:
+  - "AI skill"
+  - "debugging"
+  - "frontend"

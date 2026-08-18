@@ -1,0 +1,14 @@
+resourceId: res_website_rfc-editor
+locale: zh-TW
+name: "RFC Editor"
+summary: "用於查閱互聯網協議與運行文件的官方 RFC 發布網站。"
+seoTitle: "RFC Editor 協議參考 | GoDeskHub"
+seoDescription: "使用 RFC Editor 查閱已發布 RFC 協議文件的官方來源。"
+searchAliases:
+  - "RFC Editor"
+  - "RFC 文件"
+  - "互聯網標準"
+searchKeywords:
+  - "網絡"
+  - "協議"
+  - "參考"

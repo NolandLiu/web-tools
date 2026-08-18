@@ -1,0 +1,14 @@
+resourceId: res_guide_local-data-tool-safety
+locale: zh-CN
+name: "本地数据工具安全"
+summary: "一份浏览器工具使用清单，帮助避免把敏感文本、文件或结果放到公开位置。"
+seoTitle: "本地数据工具安全指南 | GoDeskHub"
+seoDescription: "在使用浏览器工具处理敏感文本、文件或结果前，先核对实用安全检查项。"
+searchAliases:
+  - "本地工具安全"
+  - "浏览器工具隐私"
+  - "安全在线工具"
+searchKeywords:
+  - "隐私"
+  - "本地处理"
+  - "浏览器"

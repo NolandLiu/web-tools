@@ -1,0 +1,16 @@
+resourceId: res_ai-skill-code-review-checklist
+locale: en
+name: "Code review checklist"
+summary: "Use AI to structure a code review around correctness, privacy, accessibility, and tests."
+seoTitle: "Code review checklist AI skill | GoDeskHub"
+seoDescription: "A practical AI workflow for turning diffs and acceptance criteria into prioritized code review checks."
+searchAliases:
+  - "AI code review"
+  - "review checklist"
+  - "pull request review"
+searchKeywords:
+  - "AI skill"
+  - "code review"
+  - "privacy"
+  - "accessibility"
+  - "tests"

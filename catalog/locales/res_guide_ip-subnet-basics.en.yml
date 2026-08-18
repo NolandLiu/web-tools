@@ -1,0 +1,14 @@
+resourceId: res_guide_ip-subnet-basics
+locale: en
+name: "IP subnet basics"
+summary: "A compact guide to CIDR prefixes, network addresses, broadcast addresses, and usable host ranges."
+seoTitle: "IP subnet basics guide | GoDeskHub"
+seoDescription: "Learn the practical meaning of CIDR prefixes, subnet masks, network addresses, and usable ranges."
+searchAliases:
+  - "CIDR guide"
+  - "subnet basics"
+  - "network address guide"
+searchKeywords:
+  - "IPv4"
+  - "subnet"
+  - "network"

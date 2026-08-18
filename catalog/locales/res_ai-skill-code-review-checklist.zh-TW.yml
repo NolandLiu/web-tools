@@ -1,0 +1,16 @@
+resourceId: res_ai-skill-code-review-checklist
+locale: zh-TW
+name: "程式碼評審清單"
+summary: "用 AI 圍繞正確性、隱私、無障礙和測試覆蓋整理程式碼評審重點。"
+seoTitle: "程式碼評審清單 AI 技能 | GoDeskHub"
+seoDescription: "面向程式碼差異和驗收標準的 AI 工作流程，協助產生有優先級的評審檢查項。"
+searchAliases:
+  - "AI 程式碼評審"
+  - "評審清單"
+  - "PR 評審"
+searchKeywords:
+  - "AI 技能"
+  - "程式碼評審"
+  - "隱私"
+  - "無障礙"
+  - "測試"

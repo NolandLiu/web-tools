@@ -1,0 +1,14 @@
+resourceId: res_ai-skill-localization-copy-checker
+locale: zh-TW
+name: "本地化文案檢查"
+summary: "用 AI 對比英文、簡體中文和繁體中文產品文案的含義一致性與完整性。"
+seoTitle: "本地化文案檢查 AI 技能 | GoDeskHub"
+seoDescription: "一個發布前檢查多語言產品文案一致性的可重用 AI 工作流程。"
+searchAliases:
+  - "本地化檢查"
+  - "翻譯 QA"
+  - "多語言文案審查"
+searchKeywords:
+  - "AI 技能"
+  - "本地化"
+  - "文案審查"

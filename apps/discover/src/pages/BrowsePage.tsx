@@ -33,8 +33,8 @@ export function BrowsePage({ route }: BrowsePageProps) {
     ? t.browseIntro.website
     : route.resourceType === "guide"
       ? t.browseIntro.guide
-      : route.resourceType === "collection"
-        ? t.browseIntro.collection
+      : route.resourceType === "ai-skill"
+        ? t.browseIntro.aiSkill
         : route.resourceType === "tool"
           ? t.browseIntro.tool
           : t.browseIntro.default;
@@ -42,17 +42,22 @@ export function BrowsePage({ route }: BrowsePageProps) {
     ? t.resourceCounts.website
     : route.resourceType === "guide"
       ? t.resourceCounts.guide
-      : route.resourceType === "collection"
-        ? t.resourceCounts.collection
+      : route.resourceType === "ai-skill"
+        ? t.resourceCounts.aiSkill
         : route.resourceType === "tool"
           ? t.resourceCounts.tool
           : t.resourceCounts.default;
+  const resourceTypeLabel = route.resourceType === "ai-skill"
+    ? t.resourceTypeLabels.aiSkill
+    : route.resourceType
+      ? t.resourceTypeLabels[route.resourceType] ?? route.resourceType
+      : undefined;
 
   return (
     <section className="discover-page-section" aria-labelledby="discover-browse-title">
       <div className="discover-browse-hero">
         <div>
-          <h1 id="discover-browse-title">{title}</h1>
+          <h1 id="discover-browse-title">{category?.name ?? tag?.name ?? resourceTypeLabel ?? title}</h1>
           <p>{category?.summary ?? tag?.name ?? typeIntro}</p>
         </div>
         <strong>{resources.length} {countLabel}</strong>

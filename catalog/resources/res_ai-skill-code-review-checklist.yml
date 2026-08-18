@@ -1,0 +1,25 @@
+schemaVersion: 0.1.0
+id: res_ai-skill-code-review-checklist
+type: ai-skill
+canonicalSlug: code-review-checklist
+status: published
+createdAt: "2026-08-13T00:00:00.000Z"
+updatedAt: "2026-08-13T00:00:00.000Z"
+useCases:
+  - "Review a pull request for correctness, privacy, accessibility, and test coverage."
+  - "Convert broad review concerns into actionable, file-specific comments."
+inputRequirements:
+  - "A concise summary of the change."
+  - "Relevant diffs or file excerpts that do not contain secrets."
+  - "The project rules or acceptance criteria that should guide the review."
+outputResults:
+  - "A prioritized review checklist grouped by correctness, privacy, accessibility, and maintainability."
+  - "Specific review comments with severity and suggested fixes."
+steps:
+  - "Provide the change summary, acceptance criteria, and selected diff context."
+  - "Ask the AI to identify blocking issues before style suggestions."
+  - "Verify each comment against the actual code before posting it publicly."
+  - "Keep private task details out of public review comments."
+riskNotes:
+  - "Do not paste secrets, private task briefs, real user data, passwords, or API tokens."
+  - "AI review output is advisory; run the real test suite and inspect the diff yourself."

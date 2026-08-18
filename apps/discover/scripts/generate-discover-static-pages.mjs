@@ -13,6 +13,7 @@ import {
 } from "../src/discover-data.js";
 
 const template = await readFile(resolve("dist-discover/index.html"), "utf8");
+const supportedLocales = ["en", "zh-CN", "zh-TW"];
 
 function escapeHtml(value) {
   return String(value)
@@ -26,12 +27,22 @@ function escapeScriptJson(value) {
   return JSON.stringify(value).replaceAll("<", "\\u003c");
 }
 
+function escapeXml(value) {
+  return escapeHtml(value).replaceAll("'", "&apos;");
+}
+
 function localizedPath(route, locale) {
   return discoverCanonicalPath({ ...route, locale });
 }
 
 function metadata(route) {
   const t = messages[route.locale] ?? messages.en;
+  if (route.kind === "home") return { title: `${t.heroTitle} | GoDeskHub`, description: t.heroSubtitle };
+  if (route.kind === "browse") {
+    const label = t.resourceTypeLabels?.[route.resourceType === "ai-skill" ? "aiSkill" : route.resourceType] ?? t.resources;
+    const description = t.browseIntro?.[route.resourceType === "ai-skill" ? "aiSkill" : route.resourceType] ?? t.browseIntro.default;
+    return { title: `${label} | GoDeskHub`, description };
+  }
   if (route.kind === "resource") {
     const resource = findResourceByRoute(route);
     if (resource) return { title: resource.seoTitle, description: resource.seoDescription };
@@ -40,7 +51,102 @@ function metadata(route) {
     const category = listDiscoverCategories(route.locale).find(item => item.slug === route.categorySlug);
     if (category) return { title: `${category.name} | GoDeskHub`, description: category.summary };
   }
+  if (route.kind === "tag") {
+    return { title: `${route.tagSlug} | GoDeskHub`, description: t.browseIntro.default };
+  }
+  if (route.kind === "info") {
+    const label = t.footer?.[route.slug] ?? "GoDeskHub";
+    return { title: `${label} | GoDeskHub`, description: t.heroSubtitle };
+  }
   return { title: `${t.heroTitle} | GoDeskHub`, description: t.heroSubtitle };
+}
+
+function alternateLinks(route) {
+  return supportedLocales.map(locale => {
+    const href = `${DISCOVER_ORIGIN}${localizedPath(route, locale)}`;
+    return { hreflang: locale, href };
+  });
+}
+
+function renderHtmlAlternates(route) {
+  const localeLinks = alternateLinks(route).map(({ hreflang, href }) => (
+    `<link rel="alternate" hreflang="${hreflang}" href="${href}" />`
+  ));
+  localeLinks.push(`<link rel="alternate" hreflang="x-default" href="${DISCOVER_ORIGIN}${localizedPath(route, "en")}" />`);
+  return localeLinks.join("\n");
+}
+
+function routeListItems(route) {
+  if (route.kind === "home") {
+    return buildDiscoverHome(route.locale).featured;
+  }
+  if (route.kind === "browse" || route.kind === "category" || route.kind === "tag") {
+    return listDiscoverResources(route.locale, {
+      type: route.resourceType,
+      categorySlug: route.categorySlug,
+      tagSlug: route.tagSlug,
+    });
+  }
+  return [];
+}
+
+function jsonLdForRoute(route, meta, canonical) {
+  if (route.kind === "home") {
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "GoDeskHub",
+      description: meta.description,
+      url: canonical,
+      inLanguage: route.locale,
+    };
+  }
+
+  if (route.kind === "browse" || route.kind === "category" || route.kind === "tag") {
+    const resources = routeListItems(route);
+    return {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: meta.title,
+      description: meta.description,
+      url: canonical,
+      inLanguage: route.locale,
+      itemListElement: resources.map((resource, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: resource.name,
+        url: resource.href.startsWith("http") ? resource.href : `${DISCOVER_ORIGIN}${resource.href}`,
+      })),
+    };
+  }
+
+  if (route.kind === "resource") {
+    const resource = findResourceByRoute(route);
+    if (resource?.type === "ai-skill") {
+      return {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: resource.name,
+        description: resource.seoDescription,
+        url: canonical,
+        inLanguage: route.locale,
+        step: resource.steps.map((step, index) => ({
+          "@type": "HowToStep",
+          position: index + 1,
+          text: step,
+        })),
+      };
+    }
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: meta.title,
+    description: meta.description,
+    url: canonical,
+    inLanguage: route.locale,
+  };
 }
 
 function renderCard(resource, locale) {
@@ -52,6 +158,28 @@ function renderCard(resource, locale) {
     <p>${escapeHtml(resource.summary)}</p>
     <a href="${escapeHtml(resource.primaryHref)}">${escapeHtml(label)}</a>
   </article>`;
+}
+
+function renderList(title, items, ordered = false) {
+  if (!items?.length) return "";
+  const tag = ordered ? "ol" : "ul";
+  return `<section><h2>${escapeHtml(title)}</h2><${tag}>${items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</${tag}></section>`;
+}
+
+function renderResourceDetail(resource, locale) {
+  const t = messages[locale] ?? messages.en;
+  const base = renderCard(resource, locale);
+  if (resource.type !== "ai-skill") {
+    return base;
+  }
+
+  return `${base}<section class="discover-static-ai-skill">
+    ${renderList(t.aiSkillDetail.useCases, resource.useCases)}
+    ${renderList(t.aiSkillDetail.inputs, resource.inputRequirements)}
+    ${renderList(t.aiSkillDetail.outputs, resource.outputResults)}
+    ${renderList(t.aiSkillDetail.steps, resource.steps, true)}
+    ${renderList(t.aiSkillDetail.privacyNotes, resource.riskNotes)}
+  </section>`;
 }
 
 function renderRoute(route) {
@@ -81,7 +209,7 @@ function renderRoute(route) {
     </section>`;
   } else if (route.kind === "resource") {
     const resource = findResourceByRoute(route);
-    body = resource ? renderCard(resource, route.locale) : `<p>${escapeHtml(t.empty)}</p>`;
+    body = resource ? renderResourceDetail(resource, route.locale) : `<p>${escapeHtml(t.empty)}</p>`;
   } else {
     const resources = listDiscoverResources(route.locale, {
       type: route.resourceType,
@@ -91,20 +219,8 @@ function renderRoute(route) {
     body = `<section><h1>${escapeHtml(meta.title.replace(" | GoDeskHub", ""))}</h1>${resources.map(resource => renderCard(resource, route.locale)).join("") || `<p>${escapeHtml(t.empty)}</p>`}</section>`;
   }
 
-  const hreflang = ["en", "zh-CN", "zh-TW"].map(locale => {
-    const hrefLang = locale;
-    const href = `${DISCOVER_ORIGIN}${localizedPath(route, locale)}`;
-    return `<link rel="alternate" hreflang="${hrefLang}" href="${href}" />`;
-  }).join("\n");
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": route.kind === "home" ? "WebSite" : "WebPage",
-    name: meta.title,
-    description: meta.description,
-    url: canonical,
-    inLanguage: route.locale,
-  };
+  const hreflang = renderHtmlAlternates(route);
+  const jsonLd = jsonLdForRoute(route, meta, canonical);
 
   return template
     .replace(/<html lang="[^"]*">/, `<html lang="${route.locale}">`)
@@ -115,6 +231,43 @@ function renderRoute(route) {
     <script type="application/ld+json">${escapeScriptJson(jsonLd)}</script>
   </head>`)
     .replace(/<div id="discover-root">[\s\S]*?<\/div>/, `<div id="discover-root">${body}</div>`);
+}
+
+function sitemapRouteKey(route) {
+  return JSON.stringify({
+    kind: route.kind,
+    resourceType: route.resourceType,
+    slug: route.slug,
+    categorySlug: route.categorySlug,
+    tagSlug: route.tagSlug,
+  });
+}
+
+function buildDiscoverSitemap() {
+  const routeByKey = new Map();
+  for (const route of buildStaticRoutes()) {
+    if (route.kind !== "not-found" && route.locale === "en") {
+      routeByKey.set(sitemapRouteKey(route), route);
+    }
+  }
+
+  const entries = [...routeByKey.values()].map(route => {
+    const loc = `${DISCOVER_ORIGIN}${discoverCanonicalPath(route)}`;
+    const alternates = alternateLinks(route).map(({ hreflang, href }) => (
+      `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${escapeXml(href)}" />`
+    ));
+    alternates.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${DISCOVER_ORIGIN}${localizedPath(route, "en")}`)}" />`);
+    return `  <url>
+    <loc>${escapeXml(loc)}</loc>
+${alternates.join("\n")}
+  </url>`;
+  });
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries.join("\n")}
+</urlset>
+`;
 }
 
 let count = 0;
@@ -129,4 +282,5 @@ for (const route of buildStaticRoutes()) {
 }
 
 await writeFile(resolve("dist-discover/index.html"), renderRoute({ kind: "home", locale: "en" }));
+await writeFile(resolve("dist-discover/sitemap.xml"), buildDiscoverSitemap());
 console.log(`Generated ${count} Discover static pages.`);

@@ -1,0 +1,14 @@
+resourceId: res_website_whatwg-url-standard
+locale: en
+name: "WHATWG URL Standard"
+summary: "The living standard for URL parsing and serialization behavior used by modern browsers."
+seoTitle: "WHATWG URL Standard reference | GoDeskHub"
+seoDescription: "Bookmark the WHATWG URL Standard for browser URL parsing and serialization rules."
+searchAliases:
+  - "WHATWG URL"
+  - "URL standard"
+  - "browser URL parsing"
+searchKeywords:
+  - "URL"
+  - "standard"
+  - "developer reference"

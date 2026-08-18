@@ -1,0 +1,8 @@
+schemaVersion: 0.1.0
+id: res_website_rfc-editor
+type: website
+canonicalSlug: rfc-editor
+status: published
+createdAt: "2026-08-13T00:00:00.000Z"
+updatedAt: "2026-08-13T00:00:00.000Z"
+destinationUrl: "https://www.rfc-editor.org/"

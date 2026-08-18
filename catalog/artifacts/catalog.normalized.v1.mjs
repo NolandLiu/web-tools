@@ -2192,6 +2192,402 @@ export default {
     ],
     "locales": [
       {
+        "resourceId": "res_ai-skill-browser-console-error-triage",
+        "locale": "en",
+        "name": "Browser console error triage",
+        "summary": "Use AI to turn a console error, page path, and reproduction steps into a focused debugging checklist.",
+        "seoTitle": "Browser console error triage AI skill | GoDeskHub",
+        "seoDescription": "A practical AI workflow for grouping browser console errors by evidence and choosing targeted checks.",
+        "searchAliases": [
+          "browser error triage",
+          "console debugging",
+          "frontend bug checklist"
+        ],
+        "searchKeywords": [
+          "AI skill",
+          "debugging",
+          "frontend"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-browser-console-error-triage",
+        "locale": "zh-CN",
+        "name": "浏览器控制台错误分诊",
+        "summary": "用 AI 将控制台错误、页面路径和复现步骤整理成聚焦的调试清单。",
+        "seoTitle": "浏览器控制台错误分诊 AI 技能 | GoDeskHub",
+        "seoDescription": "一个按证据归类浏览器控制台错误，并选择目标检查项的实用 AI 工作流。",
+        "searchAliases": [
+          "浏览器错误分诊",
+          "控制台调试",
+          "前端缺陷清单"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "调试",
+          "前端"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-browser-console-error-triage",
+        "locale": "zh-TW",
+        "name": "瀏覽器控制台錯誤分診",
+        "summary": "用 AI 將控制台錯誤、頁面路徑和重現步驟整理成聚焦的除錯清單。",
+        "seoTitle": "瀏覽器控制台錯誤分診 AI 技能 | GoDeskHub",
+        "seoDescription": "一個按證據歸類瀏覽器控制台錯誤，並選擇目標檢查項的實用 AI 工作流程。",
+        "searchAliases": [
+          "瀏覽器錯誤分診",
+          "控制台除錯",
+          "前端缺陷清單"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "除錯",
+          "前端"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-code-review-checklist",
+        "locale": "en",
+        "name": "Code review checklist",
+        "summary": "Use AI to structure a code review around correctness, privacy, accessibility, and tests.",
+        "seoTitle": "Code review checklist AI skill | GoDeskHub",
+        "seoDescription": "A practical AI workflow for turning diffs and acceptance criteria into prioritized code review checks.",
+        "searchAliases": [
+          "AI code review",
+          "review checklist",
+          "pull request review"
+        ],
+        "searchKeywords": [
+          "AI skill",
+          "code review",
+          "privacy",
+          "accessibility",
+          "tests"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-code-review-checklist",
+        "locale": "zh-CN",
+        "name": "代码评审清单",
+        "summary": "用 AI 围绕正确性、隐私、无障碍和测试覆盖整理代码评审重点。",
+        "seoTitle": "代码评审清单 AI 技能 | GoDeskHub",
+        "seoDescription": "面向代码差异和验收标准的 AI 工作流，帮助生成有优先级的评审检查项。",
+        "searchAliases": [
+          "AI 代码评审",
+          "评审清单",
+          "PR 评审"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "代码评审",
+          "隐私",
+          "无障碍",
+          "测试"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-code-review-checklist",
+        "locale": "zh-TW",
+        "name": "程式碼評審清單",
+        "summary": "用 AI 圍繞正確性、隱私、無障礙和測試覆蓋整理程式碼評審重點。",
+        "seoTitle": "程式碼評審清單 AI 技能 | GoDeskHub",
+        "seoDescription": "面向程式碼差異和驗收標準的 AI 工作流程，協助產生有優先級的評審檢查項。",
+        "searchAliases": [
+          "AI 程式碼評審",
+          "評審清單",
+          "PR 評審"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "程式碼評審",
+          "隱私",
+          "無障礙",
+          "測試"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-localization-copy-checker",
+        "locale": "en",
+        "name": "Localization copy checker",
+        "summary": "Use AI to compare English, Simplified Chinese, and Traditional Chinese product copy for meaning and completeness.",
+        "seoTitle": "Localization copy checker AI skill | GoDeskHub",
+        "seoDescription": "A reusable AI workflow for checking multilingual product copy consistency before release.",
+        "searchAliases": [
+          "localization checker",
+          "translation QA",
+          "multilingual copy review"
+        ],
+        "searchKeywords": [
+          "AI skill",
+          "localization",
+          "copy review"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-localization-copy-checker",
+        "locale": "zh-CN",
+        "name": "本地化文案检查",
+        "summary": "用 AI 对比英文、简体中文和繁体中文产品文案的含义一致性与完整性。",
+        "seoTitle": "本地化文案检查 AI 技能 | GoDeskHub",
+        "seoDescription": "一个发布前检查多语言产品文案一致性的可复用 AI 工作流。",
+        "searchAliases": [
+          "本地化检查",
+          "翻译 QA",
+          "多语言文案审查"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "本地化",
+          "文案审查"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-localization-copy-checker",
+        "locale": "zh-TW",
+        "name": "本地化文案檢查",
+        "summary": "用 AI 對比英文、簡體中文和繁體中文產品文案的含義一致性與完整性。",
+        "seoTitle": "本地化文案檢查 AI 技能 | GoDeskHub",
+        "seoDescription": "一個發布前檢查多語言產品文案一致性的可重用 AI 工作流程。",
+        "searchAliases": [
+          "本地化檢查",
+          "翻譯 QA",
+          "多語言文案審查"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "本地化",
+          "文案審查"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-privacy-safe-summarizer",
+        "locale": "en",
+        "name": "Privacy-safe summarizer",
+        "summary": "Summarize notes or feedback while keeping private details out of public output.",
+        "seoTitle": "Privacy-safe summarizer AI skill | GoDeskHub",
+        "seoDescription": "A cautious AI workflow for producing public-safe summaries from redacted notes and evidence.",
+        "searchAliases": [
+          "safe summary",
+          "redacted summary",
+          "privacy summary"
+        ],
+        "searchKeywords": [
+          "AI skill",
+          "summary",
+          "privacy",
+          "redaction",
+          "notes"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-privacy-safe-summarizer",
+        "locale": "zh-CN",
+        "name": "隐私安全摘要",
+        "summary": "在保留关键信息的同时，避免把私密细节写入可公开分享的摘要。",
+        "seoTitle": "隐私安全摘要 AI 技能 | GoDeskHub",
+        "seoDescription": "谨慎使用 AI，从已脱敏的笔记和证据中生成适合公开分享的摘要。",
+        "searchAliases": [
+          "安全摘要",
+          "脱敏摘要",
+          "隐私摘要"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "摘要",
+          "隐私",
+          "脱敏",
+          "笔记"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-privacy-safe-summarizer",
+        "locale": "zh-TW",
+        "name": "隱私安全摘要",
+        "summary": "在保留關鍵資訊的同時，避免把私密細節寫入可公開分享的摘要。",
+        "seoTitle": "隱私安全摘要 AI 技能 | GoDeskHub",
+        "seoDescription": "謹慎使用 AI，從已去識別化的筆記和證據中產生適合公開分享的摘要。",
+        "searchAliases": [
+          "安全摘要",
+          "去識別化摘要",
+          "隱私摘要"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "摘要",
+          "隱私",
+          "去識別化",
+          "筆記"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-prompt-brief-refiner",
+        "locale": "en",
+        "name": "Prompt brief refiner",
+        "summary": "Turn a rough request into a structured, reviewable brief before implementation begins.",
+        "seoTitle": "Prompt brief refiner AI skill | GoDeskHub",
+        "seoDescription": "Use a privacy-aware AI workflow to refine rough requests into scoped briefs, acceptance criteria, assumptions, and risks.",
+        "searchAliases": [
+          "prompt brief",
+          "requirements prompt",
+          "scope refiner"
+        ],
+        "searchKeywords": [
+          "AI skill",
+          "prompt",
+          "requirements",
+          "acceptance criteria",
+          "scope"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-prompt-brief-refiner",
+        "locale": "zh-CN",
+        "name": "提示词需求整理",
+        "summary": "把粗略需求整理成结构清晰、可评审、可执行的任务说明。",
+        "seoTitle": "提示词需求整理 AI 技能 | GoDeskHub",
+        "seoDescription": "使用隐私友好的 AI 工作流，将粗略想法整理为范围、非范围、验收标准、假设和风险。",
+        "searchAliases": [
+          "提示词需求",
+          "需求整理",
+          "任务说明"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "提示词",
+          "需求",
+          "验收标准",
+          "范围"
+        ]
+      },
+      {
+        "resourceId": "res_ai-skill-prompt-brief-refiner",
+        "locale": "zh-TW",
+        "name": "提示詞需求整理",
+        "summary": "把粗略需求整理成結構清晰、可評審、可執行的任務說明。",
+        "seoTitle": "提示詞需求整理 AI 技能 | GoDeskHub",
+        "seoDescription": "使用隱私友善的 AI 工作流程，將粗略想法整理為範圍、非範圍、驗收標準、假設和風險。",
+        "searchAliases": [
+          "提示詞需求",
+          "需求整理",
+          "任務說明"
+        ],
+        "searchKeywords": [
+          "AI 技能",
+          "提示詞",
+          "需求",
+          "驗收標準",
+          "範圍"
+        ]
+      },
+      {
+        "resourceId": "res_guide_ip-subnet-basics",
+        "locale": "en",
+        "name": "IP subnet basics",
+        "summary": "A compact guide to CIDR prefixes, network addresses, broadcast addresses, and usable host ranges.",
+        "seoTitle": "IP subnet basics guide | GoDeskHub",
+        "seoDescription": "Learn the practical meaning of CIDR prefixes, subnet masks, network addresses, and usable ranges.",
+        "searchAliases": [
+          "CIDR guide",
+          "subnet basics",
+          "network address guide"
+        ],
+        "searchKeywords": [
+          "IPv4",
+          "subnet",
+          "network"
+        ]
+      },
+      {
+        "resourceId": "res_guide_ip-subnet-basics",
+        "locale": "zh-CN",
+        "name": "IP 子网基础",
+        "summary": "用简洁方式说明 CIDR 掩码位、网络地址、广播地址和可用主机范围。",
+        "seoTitle": "IP 子网基础指南 | GoDeskHub",
+        "seoDescription": "了解 CIDR 掩码位、子网掩码、网络地址和可用范围的实际含义。",
+        "searchAliases": [
+          "CIDR 指南",
+          "子网基础",
+          "网络地址指南"
+        ],
+        "searchKeywords": [
+          "IPv4",
+          "子网",
+          "网络"
+        ]
+      },
+      {
+        "resourceId": "res_guide_ip-subnet-basics",
+        "locale": "zh-TW",
+        "name": "IP 子網基礎",
+        "summary": "用簡潔方式說明 CIDR 遮罩位、網絡地址、廣播地址和可用主機範圍。",
+        "seoTitle": "IP 子網基礎指南 | GoDeskHub",
+        "seoDescription": "了解 CIDR 遮罩位、子網遮罩、網絡地址和可用範圍的實際含義。",
+        "searchAliases": [
+          "CIDR 指南",
+          "子網基礎",
+          "網絡地址指南"
+        ],
+        "searchKeywords": [
+          "IPv4",
+          "子網",
+          "網絡"
+        ]
+      },
+      {
+        "resourceId": "res_guide_local-data-tool-safety",
+        "locale": "en",
+        "name": "Local data tool safety",
+        "summary": "A checklist for using browser-based tools without putting sensitive text, files, or results into public places.",
+        "seoTitle": "Local data tool safety guide | GoDeskHub",
+        "seoDescription": "Review practical safety checks before using browser-based tools with sensitive text, files, or results.",
+        "searchAliases": [
+          "local tool safety",
+          "browser tool privacy",
+          "safe online tools"
+        ],
+        "searchKeywords": [
+          "privacy",
+          "local processing",
+          "browser"
+        ]
+      },
+      {
+        "resourceId": "res_guide_local-data-tool-safety",
+        "locale": "zh-CN",
+        "name": "本地数据工具安全",
+        "summary": "一份浏览器工具使用清单，帮助避免把敏感文本、文件或结果放到公开位置。",
+        "seoTitle": "本地数据工具安全指南 | GoDeskHub",
+        "seoDescription": "在使用浏览器工具处理敏感文本、文件或结果前，先核对实用安全检查项。",
+        "searchAliases": [
+          "本地工具安全",
+          "浏览器工具隐私",
+          "安全在线工具"
+        ],
+        "searchKeywords": [
+          "隐私",
+          "本地处理",
+          "浏览器"
+        ]
+      },
+      {
+        "resourceId": "res_guide_local-data-tool-safety",
+        "locale": "zh-TW",
+        "name": "本機資料工具安全",
+        "summary": "一份瀏覽器工具使用清單，協助避免把敏感文字、文件或結果放到公開位置。",
+        "seoTitle": "本機資料工具安全指南 | GoDeskHub",
+        "seoDescription": "在使用瀏覽器工具處理敏感文字、文件或結果前，先核對實用安全檢查項。",
+        "searchAliases": [
+          "本機工具安全",
+          "瀏覽器工具隱私",
+          "安全線上工具"
+        ],
+        "searchKeywords": [
+          "隱私",
+          "本機處理",
+          "瀏覽器"
+        ]
+      },
+      {
         "resourceId": "res_tool_area-converter",
         "locale": "en",
         "name": "Area converter",
@@ -4149,10 +4545,296 @@ export default {
           "空白",
           "Unicode"
         ]
+      },
+      {
+        "resourceId": "res_website_rfc-editor",
+        "locale": "en",
+        "name": "RFC Editor",
+        "summary": "The official publication site for RFC documents used by Internet protocols and operations.",
+        "seoTitle": "RFC Editor protocol reference | GoDeskHub",
+        "seoDescription": "Use RFC Editor as the official source for published RFC protocol documents.",
+        "searchAliases": [
+          "RFC Editor",
+          "RFC documents",
+          "Internet standards"
+        ],
+        "searchKeywords": [
+          "network",
+          "protocol",
+          "reference"
+        ]
+      },
+      {
+        "resourceId": "res_website_rfc-editor",
+        "locale": "zh-CN",
+        "name": "RFC Editor",
+        "summary": "用于查阅互联网协议与运行文档的官方 RFC 发布网站。",
+        "seoTitle": "RFC Editor 协议参考 | GoDeskHub",
+        "seoDescription": "使用 RFC Editor 查阅已发布 RFC 协议文档的官方来源。",
+        "searchAliases": [
+          "RFC Editor",
+          "RFC 文档",
+          "互联网标准"
+        ],
+        "searchKeywords": [
+          "网络",
+          "协议",
+          "参考"
+        ]
+      },
+      {
+        "resourceId": "res_website_rfc-editor",
+        "locale": "zh-TW",
+        "name": "RFC Editor",
+        "summary": "用於查閱互聯網協議與運行文件的官方 RFC 發布網站。",
+        "seoTitle": "RFC Editor 協議參考 | GoDeskHub",
+        "seoDescription": "使用 RFC Editor 查閱已發布 RFC 協議文件的官方來源。",
+        "searchAliases": [
+          "RFC Editor",
+          "RFC 文件",
+          "互聯網標準"
+        ],
+        "searchKeywords": [
+          "網絡",
+          "協議",
+          "參考"
+        ]
+      },
+      {
+        "resourceId": "res_website_whatwg-url-standard",
+        "locale": "en",
+        "name": "WHATWG URL Standard",
+        "summary": "The living standard for URL parsing and serialization behavior used by modern browsers.",
+        "seoTitle": "WHATWG URL Standard reference | GoDeskHub",
+        "seoDescription": "Bookmark the WHATWG URL Standard for browser URL parsing and serialization rules.",
+        "searchAliases": [
+          "WHATWG URL",
+          "URL standard",
+          "browser URL parsing"
+        ],
+        "searchKeywords": [
+          "URL",
+          "standard",
+          "developer reference"
+        ]
+      },
+      {
+        "resourceId": "res_website_whatwg-url-standard",
+        "locale": "zh-CN",
+        "name": "WHATWG URL Standard",
+        "summary": "现代浏览器 URL 解析与序列化行为所依据的持续更新标准。",
+        "seoTitle": "WHATWG URL Standard 参考 | GoDeskHub",
+        "seoDescription": "收藏 WHATWG URL Standard，用于核对浏览器 URL 解析与序列化规则。",
+        "searchAliases": [
+          "WHATWG URL",
+          "URL 标准",
+          "浏览器 URL 解析"
+        ],
+        "searchKeywords": [
+          "URL",
+          "标准",
+          "开发参考"
+        ]
+      },
+      {
+        "resourceId": "res_website_whatwg-url-standard",
+        "locale": "zh-TW",
+        "name": "WHATWG URL Standard",
+        "summary": "現代瀏覽器 URL 解析與序列化行為所依據的持續更新標準。",
+        "seoTitle": "WHATWG URL Standard 參考 | GoDeskHub",
+        "seoDescription": "收藏 WHATWG URL Standard，用於核對瀏覽器 URL 解析與序列化規則。",
+        "searchAliases": [
+          "WHATWG URL",
+          "URL 標準",
+          "瀏覽器 URL 解析"
+        ],
+        "searchKeywords": [
+          "URL",
+          "標準",
+          "開發參考"
+        ]
       }
     ],
     "relations": [],
     "resources": [
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_ai-skill-browser-console-error-triage",
+        "canonicalSlug": "browser-console-error-triage",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "ai-skill",
+        "useCases": [
+          "Turn a browser console error and a short reproduction path into a focused debugging checklist.",
+          "Separate network, rendering, hydration, and user-input validation problems before changing code."
+        ],
+        "inputRequirements": [
+          "The exact visible error text or stack excerpt.",
+          "The page path, browser, and steps that trigger the problem.",
+          "Relevant source excerpts with private values removed."
+        ],
+        "outputResults": [
+          "A short diagnosis tree with the most likely failure category first.",
+          "Minimal reproduction checks and targeted test suggestions."
+        ],
+        "steps": [
+          "Paste the error text and the smallest reproduction path.",
+          "Ask the AI to group possible causes by evidence instead of guessing.",
+          "Run the first targeted check locally before modifying code.",
+          "Record any confirmed defect under the project task workflow."
+        ],
+        "riskNotes": [
+          "Do not paste user content, browser cookies, private account data, or production-only values.",
+          "Treat the AI output as a triage aid; verify the failing path with local tests or browser inspection."
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_ai-skill-code-review-checklist",
+        "canonicalSlug": "code-review-checklist",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "ai-skill",
+        "useCases": [
+          "Review a pull request for correctness, privacy, accessibility, and test coverage.",
+          "Convert broad review concerns into actionable, file-specific comments."
+        ],
+        "inputRequirements": [
+          "A concise summary of the change.",
+          "Relevant diffs or file excerpts that do not contain secrets.",
+          "The project rules or acceptance criteria that should guide the review."
+        ],
+        "outputResults": [
+          "A prioritized review checklist grouped by correctness, privacy, accessibility, and maintainability.",
+          "Specific review comments with severity and suggested fixes."
+        ],
+        "steps": [
+          "Provide the change summary, acceptance criteria, and selected diff context.",
+          "Ask the AI to identify blocking issues before style suggestions.",
+          "Verify each comment against the actual code before posting it publicly.",
+          "Keep private task details out of public review comments."
+        ],
+        "riskNotes": [
+          "Do not paste secrets, private task briefs, real user data, passwords, or API tokens.",
+          "AI review output is advisory; run the real test suite and inspect the diff yourself."
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_ai-skill-localization-copy-checker",
+        "canonicalSlug": "localization-copy-checker",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "ai-skill",
+        "useCases": [
+          "Check whether English, Simplified Chinese, and Traditional Chinese product copy describe the same behavior.",
+          "Find missing labels, inconsistent terms, and locale-specific wording that could confuse users."
+        ],
+        "inputRequirements": [
+          "The source English copy and the localized variants.",
+          "A short description of the actual product behavior.",
+          "Any naming terms that must remain stable across locales."
+        ],
+        "outputResults": [
+          "A locale-by-locale consistency report.",
+          "Suggested edits that preserve product meaning and avoid unsupported claims."
+        ],
+        "steps": [
+          "Provide the copy in grouped language blocks.",
+          "Ask the AI to compare meaning before style.",
+          "Review terms that affect privacy, calculation limits, or user actions.",
+          "Apply only edits that match the actual interface."
+        ],
+        "riskNotes": [
+          "Do not paste private roadmap text, user messages, or unpublished acceptance documents.",
+          "Do not let the AI add features, guarantees, or policy claims that the product does not implement."
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_ai-skill-privacy-safe-summarizer",
+        "canonicalSlug": "privacy-safe-summarizer",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "ai-skill",
+        "useCases": [
+          "Summarize notes, research, or product feedback after removing sensitive details.",
+          "Create a public-safe summary from private working material."
+        ],
+        "inputRequirements": [
+          "Redacted source notes or a sanitized excerpt.",
+          "The intended audience and the level of detail required.",
+          "A list of details that must stay private."
+        ],
+        "outputResults": [
+          "A concise summary that preserves useful decisions while excluding sensitive material.",
+          "A short list of removed or generalized private details for review."
+        ],
+        "steps": [
+          "Redact names, access material, private URLs, customer data, and confidential numbers before prompting.",
+          "Ask the AI to summarize only from provided evidence and mark unknowns clearly.",
+          "Review the output for accidental leakage before publishing or sharing.",
+          "Keep the original private notes in a local or approved private system."
+        ],
+        "riskNotes": [
+          "Never paste raw private keys, personal data, sign-in data, private financial records, or confidential source text.",
+          "A privacy-safe summary still needs human review before external publication."
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_ai-skill-prompt-brief-refiner",
+        "canonicalSlug": "prompt-brief-refiner",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "ai-skill",
+        "useCases": [
+          "Turn a rough request into an implementation-ready brief.",
+          "Separate scope, non-goals, acceptance criteria, assumptions, and risks before implementation starts."
+        ],
+        "inputRequirements": [
+          "A rough goal or feature request.",
+          "Known constraints such as languages, platforms, privacy limits, or deadlines.",
+          "Any examples of desired or undesired output."
+        ],
+        "outputResults": [
+          "A structured brief with goal, scope, non-scope, acceptance criteria, risks, and open questions.",
+          "A concise handoff prompt that can be reviewed before implementation."
+        ],
+        "steps": [
+          "Paste the rough request into your AI assistant.",
+          "Ask it to identify missing decisions and separate scope from non-scope.",
+          "Review the generated brief and remove private details before sharing it.",
+          "Use the reviewed brief as the approved task source or implementation input."
+        ],
+        "riskNotes": [
+          "Do not paste private keys, private customer data, sign-in data, unpublished access material, or sensitive business plans.",
+          "Review assumptions carefully; the AI may invent requirements if the original request is vague."
+        ]
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_guide_ip-subnet-basics",
+        "canonicalSlug": "ip-subnet-basics",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "guide"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_guide_local-data-tool-safety",
+        "canonicalSlug": "local-data-tool-safety",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "guide"
+      },
       {
         "schemaVersion": "0.1.0",
         "id": "res_tool_area-converter",
@@ -4471,6 +5153,26 @@ export default {
         "type": "tool",
         "toolBindingId": "word-counter",
         "primaryCategoryId": "cat_developer"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_website_rfc-editor",
+        "canonicalSlug": "rfc-editor",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "website",
+        "destinationUrl": "https://www.rfc-editor.org/"
+      },
+      {
+        "schemaVersion": "0.1.0",
+        "id": "res_website_whatwg-url-standard",
+        "canonicalSlug": "whatwg-url-standard",
+        "status": "published",
+        "createdAt": "2026-08-13T00:00:00.000Z",
+        "updatedAt": "2026-08-13T00:00:00.000Z",
+        "type": "website",
+        "destinationUrl": "https://url.spec.whatwg.org/"
       }
     ],
     "tags": [
@@ -4500,6 +5202,6 @@ export default {
       }
     ]
   },
-  "checksum": "sha256-a91615f946ea68d8d1b209dbe59ef0372a679ee9b7932d5080df77fe1e469faa"
+  "checksum": "sha256-9f0cf35c54e3db07c406d810753dcb4462d80b6addd4587baf0cf9696e95f6f1"
 }
 ;

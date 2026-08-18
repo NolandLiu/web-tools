@@ -32,6 +32,14 @@ Representative fixtures include both published and hidden resources. Hidden IP
 lookup and RDAP resources document the known capability boundary without adding
 published routes, Sitemap entries, or public discovery surfaces.
 
+## Collections publication policy
+
+Collections remain a Catalog capability, but they are not a public Discover
+surface in the current information architecture. Published collection authority
+records may support internal validation or future planning, but they must not
+create Discover navigation entries, public routes, Sitemap URLs, search entries,
+or static HTML until a new approved task explicitly reactivates Collections.
+
 ## Data Boundary
 
 Catalog records describe published or publishable public content. They must not

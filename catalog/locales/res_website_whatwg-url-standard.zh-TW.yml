@@ -1,0 +1,14 @@
+resourceId: res_website_whatwg-url-standard
+locale: zh-TW
+name: "WHATWG URL Standard"
+summary: "現代瀏覽器 URL 解析與序列化行為所依據的持續更新標準。"
+seoTitle: "WHATWG URL Standard 參考 | GoDeskHub"
+seoDescription: "收藏 WHATWG URL Standard，用於核對瀏覽器 URL 解析與序列化規則。"
+searchAliases:
+  - "WHATWG URL"
+  - "URL 標準"
+  - "瀏覽器 URL 解析"
+searchKeywords:
+  - "URL"
+  - "標準"
+  - "開發參考"

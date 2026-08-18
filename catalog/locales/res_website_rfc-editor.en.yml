@@ -1,0 +1,14 @@
+resourceId: res_website_rfc-editor
+locale: en
+name: "RFC Editor"
+summary: "The official publication site for RFC documents used by Internet protocols and operations."
+seoTitle: "RFC Editor protocol reference | GoDeskHub"
+seoDescription: "Use RFC Editor as the official source for published RFC protocol documents."
+searchAliases:
+  - "RFC Editor"
+  - "RFC documents"
+  - "Internet standards"
+searchKeywords:
+  - "network"
+  - "protocol"
+  - "reference"

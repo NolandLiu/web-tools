@@ -1,0 +1,8 @@
+schemaVersion: 0.1.0
+id: res_website_whatwg-url-standard
+type: website
+canonicalSlug: whatwg-url-standard
+status: published
+createdAt: "2026-08-13T00:00:00.000Z"
+updatedAt: "2026-08-13T00:00:00.000Z"
+destinationUrl: "https://url.spec.whatwg.org/"

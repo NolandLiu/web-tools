@@ -1,0 +1,14 @@
+resourceId: res_ai-skill-browser-console-error-triage
+locale: zh-TW
+name: "瀏覽器控制台錯誤分診"
+summary: "用 AI 將控制台錯誤、頁面路徑和重現步驟整理成聚焦的除錯清單。"
+seoTitle: "瀏覽器控制台錯誤分診 AI 技能 | GoDeskHub"
+seoDescription: "一個按證據歸類瀏覽器控制台錯誤，並選擇目標檢查項的實用 AI 工作流程。"
+searchAliases:
+  - "瀏覽器錯誤分診"
+  - "控制台除錯"
+  - "前端缺陷清單"
+searchKeywords:
+  - "AI 技能"
+  - "除錯"
+  - "前端"

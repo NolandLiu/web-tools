@@ -1,0 +1,14 @@
+resourceId: res_guide_ip-subnet-basics
+locale: zh-TW
+name: "IP 子網基礎"
+summary: "用簡潔方式說明 CIDR 遮罩位、網絡地址、廣播地址和可用主機範圍。"
+seoTitle: "IP 子網基礎指南 | GoDeskHub"
+seoDescription: "了解 CIDR 遮罩位、子網遮罩、網絡地址和可用範圍的實際含義。"
+searchAliases:
+  - "CIDR 指南"
+  - "子網基礎"
+  - "網絡地址指南"
+searchKeywords:
+  - "IPv4"
+  - "子網"
+  - "網絡"

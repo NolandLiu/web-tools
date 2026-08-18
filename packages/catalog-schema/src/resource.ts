@@ -2,12 +2,12 @@ import { z } from "zod";
 
 import { CATALOG_SCHEMA_VERSION } from "./version.js";
 
-export const ResourceType = ["website", "tool", "guide"] as const;
+export const ResourceType = ["website", "tool", "guide", "ai-skill"] as const;
 export const PublicationStatus = ["draft", "review", "published", "deprecated", "hidden"] as const;
 export const LocaleCode = ["en", "zh-CN", "zh-TW"] as const;
 
 const catalogIdSchema = z.string().regex(
-  /^res_(website|tool|guide)_[a-z0-9]+(?:-[a-z0-9]+)*$/,
+  /^res_(website|tool|guide)_[a-z0-9]+(?:-[a-z0-9]+)*$|^res_ai-skill-[a-z0-9]+(?:-[a-z0-9]+)*$/,
   "id must use a readable resource prefix such as res_tool_ipv4-network",
 );
 
@@ -56,12 +56,26 @@ const guideResourceSchema = resourceBaseSchema.extend({
   type: z.literal("guide"),
 }).strict();
 
+const nonEmptyList = (fieldName: string) => z.array(
+  z.string().trim().min(1, `${fieldName} item is required`),
+).min(1, `${fieldName} requires at least one item`);
+
+const aiSkillResourceSchema = resourceBaseSchema.extend({
+  type: z.literal("ai-skill"),
+  useCases: nonEmptyList("useCases"),
+  inputRequirements: nonEmptyList("inputRequirements"),
+  outputResults: nonEmptyList("outputResults"),
+  steps: nonEmptyList("steps"),
+  riskNotes: nonEmptyList("riskNotes"),
+}).strict();
+
 export const resourceSchema = z.discriminatedUnion("type", [
   websiteResourceSchema,
   toolResourceSchema,
   guideResourceSchema,
+  aiSkillResourceSchema,
 ]).superRefine((value, context) => {
-  const expectedPrefix = `res_${value.type}_`;
+  const expectedPrefix = value.type === "ai-skill" ? "res_ai-skill-" : `res_${value.type}_`;
   if (!value.id.startsWith(expectedPrefix)) {
     context.addIssue({
       code: "custom",

@@ -1,0 +1,14 @@
+resourceId: res_guide_ip-subnet-basics
+locale: zh-CN
+name: "IP 子网基础"
+summary: "用简洁方式说明 CIDR 掩码位、网络地址、广播地址和可用主机范围。"
+seoTitle: "IP 子网基础指南 | GoDeskHub"
+seoDescription: "了解 CIDR 掩码位、子网掩码、网络地址和可用范围的实际含义。"
+searchAliases:
+  - "CIDR 指南"
+  - "子网基础"
+  - "网络地址指南"
+searchKeywords:
+  - "IPv4"
+  - "子网"
+  - "网络"

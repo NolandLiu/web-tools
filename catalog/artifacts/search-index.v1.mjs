@@ -4,6 +4,235 @@ export default {
     "en": {
       "documents": [
         {
+          "id": "res_ai-skill-browser-console-error-triage:en",
+          "resourceId": "res_ai-skill-browser-console-error-triage",
+          "type": "ai-skill",
+          "locale": "en",
+          "name": "Browser console error triage",
+          "description": "Use AI to turn a console error, page path, and reproduction steps into a focused debugging checklist.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "browser error triage",
+            "console debugging",
+            "frontend bug checklist"
+          ],
+          "keywords": [
+            "AI skill",
+            "debugging",
+            "frontend"
+          ],
+          "url": "/en/browser-console-error-triage",
+          "rankingText": [
+            "browser console error triage",
+            "use ai to turn a console error, page path, and reproduction steps into a focused debugging checklist.",
+            "browser error triage",
+            "console debugging",
+            "frontend bug checklist",
+            "ai skill",
+            "debugging",
+            "frontend"
+          ]
+        },
+        {
+          "id": "res_ai-skill-code-review-checklist:en",
+          "resourceId": "res_ai-skill-code-review-checklist",
+          "type": "ai-skill",
+          "locale": "en",
+          "name": "Code review checklist",
+          "description": "Use AI to structure a code review around correctness, privacy, accessibility, and tests.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "AI code review",
+            "review checklist",
+            "pull request review"
+          ],
+          "keywords": [
+            "AI skill",
+            "code review",
+            "privacy",
+            "accessibility",
+            "tests"
+          ],
+          "url": "/en/code-review-checklist",
+          "rankingText": [
+            "code review checklist",
+            "use ai to structure a code review around correctness, privacy, accessibility, and tests.",
+            "ai code review",
+            "review checklist",
+            "pull request review",
+            "ai skill",
+            "code review",
+            "privacy",
+            "accessibility",
+            "tests"
+          ]
+        },
+        {
+          "id": "res_ai-skill-localization-copy-checker:en",
+          "resourceId": "res_ai-skill-localization-copy-checker",
+          "type": "ai-skill",
+          "locale": "en",
+          "name": "Localization copy checker",
+          "description": "Use AI to compare English, Simplified Chinese, and Traditional Chinese product copy for meaning and completeness.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "localization checker",
+            "translation QA",
+            "multilingual copy review"
+          ],
+          "keywords": [
+            "AI skill",
+            "localization",
+            "copy review"
+          ],
+          "url": "/en/localization-copy-checker",
+          "rankingText": [
+            "localization copy checker",
+            "use ai to compare english, simplified chinese, and traditional chinese product copy for meaning and completeness.",
+            "localization checker",
+            "translation qa",
+            "multilingual copy review",
+            "ai skill",
+            "localization",
+            "copy review"
+          ]
+        },
+        {
+          "id": "res_ai-skill-privacy-safe-summarizer:en",
+          "resourceId": "res_ai-skill-privacy-safe-summarizer",
+          "type": "ai-skill",
+          "locale": "en",
+          "name": "Privacy-safe summarizer",
+          "description": "Summarize notes or feedback while keeping private details out of public output.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "safe summary",
+            "redacted summary",
+            "privacy summary"
+          ],
+          "keywords": [
+            "AI skill",
+            "summary",
+            "privacy",
+            "redaction",
+            "notes"
+          ],
+          "url": "/en/privacy-safe-summarizer",
+          "rankingText": [
+            "privacy-safe summarizer",
+            "summarize notes or feedback while keeping private details out of public output.",
+            "safe summary",
+            "redacted summary",
+            "privacy summary",
+            "ai skill",
+            "summary",
+            "privacy",
+            "redaction",
+            "notes"
+          ]
+        },
+        {
+          "id": "res_ai-skill-prompt-brief-refiner:en",
+          "resourceId": "res_ai-skill-prompt-brief-refiner",
+          "type": "ai-skill",
+          "locale": "en",
+          "name": "Prompt brief refiner",
+          "description": "Turn a rough request into a structured, reviewable brief before implementation begins.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "prompt brief",
+            "requirements prompt",
+            "scope refiner"
+          ],
+          "keywords": [
+            "AI skill",
+            "prompt",
+            "requirements",
+            "acceptance criteria",
+            "scope"
+          ],
+          "url": "/en/prompt-brief-refiner",
+          "rankingText": [
+            "prompt brief refiner",
+            "turn a rough request into a structured, reviewable brief before implementation begins.",
+            "prompt brief",
+            "requirements prompt",
+            "scope refiner",
+            "ai skill",
+            "prompt",
+            "requirements",
+            "acceptance criteria",
+            "scope"
+          ]
+        },
+        {
+          "id": "res_guide_ip-subnet-basics:en",
+          "resourceId": "res_guide_ip-subnet-basics",
+          "type": "guide",
+          "locale": "en",
+          "name": "IP subnet basics",
+          "description": "A compact guide to CIDR prefixes, network addresses, broadcast addresses, and usable host ranges.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "CIDR guide",
+            "subnet basics",
+            "network address guide"
+          ],
+          "keywords": [
+            "IPv4",
+            "subnet",
+            "network"
+          ],
+          "url": "/en/guides/ip-subnet-basics",
+          "rankingText": [
+            "ip subnet basics",
+            "a compact guide to cidr prefixes, network addresses, broadcast addresses, and usable host ranges.",
+            "cidr guide",
+            "subnet basics",
+            "network address guide",
+            "ipv4",
+            "subnet",
+            "network"
+          ]
+        },
+        {
+          "id": "res_guide_local-data-tool-safety:en",
+          "resourceId": "res_guide_local-data-tool-safety",
+          "type": "guide",
+          "locale": "en",
+          "name": "Local data tool safety",
+          "description": "A checklist for using browser-based tools without putting sensitive text, files, or results into public places.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "local tool safety",
+            "browser tool privacy",
+            "safe online tools"
+          ],
+          "keywords": [
+            "privacy",
+            "local processing",
+            "browser"
+          ],
+          "url": "/en/guides/local-data-tool-safety",
+          "rankingText": [
+            "local data tool safety",
+            "a checklist for using browser-based tools without putting sensitive text, files, or results into public places.",
+            "local tool safety",
+            "browser tool privacy",
+            "safe online tools",
+            "privacy",
+            "local processing",
+            "browser"
+          ]
+        },
+        {
           "id": "res_tool_area-converter:en",
           "resourceId": "res_tool_area-converter",
           "type": "tool",
@@ -1191,11 +1420,302 @@ export default {
             "count lines in pasted notes or a small text block.",
             "format & developer tools"
           ]
+        },
+        {
+          "id": "res_website_rfc-editor:en",
+          "resourceId": "res_website_rfc-editor",
+          "type": "website",
+          "locale": "en",
+          "name": "RFC Editor",
+          "description": "The official publication site for RFC documents used by Internet protocols and operations.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "RFC Editor",
+            "RFC documents",
+            "Internet standards"
+          ],
+          "keywords": [
+            "network",
+            "protocol",
+            "reference"
+          ],
+          "url": "/en/websites/rfc-editor",
+          "rankingText": [
+            "rfc editor",
+            "the official publication site for rfc documents used by internet protocols and operations.",
+            "rfc editor",
+            "rfc documents",
+            "internet standards",
+            "network",
+            "protocol",
+            "reference"
+          ]
+        },
+        {
+          "id": "res_website_whatwg-url-standard:en",
+          "resourceId": "res_website_whatwg-url-standard",
+          "type": "website",
+          "locale": "en",
+          "name": "WHATWG URL Standard",
+          "description": "The living standard for URL parsing and serialization behavior used by modern browsers.",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "WHATWG URL",
+            "URL standard",
+            "browser URL parsing"
+          ],
+          "keywords": [
+            "URL",
+            "standard",
+            "developer reference"
+          ],
+          "url": "/en/websites/whatwg-url-standard",
+          "rankingText": [
+            "whatwg url standard",
+            "the living standard for url parsing and serialization behavior used by modern browsers.",
+            "whatwg url",
+            "url standard",
+            "browser url parsing",
+            "url",
+            "standard",
+            "developer reference"
+          ]
         }
       ]
     },
     "zh-CN": {
       "documents": [
+        {
+          "id": "res_ai-skill-browser-console-error-triage:zh-CN",
+          "resourceId": "res_ai-skill-browser-console-error-triage",
+          "type": "ai-skill",
+          "locale": "zh-CN",
+          "name": "浏览器控制台错误分诊",
+          "description": "用 AI 将控制台错误、页面路径和复现步骤整理成聚焦的调试清单。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "浏览器错误分诊",
+            "控制台调试",
+            "前端缺陷清单"
+          ],
+          "keywords": [
+            "AI 技能",
+            "调试",
+            "前端"
+          ],
+          "url": "/zh-cn/browser-console-error-triage",
+          "rankingText": [
+            "浏览器控制台错误分诊",
+            "用 ai 将控制台错误、页面路径和复现步骤整理成聚焦的调试清单。",
+            "浏览器错误分诊",
+            "控制台调试",
+            "前端缺陷清单",
+            "ai 技能",
+            "调试",
+            "前端"
+          ]
+        },
+        {
+          "id": "res_ai-skill-code-review-checklist:zh-CN",
+          "resourceId": "res_ai-skill-code-review-checklist",
+          "type": "ai-skill",
+          "locale": "zh-CN",
+          "name": "代码评审清单",
+          "description": "用 AI 围绕正确性、隐私、无障碍和测试覆盖整理代码评审重点。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "AI 代码评审",
+            "评审清单",
+            "PR 评审"
+          ],
+          "keywords": [
+            "AI 技能",
+            "代码评审",
+            "隐私",
+            "无障碍",
+            "测试"
+          ],
+          "url": "/zh-cn/code-review-checklist",
+          "rankingText": [
+            "代码评审清单",
+            "用 ai 围绕正确性、隐私、无障碍和测试覆盖整理代码评审重点。",
+            "ai 代码评审",
+            "评审清单",
+            "pr 评审",
+            "ai 技能",
+            "代码评审",
+            "隐私",
+            "无障碍",
+            "测试"
+          ]
+        },
+        {
+          "id": "res_ai-skill-localization-copy-checker:zh-CN",
+          "resourceId": "res_ai-skill-localization-copy-checker",
+          "type": "ai-skill",
+          "locale": "zh-CN",
+          "name": "本地化文案检查",
+          "description": "用 AI 对比英文、简体中文和繁体中文产品文案的含义一致性与完整性。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "本地化检查",
+            "翻译 QA",
+            "多语言文案审查"
+          ],
+          "keywords": [
+            "AI 技能",
+            "本地化",
+            "文案审查"
+          ],
+          "url": "/zh-cn/localization-copy-checker",
+          "rankingText": [
+            "本地化文案检查",
+            "用 ai 对比英文、简体中文和繁体中文产品文案的含义一致性与完整性。",
+            "本地化检查",
+            "翻译 qa",
+            "多语言文案审查",
+            "ai 技能",
+            "本地化",
+            "文案审查"
+          ]
+        },
+        {
+          "id": "res_ai-skill-privacy-safe-summarizer:zh-CN",
+          "resourceId": "res_ai-skill-privacy-safe-summarizer",
+          "type": "ai-skill",
+          "locale": "zh-CN",
+          "name": "隐私安全摘要",
+          "description": "在保留关键信息的同时，避免把私密细节写入可公开分享的摘要。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "安全摘要",
+            "脱敏摘要",
+            "隐私摘要"
+          ],
+          "keywords": [
+            "AI 技能",
+            "摘要",
+            "隐私",
+            "脱敏",
+            "笔记"
+          ],
+          "url": "/zh-cn/privacy-safe-summarizer",
+          "rankingText": [
+            "隐私安全摘要",
+            "在保留关键信息的同时,避免把私密细节写入可公开分享的摘要。",
+            "安全摘要",
+            "脱敏摘要",
+            "隐私摘要",
+            "ai 技能",
+            "摘要",
+            "隐私",
+            "脱敏",
+            "笔记"
+          ]
+        },
+        {
+          "id": "res_ai-skill-prompt-brief-refiner:zh-CN",
+          "resourceId": "res_ai-skill-prompt-brief-refiner",
+          "type": "ai-skill",
+          "locale": "zh-CN",
+          "name": "提示词需求整理",
+          "description": "把粗略需求整理成结构清晰、可评审、可执行的任务说明。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "提示词需求",
+            "需求整理",
+            "任务说明"
+          ],
+          "keywords": [
+            "AI 技能",
+            "提示词",
+            "需求",
+            "验收标准",
+            "范围"
+          ],
+          "url": "/zh-cn/prompt-brief-refiner",
+          "rankingText": [
+            "提示词需求整理",
+            "把粗略需求整理成结构清晰、可评审、可执行的任务说明。",
+            "提示词需求",
+            "需求整理",
+            "任务说明",
+            "ai 技能",
+            "提示词",
+            "需求",
+            "验收标准",
+            "范围"
+          ]
+        },
+        {
+          "id": "res_guide_ip-subnet-basics:zh-CN",
+          "resourceId": "res_guide_ip-subnet-basics",
+          "type": "guide",
+          "locale": "zh-CN",
+          "name": "IP 子网基础",
+          "description": "用简洁方式说明 CIDR 掩码位、网络地址、广播地址和可用主机范围。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "CIDR 指南",
+            "子网基础",
+            "网络地址指南"
+          ],
+          "keywords": [
+            "IPv4",
+            "子网",
+            "网络"
+          ],
+          "url": "/zh-cn/guides/ip-subnet-basics",
+          "rankingText": [
+            "ip 子网基础",
+            "用简洁方式说明 cidr 掩码位、网络地址、广播地址和可用主机范围。",
+            "cidr 指南",
+            "子网基础",
+            "网络地址指南",
+            "ipv4",
+            "子网",
+            "网络"
+          ]
+        },
+        {
+          "id": "res_guide_local-data-tool-safety:zh-CN",
+          "resourceId": "res_guide_local-data-tool-safety",
+          "type": "guide",
+          "locale": "zh-CN",
+          "name": "本地数据工具安全",
+          "description": "一份浏览器工具使用清单，帮助避免把敏感文本、文件或结果放到公开位置。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "本地工具安全",
+            "浏览器工具隐私",
+            "安全在线工具"
+          ],
+          "keywords": [
+            "隐私",
+            "本地处理",
+            "浏览器"
+          ],
+          "url": "/zh-cn/guides/local-data-tool-safety",
+          "rankingText": [
+            "本地数据工具安全",
+            "一份浏览器工具使用清单,帮助避免把敏感文本、文件或结果放到公开位置。",
+            "本地工具安全",
+            "浏览器工具隐私",
+            "安全在线工具",
+            "隐私",
+            "本地处理",
+            "浏览器"
+          ]
+        },
         {
           "id": "res_tool_area-converter:zh-CN",
           "resourceId": "res_tool_area-converter",
@@ -2414,11 +2934,302 @@ export default {
             "统计粘贴笔记或小段文本的行数。",
             "格式与开发工具"
           ]
+        },
+        {
+          "id": "res_website_rfc-editor:zh-CN",
+          "resourceId": "res_website_rfc-editor",
+          "type": "website",
+          "locale": "zh-CN",
+          "name": "RFC Editor",
+          "description": "用于查阅互联网协议与运行文档的官方 RFC 发布网站。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "RFC Editor",
+            "RFC 文档",
+            "互联网标准"
+          ],
+          "keywords": [
+            "网络",
+            "协议",
+            "参考"
+          ],
+          "url": "/zh-cn/websites/rfc-editor",
+          "rankingText": [
+            "rfc editor",
+            "用于查阅互联网协议与运行文档的官方 rfc 发布网站。",
+            "rfc editor",
+            "rfc 文档",
+            "互联网标准",
+            "网络",
+            "协议",
+            "参考"
+          ]
+        },
+        {
+          "id": "res_website_whatwg-url-standard:zh-CN",
+          "resourceId": "res_website_whatwg-url-standard",
+          "type": "website",
+          "locale": "zh-CN",
+          "name": "WHATWG URL Standard",
+          "description": "现代浏览器 URL 解析与序列化行为所依据的持续更新标准。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "WHATWG URL",
+            "URL 标准",
+            "浏览器 URL 解析"
+          ],
+          "keywords": [
+            "URL",
+            "标准",
+            "开发参考"
+          ],
+          "url": "/zh-cn/websites/whatwg-url-standard",
+          "rankingText": [
+            "whatwg url standard",
+            "现代浏览器 url 解析与序列化行为所依据的持续更新标准。",
+            "whatwg url",
+            "url 标准",
+            "浏览器 url 解析",
+            "url",
+            "标准",
+            "开发参考"
+          ]
         }
       ]
     },
     "zh-TW": {
       "documents": [
+        {
+          "id": "res_ai-skill-browser-console-error-triage:zh-TW",
+          "resourceId": "res_ai-skill-browser-console-error-triage",
+          "type": "ai-skill",
+          "locale": "zh-TW",
+          "name": "瀏覽器控制台錯誤分診",
+          "description": "用 AI 將控制台錯誤、頁面路徑和重現步驟整理成聚焦的除錯清單。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "瀏覽器錯誤分診",
+            "控制台除錯",
+            "前端缺陷清單"
+          ],
+          "keywords": [
+            "AI 技能",
+            "除錯",
+            "前端"
+          ],
+          "url": "/zh-tw/browser-console-error-triage",
+          "rankingText": [
+            "瀏覽器控制台錯誤分診",
+            "用 ai 將控制台錯誤、頁面路徑和重現步驟整理成聚焦的除錯清單。",
+            "瀏覽器錯誤分診",
+            "控制台除錯",
+            "前端缺陷清單",
+            "ai 技能",
+            "除錯",
+            "前端"
+          ]
+        },
+        {
+          "id": "res_ai-skill-code-review-checklist:zh-TW",
+          "resourceId": "res_ai-skill-code-review-checklist",
+          "type": "ai-skill",
+          "locale": "zh-TW",
+          "name": "程式碼評審清單",
+          "description": "用 AI 圍繞正確性、隱私、無障礙和測試覆蓋整理程式碼評審重點。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "AI 程式碼評審",
+            "評審清單",
+            "PR 評審"
+          ],
+          "keywords": [
+            "AI 技能",
+            "程式碼評審",
+            "隱私",
+            "無障礙",
+            "測試"
+          ],
+          "url": "/zh-tw/code-review-checklist",
+          "rankingText": [
+            "程式碼評審清單",
+            "用 ai 圍繞正確性、隱私、無障礙和測試覆蓋整理程式碼評審重點。",
+            "ai 程式碼評審",
+            "評審清單",
+            "pr 評審",
+            "ai 技能",
+            "程式碼評審",
+            "隱私",
+            "無障礙",
+            "測試"
+          ]
+        },
+        {
+          "id": "res_ai-skill-localization-copy-checker:zh-TW",
+          "resourceId": "res_ai-skill-localization-copy-checker",
+          "type": "ai-skill",
+          "locale": "zh-TW",
+          "name": "本地化文案檢查",
+          "description": "用 AI 對比英文、簡體中文和繁體中文產品文案的含義一致性與完整性。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "本地化檢查",
+            "翻譯 QA",
+            "多語言文案審查"
+          ],
+          "keywords": [
+            "AI 技能",
+            "本地化",
+            "文案審查"
+          ],
+          "url": "/zh-tw/localization-copy-checker",
+          "rankingText": [
+            "本地化文案檢查",
+            "用 ai 對比英文、簡體中文和繁體中文產品文案的含義一致性與完整性。",
+            "本地化檢查",
+            "翻譯 qa",
+            "多語言文案審查",
+            "ai 技能",
+            "本地化",
+            "文案審查"
+          ]
+        },
+        {
+          "id": "res_ai-skill-privacy-safe-summarizer:zh-TW",
+          "resourceId": "res_ai-skill-privacy-safe-summarizer",
+          "type": "ai-skill",
+          "locale": "zh-TW",
+          "name": "隱私安全摘要",
+          "description": "在保留關鍵資訊的同時，避免把私密細節寫入可公開分享的摘要。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "安全摘要",
+            "去識別化摘要",
+            "隱私摘要"
+          ],
+          "keywords": [
+            "AI 技能",
+            "摘要",
+            "隱私",
+            "去識別化",
+            "筆記"
+          ],
+          "url": "/zh-tw/privacy-safe-summarizer",
+          "rankingText": [
+            "隱私安全摘要",
+            "在保留關鍵資訊的同時,避免把私密細節寫入可公開分享的摘要。",
+            "安全摘要",
+            "去識別化摘要",
+            "隱私摘要",
+            "ai 技能",
+            "摘要",
+            "隱私",
+            "去識別化",
+            "筆記"
+          ]
+        },
+        {
+          "id": "res_ai-skill-prompt-brief-refiner:zh-TW",
+          "resourceId": "res_ai-skill-prompt-brief-refiner",
+          "type": "ai-skill",
+          "locale": "zh-TW",
+          "name": "提示詞需求整理",
+          "description": "把粗略需求整理成結構清晰、可評審、可執行的任務說明。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "提示詞需求",
+            "需求整理",
+            "任務說明"
+          ],
+          "keywords": [
+            "AI 技能",
+            "提示詞",
+            "需求",
+            "驗收標準",
+            "範圍"
+          ],
+          "url": "/zh-tw/prompt-brief-refiner",
+          "rankingText": [
+            "提示詞需求整理",
+            "把粗略需求整理成結構清晰、可評審、可執行的任務說明。",
+            "提示詞需求",
+            "需求整理",
+            "任務說明",
+            "ai 技能",
+            "提示詞",
+            "需求",
+            "驗收標準",
+            "範圍"
+          ]
+        },
+        {
+          "id": "res_guide_ip-subnet-basics:zh-TW",
+          "resourceId": "res_guide_ip-subnet-basics",
+          "type": "guide",
+          "locale": "zh-TW",
+          "name": "IP 子網基礎",
+          "description": "用簡潔方式說明 CIDR 遮罩位、網絡地址、廣播地址和可用主機範圍。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "CIDR 指南",
+            "子網基礎",
+            "網絡地址指南"
+          ],
+          "keywords": [
+            "IPv4",
+            "子網",
+            "網絡"
+          ],
+          "url": "/zh-tw/guides/ip-subnet-basics",
+          "rankingText": [
+            "ip 子網基礎",
+            "用簡潔方式說明 cidr 遮罩位、網絡地址、廣播地址和可用主機範圍。",
+            "cidr 指南",
+            "子網基礎",
+            "網絡地址指南",
+            "ipv4",
+            "子網",
+            "網絡"
+          ]
+        },
+        {
+          "id": "res_guide_local-data-tool-safety:zh-TW",
+          "resourceId": "res_guide_local-data-tool-safety",
+          "type": "guide",
+          "locale": "zh-TW",
+          "name": "本機資料工具安全",
+          "description": "一份瀏覽器工具使用清單，協助避免把敏感文字、文件或結果放到公開位置。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "本機工具安全",
+            "瀏覽器工具隱私",
+            "安全線上工具"
+          ],
+          "keywords": [
+            "隱私",
+            "本機處理",
+            "瀏覽器"
+          ],
+          "url": "/zh-tw/guides/local-data-tool-safety",
+          "rankingText": [
+            "本機資料工具安全",
+            "一份瀏覽器工具使用清單,協助避免把敏感文字、文件或結果放到公開位置。",
+            "本機工具安全",
+            "瀏覽器工具隱私",
+            "安全線上工具",
+            "隱私",
+            "本機處理",
+            "瀏覽器"
+          ]
+        },
         {
           "id": "res_tool_area-converter:zh-TW",
           "resourceId": "res_tool_area-converter",
@@ -3636,6 +4447,68 @@ export default {
             "快速查看短稿長度。",
             "統計貼上筆記或小段文字的行數。",
             "格式與開發工具"
+          ]
+        },
+        {
+          "id": "res_website_rfc-editor:zh-TW",
+          "resourceId": "res_website_rfc-editor",
+          "type": "website",
+          "locale": "zh-TW",
+          "name": "RFC Editor",
+          "description": "用於查閱互聯網協議與運行文件的官方 RFC 發布網站。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "RFC Editor",
+            "RFC 文件",
+            "互聯網標準"
+          ],
+          "keywords": [
+            "網絡",
+            "協議",
+            "參考"
+          ],
+          "url": "/zh-tw/websites/rfc-editor",
+          "rankingText": [
+            "rfc editor",
+            "用於查閱互聯網協議與運行文件的官方 rfc 發布網站。",
+            "rfc editor",
+            "rfc 文件",
+            "互聯網標準",
+            "網絡",
+            "協議",
+            "參考"
+          ]
+        },
+        {
+          "id": "res_website_whatwg-url-standard:zh-TW",
+          "resourceId": "res_website_whatwg-url-standard",
+          "type": "website",
+          "locale": "zh-TW",
+          "name": "WHATWG URL Standard",
+          "description": "現代瀏覽器 URL 解析與序列化行為所依據的持續更新標準。",
+          "category": null,
+          "tags": [],
+          "aliases": [
+            "WHATWG URL",
+            "URL 標準",
+            "瀏覽器 URL 解析"
+          ],
+          "keywords": [
+            "URL",
+            "標準",
+            "開發參考"
+          ],
+          "url": "/zh-tw/websites/whatwg-url-standard",
+          "rankingText": [
+            "whatwg url standard",
+            "現代瀏覽器 url 解析與序列化行為所依據的持續更新標準。",
+            "whatwg url",
+            "url 標準",
+            "瀏覽器 url 解析",
+            "url",
+            "標準",
+            "開發參考"
           ]
         }
       ]

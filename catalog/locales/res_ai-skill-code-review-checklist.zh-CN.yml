@@ -1,0 +1,16 @@
+resourceId: res_ai-skill-code-review-checklist
+locale: zh-CN
+name: "代码评审清单"
+summary: "用 AI 围绕正确性、隐私、无障碍和测试覆盖整理代码评审重点。"
+seoTitle: "代码评审清单 AI 技能 | GoDeskHub"
+seoDescription: "面向代码差异和验收标准的 AI 工作流，帮助生成有优先级的评审检查项。"
+searchAliases:
+  - "AI 代码评审"
+  - "评审清单"
+  - "PR 评审"
+searchKeywords:
+  - "AI 技能"
+  - "代码评审"
+  - "隐私"
+  - "无障碍"
+  - "测试"

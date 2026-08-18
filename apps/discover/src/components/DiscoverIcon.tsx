@@ -1,5 +1,5 @@
 type DiscoverIconProps = {
-  type: "tool" | "website" | "guide" | "collection" | "category";
+  type: "tool" | "website" | "guide" | "ai-skill" | "collection" | "category";
   canonicalSlug?: string;
   className?: string;
 };
@@ -36,6 +36,18 @@ const paths = {
       <rect x="13.5" y="5" width="6" height="6" rx="1.4" />
       <rect x="4.5" y="14" width="6" height="6" rx="1.4" />
       <rect x="13.5" y="14" width="6" height="6" rx="1.4" />
+    </>
+  ),
+  "ai-skill": (
+    <>
+      <path d="M8 5.5h8" />
+      <path d="M8 18.5h8" />
+      <path d="M12 5.5v13" />
+      <path d="M6.5 9.5h11" />
+      <path d="M6.5 14.5h11" />
+      <circle cx="6.5" cy="9.5" r="1.5" />
+      <circle cx="17.5" cy="14.5" r="1.5" />
+      <circle cx="12" cy="12" r="1.5" />
     </>
   ),
   category: (
